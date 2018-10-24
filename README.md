@@ -27,5 +27,5 @@ npm i @balkangraph/orgchart.js
 ```
 - Option 3 - NuGet
 ```
-Install-Package BALKANGraph 
+Install-Package OrgChartJS 
 ```

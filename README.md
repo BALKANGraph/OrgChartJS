@@ -31,7 +31,7 @@ Option 3 - NuGet
 Install-Package OrgChartJS 
 ```
 
-##Usage
+## Usage
 ```
         var chart = new OrgChart(document.getElementById("tree"), {
             nodeBinding: {

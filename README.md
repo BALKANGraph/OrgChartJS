@@ -30,3 +30,22 @@ Option 3 - NuGet
 ```
 Install-Package OrgChartJS 
 ```
+
+##Usage
+```
+        var chart = new OrgChart(document.getElementById("tree"), {
+            nodeBinding: {
+                field_0: "name"
+            },
+            links: [
+                { from: "2", to: "1" },
+                { from: "3", to: "1" }
+            ],
+            nodes: [
+                { id: "1", name: "Amber McKenzie" },
+                { id: "2", name: "Ava Field" },
+                { id: "3", name: "Peter Stevens" }
+            ]
+        });
+```
+

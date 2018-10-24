@@ -33,6 +33,9 @@ Install-Package OrgChartJS
 
 ## Usage
 ```
+        <div id="tree"/>
+        <script>
+ 
         var chart = new OrgChart(document.getElementById("tree"), {
             nodeBinding: {
                 field_0: "name"
@@ -47,6 +50,7 @@ Install-Package OrgChartJS
                 { id: "3", name: "Peter Stevens" }
             ]
         });
+        </script>
 ```
 
  

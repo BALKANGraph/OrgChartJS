@@ -20,6 +20,7 @@ OrgChart JS is a simple, flexible and highly customizable organization chart plu
 
 ## Installation
 [*standalone build*](https://balkangraph.com/OrgChartJS/Docs/GettingStarted)
+
 *NPM*
 ```
 npm i @balkangraph/orgchart.js

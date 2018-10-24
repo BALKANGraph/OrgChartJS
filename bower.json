@@ -1,0 +1,28 @@
+{
+  "name": "orgchart.js",
+  "authors": [
+    "BALKANGraph"
+  ],
+  "description": "OrgChart JS is a simple, flexible and highly customizable organization chart plugin for presenting the structure of your organization and the relationships in an elegant way.",
+  "main": "OrgChart.js",
+  "keywords": [
+    "diagram",
+    "chart",
+    "tree",
+    "orgchart",
+    "graph",
+    "svg",
+    "hierarchy",
+    "family-tree",
+    "decision-tree",
+    "visualization",
+    "tree-layout",
+    "hierarchical",
+    "javascript",
+    "js",
+    "html",
+    "html5"
+  ],
+  "license": "MIT",
+  "homepage": "https://balkangraph.com"
+}

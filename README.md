@@ -5,10 +5,10 @@ OrgChart JS is a simple, flexible and highly customizable organization chart plu
 
 
 ## Features
-- Supports both local data and remote data (JSON).
-- Smooth expand/collapse effects.
-- Align the chart in 8 orientations.
-- Allows user to change orgchart structure by drag/drop nodes.
+- Supports both local data and remote data (JSON)
+- Smooth expand/collapse effects
+- Align the chart in 8 orientations
+- Allows user to change orgchart structure by drag/drop nodes
 - Supports pan and zoom
 - Edit Form
 - Node Customization
@@ -23,4 +23,8 @@ OrgChart JS is a simple, flexible and highly customizable organization chart plu
 - NPM
 ```
 npm i @balkangraph/orgchart.js
+```
+- NuGet
+```
+Install-Package BALKANGraph -Version 3.0.7
 ```

@@ -51,5 +51,4 @@ Install-Package OrgChartJS
 
  
 
-[![OrgChart](https://balkangraph.com/content/img/phone-icon4.png) 
-1 click to talk to us](https://webcall.me/BALKANGraph)
+[![OrgChart](https://balkangraph.com/content/img/phone-icon4.png)](https://webcall.me/BALKANGraph)

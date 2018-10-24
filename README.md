@@ -49,3 +49,6 @@ Install-Package OrgChartJS
         });
 ```
 
+IF you have any questions: 
+
+[![OrgChart](https://balkangraph.com/content/img/phone-icon4.png) One](https://balkangraph.com/OrgChartJS/Docs/GettingStarted)

@@ -48,14 +48,10 @@ Install-Package OrgChartJS
             nodeBinding: {
                 field_0: "name"
             },
-            links: [
-                { from: "2", to: "1" },
-                { from: "3", to: "1" }
-            ],
             nodes: [
-                { id: "1", name: "Amber McKenzie" },
-                { id: "2", name: "Ava Field" },
-                { id: "3", name: "Peter Stevens" }
+                { id: 1, name: "Amber McKenzie" },
+                { id: 2, pid: 1, name: "Ava Field" },
+                { id: 3, pid: 1, name: "Peter Stevens" }
             ]
         });
         </script>

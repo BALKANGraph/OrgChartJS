@@ -80,7 +80,7 @@ declare namespace OrgChart {
 
 
 
-interface options {
+interface OrgChartOptions {
     /**
      * Lazy loading is technique that defers loading of non-critical nodes at page load time. Instead, these non-critical nodes are loaded at the moment of need.
      * Default value: true
@@ -892,7 +892,7 @@ Code example:
 
 
 declare class OrgChart {
-    constructor(element: HTMLElement, options: options);
+    constructor(element: HTMLElement, options: OrgChartOptions);
 
     /**
      * Updates the node JSON object.

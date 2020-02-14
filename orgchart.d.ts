@@ -5,7 +5,12 @@ declare namespace OrgChart {
     enum orientation {
         top,
         left,
-        right
+        right,
+        bottom,
+        top_left,
+        bottom_left,
+        right_top,
+        left_top
     }
     enum action {
         /**
@@ -68,12 +73,23 @@ declare namespace OrgChart {
         inOutBack
     }
 
+    const icon: any;
 
     const none: any;
-    const normal: any;
+
     const CENTER: any;
     const ORIENTATION: any;
-    
+    const COLLAPSE: any;
+    const COLLAPSE_PARENT_NEIGHBORS: any;
+    const COLLAPSE_SUB_CHILDRENS: any;
+
+    const normal: any;  
+    const mixed: any;
+    const tree: any;
+    const treeLeftOffset: any;
+    const treeRightOffset: any;
+
+    const slinkTemplates: any;
 
     
 }

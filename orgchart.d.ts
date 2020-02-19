@@ -73,6 +73,27 @@ declare namespace OrgChart {
         inOutBack
     }
 
+    enum templates {
+        base,
+        ana,
+        group_orange,
+        group_yellow,
+        group_grey,
+        group_grey_one_column,
+        ula,
+        olivia,
+        belinda,
+        rony,
+        mery,
+        polina,
+        mila,
+        diva,
+        luba,
+        derek,
+        isla,
+        deborah
+    }
+
     const icon: any;
 
     const none: any;

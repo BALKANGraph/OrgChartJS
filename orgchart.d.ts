@@ -94,6 +94,10 @@ declare namespace OrgChart {
         deborah
     }
 
+    interface Tags {
+        [name: string]: Object;
+    }
+
     const icon: any;
 
     const none: any;
@@ -526,7 +530,7 @@ Code example:
     });
 ```
      */
-    tags?: Object,
+    tags?: Tags,
     /**
      * Link binding in OrgChart JS maps node data to link template parameters.
 

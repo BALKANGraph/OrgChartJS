@@ -100,7 +100,10 @@ declare namespace OrgChart {
 
     const CENTER: any;
     const ORIENTATION: any;
+    
     const COLLAPSE: any;
+    const EXPAND: any;
+
     const COLLAPSE_PARENT_NEIGHBORS: any;
     const COLLAPSE_SUB_CHILDRENS: any;
 
@@ -774,6 +777,21 @@ In the example above node with id 11 will be before node with id 10. orderBy can
 
      */
     orderBy?: string,
+        /**
+     *  The state option could be OrgChart.COLLAPSE or OrgChart.EXPAND
+     * 
+     * 
+     *Code example:
+```
+         var chart = new OrgChart(document.getElementById("tree"), {
+            ...
+            state: OrgChart.COLLAPSE
+            ...
+        }); 
+```
+     */
+
+    state?: OrgChart,
     editUI?: Object,
     searchUI?: Object,
     xScrollUI?: Object,

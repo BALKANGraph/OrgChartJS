@@ -114,7 +114,6 @@ declare namespace OrgChart {
     const treeRightOffset: any;
 
     const slinkTemplates: any;
-
     
 }
 

@@ -94,10 +94,6 @@ declare namespace OrgChart {
         deborah
     }
 
-    interface Tags {
-        [name: string]: Object;
-    }
-
     const icon: any;
 
     const none: any;
@@ -123,6 +119,9 @@ declare namespace OrgChart {
 }
 
 
+interface Tags {
+    [name: string]: Object;
+}
 
 interface OrgChartOptions {
     /**

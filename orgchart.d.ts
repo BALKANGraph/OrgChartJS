@@ -117,9 +117,16 @@ declare namespace OrgChart {
     
 }
 
+interface TagsProps {
+    state?: OrgChart, /** OrgChart.COLLAPSE or OrgChart.EXPAND */
+    group?: Boolean,
+    groupState?: OrgChart, /** OrgChart.COLLAPSE or OrgChart.EXPAND */
+    template?: string,
+    nodeMenu?: Object
+}
 
 interface Tags {
-    [name: string]: Object;
+    [name: string]: TagsProps;
 }
 
 interface OrgChartOptions {
@@ -779,21 +786,6 @@ In the example above node with id 11 will be before node with id 10. orderBy can
 
      */
     orderBy?: string,
-        /**
-     *  The state option could be OrgChart.COLLAPSE or OrgChart.EXPAND
-     * 
-     * 
-     *Code example:
-```
-         var chart = new OrgChart(document.getElementById("tree"), {
-            ...
-            state: OrgChart.COLLAPSE
-            ...
-        }); 
-```
-     */
-
-    state?: OrgChart,
     editUI?: Object,
     searchUI?: Object,
     xScrollUI?: Object,

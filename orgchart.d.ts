@@ -117,16 +117,32 @@ declare namespace OrgChart {
     
 }
 
+interface Menu {
+    add?: Object,
+    edit?: Object,
+    details?: Object,
+    remove?: Object,
+    svg?: Object,
+    pdf?: Object,
+    png?: Object,
+    csv?: Object,
+    addInGroup?: Object,
+    addAsChild?: Object,
+    [name: string]: Object,
+}
+
 interface TagsProps {
     state?: OrgChart, /** OrgChart.COLLAPSE or OrgChart.EXPAND */
     group?: Boolean,
+    groupName?: String,
     groupState?: OrgChart, /** OrgChart.COLLAPSE or OrgChart.EXPAND */
     template?: string,
-    nodeMenu?: Object
+    nodeMenu?: Object,
+
 }
 
 interface Tags {
-    [name: string]: TagsProps;
+    [name: string]: TagsProps,
 }
 
 interface OrgChartOptions {
@@ -250,7 +266,7 @@ Also you can define your own field in the templae, for more information go to Fi
     });
 ```
      */
-    nodeMenu?: Object,
+    nodeMenu?: Menu,
     /**
      * Context menu. Also you can define your own node operation for more information see Menu
 
@@ -269,7 +285,7 @@ Code example:
     });
  ```
     */
-    nodeContextMenu?: Object,
+    nodeContextMenu?: Menu,
     /**
      * Use dragDropMenu with drag & drop and grouping feature.
 
@@ -285,7 +301,7 @@ Code example:
     });
 ```
     */
-    dragDropMenu?: Object,
+    dragDropMenu?: Menu,
     /**
      * Enables export to excel, export to svg and other OrgChart operations. Also you can define your own OrgChart operation for more information see OrgChart.ImportFormCSV
 
@@ -301,7 +317,7 @@ Code example:
     });
 ```
     */
-    menu?: Object,
+    menu?: Menu,
     /**
      * A toolbar is a set of icons or buttons.
 

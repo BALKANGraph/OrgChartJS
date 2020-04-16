@@ -1,5 +1,3 @@
-
-
 declare namespace OrgChart {
     
     enum orientation {
@@ -73,26 +71,6 @@ declare namespace OrgChart {
         inOutBack
     }
 
-    // enum templates {
-    //     base,
-    //     ana,
-    //     group_orange,
-    //     group_yellow,
-    //     group_grey,
-    //     group_grey_one_column,
-    //     ula,
-    //     olivia,
-    //     belinda,
-    //     rony,
-    //     mery,
-    //     polina,
-    //     mila,
-    //     diva,
-    //     luba,
-    //     derek,
-    //     isla,
-    //     deborah
-    // }
 
     const templates: any;
 
@@ -117,6 +95,14 @@ declare namespace OrgChart {
 
     const slinkTemplates: any;
     
+    const menuUI: any;
+    
+    const _guid: Function;
+
+    var REMOVE_GROUP_IF_HAS_ONE_NODE: boolean;
+    var MINIMIZE: string;
+    var MAXIMIZE: string;
+
 }
 
 interface Menu {
@@ -948,11 +934,11 @@ Code example:
     onUpdateTags?: string,
     onClick?: string,
     onDbClick?: string,
-    onExpCollClick?: string,
-    onExportStart?: string,
-    onExportEnd?: string,
-    onSearchClick?: string,
-    onReady?: string
+    onExpCollClick?: string | Function,
+    onExportStart?: string | Function,
+    onExportEnd?: string | Function,
+    onSearchClick?: string | Function,
+    onReady?: string | Function
 
 }
 
@@ -1212,7 +1198,7 @@ Code example:
      * @param targetNodeId 
      * @param name 
      */
-    group(sourceNodeId: string | number, targetNodeId: string | number, name: string) : void;
+    group(sourceNodeId: string | number, targetNodeId: string | number, name?: string) : void;
 
     /**
      * Adds a link between two nodes.
@@ -1760,4 +1746,8 @@ Code example:
      * @param toId 
      */
     removeSlink(fromId: string | number, toId: string | number) : void;
+
+    on(action: string, fun: Function): void;
+    getBGNode(): void;
+ 
 }

@@ -947,6 +947,25 @@ Code example:
 declare class OrgChart {
     constructor(element: HTMLElement, options: OrgChartOptions);
 
+
+    /** 
+     * Returns the node data for given node id
+     * 
+     Signature:
+     ```
+     chart.get(nodeId);
+ ```
+     Code example:
+```
+        var node = chart.get(5);
+ ```   
+     * @param nodeId
+
+     * Returns JSON data */
+
+    get(nodeId: string | number) : Object;
+
+
     /**
      * Updates the node JSON object.
 

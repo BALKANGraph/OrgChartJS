@@ -99,7 +99,6 @@ declare namespace OrgChart {
     
     const _guid: Function;
 
-    var REMOVE_GROUP_IF_HAS_ONE_NODE: boolean;
     var MINIMIZE: string;
     var MAXIMIZE: string;
 

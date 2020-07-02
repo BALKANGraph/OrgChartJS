@@ -98,6 +98,7 @@ declare namespace OrgChart {
     const menuUI: any;
     
     const _guid: Function;
+    const randomId: Function;
 
     var MINIMIZE: string;
     var MAXIMIZE: string;
@@ -118,18 +119,9 @@ interface Menu {
     [name: string]: Object,
 }
 
-interface TagsProps {
-    state?: OrgChart, /** OrgChart.COLLAPSE or OrgChart.EXPAND */
-    group?: Boolean,
-    groupName?: String,
-    groupState?: OrgChart, /** OrgChart.COLLAPSE or OrgChart.EXPAND */
-    template?: string,
-    nodeMenu?: Object,
-
-}
 
 interface Tags {
-    [name: string]: TagsProps,
+    [name: string]: Object,
 }
 
 interface OrgChartOptions {
@@ -359,6 +351,9 @@ Code example:
 ```    
      */
     nodeMouseClick?: OrgChart.action,
+
+
+
     /**
      * nodeMouseDbClick can accept the following values:
 
@@ -377,7 +372,7 @@ Code example:
     });
    ```  
      */
-    nodeMouseDdClick?: OrgChart.action,
+    nodeMouseDbClick?: OrgChart.action,
     /**
      * showXScroll can accept the following values:
 
@@ -797,7 +792,7 @@ In the example above node with id 11 will be before node with id 10. orderBy can
     nodeContextMenuUI?: Object,
     toolbarUI?: Object,
     notifierUI?: Object,
-    dragDropMenuUI?: Object,
+    //dragDropMenuUI?: Object, // removed
     menuUI?: Object,
     /**
      * The URL to the export server.
@@ -930,14 +925,15 @@ Code example:
     onAdd?: string,
     onRedraw?: string,
     onImageUploaded?: string,
-    onUpdateTags?: string,
     onClick?: string,
     onDbClick?: string,
     onExpCollClick?: string | Function,
     onExportStart?: string | Function,
     onExportEnd?: string | Function,
     onSearchClick?: string | Function,
-    onReady?: string | Function
+    onReady?: string | Function,
+    assistantSeparation?: number,
+    columns?: number
 
 }
 
@@ -964,259 +960,125 @@ declare class OrgChart {
 
     get(nodeId: string | number) : Object;
 
-
     /**
      * Updates the node JSON object.
+     * 
+      * Signature:
+        ``` 
+         chart.updateNode(nodeJSONdata, callback, fireEvent);
+         ```   
+      * Parameters:
+      * @param nodeJSONdata - node json data
+      * @param callback - (optional) callback function cakked when the animation colpletes
+      * @param fireEvent - (optional) if it set to true the update event is called
+      * 
+      * Code example:
+        ```
+        chart.updateNode({ id: 4, pid: 2, name: "Updated Name", title: "Updated Title" });
+        ```   
+        Will update the node with id 4 and will redraw the chart.
+      */
+     
+    updateNode(nodeJSONdata: Object, callback?: Function, fireEvent?: boolean) : void;
+
+     /**
+      * Updates the node JSON object.
+      * 
+      * Signature:
+        ``` 
+        chart.update(nodeJSONdata);
+        ``` 
+      * 
+      Parameters:
+      * @param nodeJSONdata - node json data
+      *
+      Code example:
+        ```
+         chart.update({ id: 4, pid: 2, name: "Updated Name", title: "Updated Title" });
+        ```   
+        Will find the node with id 4 but it will not redraw the chart, you can use this method when you need to update two or more nodes, then call the draw function. Returns the chart object.
+      */
+    update(nodeJSONdata: Object) : Object;
+ 
+     /**
+      * Removes specified node from nodes collection.
+      * 
+      *  Signature:
+        ```
+        chart.removeNode(nodeId, callback, fireEvent);        
+        ```   
+      * Parameters: 
+      * @param nodeId - id of the node
+      * @param callback - (optional) callback function will be called at the end of animation
+      * @param fireEvent - (optional) indicates if the remove event will be called or not
+      * 
+      * Code example:
+        ``` 
+        chart.removeNode(5);
+        ```   
+        Will remove node with id 5 and will redraw the chart.
+      */
+     
+    removeNode(nodeId: string | number, callback?: Function, fireEvent?: boolean): void;    
+
+    /**
+     *Removes specified node from nodes collection.
 
         Signature:
-``` 
-        chart.updateNode(nodeJSONdata);
- ```   
+        ``` 
+        chart.remove(nodeId);
+        ```       
         Parameters:
 
-        - nodeJSONdata - node json data
-
-    Code example:
-```
-         chart.updateNode({ id: 4, pid: 2, name: "Updated Name", title: "Updated Title" });
- ```   
-Will update the node with id 4 and will redraw the chart.
-     * @param nodeJSONdata 
-     */
-    updateNode(nodeJSONdata: Object) : void;
-
-    /**
-     * Updates the node JSON object.
-
-    Signature:
-``` 
-        chart.update(nodeJSONdata);
-   ``` 
-Parameters:
-
-- nodeJSONdata - node json data
-
-Code example:
-```
-         chart.update({ id: 4, pid: 2, name: "Updated Name", title: "Updated Title" });
- ```   
-Will find the node with id 4 but it will not redraw the chart, you can use this method when you need to update two or more nodes, then call the draw function.
-
-
-     * @param nodeJSONdata 
-     */
-    update(nodeJSONdata: Object) : void;
-
-    
-
-    /**
-     *Removes specified node from nodes collection.
-
-    Signature:
-```
-         chart.removeNode(nodeId);
- ```   
-Parameters:
-
-- nodeId - id of the node
-
-Code example:
-``` 
-        chart.removeNode(5);
- ```   
-Will remove node with id 5 and will redraw the chart.
-     * @param nodeId 
-     */
-    removeNode(nodeId: string | number): void;    
-
-    /**
-     *Removes specified node from nodes collection.
-
-Signature:
-``` 
-        chart.remove(nodeId);
- ```   
-Parameters:
-
-- nodeId - id of the node
-
-Code example:
-```
-        chart.remove(5);
- ```   
-Will remove node with id 5 but it will not redraw the chart, you can use this method when you need to remove two ore more nodes, then call the draw function.
-
-
-     * @param nodeId 
-     */
-    remove(nodeId: string | number): void;   
-
-    /**
-     * Adds new node to the nodes collection.
-    
-     Signature:
-```
-         chart.addNode(nodeJSONdata);
- ```   
-Parameters:
- 
-- nodeJSONdata - node JSON data
-
-Code example:
-```
-        chart.addNode({ id: 4, pid: 2, name: "Name 1", title: "Title 1" });
-```    
-Will add new node and will redraw the chart.
-     * @param nodeJSONdata 
-     */
-    addNode(nodeJSONdata: Object) : void;
-
-    /**
-     * Adds new node to the nodes collection.
-
-Signature:
-```
-         chart.add(nodeJSONdata);
- ```   
-Parameters:
-
-- nodeJSONdata - node JSON data
-
-Code example:
-```
-         chart.add({ id: 4, pid: 2, name: "Name 1", title: "Title 1" });
- ```   
-Will add new node but it will not redraw the chart, you can use this method when you need add two or more nodes, then call the draw function.
-     * @param nodeJSONdata 
-     */
-    add(nodeJSONdata: Object) : void;
-    /**
-     * Adds tag to the tags config collection.
-
-Signature:
-``` 
-        chart.addTag(name, tag);
-  ```  
-Parameters:
-
-- name - the name of the tag
-- tag - the actual tag
-
-Code example:
-```
-         chart.addTag("Directors", { template: "derek"} );
- ```
-         * @param name 
-     * @param tag 
-     */
-    addTag(name: string, tag: Object) : void;
-
-    /**
-     * Removes tag from the tags config collection.
-
-    Signature:
-```
-         chart.removeTag(name);
-```
-Parameters:
-
-- name - the name of the tag
-Code example:
-``` 
-        chart.removeTag("Directors");
+     * @param nodeId - id of the node
+     *
+     Code example:
         ```
-     * @param name 
+        chart.remove(5);
+        ```   
+    Will remove node with id 5 but it will not redraw the chart, you can use this method when you need to remove two ore more nodes, then call the draw function. Returns the chart object. 
      */
-    removeTag(name: string) : void;
-    
-    /**
-     * Adds tag to the node tags collection.
-
-Signature:
-``` 
-        chart.addNodeTag(nodeId, tagName);
- ```   
-Parameters:
-
-- nodeId - the id of the node
-- tagName - the tag name
-
-Code example:
-```
-         chart.addNodeTag(5, "Directors");
- ```
-         * @param nodeId 
-     * @param tagName 
-     */
-    addNodeTag(nodeId: string | number, tagName: string) : void;
+    remove(nodeId: string | number): Object;   
 
     /**
-     *Removes tag from the node tags collection.
-
-Signature:
-```
-         chart.removeNodeTag(nodeId, tagName);
- ```   
-Parameters:
-
-- nodeId - the id of the node
-- tagName - the tag name that will be removed
-
-Code example:
-```
-         chart.removeNodeTag(5, "Directors");
- ```
-         * @param nodeId 
-     * @param tagName 
+     * * Adds new node to the nodes collection.
+     * 
+     * Signature:
+        ```
+         chart.addNode(nodeJSONdata, callback, fireEvent);
+        ```   
+     * 
+     Parameters:
+     * @param nodeJSONdata - node JSON data
+     * @param callback - (optional) callback function will be called at the end of animation
+     * @param fireEvent - (optional) indicates if the add event will be called or not
+     * 
+     * Code example:
+        ```
+        chart.addNode({ id: 4, pid: 2, name: "Name 1", title: "Title 1" });
+        ```    
      */
-    removeNodeTag(nodeId: string | number, tagName: string) : void;
+
+    addNode(nodeJSONdata: Object, callback?: Function, fireEvent?: boolean);
 
     /**
-     * Groups two nodes into a group.
+     * Adds new node to the nodes collection.
 
-Signature:
-``` 
-        chart.groupNode(sourceNodeId, targetNodeId, name);
- ```   
-Parameters:
+    Signature:
+    ```
+            chart.add(nodeJSONdata);
+    ```   
+    Parameters:
 
-- sourceNodeId - the id of the source node
-- targetNodeId - the id of the target node
-- name (optional)- the name of the group, has to be unique
-
-Code example:
-```
-         chart.groupNode(5, 6, 'myGroupName');
- ```
-         * @param sourceNodeId 
-     * @param targetNodeId 
-     * @param name 
+    * @param nodeJSONdata - node JSON data
+    *
+    Code example:
+    ```
+            chart.add({ id: 4, pid: 2, name: "Name 1", title: "Title 1" });
+    ```   
+   Will add new node but it will not redraw the chart, you can use this method when you need add two or more nodes, then call the draw function. Returns the chart object.
      */
-    groupNode(sourceNodeId: string | number, targetNodeId: string | number, name: string ) : void;
-
-    /**
-     * Groups two nodes into a group.
-
-Signature:
-```
-         chart.group(sourceNodeId, targetNodeId, name);
- ```   
-Parameters:
-
-- sourceNodeId - the id of the source node
-- targetNodeId - the id of the target node
-- name (optional)- the name of the group, has to be unique
-
-Code example:
-```
-        chart.group(5, 6, 'myGroupName');
-        chart.draw();
-```
-        * @param sourceNodeId 
-     * @param targetNodeId 
-     * @param name 
-     */
-    group(sourceNodeId: string | number, targetNodeId: string | number, name?: string) : void;
+    add(nodeJSONdata: Object) : Object;
 
     /**
      * Adds a link between two nodes.
@@ -1766,6 +1628,78 @@ Code example:
     removeSlink(fromId: string | number, toId: string | number) : void;
 
     on(action: string, fun: Function): void;
-    getBGNode(): void;
+    getNode(): void;
+
+    /**
+     * Maximize the node.
+     * 
+      Signature:
+     * ```
+     * chart.maximize(id, horizontalCenter, verticalCenter, callback);
+     * ```
+     * @param id - the id of the node
+     * @param horizontalCenter - (optional) center horizontally (true,false)
+     * @param verticalCenter  - (optional) center vertically (true,false)
+     * @param callback - (optional) callback function is called when the animation completes
+     *
+     Code example:
+     * ```
+     * chart.maximize(5);
+     * ``` 
+     */
+    maximize(id: string | number, horizontalCenter?: boolean, verticalCenter?: boolean, callback?: Function) : void;
  
+       /**
+     * Minimize  the node.
+     * 
+      Signature:
+     * ```
+     * chart.minimize(id, callback);
+     * ```
+     * @param id - the id of the node
+     * @param callback - (optional) callback function is called when the animation completes
+     *
+     Code example:
+     * ```
+     * chart.minimize(5);
+     * ``` 
+     */
+    minimize(id: string | number, callback?: Function) : void;
+
+    /**
+     * Set orientation.
+     * 
+     * Signature:
+     * ```
+     * chart.setOrientation(orientation, lyoutConfigName);
+     * ```
+     * 
+     * Parameters:
+     * @param orientation  - orientation type, OrgChart.orientation.top, OrgChart.orientation.bottom, OrgChart.orientation.right, OrgChart.orientation.left, OrgChart.orientation.top_left, OrgChart.orientation.bottom_left, OrgChart.orientation.right_top and OrgChart.orientation.left_top
+     * @param lyoutConfigName  - (optional) lyout config name for the specified sub tree
+     *
+     Code example:
+     ```
+     chart.setOrientation(OrgChart.orientation.bottom);
+     ```   
+     */
+    setOrientation(orientation: OrgChart.orientation, lyoutConfigName?: string) : void;
+
+    /**
+     * Set layout.
+     * 
+     * Signature:
+     * ```
+     * chart.setLayout(layout, lyoutConfigName);
+     * ```
+     * Parameters:
+     * @param layout - layout type, OrgChart.normal, OrgChart.mixed, OrgChart.tree, OrgChart.treeLeftOffset and OrgChart.treeRightOffset
+     * @param lyoutConfigName - (optional) lyout config name for the specified sub tree
+     *
+     * Code example:
+     * ```
+     * chart.setLayout(OrgChart.tree);
+     * ```     
+     */
+    setLayout(layout: OrgChart, lyoutConfigName?: string) : void;
 }

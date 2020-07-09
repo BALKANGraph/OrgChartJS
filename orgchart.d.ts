@@ -105,6 +105,36 @@ declare namespace OrgChart {
 
 }
 
+interface NodeModel {
+    id: string | number,
+    pid: string | number,
+    parent: NodeModel,
+    stpid: string | number,
+    stParent: NodeModel,
+    childrenIds: Array<string | number>,
+    children: Array<NodeModel>,
+    stChildrenIds: Array<string | number>,
+    stChildren: Array<NodeModel>,
+    tags: Array<string>,
+    templateName: string,
+    leftNeighbor: NodeModel,
+    rightNeighbor: NodeModel,
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    isAssistant: boolean,
+    stContainerNodes: Array<NodeModel>,
+    order: number,
+    collapsed: boolean,
+    level: number,
+    min: boolean,
+    subLevels: number,
+    padding: number,
+    lcn: string,
+    isSplit: boolean
+}
+
 interface Menu {
     add?: Object,
     edit?: Object,
@@ -1628,7 +1658,7 @@ Code example:
     removeSlink(fromId: string | number, toId: string | number) : void;
 
     on(action: string, fun: Function): void;
-    getNode(): void;
+    getNode(id: string | number): NodeModel;
 
     /**
      * Maximize the node.

@@ -4,7 +4,7 @@
       "BALKANGraph"
     ],
     "description": "OrgChart JS is a simple, flexible and highly customizable organization chart plugin.",
-    "main": "OrgChart.js",
+    "main": "orgchart.js",
     "keywords": [
       "diagram",
       "chart",

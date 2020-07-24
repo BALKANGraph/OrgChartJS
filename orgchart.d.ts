@@ -1733,4 +1733,4 @@ Code example:
      */
     setLayout(layout: OrgChart, lyoutConfigName?: string) : void;
 }
-export default OrgChartexport default OrgChartexport default OrgChart
+export default OrgChartexport default OrgChartexport default OrgChartexport default OrgChart

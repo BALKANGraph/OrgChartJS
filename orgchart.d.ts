@@ -1733,3 +1733,4 @@ Code example:
      */
     setLayout(layout: OrgChart, lyoutConfigName?: string) : void;
 }
+export default OrgChart

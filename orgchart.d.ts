@@ -18,6 +18,10 @@ declare namespace OrgChart {
         /**
          * mouseScrool value
          */
+        scroll,
+        /**
+         * mouseScrool value
+         */
         xScroll,
         /**
          * mouseScrool value 

@@ -150,7 +150,7 @@ interface Menu {
     csv?: Object,
     addInGroup?: Object,
     addAsChild?: Object,
-    [name: string]: Object,
+    [name: string]: Object | undefined,
 }
 
 

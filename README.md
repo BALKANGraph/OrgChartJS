@@ -19,6 +19,9 @@ OrgChart JS is a simple, flexible and highly customizable organization chart plu
 - Mixed Hierarchy
 - Exporting
 - Assistant
+- Partner
+- Sub trees
+- Second and curved links
 - Family Tree
 
 ## Installation

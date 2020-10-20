@@ -17,7 +17,7 @@ OrgChart JS is a simple, flexible and highly customizable organization chart plu
 - Scroll Bars
 - Lazy Loading
 - Mixed Hierarchy
-- Exporting
+- Exporting and Importing
 - Assistant
 - Partner
 - Sub trees

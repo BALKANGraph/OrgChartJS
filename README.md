@@ -34,10 +34,6 @@ Option 3 - Bower
 bower install orgchart.js
 ```
 
-Option 4 - NuGet
-```
-Install-Package OrgChartJS 
-```
 
 ## Usage
 ```
@@ -56,9 +52,4 @@ Install-Package OrgChartJS
         });
         </script>
 ```
-
-## 1 click to talk 2 us
-
-[![OrgChart](https://balkangraph.com/content/img/phone-icon4.png)](https://webcall.me/BALKANGraph)
-
 

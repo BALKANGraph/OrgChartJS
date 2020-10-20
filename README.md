@@ -12,6 +12,7 @@ OrgChart JS is a simple, flexible and highly customizable organization chart plu
 - Allows user to change orgchart structure by drag/drop nodes
 - Supports pan and zoom
 - Edit Form
+- 4 menus
 - Node Customization
 - Search
 - Scroll Bars

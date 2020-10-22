@@ -11,19 +11,14 @@ OrgChart JS is a simple, flexible and highly customizable organization chart plu
 - Align the chart in 8 orientations
 - Allows user to change orgchart structure by drag/drop nodes
 - Supports pan and zoom
-- Minimixed and Maximized nodes
 - Edit Form
-- 4 menus
 - Node Customization
 - Search
 - Scroll Bars
 - Lazy Loading
 - Mixed Hierarchy
-- Exporting and Importing
+- Exporting
 - Assistant
-- Partner
-- Sub trees
-- Second and curved links
 - Family Tree
 
 ## Installation
@@ -39,6 +34,10 @@ Option 3 - Bower
 bower install orgchart.js
 ```
 
+Option 4 - NuGet
+```
+Install-Package OrgChartJS 
+```
 
 ## Usage
 ```
@@ -57,4 +56,9 @@ bower install orgchart.js
         });
         </script>
 ```
+
+## 1 click to talk 2 us
+
+[![OrgChart](https://balkangraph.com/content/img/phone-icon4.png)](https://webcall.me/BALKANGraph)
+
 

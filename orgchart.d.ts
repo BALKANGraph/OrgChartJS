@@ -107,14 +107,24 @@ declare namespace OrgChart {
     var MINIMIZE: string;
     var MAXIMIZE: string;
 
+    const state: State;
+
+   
+}
+
+interface State {
+    clear: Function;
 }
 
 interface NodeModel {
     id: string | number,
     pid: string | number,
+    ppid: string | number,
     parent: NodeModel,
     stpid: string | number,
     stParent: NodeModel,
+    isPartner: boolean,
+    partnerSeparation: number,
     childrenIds: Array<string | number>,
     children: Array<NodeModel>,
     stChildrenIds: Array<string | number>,
@@ -967,7 +977,14 @@ Code example:
     onSearchClick?: string | Function,
     onReady?: string | Function,
     assistantSeparation?: number,
-    columns?: number
+    columns?: number,
+
+    state?: Object
+
+    minPartnerSeparation?: number,
+    partnerChildrenSplitSeparation?: number,
+    partnerNodeSeparation?: number,
+    miniMap?: boolean
 
 }
 
@@ -1247,101 +1264,104 @@ Code example:
 
 Signature:
 ``` 
-        chart.exportSVG(filename, expandChildren, nodeId);
+        chart.exportSVG(options, callback);
    ``` 
-Parameters:
-
-- filename - (optional) file name
-- expandChildren - (optional) true/false, expands all children of root node if it set to true
-- nodeId - (optional) root node id
 
 Code example:
 ``` 
-        chart.exportSVG("MyOrgChart.svg", true, 4);
+         chart.exportSVG({
+            filename: "MyOrgChart.svg", 
+            nodeId: 5, 
+            openInNewTab: false,
+            expandChildren: true, 
+            padding: 10
+        });
    ```
-        * @param filename 
-     * @param expandChildren 
-     * @param nodeId 
+   Parameters:
+        * @param options - export options
+     * @param callback - (optional) calls when the export completes
      */
-    exportSVG(filename: string, expandChildren: boolean, nodeId: string | number ) : void;
+
+    exportSVG(options: Object, callback?: Function) : void;
 
     /**
      * Exports the chart to png file.
 
 Signature:
 ```
-         chart.exportPNG(options);
+         chart.exportPNG(options, callback);
+
  ```   
 Parameters:
 
-- options - export options
+ * @param options - export options
+ * @param callback - (optional) calls when the export completes
 
 Code example:
 ```
         chart.exportPNG({
             filename: "MyOrgChart.png", 
             nodeId: 5, 
+            openInNewTab: false,
             expandChildren: true, 
             margin: [10,20,10,20],
-            header: 'My header',
-            footer: 'Page {current-page} of {total-pages}',
+            padding: 10
         });
  ```
-        * @param options 
      */
-    exportPNG(options: Object) : void;
+    exportPNG(options: Object, callback?: Function) : void;
 
     /**
      * Exports the chart to pdf file.
 
 Signature:
 ``` 
-        chart.exportPDF(options);
+        chart.exportPDF(options, callback);
   ```  
 Parameters:
 
-- options - export options
+   * @param options - export options
+   * @param callback - (optional) calls when the export completes
 
 Code example:
 ``` 
         chart.exportPDF({
             landscape: true, //false
-            format: "A4", //fit, fit2Levels, A42Levels
+            format: "A4", //fit
             filename: "MyOrgChart.pdf", 
             nodeId: 5, 
+            openInNewTab: false,
             expandChildren: true, 
             margin: [10,20,10,20],
+            padding: 10,
             header: 'My header',
             footer: 'Page {current-page} of {total-pages}',
             scale: 'fit' //100
         });
    ``` 
-     * @param options 
+  
      */
-    exportPDF(options: Object) : void;
+    exportPDF(options: Object, callback?: Function) : void;
 
     /**
      * Exports the chart to CSV file.
 
 Signature:
 ```
-         chart.exportCSV(options);
+          chart.exportCSV(filename);
  ```   
 Parameters:
 
-- options - export options
+     * @param filename - optional
+
 
 Code example:
 ``` 
-        chart.exportCSV({
-            filename: "MyOrgChart.svg", 
-            nodeId: 5, 
-            expandChildren: true
-        });
+    chart.exportCSV("MyOrgChart.svg");
    ```
-        * @param options 
+   
      */
-    exportCSV(options: Object) : void;
+    exportCSV(filename?: String) : void;
 
         /**
      * Exports the chart to XML file.
@@ -1736,4 +1756,62 @@ Code example:
      * ```     
      */
     setLayout(layout: OrgChart, lyoutConfigName?: string) : void;
+
+    /**
+     * Magnify node.
+     * 
+     * Signature:
+     * ```
+     * chart.magnify(id, scale, front, anim, callback);
+     * ```
+     * Parameters:
+     * @param id - the node id we want to highlight or magnify
+     * @param scale - scale of the magnified node
+     * @param front - (optional) true or false, display magnified node in front of other nodes if it is true
+     * @param anim - (optional) animation effect for the magnified node, if not set the default is chart.config.anim
+     * @param callback - (optional) callback function before the animation start
+     * 
+     *
+     * Code example:
+     * ```
+     * chart.magnify(id, 1.04, false, null);
+     * ```     
+     */
+
+    magnify(id: string | number, scale: number, front?: boolean, anim?: Object, callback?: Function ) : void;
+
+    /**
+     * Magnify back node.
+     * 
+     * Signature:
+     * ```
+     * chart.chart.magnifyBack(id, anim, callback);
+     * ```
+     * Parameters:
+     * @param id - is the node id we want to highlight or magnify
+     * @param anim - (optional) animation effect for the magnified node, if not set the default is chart.config.anim
+     * @param callback - (optional) callback function after the animation ends
+     * 
+     *
+     * Code example:
+     * ```
+     * chart.magnifyBack(id, { func: OrgChart.anim.inSin, duration: 200});
+     * ```     
+     */
+   
+    magnifyBack(id: string | number,  anim?: Object, callback?: Function) : void;
+
+    /**
+     * State to url.
+     * 
+     * Signature:
+     * ```
+     * chart.stateToUrl();
+     * ```
+     * Code example:
+     * ```
+     * chart.stateToUrl();
+     * ```     
+     */
+    stateToUrl() : String;
 }

@@ -1383,24 +1383,6 @@ Code example:
     exportXML(filename: string) : void;
 
     /**
-     * Draws the chart.
-
-Signature:
-``` 
-        chart.draw(action);
-   ``` 
-Parameters:
-
-- action - (optional) OrgChart.action.expandCollapse, OrgChart.action.update and OrgChart.action.centerNode
-
-Code example:
-```
-         chart.draw();
- ```
-         * @param [action] 
-     */
-
-    /**
      * Import CSV file.
 
 Signature:
@@ -1433,19 +1415,21 @@ Code example:
 
 Signature:
 ``` 
-        chart.draw(action);
+        chart.draw(action, actionParams, callback);
    ``` 
 Parameters:
 
-- action - (optional) OrgChart.action.expandCollapse, OrgChart.action.update and OrgChart.action.centerNode
+- * @param action - (optional) OrgChart.action.expandCollapse, OrgChart.action.update and OrgChart.action.centerNode
+- * @param actionParams - (optional) parameters of the action
+- * @param callback - (optional) called after the draw
 
 Code example:
 ``` 
         chart.draw();
    ```
-        * @param [action] 
+         
      */
-    draw(action? : OrgChart.action) : void;
+    draw(action? : OrgChart.action, actionParams?: Object, callback?: Function) : void;
 
     /**
      * Expand specified nodes.

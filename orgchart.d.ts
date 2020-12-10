@@ -1013,6 +1013,12 @@ Code example:
 
 declare class OrgChart {
     nodes: Array<Node>;
+    editUI: any;
+    menuUi: any;
+    nodeMenu: any;
+    nodeMenuUi: any;
+    toolbarUI: any;
+    
     constructor(element: HTMLElement, options: OrgChartOptions);
 
 

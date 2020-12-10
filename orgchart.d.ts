@@ -108,6 +108,8 @@ declare namespace OrgChart {
     var MAXIMIZE: string;
 
     const state: State;
+
+    const events: any;
     
     const wrapText: Function;
    

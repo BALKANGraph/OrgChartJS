@@ -1799,4 +1799,25 @@ Code example:
      * ```     
      */
     stateToUrl() : String;
+
+        /**
+     * Expand and collapse nodes.
+     * 
+     * Signature:
+     * ```
+     * chart.expandCollapse(id, expandIds, collapseIds);
+     * ```
+     * Parameters:
+     * @param id - fixed node
+     * @param expandIds - array of expanding ids
+     * @param collapseIds -  array of collapsing ids
+     * 
+     *
+     * Code example:
+     * ```
+     * chart.expandCollapse(5, [6, 7], [8, 9]);
+     * ```     
+     */
+
+    expandCollapse(id: string | number, expandIds: Array<string | number>, collapseIds: Array<string | number>) : void;
 }

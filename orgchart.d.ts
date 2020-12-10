@@ -113,11 +113,24 @@ declare namespace OrgChart {
     
     const wrapText: Function;
    
+    const toolbarUI: any;
+
+    
 }
 
 interface State {
     clear: Function;
 }
+
+interface Node {
+    id: string | number,
+    pid: string | number,
+    spid: string | number,
+    tags: Array <String>,
+    [name: string]: any
+}
+
+
 
 interface NodeModel {
     id: string | number,
@@ -994,6 +1007,7 @@ Code example:
 
 
 declare class OrgChart {
+    nodes: Array<Node>;
     constructor(element: HTMLElement, options: OrgChartOptions);
 
 
@@ -1012,7 +1026,7 @@ declare class OrgChart {
 
      * Returns JSON data */
 
-    get(nodeId: string | number) : Object;
+    get(nodeId: string | number) : Node;
 
     /**
      * Updates the node JSON object.

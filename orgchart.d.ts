@@ -1014,9 +1014,9 @@ Code example:
 declare class OrgChart {
     nodes: Array<Node>;
     editUI: any;
-    menuUi: any;
+    menuUI: any;
     nodeMenu: any;
-    nodeMenuUi: any;
+    nodeMenuUI: any;
     toolbarUI: any;
     nodeContextMenuUI: any;
     

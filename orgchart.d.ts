@@ -1019,6 +1019,7 @@ declare class OrgChart {
     nodeMenuUI: any;
     toolbarUI: any;
     nodeContextMenuUI: any;
+    config: any;
     
     constructor(element: HTMLElement, options: OrgChartOptions);
 

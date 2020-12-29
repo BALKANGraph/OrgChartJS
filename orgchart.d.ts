@@ -1,5 +1,7 @@
 declare namespace OrgChart {
     
+    function isTrial(): boolean;
+
     enum orientation {
         top,
         left,

@@ -1009,6 +1009,10 @@ Code example:
     partnerNodeSeparation?: number,
     miniMap?: boolean
 
+    searchFieldsWeight?: Object,
+    searchDisplayField?: String,
+
+
 }
 
 
@@ -1852,4 +1856,25 @@ Code example:
      */
 
     expandCollapse(id: string | number, expandIds: Array<string | number>, collapseIds: Array<string | number>) : void;
+
+            /**
+     * Search in the chart.
+     * 
+     * Signature:
+     * ```
+     * chart.search(value, searchInFileds, retrieveFields);
+     * ```
+     * Parameters:
+     * @param value - value to search for
+     * @param searchInFileds - array of fields to search in
+     * @param retrieveFields -  array of returned fields
+     * 
+     *
+     * Code example:
+     * ```
+     * chart.search("c", ["Name", "Title"], ["Title"]);
+     * ```     
+     */
+
+    search(value: string | number, searchInFileds: Array<string>, retrieveFields: Array<string>)  : void;
 }

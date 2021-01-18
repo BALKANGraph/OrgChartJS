@@ -121,7 +121,7 @@ declare namespace OrgChart {
     const menuUi: any;
     const editUi: any;
 
-
+    var SEARCH_PLACEHOLDER: string;
     
 }
 

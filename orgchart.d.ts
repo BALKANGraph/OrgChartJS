@@ -46,7 +46,8 @@ declare namespace OrgChart {
          */
         none,
         update,
-        centerNode
+        centerNode,
+        pan
     }
     enum scroll {
         visible,

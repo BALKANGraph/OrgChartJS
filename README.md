@@ -1,4 +1,4 @@
-# ![OrgChart](https://balkangraph.com/content/img/icon-orgchart-js.png) OrgChart JS
+# ![OrgChart](https://balkangraph.com/content/img/icon-orgchart-js.png) BALKAN OrgChart JS
 OrgChart JS is a simple, flexible and highly customizable organization chart plugin for presenting the structure of your organization and the relationships in an elegant way.
 
 ![OrgChart](https://user-images.githubusercontent.com/19305472/112955146-cb08f700-9147-11eb-9152-a0ab3fcd96ca.png)

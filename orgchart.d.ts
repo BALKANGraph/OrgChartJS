@@ -123,6 +123,8 @@ declare namespace OrgChart {
     const editUi: any;
 
     var SEARCH_PLACEHOLDER: string;
+
+    const RES: any;
     
 }
 

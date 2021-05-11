@@ -1881,4 +1881,4 @@ Code example:
      */
 
     search(value: string | number, searchInFileds: Array<string>, retrieveFields: Array<string>)  : void;
-}
+}export default OrgChart

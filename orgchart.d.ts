@@ -1881,4 +1881,23 @@ Code example:
      */
 
     search(value: string | number, searchInFileds: Array<string>, retrieveFields: Array<string>)  : void;
-}export default OrgChart
+
+            /**
+     * Returns the node DOM element.
+     * 
+     * Signature:
+     * ```
+     * chart.getNodeElement(id);
+     * ```
+     * Parameters:
+     * @param id - id of the node
+     * 
+     *
+     * Code example:
+     * ```
+     * chart.getNodeElement(5);
+     * ```     
+     */
+
+    getNodeElement(id: string | number) : void;
+}

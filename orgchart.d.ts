@@ -1005,7 +1005,7 @@ Code example:
     assistantSeparation?: number,
     columns?: number,
 
-    state?: Object
+    state?: Object,
 
     minPartnerSeparation?: number,
     partnerChildrenSplitSeparation?: number,
@@ -1015,6 +1015,7 @@ Code example:
     searchFieldsWeight?: Object,
     searchDisplayField?: String,
 
+    enableKeyNavigation?: Boolean
 
 }
 

@@ -1010,12 +1010,12 @@ Code example:
     minPartnerSeparation?: number,
     partnerChildrenSplitSeparation?: number,
     partnerNodeSeparation?: number,
-    miniMap?: boolean
+    miniMap?: boolean,
 
     searchFieldsWeight?: Object,
     searchDisplayField?: String,
 
-    enableKeyNavigation?: Boolean
+    enableKeyNavigation?: boolean
 
 }
 

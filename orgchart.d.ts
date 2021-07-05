@@ -176,17 +176,17 @@ interface NodeModel {
 }
 
 interface Menu {
-    add?: Object,
-    edit?: Object,
-    details?: Object,
-    remove?: Object,
-    svg?: Object,
-    pdf?: Object,
-    png?: Object,
-    csv?: Object,
-    addInGroup?: Object,
-    addAsChild?: Object,
-    [name: string]: Object,
+    add?: any,
+    edit?: any,
+    details?: any,
+    remove?: any,
+    svg?: any,
+    pdf?: any,
+    png?: any,
+    csv?: any,
+    addInGroup?: any,
+    addAsChild?: any,
+    [name: string]: any,
 }
 
 
@@ -1152,7 +1152,7 @@ declare class OrgChart {
         ```    
      */
 
-    addNode(nodeJSONdata: Object, callback?: Function, fireEvent?: boolean);
+    addNode(nodeJSONdata: Object, callback?: Function, fireEvent?: boolean): void;
 
     /**
      * Adds new node to the nodes collection.

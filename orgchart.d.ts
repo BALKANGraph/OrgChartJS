@@ -30,6 +30,10 @@ declare namespace OrgChart {
          */
         yScroll,
         /**
+        * Zoom on Ctrl + mouseScrool
+        */
+        ctrlZoom,
+        /**
          * nodeMouseClick value
          */
         edit, 

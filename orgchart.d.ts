@@ -1905,4 +1905,4 @@ Code example:
      */
 
     getNodeElement(id: string | number) : void;
-}
+}export default OrgChart

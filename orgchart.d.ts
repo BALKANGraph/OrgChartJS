@@ -129,6 +129,7 @@ declare namespace OrgChart {
     var SEARCH_PLACEHOLDER: string;
 
     const RES: any;
+
     
 }
 
@@ -1019,7 +1020,8 @@ Code example:
     searchFieldsWeight?: Object,
     searchDisplayField?: String,
 
-    enableKeyNavigation?: boolean
+    enableKeyNavigation?: boolean,
+    nodeCircleMenu: Object
 
 }
 
@@ -1027,6 +1029,7 @@ Code example:
 
 declare class OrgChart {
     nodes: Array<Node>;
+    nodeCircleMenuUI: any;
     editUI: any;
     menuUI: any;
     nodeMenu: any;
@@ -1623,7 +1626,7 @@ Code example:
      * @param label 
      * @param template 
      */
-    addClink(fromId: string | number, toId: string | number, label: string, template: string) : void;
+    addClink(fromId: string | number, toId: string | number, label?: string, template?: string) : void;
 
     /**
      * Removes clink.
@@ -1712,6 +1715,7 @@ Code example:
     removeSlink(fromId: string | number, toId: string | number) : void;
 
     on(action: string, fun: Function): void;
+    
     getNode(id: string | number): NodeModel;
 
     /**
@@ -1905,4 +1909,6 @@ Code example:
      */
 
     getNodeElement(id: string | number) : void;
+
+    generateId() : string | number;
 }

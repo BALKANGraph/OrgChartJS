@@ -872,12 +872,12 @@ In the example above node with id 11 will be before node with id 10. orderBy can
     /**
      * The URL to the export server.
 
-Default value: https://balkangraph.com/export
+Default value: https://balkan.app/export
 
 Code example:
 ```
          var chart = new OrgChart(document.getElementById("tree"), {
-            exportUrl: "https://balkangraph.com/export",
+            exportUrl: "https://balkan.app/export",
             ...
         }); 
  ```

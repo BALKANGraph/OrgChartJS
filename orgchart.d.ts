@@ -1911,4 +1911,6 @@ Code example:
     getNodeElement(id: string | number) : void;
 
     generateId() : string | number;
+
+    changeRoots(id: null | string | number, roots: Array<string|number>, callback?: Function ) : void;
 }

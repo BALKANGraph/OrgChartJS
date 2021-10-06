@@ -123,6 +123,7 @@ declare namespace OrgChart {
     const nodeMenu: any;
     const toolbarUI: any;
     const nodeMenuUi: any;
+    const pdfPrevUI: any;
     const menuUi: any;
     const editUi: any;
 

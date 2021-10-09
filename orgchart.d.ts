@@ -82,7 +82,28 @@ declare namespace OrgChart {
         inOutBack
     }
 
-
+    interface Loc {
+        ppdfCmdTitle: string;
+        ppdfSave: string;
+        ppdfCancel: string;
+        ppdfFormat: string;
+        ppdfFitToDrwaing: string;
+        ppdfA4: string;
+        ppdfA3: string;
+        ppdfA2: string;
+        ppdfA1: string;
+        ppdfLetter: string;
+        ppdfLegal: string;
+        ppdfLayout: string;
+        ppdfPortrait: string;
+        ppdfLandscape: string;
+        ppdfFittopagewidth: string;
+        ppdfMargin: string;
+        ppdfHeader: string;
+        ppdfFooter: string;
+        ppdfScale: string;
+    }
+    
     const templates: any;
 
     const icon: any;
@@ -131,7 +152,7 @@ declare namespace OrgChart {
 
     const RES: any;
 
-    
+    const loc: Loc;
 }
 
 interface State {

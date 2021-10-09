@@ -1312,13 +1312,14 @@ Code example:
 
 Signature:
 ``` 
-        chart.zoom(delta, center, anim);
+        chart.zoom(delta, center, anim, callback);
    ``` 
 Parameters:
 
 - delta - True for zoom in, false for zoom out or scale number, if scale is > 1 it will zoom in and scale < 1 zoom out.
 - center - Array [x, y], where x is x percantege from the width and y is y percentage from the height. (optional)
 - anim - true, false (optional)
+- callback - callback frunction
 
 Code example:
 ```
@@ -1327,8 +1328,9 @@ Code example:
          * @param delta 
      * @param center 
      * @param [anim] 
+     * @param callback
      */
-    zoom(delta: boolean | number, center: Array<number>, anim? : boolean) : void;
+    zoom(delta: boolean | number, center: Array<number>, anim? : boolean, callback?: Function) : void;
 
     /**
      * Exports the chart to svg file.

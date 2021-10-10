@@ -1252,12 +1252,13 @@ It will create a link from node 5 to node 6 and will redraw the chart.
 
 Signature:
 ```
-         chart.center(nodeId, options);
+         chart.center(nodeId, options, callback);
  ```   
 Parameters:
 
 - nodeId - the id of the node
 - options - { parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS, childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS, rippleId: rippleId, vertical: false, horizontal: false });
+- callback - callback function (optional)
 
 Code example:
 ```
@@ -1271,8 +1272,9 @@ Code example:
  ```   
      * @param nodeId 
      * @param options 
+     * @param callback
      */
-    center(nodeId: string | number, options: Object) : void;
+    center(nodeId: string | number, options: Object, callback?: Function ) : void;
 
     /**
      * Animate specified node with ripple animation - highlight the node.
@@ -1319,7 +1321,7 @@ Parameters:
 - delta - True for zoom in, false for zoom out or scale number, if scale is > 1 it will zoom in and scale < 1 zoom out.
 - center - Array [x, y], where x is x percantege from the width and y is y percentage from the height. (optional)
 - anim - true, false (optional)
-- callback - callback frunction
+- callback - callback frunction (optional)
 
 Code example:
 ```

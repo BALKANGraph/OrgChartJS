@@ -518,7 +518,6 @@ Code example:
     - mila
     - diva
     - luba
-    - derek
     - base
     - deborah
     
@@ -529,7 +528,7 @@ Code example:
     Code example:
 ``` 
     var chart = new OrgChart(document.getElementById("tree"), {
-       template: "derek"
+       template: "ana"
     });
 ```
     */
@@ -1939,4 +1938,4 @@ Code example:
     generateId() : string | number;
 
     changeRoots(id: null | string | number, roots: Array<string|number>, callback?: Function ) : void;
-}export default OrgChart
+}

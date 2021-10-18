@@ -1939,4 +1939,4 @@ Code example:
     generateId() : string | number;
 
     changeRoots(id: null | string | number, roots: Array<string|number>, callback?: Function ) : void;
-}
+}export default OrgChart

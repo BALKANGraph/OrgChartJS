@@ -1042,7 +1042,9 @@ Code example:
     searchDisplayField?: String,
 
     enableKeyNavigation?: boolean,
-    nodeCircleMenu?: Object
+    nodeCircleMenu?: Object,
+
+    editForm?: Object
 
 }
 

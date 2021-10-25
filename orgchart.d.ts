@@ -1759,13 +1759,13 @@ Code example:
     getNode(id: string | number): NodeModel;
 
     /**
-     * Maximize the node.
+     * Maximize the node. Without parameters maximize all nodes.
      * 
       Signature:
      * ```
      * chart.maximize(id, horizontalCenter, verticalCenter, callback);
      * ```
-     * @param id - the id of the node
+     * @param id - (optional) the id of the node
      * @param horizontalCenter - (optional) center horizontally (true,false)
      * @param verticalCenter  - (optional) center vertically (true,false)
      * @param callback - (optional) callback function is called when the animation completes
@@ -1775,16 +1775,16 @@ Code example:
      * chart.maximize(5);
      * ``` 
      */
-    maximize(id: string | number, horizontalCenter?: boolean, verticalCenter?: boolean, callback?: Function) : void;
+    maximize(id?: string | number, horizontalCenter?: boolean, verticalCenter?: boolean, callback?: Function) : void;
  
        /**
-     * Minimize  the node.
+     * Minimize  the node. Without parameters minimize all nodes.
      * 
       Signature:
      * ```
      * chart.minimize(id, callback);
      * ```
-     * @param id - the id of the node
+     * @param id - (optional) the id of the node
      * @param callback - (optional) callback function is called when the animation completes
      *
      Code example:
@@ -1792,7 +1792,7 @@ Code example:
      * chart.minimize(5);
      * ``` 
      */
-    minimize(id: string | number, callback?: Function) : void;
+    minimize(id?: string | number, callback?: Function) : void;
 
     /**
      * Set orientation.

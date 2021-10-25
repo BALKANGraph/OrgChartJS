@@ -223,6 +223,19 @@ interface Tags {
 
 interface OrgChartOptions {
     /**
+     * OrgChart JS can be displayed in "dark" or "light" modes by settong the mode option:
+     * Default value: light;
+
+    Code example:
+ ```
+    var chart = new OrgChart(document.getElementById("tree"), {
+        mode: 'dark',
+    });
+    ```
+     */
+    mode?: string,
+
+    /**
      * Lazy loading is technique that defers loading of non-critical nodes at page load time. Instead, these non-critical nodes are loaded at the moment of need.
      * Default value: true
 
@@ -1940,4 +1953,43 @@ Code example:
     generateId() : string | number;
 
     changeRoots(id: null | string | number, roots: Array<string|number>, callback?: Function ) : void;
+    /**
+     * Exports the node details in PDF
+     * 
+     * Signature:
+     * ```
+     * chart.exportPDFProfile(ioptions, callback);
+     * ```
+     * Parameters:
+     * @param options - options for export
+     * @param callback - callback function
+     * 
+     *
+     * Code example:
+     * ```
+     * chart.exportPDFProfile({id: 5});
+     * ```     
+     */
+    exportPDFProfile(options:  Object, callback?: Function) : void;
+
+        /**
+     * Exports the node details in PNG
+     * 
+     * Signature:
+     * ```
+     * chart.exportPNGProfile(ioptions, callback);
+     * ```
+     * Parameters:
+     * @param options - options for export
+     * @param callback - callback function
+     * 
+     *
+     * Code example:
+     * ```
+     * chart.exportPNGProfile({id: 5});
+     * ```     
+     */
+    exportPNGProfile(options:  Object, callback?: Function) : void;
+
+
 }export default OrgChart

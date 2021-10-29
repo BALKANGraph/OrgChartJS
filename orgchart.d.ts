@@ -2,6 +2,8 @@ declare namespace OrgChart {
     
     function isTrial(): boolean;
 
+    function t(templateName: string, minimized?: boolean, scale?: number ) : Object;
+
     enum orientation {
         top,
         left,
@@ -1991,6 +1993,4 @@ Code example:
      */
     exportPNGProfile(options:  Object, callback?: Function) : void;
 
-    t(templateName: string) : any;
-        
 }export default OrgChart

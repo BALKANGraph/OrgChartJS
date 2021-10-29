@@ -155,6 +155,8 @@ declare namespace OrgChart {
     const RES: any;
 
     const loc: Loc;
+    
+    const grCloseTag: any;
 }
 
 interface State {

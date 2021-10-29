@@ -1991,5 +1991,6 @@ Code example:
      */
     exportPNGProfile(options:  Object, callback?: Function) : void;
 
-
+    t(templateName: string) : any;
+        
 }export default OrgChart

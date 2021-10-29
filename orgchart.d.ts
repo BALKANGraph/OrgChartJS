@@ -2,7 +2,7 @@ declare namespace OrgChart {
     
     function isTrial(): boolean;
 
-    function t(templateName: string, minimized?: boolean, scale?: number ) : Object;
+    function t(templateName: string, minimized?: boolean, scale?: number ) : any;
 
     enum orientation {
         top,

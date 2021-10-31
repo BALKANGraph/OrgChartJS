@@ -19,6 +19,8 @@ Build organizational chart app with BALKAN OrgChartJS JavaScript library. Org Ch
 - Mixed Hierarchy
 - Exporting
 - Assistant
+- Partners
+- Sub Trees
 - Family Tree
 
 ## Installation

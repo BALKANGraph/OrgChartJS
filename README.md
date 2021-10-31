@@ -1,7 +1,7 @@
 # ![Org Chart JS](https://balkangraph.com/content/img/icon-orgchart-js.png) Org Chart JS
 Build organizational chart app with BALKAN OrgChartJS JavaScript library. Org Chart JS is a simple, flexible and highly customizable organization chart plugin for presenting the structure of your organization and the relationships in an elegant way.
 
-![Org Chart JS](https://cdn.balkan.app/OrgChartJS/OrgChartJS.jpg)
+![Org Chart JS](https://cdn.balkan.app/OrgChartJS/OrgChartJS.jpg?v=1)
 
 ## [Demos](https://balkan.app/OrgChartJS/Demos/BasicUsage)  &nbsp;&nbsp;&nbsp;&nbsp;  [Docs](https://balkan.app/OrgChartJS/Docs/GettingStarted)  &nbsp;&nbsp;&nbsp;&nbsp;  [Download](https://balkan.app/OrgChartJS/Download) &nbsp;&nbsp;&nbsp;&nbsp;  [Support](https://balkan.app/OrgChartJS/Support)
 

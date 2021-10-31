@@ -1,7 +1,7 @@
-# ![Family Tree JS](https://balkangraph.com/content/img/icon-orgchart-js.png) Family Tree JS 
-Family Tree JS is a simple, flexible and highly customizable organization chart plugin for presenting the structure of your organization and the relationships in an elegant way.
+# ![OrgChart](https://balkangraph.com/content/OrgChartJS/OrgChartJS.jpg) OrgChart JS
+Org Chart JS is a simple, flexible and highly customizable organization chart plugin for presenting the structure of your organization and the relationships in an elegant way.
 
-![Family Tree JS](https://balkangraph.com/content/img/screenshot-orgchart-js-2.png)
+![OrgChart](https://balkangraph.com/content/img/screenshot-orgchart-js-2.png)
 
 ## [Demos](https://balkangraph.com/OrgChartJS/Demos/BasicUsage)  &nbsp;&nbsp;&nbsp;&nbsp;  [Docs](https://balkangraph.com/OrgChartJS/Docs/GettingStarted)  &nbsp;&nbsp;&nbsp;&nbsp;  [Download](https://balkangraph.com/OrgChartJS/Download) &nbsp;&nbsp;&nbsp;&nbsp;  [Support](https://balkangraph.com/OrgChartJS/Support)
 
@@ -22,21 +22,21 @@ Family Tree JS is a simple, flexible and highly customizable organization chart 
 - Family Tree
 
 ## Installation
-Option 1 - [standalone build](https://balkan.app/FamilyTreeJS/Docs/GettingStarted)
+Option 1 - [standalone build](https://balkangraph.com/OrgChartJS/Docs/GettingStarted)
 
 Option 2 - NPM
 ```
-npm i @balkangraph/familytree.js
+npm i @balkangraph/orgchart.js
 ```
 
 Option 3 - Bower
 ```
-bower install familytree.js
+bower install orgchart.js
 ```
 
 Option 4 - NuGet
 ```
-Install-Package FamilyTreeJS 
+Install-Package OrgChartJS 
 ```
 
 ## Usage

@@ -1,27 +1,15 @@
 {
-    "name": "orgchart.js",
+    "name": "familytree.js",
     "authors": [
-      "BALKANGraph"
+      "BALKAN App"
     ],
-    "description": "OrgChart JS is a simple, flexible and highly customizable organization chart plugin.",
-    "main": "orgchart.js",
+    "description": "FamilyTree JS is a simple, flexible and highly customizable origami JavaScript library.",
+    "main": "familytree.js",
     "keywords": [
-      "diagram",
-      "chart",
       "tree",
-      "orgchart",
-      "graph",
-      "svg",
-      "hierarchy",
-      "family-tree",
-      "decision-tree",
-      "visualization",
-      "tree-layout",
-      "hierarchical",
-      "javascript",
-      "js",
-      "html",
-      "html5"
+      "family tree",
+      "origami",
+      "hierarchy"
     ],
     "license": "MIT",
     "homepage": "https://balkangraph.com"

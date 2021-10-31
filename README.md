@@ -1,9 +1,9 @@
-# ![OrgChart](https://balkangraph.com/content/OrgChartJS/OrgChartJS.jpg) OrgChart JS
+# ![Org Chart JS](https://cdn.balkan.app/OrgChartJS/OrgChartJS.jpg) OrgChart JS
 Org Chart JS is a simple, flexible and highly customizable organization chart plugin for presenting the structure of your organization and the relationships in an elegant way.
 
-![OrgChart](https://balkangraph.com/content/img/screenshot-orgchart-js-2.png)
+![Org Chart JS](https://cdn.balkan.app/OrgChartJS/OrgChartJS.jpg)
 
-## [Demos](https://balkangraph.com/OrgChartJS/Demos/BasicUsage)  &nbsp;&nbsp;&nbsp;&nbsp;  [Docs](https://balkangraph.com/OrgChartJS/Docs/GettingStarted)  &nbsp;&nbsp;&nbsp;&nbsp;  [Download](https://balkangraph.com/OrgChartJS/Download) &nbsp;&nbsp;&nbsp;&nbsp;  [Support](https://balkangraph.com/OrgChartJS/Support)
+## [Demos](https://balkan.app/OrgChartJS/Demos/BasicUsage)  &nbsp;&nbsp;&nbsp;&nbsp;  [Docs](https://balkan.app/OrgChartJS/Docs/GettingStarted)  &nbsp;&nbsp;&nbsp;&nbsp;  [Download](https://balkan.app/OrgChartJS/Download) &nbsp;&nbsp;&nbsp;&nbsp;  [Support](https://balkan.app/OrgChartJS/Support)
 
 ## Features
 - Supports both local data and remote data (JSON)
@@ -22,7 +22,7 @@ Org Chart JS is a simple, flexible and highly customizable organization chart pl
 - Family Tree
 
 ## Installation
-Option 1 - [standalone build](https://balkangraph.com/OrgChartJS/Docs/GettingStarted)
+Option 1 - [standalone build](https://balkan.app/OrgChartJS/Docs/GettingStarted)
 
 Option 2 - NPM
 ```
@@ -34,16 +34,11 @@ Option 3 - Bower
 bower install orgchart.js
 ```
 
-Option 4 - NuGet
-```
-Install-Package OrgChartJS 
-```
 
 ## Usage
 ```
         <div id="tree"/>
-        <script>
- 
+        <script> 
         var chart = new OrgChart(document.getElementById("tree"), {
             nodeBinding: {
                 field_0: "name"

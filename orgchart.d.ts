@@ -1585,25 +1585,6 @@ Code example:
     fit(): void;
 
     /**
-     * Finds node from the nodes collection.
-
-Signature:
-```
-        chart.find(value);
-   ``` 
-Parameters:
-
-- value - search by definded value
-
-Code example:
-```
-         chart.find("John");
- ```
-         * @param value 
-     */
-    find(value: string | number) : void;
-
-    /**
      * Load nodes.
 
 Signature:

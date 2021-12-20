@@ -1077,7 +1077,8 @@ declare class OrgChart {
     toolbarUI: any;
     nodeContextMenuUI: any;
     config: any;
-    static searchUI: any;
+   // static searchUI: any;
+    searchUI: any;
     _layoutConfigs: any;
     
     constructor(element: HTMLElement, options: OrgChartOptions);
@@ -1904,8 +1905,8 @@ Code example:
      * ```
      * Parameters:
      * @param value - value to search for
-     * @param searchInFileds - array of fields to search in
-     * @param retrieveFields -  array of returned fields
+     * @param searchInFileds - (optional) array of fields to search in
+     * @param retrieveFields - (optional) array of returned fields
      * 
      *
      * Code example:
@@ -1914,7 +1915,7 @@ Code example:
      * ```     
      */
 
-    search(value: string | number, searchInFileds: Array<string>, retrieveFields: Array<string>)  : void;
+    search(value: string | number, searchInFileds?: Array<string>, retrieveFields?: Array<string>)  : any;
 
             /**
      * Returns the node DOM element.

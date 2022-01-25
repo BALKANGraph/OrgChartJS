@@ -4,785 +4,9 @@ declare class OrgChart {
 
     /**
      * @param element HTML element or string selector for example '#tree'
-     * @param options 
+     * @param options configuration options
      */
-    constructor(element: HTMLElement | string, options: {
-        /**
-         * Enables or disables the browser events handlers like click, pan, zoom, pinch, etc. Default value - *true*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      interactive: false
-         * });
-         * ```
-         */
-        interactive: boolean,
-
-        /**
-         * Color mode. Default value - *light*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      mode: "dark"
-         * });
-         * ```
-         */
-        mode: "dark" | "light",
-        /**
-         * Lazy loading is technique that defers loading of non-critical nodes at page load time. Instead, these non-critical nodes are loaded at the moment of need. Default value - *true*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      lazyLoading: false
-         * });
-         * ```
-         */
-        lazyLoading: boolean,
-
-        /**
-         * With the drag and drop features enabled you can move nodes easily and change the tree structure. Default value - *false*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      enableDragDrop: true
-         * });
-         * ```
-         */
-        enableDragDrop: boolean,
-
-        /**
-         * Enables advanced search. Default value is true.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      enableSearch: false
-         * });
-         * ```
-         */
-        enableSearch: boolean,
-
-        /**
-         * Enable touch instead of mouse for particular devices with touchscreen/touchpad/trackpad. Default value - *false*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      enableTouch: true
-         * });
-         * ```
-         */
-        enableTouch: boolean,
-        /**
-         * Enable keyboard navigation. Use "f" for find, arrows and space to navigate in the chart. Default value - *false*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      enableKeyNavigation: true
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/KeyNavigation | See doc...}
-         */
-        enableKeyNavigation: boolean,
-        /**
-         * Shows mini map over the expanded tree. Default value - *false*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      miniMap: true
-         * });
-         * ```
-         */
-        miniMap: boolean,
-        /**
-         * Enables edit, add, remove and other node operations. Also you can define your own node operation.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      nodeMenu:{
-         *          details: {text:"Details"},
-         *       	edit: {text:"Edit"},
-         *          add: {text:"Add"},
-         *    	    remove: {text:"Remove"},
-         *          myMenuItem: {text:"My node menu Item", onClick: function {}}
-         *      }
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
-         */
-        nodeMenu: OrgChart.menu;
-        /**
-         * With node circle menu you can add, edit, remove node or create clink/slink with drga and drop. Before setting this option make sure that you defined nodeCircleMenuButton in the ysed template.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *       nodeCircleMenu: {
-         *           editNode: {
-         *               icon: OrgChart.icon.edit(24, 24, '#aeaeae'),
-         *               text: "Edit node",
-         *               color: "white"
-         *           }, 
-         *           addClink: {
-         *               icon: OrgChart.icon.link(24, 24, '#aeaeae'), 
-         *               text: "Add C link",
-         *               color: '#fff',
-         *               draggable: true
-         *           }
-         *       }
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
-         */
-        nodeCircleMenu: OrgChart.menu,
-        /**
-         * Customizable context menu. Also you can define your own node operation.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      nodeContextMenu:{
-         *          details: {text:"Details"},
-         *       	edit: {text:"Edit"},
-         *          add: {text:"Add"},
-         *          remove: {text:"Remove"}
-         *          myMenuItem: {text:"My node menu Item", onClick: function {}}
-         *      }
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
-         */
-        nodeContextMenu: OrgChart.menu,
-        /**
-         * Enables export to excel, export to svg and other OrgChart operations. Also you can define your own OrgChart operation.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      menu:{
-         *          svg: { text: "Export SVG" },
-         *          csv: { text: "Export CSV" }
-         *          myMenuItem: {text:"My node menu Item", onClick: function {}}
-         *      }
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
-         */
-        menu: OrgChart.menu,
-        /**
-         * With the toolbar enabled allows you to change the layout, zoom in/out, expand all nodes, etc.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      toolbar: {
-         *          layout: true,
-         *          zoom: true,
-         *          fit: true,
-         *          expandAll: false,
-         *          fullScreen: true
-         *      },
-         * });
-         * ```
-         */
-        toolbar: OrgChart.toolbar,
-        /**
-         * Stops the chart locking to the top of the screen once you move it.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      sticky: false
-         * });
-         * ```
-         */
-        sticky: boolean,
-        /**
-         * nodeMouseClick can accept the following values:
-         * - OrgChart.action.edit - will open the edit view for the clicked node on the right hand side
-         * - OrgChart.action.details - will open the details view for the clicked node on the right hand side, the details view is very similar to the edit view the only difference is that is read only.
-         * - OrgChart.action.expandCollapse - will expand or collapse the children nodes
-         * - OrgChart.action.none - do nothing on node click event
-         * - OrgChart.action.pan - allows you to move the chart in any direction
-         * 
-         * Default value - *OrgChart.action.details*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      nodeMouseClick: OrgChart.action.edit
-         * });
-         * ```
-         */
-        nodeMouseClick: OrgChart.action,
-        /**
-         * nodeMouseDbClick can accept the following values:
-         * - OrgChart.action.edit - will open the edit view for the clicked node on the right hand side
-         * - OrgChart.action.details - will open the details view for the clicked node on the right hand side, the details view is very similar to the edit view the only difference is that is read only
-         * - OrgChart.action.expandCollapse - will expand or collapse the children nodes
-         * - OrgChart.action.none - do nothing on node click event
-         * 
-         * Default value - *OrgChart.action.none*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      nodeMouseDbClick: OrgChart.action.edit
-         * });
-         * ```
-         */
-        nodeMouseDbClick: OrgChart.action,
-        /**
-         * mouseScrool can accept the following values:
-         * - OrgChart.action.zoom - will zoom in/out on mouse scroll
-         * - OrgChart.action.ctrlZoom - will zoom in/out on mouse scroll and ctrl button is pressed
-         * - OrgChart.action.xScroll - left/right move of the chart on mouse scroll
-         * - OrgChart.action.yScroll - up/down move of the chart on mouse scroll
-         * - OrgChart.action.none - do nothing on mouse scroll
-         * 
-         * Default value - *OrgChart.action.zoom*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      mouseScrool: OrgChart.action.ctrlZoom
-         * });
-         * ```
-         */
-        mouseScrool: OrgChart.action,
-        /**
-         * Shows horizontal scrollbar. Default value - *false*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      showXScroll: true
-         * });
-         * ```
-         */
-        showXScroll: boolean,
-        /**
-         * Shows vertical scrollbar. Default value - *false*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      showYScroll: true
-         * });
-         * ```
-         */
-        showYScroll: boolean,
-        /**
-         * Set template if you want to change the appearance of the chart. Org Chart JS comes with number of build-in templates:
-         * - ana
-         * - ula
-         * - olivia
-         * - belinda
-         * - rony
-         * - mery
-         * - polina
-         * - mila
-         * - diva
-         * - base
-         * - isla
-         * - deborah
-         * 
-         * Default value - *ana*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      template: 'olivia'
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/PredefinedTemplates | See doc...}
-         */
-        template: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | string,
-        /**
-         * With tags option you can:
-         * - Set a specific template for tagged node/s {@link https://balkan.app/OrgChartJS/Docs/MultipleTemplates | See doc...}
-         * - Set node as assistant {@link https://balkan.app/OrgChartJS/Docs/Assistant | See doc...}
-         * - Change node menu, circle menu and context menu items for tagged node/s {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
-         * - Set the node level {@link https://balkan.app/OrgChartJS/Demos/SubLevels | See demo...}
-         * - Set specific options for sub trees like layout templates etc {@link hhttps://balkan.app/OrgChartJS/Docs/SubTrees | See demo...}          
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      tags: {
-         *          myTag: {template: 'olivia'}
-         *      },
-         *      nodes: [{id: 1}, {id: 2, tags: ['myTag']}]
-         * });
-         * ```
-         */
-        tags: {
-            [key: string]: {
-                template: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | string,
-                subLevels: number,
-                nodeMenu: OrgChart.menu,
-                nodeCircleMenu: OrgChart.menu,
-                nodeContextMenu: OrgChart.menu,
-                subTreeConfig: {
-                    orientation: OrgChart.orientation,
-                    levelSeparation: number,
-                    mixedHierarchyNodesSeparation: number,
-                    subtreeSeparation: number,
-                    siblingSeparation: number,
-                    layout: OrgChart.layout,
-                    columns: number,
-                    collapse: {
-                        level: number,
-                        allChildren: boolean
-                    }
-                }
-            };
-        },
-        /**
-         * Minimize/Maximize node. The template has to have min defined. Default value - *false*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      min: true
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/MinMax | See doc...}
-         */
-        min: false,
-        /**
-         * Node binding in Org Chart JS maps node data to node template parameters.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   nodeBinding: {
-         *       field_0: "name"
-         *   },
-         *   nodes: [
-         *       { id: 1, name: "Amber McKenzie" }
-         *   ]
-         * });
-         * ```
-         */
-        nodeBinding: { [key: string]: string },
-        /**
-         * Link binding in Org Chart JS maps node data to link template parameters.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   nodeBinding: {
-         *       link_field_0: "createdAt"
-         *   },
-         *   nodes: [
-         *       { id: "1", name: "Amber McKenzie"  },
-         *       { id: "2", pid: "1", createdAt: "Since 08/08/2018" },
-         *       { id: "3", pid: "1", createdAt: "Since 05/04/2018" }
-         *   ]
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/Link | See doc...}
-         */
-        linkBinding: { [key: string]: string },
-        /**
-         * Search by the fields defined in searchFields.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   searchFields: ["name", "title", etc...]
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}
-         */
-        searchFields: Array<string>,
-        /**
-         * Displays a field in the search result.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   searchDisplayField: "name"
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}
-         */
-        searchDisplayField: string,
-        /**
-         * Search by weight of the fields.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   searchFieldsWeight: {
-         *       "Name": 100, //percent
-         *       "Title": 20 //percent
-         *   }
-         * });
-         * ```
-         * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}
-         */
-        searchFieldsWeight: { [key: string]: number },
-        /**
-         * Array of node data JSON objects. nodes option is the data source of the chart. Node JSON objects could have unlimited number of properties, id, pid, ppid, stpid and tags are reserved node properties.
-         * - id - unique identifier, it clould be integer or string
-         * - pid - is the parent id
-         * - stpid - subtree parent id
-         * - ppid - parent partner id
-         * - tags - array of strings
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   nodes: [
-         *       { id: 1 },
-         *       { id: 2, pid: 1, tags: ["Sales"] },
-         *       { id: 3, stpid: 2  }
-         *   ]
-         * });
-         * ```
-         */
-        nodes: Array<string | number>,
-        /**
-         * Adds curved link.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   clinks: [
-         *       from: 4, to: 0, label: 'text'}, 
-         *       {from: 4, to: 5, template: 'blue', label: '4 reports to 3' },
-         *       {from: 2, to: 6, template: 'yellow', label: 'lorem ipsum' }
-         *   ]
-         * });
-         * ```
-         */
-        clinks: Array<OrgChart.link>,
-        /**
-         * Adds second link.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   slinks: [
-         *       from: 4, to: 0, label: 'text'}, 
-         *       {from: 4, to: 5, template: 'blue', label: '4 reports to 3' },
-         *       {from: 2, to: 6, template: 'yellow', label: 'lorem ipsum' }
-         *   ]
-         * });
-         * ```
-         */
-        slinks: Array<OrgChart.link>,
-        /**
-         * The gap between each level. Default value - *60*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   levelSeparation: 50
-         * });
-         * ```
-         */
-        levelSeparation: number,
-        /**
-         * The gap between nodes in a subtree. Default value - *20*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   siblingSeparation: 50
-         * });
-         * ```
-         */
-        siblingSeparation: number,
-        /**
-         * The gap between subtrees. Default value - *40*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   subtreeSeparation: 50
-         * });
-         * ```
-         */
-        subtreeSeparation: number,
-        /**
-         * The gap between nodes in vertical layout. Default value - *20*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   mixedHierarchyNodesSeparation: 5
-         * });
-         * ```
-         */
-        mixedHierarchyNodesSeparation: number,
-        /**
-         * Set the assistant separation value. Default value - *100*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   assistantSeparation: 150
-         * });
-         * ```
-         */
-        assistantSeparation: number,
-        /**
-         * Minimum gap between partner and node with partners. Default value - *50*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   minPartnerSeparation: 100
-         * });
-         * ```
-         */
-        minPartnerSeparation: number,
-        /**
-         * Gap between partner links. Default value - *20*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   partnerChildrenSplitSeparation: 50
-         * });
-         * ```
-         */
-        partnerChildrenSplitSeparation: number,
-        /**
-         * Gap between partners. Default value - *15*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   partnerNodeSeparation: 30
-         * });
-         * ```
-         */
-        partnerNodeSeparation: number,
-        /**
-         * The number of colums if the chart has multiple root nodes. Default value - *10*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   columns: 1
-         * });
-         * ```
-         */
-        columns: number,
-        /**
-         * The padding option sets the padding area on all four sides of the OrgChart. Default value - *30*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   padding: 20
-         * });
-         * ```
-         */
-        padding: number,
-        /**
-         * Specifies the orientation of the Org Chart JS. could accept one of the following values:
-         * - OrgChart.orientation.top
-         * - OrgChart.orientation.bottom
-         * - OrgChart.orientation.right
-         * - OrgChart.orientation.left
-         * - OrgChart.orientation.top_left
-         * - OrgChart.orientation.bottom_left
-         * - OrgChart.orientation.right_top
-         * - OrgChart.orientation.left_top
-         * 
-         * Default value - *OrgChart.orientation.top*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   orientation: OrgChart.orientation.bottom
-         * });
-         * ```
-         */
-        orientation: OrgChart.orientation,
-        /**
-         * Sets the layout algoritm:
-         * - OrgChart.layout.normal
-         * - OrgChart.layout.mixed
-         * - OrgChart.layout.tree
-         * - OrgChart.layout.treeLeftOffset
-         * - OrgChart.layout.treeRightOffset
-         * 
-         * Default value - *OrgChart.layout.normal*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   layout: OrgChart.layout.mixed
-         * });
-         * ```          
-         */
-        layout: OrgChart.layout,
-        /**
-         * The scale factor determines what fraction of the entire scale is visible at one time.
-         * - OrgChart.match.height
-         * - OrgChart.match.width
-         * - OrgChart.match.boundary
-         * - [number]
-         * 
-         * Default value - *1*
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   scaleInitial: OrgChart.match.boundary
-         * });
-         * ```          
-         * {@link https://balkan.app/OrgChartJS/Docs/Layout | See doc...}         
-         */
-        scaleInitial: number | OrgChart.match,
-        /**
-         * Determines the minimum scale factor. Default value - *0.1*
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   scaleMin: 0.2
-         * });
-         * ```          
-         */
-        scaleMin: number,
-        /**
-         * Determines the naximum scale factor. Default value - *5*
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   scaleMax: 10
-         * });
-         * ```          
-         */
-        scaleMax: number,
-        /**
-          * The orderBy option is used to sort the nodes in ascending order by specified field. The default order is by nodes order in the nodes array. Default value - *null*
-          * ```typescript       
-          * var chart = new OrgChart('#tree', {
-          *   orderBy: "orderId",
-          *   nodes: [
-          *       { id: 10, pid: 1, orderId: 2 },
-          *       { id: 11, pid: 1, orderId: 1 }
-          *   ]
-          * });
-          * ```    
-          * ```typescript       
-          * var chart = new OrgChart('#tree', {
-          *   orderBy: [field: "orderId", desc: true],
-          *   nodes: [
-          *       { id: 10, pid: 1, orderId: 2 },
-          *       { id: 11, pid: 1, orderId: 1 }
-          *   ]
-          * });
-          * ```      
-          */
-        orderBy: string,
-        /**
-          * @ignore
-          */
-        editUI: OrgChart.editUI,
-        /**
-          * @ignore
-          */
-        searchUI: OrgChart.searchUI,
-        /**
-          * @ignore
-          */
-        xScrollUI: any,
-        /**
-          * @ignore
-          */
-        yScrollUI: any,
-        /**
-          * @ignore
-          */
-        nodeMenuUI: OrgChart.menuUI,
-        /**
-          * @ignore
-          */
-        nodeCircleMenuUI: OrgChart.circleMenuUI,
-        /**
-          * @ignore
-          */
-        nodeContextMenuUI: OrgChart.menuUI,
-        /**
-          * @ignore
-          */
-        toolbarUI: OrgChart.toolbarUI,
-        /**
-         * @ignore
-         */
-        notifierUI: any,
-        /**
-         * @ignore
-         */        
-        menuUI: OrgChart.menuUI,
-        /**
-         * @ignore
-         */
-         UI: any,        
-        /**
-         * The URL to the export server. Default value - *https://balkan.app/export*
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   exportUrl: "https://balkan.app/export"
-         * });
-         * ```          
-         */        
-        exportUrl: string,
-        /**
-         * Collapse specified level of the chart and its children if allChildren is true.
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   collapse: {level: 2, allChildren: true}
-         * });
-         * ```          
-         */         
-        collapse: {
-            level: number,
-            allChildren: boolean
-        },
-        /**
-         * Expand specified node ids and its children if allChildren is true. The expand option works only if collapse is set.
-         * 
-         * In the example above the second level of the chart will be collapsed but node with id 155 and its children will be expanded.
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   collapse: {level: 2, allChildren: true},
-         *   expand: {nodes: [155], allChildren: true}
-         * });
-         * ```          
-         */         
-        expand: {
-            nodes: Array<string | number>,
-            allChildren: boolean
-        },
-        /**
-         * The align option specifies the alignment of the nodes inside Org Chart JS.
-         * - OrgChart.align.center - centered
-         * - OrgChart.align.orientation - according to the orientation option
-         * 
-         * Default value - *OrgChart.align.center*
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   align: OrgChart.align.orientation
-         * });
-         * ```          
-         */         
-        align: OrgChart.align,
-        /**
-         * Can be used to control the transition of the nodes on expand/collapse operation. Default value - *func: OrgChart.anim.outPow, duration: 200*
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   anim: {func: OrgChart.anim.outBack, duration: 500}
-         * });
-         * ```          
-         */                 
-        anim: {
-            /**
-             * defines how long time an animation should take to complete
-             */
-            func: OrgChart.anim,
-            /**
-             * Easing functions specify the speed at which an animation progresses at different points within the animation.
-             */
-            duration: number
-        },
-        /**
-         * Can be used to control the zooming sensitivity. Default value - *speed: 120, smooth: 12*
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   zoom: {speed: 130, smooth: 10}
-         * });
-         * ```          
-         */          
-        zoom: {
-            speed: number,
-            smooth: number
-        },
-        /**
-         * Define nodes as roots. Default value - *null*
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   roots: [2, 4]
-         * });
-         * ```          
-         */           
-        roots: Array<string | number>,
-        /**
-         * Persist the state (scale, position, expanded/collapsed and min/max nodes) in the url or indexedDB. Default value - *null*
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   state: {
-         *       name: 'StateForMyOrgChart',
-         *       readFromLocalStorage: true,
-         *       writeToLocalStorage: true,
-         *       readFromIndexedDB: true,
-         *       writeToIndexedDB: true,
-         *       readFromUrlParams: true,                    
-         *       writeToUrlParams: true
-         *   }
-         * });
-         * ```          
-         */          
-        state: {
-            name: string,
-            readFromLocalStorage: boolean,
-            writeToLocalStorage: boolean,
-            readFromIndexedDB: boolean,
-            writeToIndexedDB: boolean,
-            readFromUrlParams: boolean,
-            writeToUrlParams: boolean
-        },
-        /**
-         * Configure the buildin edit form.
-         * {@link https://balkan.app/OrgChartJS/Docs/Edit | See doc...}   
-         * ```          
-         */                
-        editForm: {
-            readOnly: boolean,
-            titleBinding: string,
-            photoBinding: string,
-            addMore: string,
-            addMoreBtn: string,
-            addMoreFieldName: string,
-            generateElementsFromFields: boolean,
-            buttons: {
-                [key: string]: {
-                    icon: string,
-                    text: string,
-                    hideIfEditMode: boolean,
-                    hideIfDetailsMode: boolean
-                }
-            },
-            elements: { [key: string]: OrgChart.editFormElement | Array<OrgChart.editFormElement> }
-        }
-    });
+    constructor(element: HTMLElement | string, options?: OrgChart.options);
 
     /**
      * Updates the node data, redraws the chart and fires update event.
@@ -942,11 +166,11 @@ declare class OrgChart {
      */
     fit(callback?: () => void): void;
     /**
-     * Toggle full screen mode.
+     * Toggles full screen mode.
      */
     toggleFullScreen(): void;
     /**
-     * Get the node as OrgChart.node object.
+     * Gets the node as {@link OrgChart.node} object.
      * @param nodeId 
      */
     getNode(nodeId: string | number): OrgChart.node;
@@ -955,7 +179,7 @@ declare class OrgChart {
      * @param layout layout type
      * @param lcn lyout config name for the specified sub tree
      */
-    setLayout(layout: OrgChart.layout, lcn?: string): void;
+    setLayout(layout: OrgChart.layout | number, lcn?: string): void;
     /**
      * Sets orientation.
      * @param orientation  orientation type
@@ -1301,61 +525,49 @@ declare class OrgChart {
      * @param listener 
      */             
     onExporStart(listener: (args: 
-        /**
-         * for PDF/PNG exports
-         */
         {
         /**
          * the content to be exported
+         * 
+         * this property is initialized only for PDF/PNG/SVG exports
          */
         content: string,
         /**
          * export options
+         * 
+         * this property is initialized only for PDF/PNG/SVG exports
          */
         options: OrgChart.exportOptions,
         /**
          * add extra styles
+         * 
+         * this property is initialized only for PDF/PNG/SVG exports
          */
         styles: string,
         /**
          * an object that discribes pages to be exported
+         * 
+         * this property is initialized only for PDF/PNG exports
          */
-        pages: any
-    } | 
-    /**
-     * for CSV/XML exports
-     */
-    {
+        pages: any,
         /**
          * extension
+         * 
+         * this property is initialized only for CSV/XML
          */
         ext: string,
         /**
          * filename, you can change the filename here
+         * 
+         * this property is initialized only for CSV/XML exports
          */
         filename: string,
         /**
-         * an array of node objects
+         * array of node objects
+         * 
+         * this property is initialized only for CSV/XML exports
          */
         nodes: Array<object>
-    } | 
-    /**
-     * for SVG
-     */
-    {
-        /**
-         * the content to be exported
-         */
-        content: string,
-        /**
-         * export options
-         */
-        options: OrgChart.exportOptions,
-        /**
-         * add extra styles
-         */
-         styles: string,        
-
     }) => void): OrgChart;
     /**
      * Occurs in the beginning of the export. Use this event listener to hide loading image or upload exported document to your server using ArrayBuffer argument.
@@ -1375,46 +587,46 @@ declare class OrgChart {
     {
         /**
          * the array buffer is the exported document, you can save it on a server or send it via email
+         * 
+         * this property is initialized only for PDF/PNG exports
          */
         ArrayBuffer: ArrayBuffer
-    } | 
-    /**
-     * for CSV/XML exports
-     */
-    {
         /**
          * extension
+         * 
+         * this property is initialized only for CSV/XML exports
          */
-         ext: string,
-         /**
-          * filename, you can change the filename here
-          */
-         filename: string,
-         /**
-          * an array of node objects
-          */
-         nodes: Array<object>,
-         /**
-          * csv ot xml string
-          */
-         content: string
-    } | 
-    /** 
-     * for SVG exports
-     */
-    {
+        ext: string,
         /**
-         * the content to be exported
+         * filename, you can change the filename here
+         * 
+         * this property is initialized only for CSV/XML exports
          */
-         content: string,
-         /**
-          * export options
-          */
-         options: OrgChart.exportOptions,
-         /**
-          * add extra styles
-          */
-          styles: string,
+        filename: string,
+        /**
+         * an array of node objects
+         * 
+         * this property is initialized only for CSV/XML exports
+         */
+        nodes: Array<object>,
+        /**
+         * csv ot xml string
+         * 
+         * this property is initialized only for CSV/XML/SVG exports
+         */
+        content: string
+        /**
+         * export options
+         * 
+         * this property is initialized only for SVG exports
+         */
+        options: OrgChart.exportOptions,
+        /**
+         * add extra styles
+         * 
+         * this property is initialized only for SVG exports
+         */
+        styles: string,        
     }) => void): OrgChart;
     /**
      * On node click event listener.
@@ -1491,62 +703,18 @@ declare class OrgChart {
     }
 
     static clinkTemplates: {
-        orange: OrgChart.linkTemplate,
-        blue: OrgChart.linkTemplate,
-        yellow: OrgChart.linkTemplate,
+        orange?: OrgChart.linkTemplate,
+        blue?: OrgChart.linkTemplate,
+        yellow?: OrgChart.linkTemplate,
         [key: string]: OrgChart.linkTemplate
     }
 
     static slinkTemplates: {
-        orange: OrgChart.linkTemplate,
-        blue: OrgChart.linkTemplate,
-        yellow: OrgChart.linkTemplate,
+        orange?: OrgChart.linkTemplate,
+        blue?: OrgChart.linkTemplate,
+        yellow?: OrgChart.linkTemplate,
         [key: string]: OrgChart.linkTemplate
     }
-
-
-    static templates: {
-        [key: string]: {
-            defs: string,
-            size: Array<number>,
-            expandCollapseSize: number,
-            linkAdjuster: {
-                fromX: number,
-                fromY: number,
-                toX: number,
-                toY: number
-            },
-            ripple: {
-                radius: number,
-                color: string,
-                rect: Array<number>
-            },
-            assistanseLink: string,
-            svg: string,
-            link: string,
-            pointer: string,
-            node: string,
-            plus: string,
-            minus: string,
-            nodeMenuButton: string,
-            menuButton: string,
-            img_0: string,
-            link_field_0: string,
-            editFormHeaderColor: string,
-            nodeCircleMenuButton: string
-        }
-    };
-
-
-    static scroll: {
-        smooth: number,
-        speed: number,
-        safari: { smooth: number; speed: number; },
-        edge: { smooth: number; speed: number; },
-        chrome: { smooth: number; speed: number; },
-        firefox: { smooth: number; speed: number; },
-        opera: { smooth: number; speed: number; }
-    };
 
 
     static icon: {
@@ -1565,7 +733,15 @@ declare class OrgChart {
         sad: (w: string, h: string, c: string) => string,
         share: (w: string, h: string, c: string, x: string, y: string) => string,
         user: (w: string, h: string, c: string, x: string, y: string) => string
-    };
+    }
+
+
+
+
+
+    static templates :{ [key: string]: OrgChart.template} ;
+
+
 
 
     static events: {
@@ -1676,6 +852,103 @@ declare class OrgChart {
 }
 
 declare namespace OrgChart {
+    /**
+     * deprecated, use OrgChart.align.center isntead
+     * @ignore
+     */
+    const CENTER: number;    
+    /**
+     * deprecated, use OrgChart.align.orientation isntead
+     * @ignore
+     */
+    const ORIENTATION: number;
+
+    
+    /**
+     * @ignore
+     */
+    const none: number;
+
+    /**
+     * @ignore
+     */    
+    const COLLAPSE_PARENT_NEIGHBORS: number;
+    
+    /**
+     * @ignore
+     */
+    const COLLAPSE_SUB_CHILDRENS: number;
+
+    /**
+     * deprecated, use OrgChart.layout.normal isntead
+     * @ignore
+     */
+    const normal: number;  
+    
+    /**
+     * deprecated, use OrgChart.layout.mixed isntead
+     * @ignore
+     */
+    const mixed: number;
+    /**
+     * deprecated, use OrgChart.layout.tree isntead
+     * @ignore
+     */    
+    const tree: number;
+    /**
+     * deprecated, use OrgChart.layout.treeLeftOffset isntead
+     * @ignore
+     */    
+    const treeLeftOffset: any;
+    /**
+     * deprecated, use OrgChart.layout.treeRightOffset isntead
+     * @ignore
+     */        
+    const treeRightOffset: any;
+
+
+    const scroll: {
+        visible?: boolean,
+        smooth?: number,
+        speed?: number,
+        safari?: { smooth?: number; speed?: number; },
+        edge?: { smooth?: number; speed?: number; },
+        chrome?: { smooth?: number; speed?: number; },
+        firefox?: { smooth?: number; speed?: number; },
+        opera?: { smooth?: number; speed?: number; }
+    };
+
+    interface template  
+         {
+            defs?: string,
+            size?: Array<number>,
+            expandCollapseSize?: number,
+            linkAdjuster?: {
+                fromX?: number,
+                fromY?: number,
+                toX?: number,
+                toY?: number
+            },
+            ripple?: {
+                radius?: number,
+                color?: string,
+                rect?: Array<number>
+            },
+            assistanseLink?: string,
+            svg?: string,
+            link?: string,
+            pointer?: string,
+            node?: string,
+            plus?: string,
+            minus?: string,
+            nodeMenuButton?: string,
+            menuButton?: string,
+            img_0?: string,
+            link_field_0?: string,
+            editFormHeaderColor?: string,
+            nodeCircleMenuButton?: string,
+            min?: template
+        }
 
     interface editUI {
         /**
@@ -1789,70 +1062,70 @@ declare namespace OrgChart {
         hideLayout(): void;
 
 
-        expandAllIcon: string;
-        fitIcon: string;
-        openFullScreenIcon: string;
-        closeFullScreenIcon: string;
-        zoomInIcon: string;
-        zoomOutIcon: string;
-        layoutIcon: string;
+        expandAllIcon?: string;
+        fitIcon?: string;
+        openFullScreenIcon?: string;
+        closeFullScreenIcon?: string;
+        zoomInIcon?: string;
+        zoomOutIcon?: string;
+        layoutIcon?: string;
     }
 
 
 
     type toolbar = {
-        layout: boolean,
-        zoom: boolean,
-        fit: boolean,
-        expandAll: boolean,
-        fullScreen: boolean
+        layout?: boolean,
+        zoom?: boolean,
+        fit?: boolean,
+        expandAll?: boolean,
+        fullScreen?: boolean
     }
 
 
     type exportOptions = {
-        margin: Array<number>,
-        padding: number,
-        landscape: boolean,
-        filename: string,
-        scale: "fit" | number,
-        format: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
-        header: string,
-        footer: string,
-        openInNewTab: boolean
+        margin?: Array<number>,
+        padding?: number,
+        landscape?: boolean,
+        filename?: string,
+        scale?: "fit" | number,
+        format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
+        header?: string,
+        footer?: string,
+        openInNewTab?: boolean
     }
 
     type linkTemplate = {
-        defs: string,
-        link: string,
-        label: string,
-        labelPosition: string
+        defs?: string,
+        link?: string,
+        label?: string,
+        labelPosition?: string
     }
     type menu = {
         [key: string]: {
-            text: string,
-            icon: string,
-            onClick: Function,
-            color: string,
-            draggable: boolean
+            text?: string,
+            icon?: string,
+            onClick?: Function,
+            color?: string,
+            draggable?: boolean
         }
     }
     type editFormElement = {
-        type: string,
-        label: string,
-        binding: string,
-        options: Array<unknown>,
-        btn: string,
-        vlidators: { required: string, email: string }
+        type?: string,
+        label?: string,
+        binding?: string,
+        options?: Array<unknown>,
+        btn?: string,
+        vlidators?: { required?: string, email?: string }
     }
     type link = {
-        from: string | number,
-        to: string | number,
-        template: string,
-        label: string
+        from?: string | number,
+        to?: string | number,
+        template?: string,
+        label?: string
     }
     type orderBy = {
-        field: string,
-        desc: boolean
+        field?: string,
+        desc?: boolean
     }
     enum orientation {
         top,
@@ -1920,7 +1193,8 @@ declare namespace OrgChart {
         zoom,
         ctrlZoom,
         xScroll,
-        yScroll,
+        yScroll,        
+        scroll,
         none
     }
 
@@ -1928,116 +1202,893 @@ declare namespace OrgChart {
         /**
          * the same id you provided in the source node
          */
-        id: string | number,
+        id?: string | number,
         /**
          * same pid you provided in the source node, the default value is null if not provided or if node with the same id does not exist
          */
-        pid: string | number,
+        pid?: string | number,
         /**
          *  partner parent id, it is the partner parent node id of the partner node, it is the same ppid you provided in the source node, the default value is undefined.
          */
-        ppid: string | number,
+        ppid?: string | number,
         /**
          * a reference to the parent node, default value is null, if the nodes is collapse this proprty is not initalized and can be null even if pid is not null
          */
-        parent: node,
+        parent?: node,
         /**
          * ub tree parent id, it is the parent node id of the root node of the sub tree, it is the same stpid you provided in the source node, the default value is null if not provided or if node with the same id does not exist.
          */
-        stpid: string | number,
+        stpid?: string | number,
         /**
          * - a reference to the parent node of a sub tree, default value is null, if the parent node is minimized this proprty is not initalized and can be null even if we have stpid
          */
-        stParent: node,
-        isPartner: boolean,
-        partnerSeparation: number,
+        stParent?: node,
+        isPartner?: boolean,
+        partnerSeparation?: number,
         /**
          * array of ids, always initialized
          */
-        childrenIds: Array<string | number>,
+        childrenIds?: Array<string | number>,
         /**
          * array of children nodes, initialized on demand if all children are collpased it will be empty array
          */
-        children: Array<node>,
+        children?: Array<node>,
         /**
          * array of sub tree children root node ids, always initialized
          */
-        stChildrenIds: Array<string | number>,
+        stChildrenIds?: Array<string | number>,
         /**
          * array of sub tree children root nodes, initialized on demand if the node is minimized it will be empty array
          */
-        stChildren: Array<node>,
+        stChildren?: Array<node>,
         /**
          * array of string values, the same array you provided in the source node
          */
-        tags: Array<string>,
+        tags?: Array<string>,
         /**
          * template name, you can specify multiple templates with tags in one chart
          */
-        templateName: string,
+        templateName?: string,
         /**
          * a reference to the left node neighbor, the default value is undefined
          */
-        leftNeighbor: node | undefined,
+        leftNeighbor?: node | undefined,
         /**
          *  a reference to the right node neighbor, the default value is undefined
          */
-        rightNeighbor: node | undefined,
+        rightNeighbor?: node | undefined,
         /**
          * x position, default value undefined
          */
-        x: number | undefined,
+        x?: number | undefined,
         /**
          *  y position, default value undefined
          */
-        y: number | undefined,
+        y?: number | undefined,
         /**
          * width of the node, default value undefined
          */
-        w: number | undefined,
+        w?: number | undefined,
         /**
          * height of the node, default value undefined
          */
-        h: number | undefined,
+        h?: number | undefined,
         /**
          * if the node is assistant is true if not false if the node is not initialized is undefined
          */
-        isAssistant: boolean | undefined,
+        isAssistant?: boolean | undefined,
         /**
          * sub tree container nodes array, property only for the root node, default value undefined
          */
-        stContainerNodes: Array<node> | undefined,
+        stContainerNodes?: Array<node> | undefined,
         /**
          * it is set only if you define order option, default value undefined
          */
-        order: number | undefined,
+        order?: number | undefined,
         /**
          * true if the node is collpased, false if it is not and undefined if not initalized
          */
-        collapsed: boolean | undefined,
+        collapsed?: boolean | undefined,
         /**
          * a level of the node starting from zero
          */
-        level: number,
+        level?: number,
         /**
          * true if the node is minimized, default value undefined
          */
-        min: boolean | undefined,
+        min?: boolean | undefined,
         /**
          * sub levels, default value undefined
          */
-        subLevels: number | undefined,
+        subLevels?: number | undefined,
         /**
          * set only if the node contains sub trees and padding is defined in the template, default value undefined
          */
-        padding: number | undefined,
+        padding?: number | undefined,
         /**
          * layout configuration name, default value undefined
          */
-        lcn: string | undefined,
+        lcn?: string | undefined,
         /**
          * for assistant nodes and mixed layout we create dynamic nodes called splits, default value undefined
          */
-        isSplit: boolean | undefined
+        isSplit?: boolean | undefined
+    }
+
+    interface options  {
+        /**
+         * Enables or disables the browser events handlers like click, pan, zoom, pinch, etc. Default value - *true*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      interactive: false
+         * });
+         * ```
+         */
+        interactive?: boolean,
+
+        /**
+         * Color mode. Default value - *light*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      mode: "dark"
+         * });
+         * ```
+         */
+        mode?: "dark" | "light",
+        /**
+         * Lazy loading is technique that defers loading of non-critical nodes at page load time. Instead, these non-critical nodes are loaded at the moment of need. Default value - *true*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      lazyLoading: false
+         * });
+         * ```
+         */
+        lazyLoading?: boolean,
+
+        /**
+         * With the drag and drop features enabled you can move nodes easily and change the tree structure. Default value - *false*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      enableDragDrop: true
+         * });
+         * ```
+         */
+        enableDragDrop?: boolean,
+
+        /**
+         * Enables advanced search. Default value is true.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      enableSearch: false
+         * });
+         * ```
+         */
+        enableSearch?: boolean,
+
+        /**
+         * Enable touch instead of mouse for particular devices with touchscreen/touchpad/trackpad. Default value - *false*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      enableTouch: true
+         * });
+         * ```
+         */
+        enableTouch?: boolean,
+        /**
+         * Enable keyboard navigation. Use "f" for find, arrows and space to navigate in the chart. Default value - *false*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      enableKeyNavigation: true
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/KeyNavigation | See doc...}
+         */
+        enableKeyNavigation?: boolean,
+        /**
+         * Shows mini map over the expanded tree. Default value - *false*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      miniMap: true
+         * });
+         * ```
+         */
+        miniMap?: boolean,
+        /**
+         * Enables edit, add, remove and other node operations. Also you can define your own node operation.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      nodeMenu:{
+         *          details: {text:"Details"},
+         *       	edit: {text:"Edit"},
+         *          add: {text:"Add"},
+         *    	    remove: {text:"Remove"},
+         *          myMenuItem: {text:"My node menu Item", onClick: function {}}
+         *      }
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
+         */
+        nodeMenu?: OrgChart.menu;
+        /**
+         * With node circle menu you can add, edit, remove node or create clink/slink with drga and drop. Before setting this option make sure that you defined nodeCircleMenuButton in the ysed template.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *       nodeCircleMenu: {
+         *           editNode: {
+         *               icon: OrgChart.icon.edit(24, 24, '#aeaeae'),
+         *               text: "Edit node",
+         *               color: "white"
+         *           }, 
+         *           addClink: {
+         *               icon: OrgChart.icon.link(24, 24, '#aeaeae'), 
+         *               text: "Add C link",
+         *               color: '#fff',
+         *               draggable: true
+         *           }
+         *       }
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
+         */
+        nodeCircleMenu?: OrgChart.menu,
+        /**
+         * Customizable context menu. Also you can define your own node operation.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      nodeContextMenu:{
+         *          details: {text:"Details"},
+         *       	edit: {text:"Edit"},
+         *          add: {text:"Add"},
+         *          remove: {text:"Remove"}
+         *          myMenuItem: {text:"My node menu Item", onClick: function {}}
+         *      }
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
+         */
+        nodeContextMenu?: OrgChart.menu,
+        /**
+         * Enables export to excel, export to svg and other OrgChart operations. Also you can define your own OrgChart operation.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      menu:{
+         *          svg: { text: "Export SVG" },
+         *          csv: { text: "Export CSV" }
+         *          myMenuItem: {text:"My node menu Item", onClick: function {}}
+         *      }
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
+         */
+        menu?: OrgChart.menu,
+        /**
+         * With the toolbar enabled allows you to change the layout, zoom in/out, expand all nodes, etc.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      toolbar: {
+         *          layout: true,
+         *          zoom: true,
+         *          fit: true,
+         *          expandAll: false,
+         *          fullScreen: true
+         *      },
+         * });
+         * ```
+         */
+        toolbar?: OrgChart.toolbar,
+        /**
+         * Stops the chart locking to the top of the screen once you move it.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      sticky: false
+         * });
+         * ```
+         */
+        sticky?: boolean,
+        /**
+         * nodeMouseClick can accept the following values:
+         * - OrgChart.action.edit - will open the edit view for the clicked node on the right hand side
+         * - OrgChart.action.details - will open the details view for the clicked node on the right hand side, the details view is very similar to the edit view the only difference is that is read only.
+         * - OrgChart.action.expandCollapse - will expand or collapse the children nodes
+         * - OrgChart.action.none - do nothing on node click event
+         * - OrgChart.action.pan - allows you to move the chart in any direction
+         * 
+         * Default value - *OrgChart.action.details*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      nodeMouseClick: OrgChart.action.edit
+         * });
+         * ```
+         */
+        nodeMouseClick?: OrgChart.action,
+        /**
+         * nodeMouseDbClick can accept the following values:
+         * - OrgChart.action.edit - will open the edit view for the clicked node on the right hand side
+         * - OrgChart.action.details - will open the details view for the clicked node on the right hand side, the details view is very similar to the edit view the only difference is that is read only
+         * - OrgChart.action.expandCollapse - will expand or collapse the children nodes
+         * - OrgChart.action.none - do nothing on node click event
+         * 
+         * Default value - *OrgChart.action.none*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      nodeMouseDbClick: OrgChart.action.edit
+         * });
+         * ```
+         */
+        nodeMouseDbClick?: OrgChart.action,
+        /**
+         * mouseScrool can accept the following values:
+         * - OrgChart.action.zoom - will zoom in/out on mouse scroll
+         * - OrgChart.action.ctrlZoom - will zoom in/out on mouse scroll and ctrl button is pressed
+         * - OrgChart.action.xScroll - left/right move of the chart on mouse scroll
+         * - OrgChart.action.yScroll - up/down move of the chart on mouse scroll
+         * - OrgChart.action.none - do nothing on mouse scroll
+         * 
+         * Default value - *OrgChart.action.zoom*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      mouseScrool: OrgChart.action.ctrlZoom
+         * });
+         * ```
+         */
+        mouseScrool?: OrgChart.action,
+        /**
+         * Shows horizontal scrollbar. Default value - *false*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      showXScroll: true
+         * });
+         * ```
+         */
+        showXScroll?: boolean ,
+        /**
+         * Shows vertical scrollbar. Default value - *false*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      showYScroll: true
+         * });
+         * ```
+         */
+        showYScroll?: boolean ,
+        /**
+         * Set template if you want to change the appearance of the chart. Org Chart JS comes with number of build-in templates:
+         * - ana
+         * - ula
+         * - olivia
+         * - belinda
+         * - rony
+         * - mery
+         * - polina
+         * - mila
+         * - diva
+         * - base
+         * - isla
+         * - deborah
+         * 
+         * Default value - *ana*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      template: 'olivia'
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/PredefinedTemplates | See doc...}
+         */
+        template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | string,
+        /**
+         * With tags option you can:
+         * - Set a specific template for tagged node/s {@link https://balkan.app/OrgChartJS/Docs/MultipleTemplates | See doc...}
+         * - Set node as assistant {@link https://balkan.app/OrgChartJS/Docs/Assistant | See doc...}
+         * - Change node menu, circle menu and context menu items for tagged node/s {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
+         * - Set the node level {@link https://balkan.app/OrgChartJS/Demos/SubLevels | See demo...}
+         * - Set specific options for sub trees like layout templates etc {@link https://balkan.app/OrgChartJS/Docs/SubTrees | See doc...}          
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      tags: {
+         *          myTag: {template: 'olivia'}
+         *      },
+         *      nodes: [{id: 1}, {id: 2, tags: ['myTag']}]
+         * });
+         * ```
+         */
+        tags?: {
+            [key: string]: {
+                template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | string,
+                subLevels?: number,
+                nodeMenu?: OrgChart.menu,
+                nodeCircleMenu?: OrgChart.menu,
+                nodeContextMenu?: OrgChart.menu,
+                subTreeConfig?: {
+                    orientation?: OrgChart.orientation,
+                    levelSeparation?: number,
+                    mixedHierarchyNodesSeparation?: number,
+                    subtreeSeparation?: number,
+                    siblingSeparation?: number,
+                    layout?: OrgChart.layout | number,
+                    columns?: number,
+                    collapse?: {
+                        level?: number,
+                        allChildren?: boolean
+                    }
+                }
+            };
+        },
+        /**
+         * Minimize/Maximize node. The template has to have min defined. Default value - *false*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      min: true
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/MinMax | See doc...}
+         */
+        min?: false,
+        /**
+         * Node binding in Org Chart JS maps node data to node template parameters.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   nodeBinding: {
+         *       field_0: "name"
+         *   },
+         *   nodes: [
+         *       { id: 1, name: "Amber McKenzie" }
+         *   ]
+         * });
+         * ```
+         */
+        nodeBinding?: { [key: string]: string },
+        /**
+         * Link binding in Org Chart JS maps node data to link template parameters.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   nodeBinding: {
+         *       link_field_0: "createdAt"
+         *   },
+         *   nodes: [
+         *       { id: "1", name: "Amber McKenzie"  },
+         *       { id: "2", pid: "1", createdAt: "Since 08/08/2018" },
+         *       { id: "3", pid: "1", createdAt: "Since 05/04/2018" }
+         *   ]
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Link | See doc...}
+         */
+        linkBinding?: { [key: string]: string },
+        /**
+         * Search by the fields defined in searchFields.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   searchFields: ["name", "title", etc...]
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}
+         */
+        searchFields?: Array<string>,
+        /**
+         * Displays a field in the search result.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   searchDisplayField: "name"
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}
+         */
+        searchDisplayField?: string,
+        /**
+         * Search by weight of the fields.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   searchFieldsWeight: {
+         *       "Name": 100, //percent
+         *       "Title": 20 //percent
+         *   }
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}
+         */
+        searchFieldsWeight?: { [key: string]: number },
+        /**
+         * Array of node data JSON objects. nodes option is the data source of the chart. Node JSON objects could have unlimited number of properties, id, pid, ppid, stpid and tags are reserved node properties.
+         * - id - unique identifier, it clould be integer or string
+         * - pid - is the parent id
+         * - stpid - subtree parent id
+         * - ppid - parent partner id
+         * - tags - array of strings
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   nodes: [
+         *       { id: 1 },
+         *       { id: 2, pid: 1, tags: ["Sales"] },
+         *       { id: 3, stpid: 2  }
+         *   ]
+         * });
+         * ```
+         */
+        nodes?: Array<string | number>,
+        /**
+         * Adds curved link.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   clinks: [
+         *       from: 4, to: 0, label: 'text'}, 
+         *       {from: 4, to: 5, template: 'blue', label: '4 reports to 3' },
+         *       {from: 2, to: 6, template: 'yellow', label: 'lorem ipsum' }
+         *   ]
+         * });
+         * ```
+         */
+        clinks?: Array<OrgChart.link>,
+        /**
+         * Adds second link.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   slinks: [
+         *       from: 4, to: 0, label: 'text'}, 
+         *       {from: 4, to: 5, template: 'blue', label: '4 reports to 3' },
+         *       {from: 2, to: 6, template: 'yellow', label: 'lorem ipsum' }
+         *   ]
+         * });
+         * ```
+         */
+        slinks?: Array<OrgChart.link>,
+        /**
+         * The gap between each level. Default value - *60*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   levelSeparation: 50
+         * });
+         * ```
+         */
+        levelSeparation?: number,
+        /**
+         * The gap between nodes in a subtree. Default value - *20*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   siblingSeparation: 50
+         * });
+         * ```
+         */
+        siblingSeparation?: number,
+        /**
+         * The gap between subtrees. Default value - *40*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   subtreeSeparation: 50
+         * });
+         * ```
+         */
+        subtreeSeparation?: number,
+        /**
+         * The gap between nodes in vertical layout. Default value - *20*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   mixedHierarchyNodesSeparation: 5
+         * });
+         * ```
+         */
+        mixedHierarchyNodesSeparation?: number,
+        /**
+         * Set the assistant separation value. Default value - *100*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   assistantSeparation: 150
+         * });
+         * ```
+         */
+        assistantSeparation?: number,
+        /**
+         * Minimum gap between partner and node with partners. Default value - *50*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   minPartnerSeparation: 100
+         * });
+         * ```
+         */
+        minPartnerSeparation?: number,
+        /**
+         * Gap between partner links. Default value - *20*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   partnerChildrenSplitSeparation: 50
+         * });
+         * ```
+         */
+        partnerChildrenSplitSeparation?: number,
+        /**
+         * Gap between partners. Default value - *15*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   partnerNodeSeparation: 30
+         * });
+         * ```
+         */
+        partnerNodeSeparation?: number,
+        /**
+         * The number of colums if the chart has multiple root nodes. Default value - *10*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   columns: 1
+         * });
+         * ```
+         */
+        columns?: number,
+        /**
+         * The padding option sets the padding area on all four sides of the OrgChart. Default value - *30*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   padding: 20
+         * });
+         * ```
+         */
+        padding?: number,
+        /**
+         * Specifies the orientation of the Org Chart JS. could accept one of the following values:
+         * - OrgChart.orientation.top
+         * - OrgChart.orientation.bottom
+         * - OrgChart.orientation.right
+         * - OrgChart.orientation.left
+         * - OrgChart.orientation.top_left
+         * - OrgChart.orientation.bottom_left
+         * - OrgChart.orientation.right_top
+         * - OrgChart.orientation.left_top
+         * 
+         * Default value - *OrgChart.orientation.top*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   orientation: OrgChart.orientation.bottom
+         * });
+         * ```
+         */
+        orientation?: OrgChart.orientation,
+        /**
+         * Sets the layout algoritm:
+         * - OrgChart.layout.normal
+         * - OrgChart.layout.mixed
+         * - OrgChart.layout.tree
+         * - OrgChart.layout.treeLeftOffset
+         * - OrgChart.layout.treeRightOffset
+         * 
+         * Default value - *OrgChart.layout.normal*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   layout: OrgChart.layout.mixed
+         * });
+         * ```          
+         */
+        layout?: OrgChart.layout | number,
+        /**
+         * The scale factor determines what fraction of the entire scale is visible at one time.
+         * - OrgChart.match.height
+         * - OrgChart.match.width
+         * - OrgChart.match.boundary
+         * - [number]
+         * 
+         * Default value - *1*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   scaleInitial: OrgChart.match.boundary
+         * });
+         * ```          
+         * {@link https://balkan.app/OrgChartJS/Docs/Layout | See doc...}         
+         */
+        scaleInitial?: number | OrgChart.match,
+        /**
+         * Determines the minimum scale factor. Default value - *0.1*
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   scaleMin: 0.2
+         * });
+         * ```          
+         */
+        scaleMin?: number,
+        /**
+         * Determines the naximum scale factor. Default value - *5*
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   scaleMax: 10
+         * });
+         * ```          
+         */
+        scaleMax?: number,
+        /**
+          * The orderBy option is used to sort the nodes in ascending order by specified field. The default order is by nodes order in the nodes array. Default value - *null*
+          * ```typescript       
+          * var chart = new OrgChart('#tree', {
+          *   orderBy: "orderId",
+          *   nodes: [
+          *       { id: 10, pid: 1, orderId: 2 },
+          *       { id: 11, pid: 1, orderId: 1 }
+          *   ]
+          * });
+          * ```    
+          * ```typescript       
+          * var chart = new OrgChart('#tree', {
+          *   orderBy: [field: "orderId", desc: true],
+          *   nodes: [
+          *       { id: 10, pid: 1, orderId: 2 },
+          *       { id: 11, pid: 1, orderId: 1 }
+          *   ]
+          * });
+          * ```      
+          */
+        orderBy?: string,
+        /**
+          * @ignore
+          */
+        editUI?: OrgChart.editUI,
+        /**
+          * @ignore
+          */
+        searchUI?: OrgChart.searchUI,
+        /**
+          * @ignore
+          */
+        xScrollUI?: any,
+        /**
+          * @ignore
+          */
+        yScrollUI?: any,
+        /**
+          * @ignore
+          */
+        nodeMenuUI?: OrgChart.menuUI,
+        /**
+          * @ignore
+          */
+        nodeCircleMenuUI?: OrgChart.circleMenuUI,
+        /**
+          * @ignore
+          */
+        nodeContextMenuUI?: OrgChart.menuUI,
+        /**
+          * @ignore
+          */
+        toolbarUI?: OrgChart.toolbarUI,
+        /**
+         * @ignore
+         */
+        notifierUI?: any,
+        /**
+         * @ignore
+         */        
+        menuUI?: OrgChart.menuUI,
+        /**
+         * @ignore
+         */
+         UI?: any,        
+        /**
+         * The URL to the export server. Default value - *https://balkan.app/export*
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   exportUrl: "https://balkan.app/export"
+         * });
+         * ```          
+         */        
+        exportUrl?: string,
+        /**
+         * Collapse specified level of the chart and its children if allChildren is true.
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   collapse: {level: 2, allChildren: true}
+         * });
+         * ```          
+         */         
+        collapse?: {
+            level: number,
+            allChildren?: boolean
+        },
+        /**
+         * Expand specified node ids and its children if allChildren is true. The expand option works only if collapse is set.
+         * 
+         * In the example above the second level of the chart will be collapsed but node with id 155 and its children will be expanded.
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   collapse: {level: 2, allChildren: true},
+         *   expand: {nodes: [155], allChildren: true}
+         * });
+         * ```          
+         */         
+        expand?: {
+            nodes?: Array<string | number>,
+            allChildren?: boolean
+        },
+        /**
+         * The align option specifies the alignment of the nodes inside Org Chart JS.
+         * - OrgChart.align.center - centered
+         * - OrgChart.align.orientation - according to the orientation option
+         * 
+         * Default value - *OrgChart.align.center*
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   align: OrgChart.align.orientation
+         * });
+         * ```          
+         */         
+        align?: OrgChart.align | number,
+        /**
+         * Can be used to control the transition of the nodes on expand/collapse operation. Default value - *func: OrgChart.anim.outPow, duration: 200*
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   anim: {func: OrgChart.anim.outBack, duration: 500}
+         * });
+         * ```          
+         */                 
+        anim?: {
+            /**
+             * defines how long time an animation should take to complete
+             */
+            func?: OrgChart.anim,
+            /**
+             * Easing functions specify the speed at which an animation progresses at different points within the animation.
+             */
+            duration?: number
+        },
+        /**
+         * Can be used to control the zooming sensitivity. Default value - *speed: 120, smooth: 12*
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   zoom: {speed: 130, smooth: 10}
+         * });
+         * ```          
+         */          
+        zoom?: {
+            speed?: number,
+            smooth?: number
+        },
+        /**
+         * Define nodes as roots. Default value - *null*
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   roots: [2, 4]
+         * });
+         * ```          
+         */           
+        roots?: Array<string | number>,
+        /**
+         * Persist the state (scale, position, expanded/collapsed and min/max nodes) in the url or indexedDB. Default value - *null*
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   state: {
+         *       name: 'StateForMyOrgChart',
+         *       readFromLocalStorage: true,
+         *       writeToLocalStorage: true,
+         *       readFromIndexedDB: true,
+         *       writeToIndexedDB: true,
+         *       readFromUrlParams: true,                    
+         *       writeToUrlParams: true
+         *   }
+         * });
+         * ```          
+         */          
+        state?: {
+            name?: string,
+            readFromLocalStorage?: boolean,
+            writeToLocalStorage?: boolean,
+            readFromIndexedDB?: boolean,
+            writeToIndexedDB?: boolean,
+            readFromUrlParams?: boolean,
+            writeToUrlParams?: boolean
+        },
+        /**
+         * Configure the buildin edit form.
+         * {@link https://balkan.app/OrgChartJS/Docs/Edit | See doc...}   
+         */                
+        editForm?: {
+            readOnly?: boolean,
+            titleBinding?: string,
+            photoBinding?: string,
+            addMore?: string,
+            addMoreBtn?: string,
+            addMoreFieldName?: string,
+            generateElementsFromFields?: boolean,
+            buttons?: {
+                [key: string]: {
+                    icon?: string,
+                    text?: string,
+                    hideIfEditMode?: boolean,
+                    hideIfDetailsMode?: boolean
+                }
+            },
+            elements?: { [key: string]: OrgChart.editFormElement | Array<OrgChart.editFormElement> }
+        }
     }
 }export default OrgChart

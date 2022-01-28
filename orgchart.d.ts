@@ -1,4 +1,4 @@
-declare class OrgChart extends OrgChartBase {
+export declare class OrgChart extends OrgChartBase {
     nodes: { [key: string | number]: OrgChart.node };
     isVisible: boolean;
 
@@ -747,7 +747,7 @@ declare class OrgChart extends OrgChartBase {
 
 }
 
-declare namespace OrgChart {    
+export declare namespace OrgChart {    
     /**
      * deprecated
      * @ignore
@@ -1936,7 +1936,7 @@ declare namespace OrgChart {
 }
 /// <reference path="OrgChart.d.ts" />
 
-declare class OrgChartBase {
+export declare class OrgChartBase {
 
     /**
      * Removes specified node from nodes collection, redraws the chart and fires remove event.
@@ -2073,7 +2073,7 @@ declare class OrgChartBase {
     }) => void): OrgChart;
 }
 
-declare namespace OrgChart {
+export declare namespace OrgChart {
     /**
      * deprecated, use OrgChart.align.center isntead
      * @ignore

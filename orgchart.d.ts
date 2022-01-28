@@ -174,7 +174,13 @@ declare class OrgChart extends OrgChartBase {
      * @param retrieveFields retrive data for fields
      * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}            
      */
-    search(value: string, searchInFileds?: Array<string>, retrieveFields?: Array<string>): void;
+    search(value: string, searchInFileds?: Array<string>, retrieveFields?: Array<string>): Array<{
+        id: number | string,
+        name: string,
+        __score: number,
+        __searchField: string,
+        __searchMarks: string
+    }>;
     /**
      * Gets collpased node ids of the specifeid node
      * @param node 
@@ -547,7 +553,8 @@ declare class OrgChart extends OrgChartBase {
     nodeCircleMenuUI: OrgChart.circleMenuUI;
     nodeContextMenuUI: OrgChart.menuUI;
     menuUI: OrgChart.menuUI;
-    toolbarUI: OrgChart.toolbarUI;
+    toolbarUI: OrgChart.toolbarUI;    
+    config: OrgChart.options
 
     static fileUploadDialog(callback: () => void): void;
     static isMobile(): boolean;
@@ -596,21 +603,21 @@ declare class OrgChart extends OrgChartBase {
 
 
     static icon: {
-        png: (w: string, h: string, c: string) => string,
-        pdf: (w: string, h: string, c: string) => string,
-        svg: (w: string, h: string, c: string) => string,
-        csv: (w: string, h: string, c: string) => string,
-        excel: (w: string, h: string, c: string) => string,
-        edit: (w: string, h: string, c: string) => string,
-        details: (w: string, h: string, c: string) => string,
-        remove: (w: string, h: string, c: string) => string,
-        add: (w: string, h: string, c: string) => string,
-        xml: (w: string, h: string, c: string) => string,
-        link: (w: string, h: string, c: string) => string,
-        happy: (w: string, h: string, c: string) => string,
-        sad: (w: string, h: string, c: string) => string,
-        share: (w: string, h: string, c: string, x: string, y: string) => string,
-        user: (w: string, h: string, c: string, x: string, y: string) => string
+        png: (w: string| number, h: string | number, c: string) => string,
+        pdf: (w: string | number| number, h: string | number, c: string) => string,
+        svg: (w: string| number, h: string| number, c: string | number) => string,
+        csv: (w: string| number, h: string| number, c: string| number) => string,
+        excel: (w: string| number, h: string| number, c: string| number) => string,
+        edit: (w: string| number, h: string| number, c: string| number) => string,
+        details: (w: string| number, h: string| number, c: string| number) => string,
+        remove: (w: string| number, h: string| number, c: string| number) => string,
+        add: (w: string| number, h: string| number, c: string| number) => string,
+        xml: (w: string| number, h: string| number, c: string| number) => string,
+        link: (w: string| number, h: string| number, c: string| number) => string,
+        happy: (w: string| number, h: string| number, c: string| number) => string,
+        sad: (w: string| number, h: string| number, c: string| number) => string,
+        share: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        user: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string
     }
 
 
@@ -735,6 +742,8 @@ declare class OrgChart extends OrgChartBase {
     * @ignore
     */
     static LAZY_LOADING_FACTOR: number;
+
+
 
 }
 
@@ -1957,7 +1966,7 @@ declare class OrgChartBase {
      * @param type A case-sensitive string representing the event type to listen for.
      * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
      */
-    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "import" | "adding" | "added" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "removed" | "ready" | "ripple", listener: (sender: OrgChart, args: unknown, args1: unknown, args2: unknown) => void | boolean): OrgChart;
+    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "import" | "adding" | "added" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "removed" | "ready" | "ripple", listener: (sender: OrgChart, args?: unknown, args1?: unknown, args2?: unknown) => void | boolean): OrgChart;
 
     /**
      * Occurs when the node data has been updated by updateNode method.

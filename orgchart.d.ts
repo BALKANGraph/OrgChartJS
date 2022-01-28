@@ -2125,4 +2125,3 @@ declare namespace OrgChart {
         enableDragDrop?: boolean,
     }
 }
-export default OrgChart

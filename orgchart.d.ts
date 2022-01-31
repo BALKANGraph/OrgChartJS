@@ -1,3 +1,6 @@
+
+/// <reference path="OrgChartBase.d.ts" />
+
 declare class OrgChart extends OrgChartBase {
     nodes: { [key: string | number]: OrgChart.node };
     isVisible: boolean;
@@ -588,16 +591,10 @@ declare class OrgChart extends OrgChartBase {
     }
 
     static clinkTemplates: {
-        orange?: OrgChart.linkTemplate,
-        blue?: OrgChart.linkTemplate,
-        yellow?: OrgChart.linkTemplate,
         [key: string]: OrgChart.linkTemplate
     }
 
     static slinkTemplates: {
-        orange?: OrgChart.linkTemplate,
-        blue?: OrgChart.linkTemplate,
-        yellow?: OrgChart.linkTemplate,
         [key: string]: OrgChart.linkTemplate
     }
 

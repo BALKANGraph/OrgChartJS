@@ -1,5 +1,4 @@
 
-/// <reference path="OrgChartBase.d.ts" />
 
 declare class OrgChart extends OrgChartBase {
     nodes: { [key: string | number]: OrgChart.node };
@@ -1931,7 +1930,6 @@ declare namespace OrgChart {
         }
     }
 }
-/// <reference path="OrgChart.d.ts" />
 
 declare class OrgChartBase {
 

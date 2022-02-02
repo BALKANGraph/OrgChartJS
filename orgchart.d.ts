@@ -85,6 +85,15 @@ declare class OrgChart extends OrgChartBase {
      * @param data node data array
      */
     load(data: Array<object>): OrgChart;
+
+    /**
+     * Updates the node data, redraws the chart and fires update event.
+     * @param data node data
+     * @param callback function called when the animation completes
+     * @param fireEvent if it set to true the update event is called
+     */
+    updateNode(data: object, callback?: () => void, fireEvent?: boolean): void;
+
     /**
      * Loads nodes from xml.
      * @param xml Xml with node structure
@@ -821,6 +830,11 @@ declare namespace OrgChart {
          */
         hide(): void;
         content(id: string | number, detailsMode: boolean, dontAnim: boolean, width: string, dontRenderButtons: boolean): string;
+        /**
+         * Sets the avatar of the edit form
+         * @param avatarUrl avatar url
+         */
+        setAvatar(avatarUrl?: string): void;
     }
 
     interface searchUI {
@@ -1940,13 +1954,7 @@ declare class OrgChartBase {
      * @param fireEvent indicates if the remove event will be called or not
      */
     removeNode(id: string | number, callback?: () => void, fireEvent?: boolean): void;
-    /**
-     * Updates the node data, redraws the chart and fires update event.
-     * @param data node data
-     * @param callback function called when the animation completes
-     * @param fireEvent if it set to true the update event is called
-     */
-     updateNode(data: object, callback?: () => void, fireEvent?: boolean): void;
+
     /**
      * Adds new node to the nodes collection, redraws the chart and fires remove event
      * @param data node data

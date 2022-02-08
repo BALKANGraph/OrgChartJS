@@ -1927,12 +1927,12 @@ declare namespace OrgChart {
         editForm?: {
             readOnly?: boolean,
             titleBinding?: string,
-            photoBinding?: string,
+            photoBinding?: string,            
+            focusBinding?: string,
             addMore?: string,
             addMoreBtn?: string,
             addMoreFieldName?: string,
             generateElementsFromFields?: boolean,
-            focus?: string,
             buttons?: {
                 [key: string]: {
                     icon?: string,

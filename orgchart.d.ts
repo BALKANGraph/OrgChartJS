@@ -817,7 +817,7 @@ declare namespace OrgChart {
          * @param type A case-sensitive string representing the event type to listen for.
          * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
          */
-        on(type: "show" | "element-btn-click" | "button-click" | "hide", listener: (sender: editUI, args: unknown, args1: unknown, args2: unknown) => void | boolean): editUI;
+        on(type: "show" | "save" | "cancel" | "element-btn-click" | "button-click" | "hide", listener: (sender: editUI, args: unknown, args1: unknown, args2: unknown) => void | boolean): editUI;
         /**
          * Shows the edit form for the specified node id
          * @param id node id
@@ -1932,6 +1932,7 @@ declare namespace OrgChart {
             addMoreBtn?: string,
             addMoreFieldName?: string,
             generateElementsFromFields?: boolean,
+            focus?: string,
             buttons?: {
                 [key: string]: {
                     icon?: string,

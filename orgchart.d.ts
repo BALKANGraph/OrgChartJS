@@ -747,9 +747,11 @@ declare class OrgChart extends OrgChartBase {
     * @ignore
     */
     static LAZY_LOADING_FACTOR: number;
-
-
-
+   
+    /**
+     * Hides the Edit Form when the chart is moved with pan
+     */
+    static HIDE_EDIT_FORM_ON_PAN: boolean;
 }
 
 declare namespace OrgChart {    

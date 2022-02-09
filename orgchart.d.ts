@@ -407,7 +407,7 @@ declare class OrgChart extends OrgChartBase {
      * Occurs in the beginning of the export. Extra css styles can be added to the exported document using this event listener or show loading image.
      *  ```typescript     
      * var chart = new OrgChart('#tree', {});
-     * chart.onExporStart(() => {
+     * chart.onExportStart(() => {
      *  args.styles += '<link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet">';
      *  //return false; to cancel the operation
      * });
@@ -415,7 +415,7 @@ declare class OrgChart extends OrgChartBase {
      * @category Event Listeners
      * @param listener 
      */             
-    onExporStart(listener: (args: 
+    onExportStart(listener: (args: 
         {
         /**
          * the content to be exported
@@ -464,14 +464,14 @@ declare class OrgChart extends OrgChartBase {
      * Occurs in the beginning of the export. Use this event listener to hide loading image or upload exported document to your server using ArrayBuffer argument.
      *  ```typescript     
      * var chart = new OrgChart('#tree', {});
-     * chart.onExporEnd(() => {
+     * chart.onExportEnd(() => {
      *  //return false; to cancel the operation for example id you prefer the exported document to not download
      * });
      * ```
      * @category Event Listeners
      * @param listener 
      */         
-    onExporEnd(listener: (args: 
+    onExportEnd(listener: (args: 
         /**
          * for PDF/PNG
          */

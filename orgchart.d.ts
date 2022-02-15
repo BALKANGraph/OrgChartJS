@@ -1,7 +1,7 @@
 
 
 declare class OrgChart extends OrgChartBase {
-    nodes: { [key: string | number]: OrgChart.node };
+    nodes: { [key in string | number]: OrgChart.node };
     isVisible: boolean;
 
     /**
@@ -2017,8 +2017,8 @@ declare class OrgChartBase {
          * parent ids and sub tree parents ids that needs to be updated on the server. For example if you remove a node that has children all chilren nodes will change their pid to the parent node id of the removed node.
          */
         newPidsAndStpidsForIds: {
-            newPidsForIds: { [key: string | number]: string | number },
-            newStpidsForIds: { [key: string | number]: string | number }
+            newPidsForIds: { [key in string | number]: string | number },
+            newStpidsForIds: { [key in string | number]: string | number }
         }
     }) => void): OrgChart;
 

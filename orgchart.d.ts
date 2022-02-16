@@ -1934,6 +1934,8 @@ declare namespace OrgChart {
             addMore?: string,
             addMoreBtn?: string,
             addMoreFieldName?: string,
+            saveAndCloseBtn?: string,
+            cancelBtn?: string,
             generateElementsFromFields?: boolean,
             buttons?: {
                 [key: string]: {

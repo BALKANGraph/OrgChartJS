@@ -1974,7 +1974,7 @@ declare class OrgChartBase {
      * @param type A case-sensitive string representing the event type to listen for.
      * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
      */
-    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "import" | "adding" | "added" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "removed" | "ready" | "ripple", listener: (sender: OrgChart, args?: unknown, args1?: unknown, args2?: unknown) => void | boolean): OrgChart;
+    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "import" | "adding" | "added" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "removed" | "ready" | "ripple", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
 
     /**
      * Occurs when the node data has been updated by updateNode method.
@@ -2019,8 +2019,8 @@ declare class OrgChartBase {
          * parent ids and sub tree parents ids that needs to be updated on the server. For example if you remove a node that has children all chilren nodes will change their pid to the parent node id of the removed node.
          */
         newPidsAndStpidsForIds: {
-            newPidsForIds: { [key in string | number]: string | number },
-            newStpidsForIds: { [key in string | number]: string | number }
+            newPidsForIds: { [key in any]: string | number },
+            newStpidsForIds: { [key in any]: string | number }
         }
     }) => void): OrgChart;
 

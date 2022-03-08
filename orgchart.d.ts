@@ -629,7 +629,7 @@ declare class OrgChart extends OrgChartBase {
 
 
 
-    static templates :{ [key: string]: OrgChart.template} ;
+    static templates :{ [key: string]: object} ;
 
 
     static scroll: {
@@ -752,6 +752,8 @@ declare class OrgChart extends OrgChartBase {
      * Hides the Edit Form when the chart is moved with pan
      */
     static HIDE_EDIT_FORM_ON_PAN: boolean;
+
+
 }
 
 declare namespace OrgChart {    
@@ -772,40 +774,41 @@ declare namespace OrgChart {
     const COLLAPSE_SUB_CHILDRENS: number;
 
 
+    var template: object;
 
 
 
-    interface template  
-         {
-            defs?: string,
-            size?: Array<number>,
-            expandCollapseSize?: number,
-            linkAdjuster?: {
-                fromX?: number,
-                fromY?: number,
-                toX?: number,
-                toY?: number
-            },
-            ripple?: {
-                radius?: number,
-                color?: string,
-                rect?: Array<number>
-            },
-            assistanseLink?: string,
-            svg?: string,
-            link?: string,
-            pointer?: string,
-            node?: string,
-            plus?: string,
-            minus?: string,
-            nodeMenuButton?: string,
-            menuButton?: string,
-            img_0?: string,
-            link_field_0?: string,
-            editFormHeaderColor?: string,
-            nodeCircleMenuButton?: string,
-            min?: template
-        }
+    // interface template  
+    //      {
+    //         defs?: string,
+    //         size?: Array<number>,
+    //         expandCollapseSize?: number,
+    //         linkAdjuster?: {
+    //             fromX?: number,
+    //             fromY?: number,
+    //             toX?: number,
+    //             toY?: number
+    //         },
+    //         ripple?: {
+    //             radius?: number,
+    //             color?: string,
+    //             rect?: Array<number>
+    //         },
+    //         assistanseLink?: string,
+    //         svg?: string,
+    //         link?: string,
+    //         pointer?: string,
+    //         node?: string,
+    //         plus?: string,
+    //         minus?: string,
+    //         nodeMenuButton?: string,
+    //         menuButton?: string,
+    //         img_0?: string,
+    //         link_field_0?: string,
+    //         editFormHeaderColor?: string,
+    //         nodeCircleMenuButton?: string,
+    //         min?: template
+    //     }
 
     interface editUI {
         /**

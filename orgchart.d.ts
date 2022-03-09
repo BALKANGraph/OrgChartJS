@@ -806,7 +806,7 @@ declare namespace OrgChart {
             img_0?: string,
             link_field_0?: string,
             editFormHeaderColor?: string,
-            nodeCircleMenuButton?: string,
+            nodeCircleMenuButton?: object,
             min?: template,
             [name: string]: any
         }

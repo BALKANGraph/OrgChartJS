@@ -629,7 +629,7 @@ declare class OrgChart extends OrgChartBase {
 
 
 
-    static templates :{ [key: string]: object} ;
+    static templates :{ [key: string]: OrgChart.template} ;
 
 
     static scroll: {
@@ -778,37 +778,38 @@ declare namespace OrgChart {
 
 
 
-    // interface template  
-    //      {
-    //         defs?: string,
-    //         size?: Array<number>,
-    //         expandCollapseSize?: number,
-    //         linkAdjuster?: {
-    //             fromX?: number,
-    //             fromY?: number,
-    //             toX?: number,
-    //             toY?: number
-    //         },
-    //         ripple?: {
-    //             radius?: number,
-    //             color?: string,
-    //             rect?: Array<number>
-    //         },
-    //         assistanseLink?: string,
-    //         svg?: string,
-    //         link?: string,
-    //         pointer?: string,
-    //         node?: string,
-    //         plus?: string,
-    //         minus?: string,
-    //         nodeMenuButton?: string,
-    //         menuButton?: string,
-    //         img_0?: string,
-    //         link_field_0?: string,
-    //         editFormHeaderColor?: string,
-    //         nodeCircleMenuButton?: string,
-    //         min?: template
-    //     }
+    interface template  
+         {
+            defs?: string,
+            size?: Array<number>,
+            expandCollapseSize?: number,
+            linkAdjuster?: {
+                fromX?: number,
+                fromY?: number,
+                toX?: number,
+                toY?: number
+            },
+            ripple?: {
+                radius?: number,
+                color?: string,
+                rect?: Array<number>
+            },
+            assistanseLink?: string,
+            svg?: string,
+            link?: string,
+            pointer?: string,
+            node?: string,
+            plus?: string,
+            minus?: string,
+            nodeMenuButton?: string,
+            menuButton?: string,
+            img_0?: string,
+            link_field_0?: string,
+            editFormHeaderColor?: string,
+            nodeCircleMenuButton?: string,
+            min?: template,
+            [name: string]: any
+        }
 
     interface editUI {
         /**

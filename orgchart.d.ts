@@ -1957,6 +1957,13 @@ declare namespace OrgChart {
 declare class OrgChartBase {
 
     /**
+     * Can update link
+     * @param id child id
+     * @param pid parent id
+     */
+    canUpdateLink(id: string | number, pid: string | number): boolean;
+    
+    /**
      * Removes specified node from nodes collection, redraws the chart and fires remove event.
      * @param id identification number of the node
      * @param callback called at the end of animation

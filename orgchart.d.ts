@@ -919,7 +919,7 @@ declare namespace OrgChart {
          * @param type A case-sensitive string representing the event type to listen for.
          * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
          */        
-        on(type: "show" | "drag" | "drop" | "mouseenter" | "mouseout", listener: (sender: circleMenuUI, args: any, args1: any, args2: any) => void | boolean): circleMenuUI;
+        on(type: "click" | "show" | "drag" | "drop" | "mouseenter" | "mouseout", listener: (sender: circleMenuUI, args: any, args1: any, args2: any) => void | boolean): circleMenuUI;
     }
 
     interface toolbarUI {

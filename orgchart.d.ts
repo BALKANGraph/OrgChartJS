@@ -970,7 +970,13 @@ declare namespace OrgChart {
         [key: string]: {
             text: string,
             icon?: string,
-            onClick?: Function,
+            onClick?: Function
+        }
+    }
+    interface circleMenu  {
+        [key: string]: {
+            text: string,
+            icon?: string,
             color?: string,
             draggable?: boolean
         }
@@ -1288,7 +1294,7 @@ declare namespace OrgChart {
          * ```
          * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
          */
-        nodeCircleMenu?: OrgChart.menu,
+        nodeCircleMenu?: OrgChart.circleMenu,
         /**
          * Customizable context menu. Also you can define your own node operation.
          * ```typescript     
@@ -1453,7 +1459,7 @@ declare namespace OrgChart {
                 template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | string,
                 subLevels?: number,
                 nodeMenu?: OrgChart.menu,
-                nodeCircleMenu?: OrgChart.menu,
+                nodeCircleMenu?: OrgChart.circleMenu,
                 nodeContextMenu?: OrgChart.menu,
                 subTreeConfig?: {
                     orientation?: OrgChart.orientation,

@@ -648,6 +648,8 @@ declare class OrgChart extends OrgChartBase {
     };
     static state: { clear(stateName: string): void };
 
+    static animate(element: Object, attrStart?: Object, attrEnd?: Object, duration?: number, func?: OrgChart.anim, callback?: Function, tick?: boolean): void;
+
     static VERSION: string;
     /**
     * @ignore

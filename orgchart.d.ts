@@ -648,8 +648,6 @@ declare class OrgChart extends OrgChartBase {
     };
     static state: { clear(stateName: string): void };
 
-    static animate(element: Object, attrStart?: Object, attrEnd?: Object, duration?: number, func?: OrgChart.anim, callback?: Function, tick?: boolean): void;
-
     static VERSION: string;
     /**
     * @ignore
@@ -755,8 +753,6 @@ declare class OrgChart extends OrgChartBase {
      */
     static HIDE_EDIT_FORM_ON_PAN: boolean;
 
-    static pdfPrevUI: any;
-    static randomId(): any;
 
 }
 
@@ -961,9 +957,7 @@ declare namespace OrgChart {
         format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
         header?: string,
         footer?: string,
-        openInNewTab?: boolean,
-        expandChildren?: boolean,
-        nodeId? : number | string
+        openInNewTab?: boolean
     }
 
     interface linkTemplate {
@@ -1573,7 +1567,7 @@ declare namespace OrgChart {
          * });
          * ```
          */
-         nodes?: Array<Object>,
+        nodes?: Array<string | number>,
         /**
          * Adds curved link.
          * ```typescript     

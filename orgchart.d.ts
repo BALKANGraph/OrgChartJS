@@ -755,6 +755,8 @@ declare class OrgChart extends OrgChartBase {
      */
     static HIDE_EDIT_FORM_ON_PAN: boolean;
 
+    static pdfPrevUI: any;
+    static randomId(): any;
 
 }
 
@@ -959,7 +961,9 @@ declare namespace OrgChart {
         format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
         header?: string,
         footer?: string,
-        openInNewTab?: boolean
+        openInNewTab?: boolean,
+        expandChildren?: boolean,
+        nodeId? : number | string
     }
 
     interface linkTemplate {
@@ -1569,7 +1573,7 @@ declare namespace OrgChart {
          * });
          * ```
          */
-        nodes?: Array<string | number>,
+         nodes?: Array<Object>,
         /**
          * Adds curved link.
          * ```typescript     

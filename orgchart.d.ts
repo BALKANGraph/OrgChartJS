@@ -755,6 +755,11 @@ declare class OrgChart extends OrgChartBase {
      */
     static HIDE_EDIT_FORM_ON_PAN: boolean;
 
+    /**
+    * @ignore
+    */
+    static element: HTMLElement;
+
     static pdfPrevUI: any;
     static randomId(): any;
     static searchUI: any;

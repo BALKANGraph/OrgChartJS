@@ -1966,9 +1966,10 @@ declare namespace OrgChart {
                     text?: string,
                     hideIfEditMode?: boolean,
                     hideIfDetailsMode?: boolean
-                }
+                } | null
             },
-            elements?: { [key: string]: OrgChart.editFormElement | Array<OrgChart.editFormElement> }
+           // elements?: { [key: string]: OrgChart.editFormElement | Array<OrgChart.editFormElement> }
+           elements?: Array<OrgChart.editFormElement | Array<OrgChart.editFormElement>>
         }
     }
 }

@@ -765,6 +765,7 @@ declare class OrgChart extends OrgChartBase {
     static searchUI: any;
     static attr: any;
     static toolbarUI: any;
+    static elements: any;
 }
 
 declare namespace OrgChart {    

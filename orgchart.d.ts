@@ -151,7 +151,7 @@ declare class OrgChart extends OrgChartBase {
         rippleId: string | number,
         vertical: boolean,
         horizontal: boolean
-    }, callback?: () => void): void;
+    } | null, callback?: () => void): void;
     /**
      * Fits the content to the visible area.
      * @param callback called when the animation completes
@@ -171,6 +171,15 @@ declare class OrgChart extends OrgChartBase {
      * @param layout layout type
      * @param lcn lyout config name for the specified sub tree
      */
+
+    /**
+     * Adds new node to the nodes collection, redraws the chart and fires remove event
+     * @param data node data
+     * @param callback called at the end of animation
+     * @param fireEvent indicates if the add event will be called or not
+     */
+    addNode(data: object, callback?: () => void, fireEvent?: boolean): void;  
+
     setLayout(layout: OrgChart.layout | number, lcn?: string): void;
     /**
      * Sets orientation.
@@ -1992,13 +2001,7 @@ declare class OrgChartBase {
      */
     removeNode(id: string | number, callback?: () => void, fireEvent?: boolean): void;
 
-    /**
-     * Adds new node to the nodes collection, redraws the chart and fires remove event
-     * @param data node data
-     * @param callback called at the end of animation
-     * @param fireEvent indicates if the add event will be called or not
-     */
-     addNode(data: object, callback?: () => void, fireEvent?: boolean): void;         
+       
 
     /**
      * The on() method of the OrgChart class sets up a function that will be called whenever the specified event is delivered to the target.     * 
@@ -2006,7 +2009,7 @@ declare class OrgChartBase {
      * @param type A case-sensitive string representing the event type to listen for.
      * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
      */
-    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "import" | "adding" | "added" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "removed" | "ready" | "ripple", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
+    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "adding" | "added" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "removed" | "ready" | "ripple", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
 
     /**
      * Occurs when the node data has been updated by updateNode method.

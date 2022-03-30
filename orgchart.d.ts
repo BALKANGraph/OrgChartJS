@@ -775,6 +775,9 @@ declare class OrgChart extends OrgChartBase {
     static attr: any;
     static toolbarUI: any;
     static elements: any;
+
+    static expcollOpenTag: any;
+    static grCloseTag: any;
 }
 
 declare namespace OrgChart {    
@@ -1982,6 +1985,21 @@ declare namespace OrgChart {
            elements?: Array<OrgChart.editFormElement | Array<OrgChart.editFormElement>>
         }
     }
+
+    var ui: {
+        defs(fromrender: string): string;
+        lonely(config: Object): string;
+        pointer(config: Object, action: OrgChart.action, scale: number): string;
+        node(node: OrgChart.node, data: Object, animations: OrgChart.anim, config: Object, x: number | undefined, y: number | undefined, nodeBinding: Object | undefined, action: OrgChart.action, scale: number, sender: Object): string; 
+        nodeBtns(config: Object, node: OrgChart.node, action: OrgChart.action, t: Object, sender: Object): string;
+        expandCollapseBtn(chart: OrgChart, node: OrgChart.node, layoutConfigs: any, action: OrgChart.action, scale: number): string;
+        link(node: OrgChart.node, obj: Object, scale: number, bordersByRootIdAndLevel: Object, nodes: Object, action: OrgChart.action): Array<string>;
+        svg(width: number, height: number, viewBox: Array<number>, config: Object, content: string, scale: number): string;
+        menuButton(config: Object): string;
+
+    };
+
+    var t: any;
 }
 
 declare class OrgChartBase {

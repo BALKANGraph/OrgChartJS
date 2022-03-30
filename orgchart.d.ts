@@ -577,7 +577,7 @@ declare class OrgChart extends OrgChartBase {
     toolbarUI: OrgChart.toolbarUI;    
     config: OrgChart.options
 
-    static fileUploadDialog(callback: () => void): void;
+    static fileUploadDialog(callback: (file: any) => void): void;
     static isMobile(): boolean;
     /**
      * Checks if the used libraris is licnsed or not
@@ -615,28 +615,6 @@ declare class OrgChart extends OrgChartBase {
     static slinkTemplates: {
         [key: string]: OrgChart.linkTemplate
     }
-
-
-    static icon: {
-        png: (w: string| number, h: string | number, c: string) => string,
-        pdf: (w: string | number| number, h: string | number, c: string) => string,
-        svg: (w: string| number, h: string| number, c: string | number) => string,
-        csv: (w: string| number, h: string| number, c: string| number) => string,
-        excel: (w: string| number, h: string| number, c: string| number) => string,
-        edit: (w: string| number, h: string| number, c: string| number) => string,
-        details: (w: string| number, h: string| number, c: string| number) => string,
-        remove: (w: string| number, h: string| number, c: string| number) => string,
-        add: (w: string| number, h: string| number, c: string| number) => string,
-        xml: (w: string| number, h: string| number, c: string| number) => string,
-        link: (w: string| number, h: string| number, c: string| number) => string,
-        happy: (w: string| number, h: string| number, c: string| number) => string,
-        sad: (w: string| number, h: string| number, c: string| number) => string,
-        share: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
-        user: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string
-    }
-
-
-
 
 
     static templates :{ [key: string]: OrgChart.template} ;
@@ -854,7 +832,7 @@ declare namespace OrgChart {
          * @param detailsMode If true the edit form is in read only mode
          * @param dontAnim 
          */
-        show(id: string | number, detailsMode: boolean, dontAnim: boolean): void;
+        show(id: string | number, detailsMode: boolean, dontAnim?: boolean): void;
         /**
          * Hides the edit form
          */
@@ -2003,6 +1981,25 @@ declare namespace OrgChart {
 }
 
 declare class OrgChartBase {
+
+    static icon: {
+        png: (w: string| number, h: string | number, c: string) => string,
+        pdf: (w: string | number| number, h: string | number, c: string) => string,
+        svg: (w: string| number, h: string| number, c: string | number) => string,
+        csv: (w: string| number, h: string| number, c: string| number) => string,
+        excel: (w: string| number, h: string| number, c: string| number) => string,
+        edit: (w: string| number, h: string| number, c: string| number) => string,
+        details: (w: string| number, h: string| number, c: string| number) => string,
+        remove: (w: string| number, h: string| number, c: string| number) => string,
+        add: (w: string| number, h: string| number, c: string| number) => string,
+        xml: (w: string| number, h: string| number, c: string| number) => string,
+        link: (w: string| number, h: string| number, c: string| number) => string,
+        happy: (w: string| number, h: string| number, c: string| number) => string,
+        sad: (w: string| number, h: string| number, c: string| number) => string,
+        share: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        user: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string
+    }
+
 
     /**
      * Can update link

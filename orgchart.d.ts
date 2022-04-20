@@ -326,6 +326,15 @@ declare class OrgChart extends OrgChartBase {
      * @param callback called when the animation completes
      */
     zoom(delta: boolean | number, center?: Array<number>, shouldAnimate?: boolean, callback?: () => void): void;
+    
+    /**
+     * Magnify(Zoom in) specific node in the chart.
+     * @param id id of the node
+     * @param scale scale to magnify
+     * @param front show on front or back 
+     * @param anim animation type
+     */
+     magnify(id: string | number, scale: number, front?: boolean, anim?: OrgChart.anim | null, callback?: () => void): void;
 
 
     /**

@@ -746,6 +746,11 @@ declare class OrgChart extends OrgChartBase {
     * @ignore
     */
     static LAZY_LOADING_FACTOR: number;
+    /**
+     * Can be used to instruct the browser to defer loading of OrgChart that are off-screen until the user scrolls near them.
+     * The init event listener will be called as soon as the OrgChart become visible.
+     */
+    static LAZY_LOADING: boolean;
    
     /**
      * Hides the Edit Form when the chart is moved with pan

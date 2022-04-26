@@ -607,7 +607,7 @@ declare class OrgChart extends OrgChartBase {
      */
     static isNEU(val: any): boolean;
     static gradientCircleForDefs(id: string | number, colors: Array<string> | string, r: number, strokeWidth: number): string;
-    static convertCsvToNodes(text: string) : Array<node>;
+    static convertCsvToNodes(text: string) : Array<OrgChart.node>;
 
     /**
      * Shows/hides lloading image. Usefull when export large data to pdf. You can override and show your own loading image.

@@ -336,7 +336,6 @@ declare class OrgChart extends OrgChartBase {
      */
      magnify(id: string | number, scale: number, front?: boolean, anim?: OrgChart.anim | null, callback?: () => void): void;
 
-
     /**
      * The onField() method of the OrgChart class sets up a function that will be called whenever the specified event is delivered to the target.
      *  ```typescript     
@@ -601,13 +600,14 @@ declare class OrgChart extends OrgChartBase {
     static childrenCount(chart: OrgChart, node: OrgChart.node, count?: number): number;
     static collapsedChildrenCount(chart: OrgChart, node: OrgChart.node, count?: number): number;
     static getRootOf(node: OrgChart.node): OrgChart.node;
+
     /**
      * is null, empty or undefined
      * @param val 
      */
     static isNEU(val: any): boolean;
     static gradientCircleForDefs(id: string | number, colors: Array<string> | string, r: number, strokeWidth: number): string;
-
+    static convertCsvToNodes(text: string) : Array<node>;
 
     /**
      * Shows/hides lloading image. Usefull when export large data to pdf. You can override and show your own loading image.

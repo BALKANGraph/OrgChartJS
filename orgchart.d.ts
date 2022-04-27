@@ -343,6 +343,7 @@ declare class OrgChart extends OrgChartBase {
      * chart.onField((args) => {
      *      //return false; to cancel
      * });
+     * chart.load(nodes);
      * ```
      * @category Event Listeners
      * @param listener 
@@ -376,6 +377,7 @@ declare class OrgChart extends OrgChartBase {
      * var chart = new OrgChart('#tree', {});
      * chart.onInit(() => {
      * });
+     * chart.load(nodes);
      * ```
      * @category Event Listeners
      * @param listener 
@@ -390,6 +392,7 @@ declare class OrgChart extends OrgChartBase {
      * var chart = new OrgChart('#tree', {});
      * chart.onRedraw(() => {
      * });
+     * chart.load(nodes);
      * ```
      * @category Event Listeners
      * @param listener 
@@ -403,6 +406,7 @@ declare class OrgChart extends OrgChartBase {
      * chart.onExpandCollpaseButtonClick(() => {
      *  //return false; to cancel the operation
      * });
+     * chart.load(nodes);
      * ```
      * @category Event Listeners
      * @param listener 
@@ -429,6 +433,7 @@ declare class OrgChart extends OrgChartBase {
      *  args.styles += '<link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet">';
      *  //return false; to cancel the operation
      * });
+     * chart.load(nodes);
      * ```
      * @category Event Listeners
      * @param listener 
@@ -485,6 +490,7 @@ declare class OrgChart extends OrgChartBase {
      * chart.onExportEnd(() => {
      *  //return false; to cancel the operation for example id you prefer the exported document to not download
      * });
+     * chart.load(nodes);
      * ```
      * @category Event Listeners
      * @param listener 
@@ -544,6 +550,7 @@ declare class OrgChart extends OrgChartBase {
      * chart.onNodeClick(() => {
      *  //return false; to cancel the operation      
      * });
+     * chart.load(nodes);
      * ```
      * @category Event Listeners
      * @param listener 
@@ -565,6 +572,7 @@ declare class OrgChart extends OrgChartBase {
      * chart.onNodeDoubleClick(() => {
      *  //return false; to cancel the operation 
      * });
+     * chart.load(nodes);
      * ```
      * @category Event Listeners
      * @param listener 

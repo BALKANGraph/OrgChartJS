@@ -650,6 +650,11 @@ declare class OrgChart extends OrgChartBase {
     
 
     static events: {
+        /**
+         * node-created and layout event listeners are obsolete use node-initialized or node-layout instead
+         * @param type 
+         * @param listener 
+         */
         on(type: "node-created" | "layout", listener: (args: any, args1: any, args2: any) => void): void
     };
     static state: { clear(stateName: string): void };
@@ -1000,6 +1005,14 @@ declare namespace OrgChart {
         find(value: string): void;
         createItem(img: string, id: string | number, first: string, second: string): string;
     }
+
+    
+    interface filterUI {
+        init(instance: OrgChart): void;   
+        update(): void;
+        shouldFilter(data: object): boolean;
+    }
+
 
     interface menuUI {
         init(obj: OrgChart, menu: { [key: string]: menu }): void;
@@ -1798,7 +1811,21 @@ declare namespace OrgChart {
           * });
           * ```      
           */
-        orderBy?: string,
+        orderBy?: string | Array<OrgChart.orderBy>,
+        /**
+          * Filter the OrgChart by the specified fields.
+          * ```typescript       
+          * var chart = new OrgChart('#tree', {
+          *   filterBy: 'all'
+          * });
+          * ```    
+          * ```typescript       
+          * var chart = new OrgChart('#tree', {
+          *   filterBy: ['country', 'title']
+          * });
+          * ```      
+          */
+        filterBy?: string | Array<string> | boolean,
         /**
           * @ignore
           */
@@ -1807,6 +1834,10 @@ declare namespace OrgChart {
           * @ignore
           */
         searchUI?: OrgChart.searchUI,
+        /**
+          * @ignore
+          */
+        filterUI?: OrgChart.filterUI,        
         /**
           * @ignore
           */
@@ -2044,7 +2075,7 @@ declare class OrgChartBase {
      * @param type A case-sensitive string representing the event type to listen for.
      * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
      */
-    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "adding" | "added" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "removed" | "ready" | "ripple", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
+    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "adding" | "added" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "removed" | "ready" | "ripple" | "node-initialized" | "node-layout", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
 
     /**
      * Occurs when the node data has been updated by updateNode method.

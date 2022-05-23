@@ -1010,7 +1010,7 @@ declare namespace OrgChart {
     interface filterUI {
         init(instance: OrgChart): void;   
         update(): void;
-        shouldFilter(data: object): boolean;
+        addFilterTag(data: object): boolean;
     }
 
 

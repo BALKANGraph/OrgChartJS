@@ -2157,7 +2157,8 @@ declare class OrgChartBase {
         /**
          * dragged node id
          */
-        dragId: string | number
+        dragId: string | number, 
+        event: MouseEvent
     }) => void): OrgChart;
     /**
      * The onDrop event occurs when a node is dropped. *enableDragDrop* option has to be turned on.

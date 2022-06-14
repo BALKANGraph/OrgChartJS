@@ -1522,7 +1522,7 @@ declare namespace OrgChart {
          * ```
          * {@link https://balkan.app/OrgChartJS/Docs/MinMax | See doc...}
          */
-        min?: false,
+        min?: boolean,
         /**
          * Node binding in Org Chart JS maps node data to node template parameters.
          * ```typescript     

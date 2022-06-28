@@ -916,7 +916,11 @@ declare namespace OrgChart {
         /**
          * for assistant nodes and mixed layout we create dynamic nodes called splits, default value undefined
          */
-        isSplit?: boolean | undefined
+        isSplit?: boolean | undefined,
+        /**
+         * indicates if the node is child of partner node
+         */
+        isChildOfPartner?: boolean
     }
 
 

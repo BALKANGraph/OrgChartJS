@@ -142,7 +142,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Centers specified node on the screen.
      * @param nodeId the id of the node
-     * @param options { parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS, childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS, rippleId: rippleId, vertical: false, horizontal: false });
+     * @param options parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS, childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS, rippleId: rippleId, vertical: false, horizontal: false
      * @param callback called when the animation completes
      */
     center(nodeId: string | number, options?: {
@@ -804,6 +804,7 @@ declare class OrgChart extends OrgChartBase {
     static elements: any;
 
     static expcollOpenTag: any;
+    static upOpenTag: any;
     static grCloseTag: any;
 }
 

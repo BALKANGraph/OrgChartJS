@@ -1829,7 +1829,7 @@ declare namespace OrgChart {
           * ```    
           * ```typescript       
           * var chart = new OrgChart('#tree', {
-          *   orderBy: [field: "orderId", desc: true],
+          *   orderBy: {field: "orderId", desc: true},
           *   nodes: [
           *       { id: 10, pid: 1, orderId: 2 },
           *       { id: 11, pid: 1, orderId: 1 }

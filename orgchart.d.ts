@@ -3,6 +3,7 @@
 declare class OrgChart extends OrgChartBase {
     nodes: { [key in any]: OrgChart.node };
     isVisible: boolean;
+    visibleNodeIds: Array<number | string>;
 
     /**
      * @param element HTML element or string selector for example '#tree'

@@ -1085,7 +1085,7 @@ declare namespace OrgChart {
          * @param nodeId 
          * @param menu 
          */
-        show(nodeId: string | number, menu: { [key: string]: menu }): void;
+        show(nodeId: string | number, menu?: { [key: string]: menu }): void;
         /**
          * Hides circle menu 
          */

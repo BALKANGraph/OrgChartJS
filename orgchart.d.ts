@@ -794,6 +794,11 @@ declare class OrgChart extends OrgChartBase {
     static ARRAY_FIELDS: Array<string>;
 
     /**
+     * Csv import and export delimiter/separator
+     */
+    static CSV_DELIMITER: string;
+
+    /**
     * @ignore
     */
     static element: HTMLElement;

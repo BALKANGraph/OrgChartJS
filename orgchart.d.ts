@@ -626,10 +626,10 @@ declare class OrgChart extends OrgChartBase {
      * @param node 
      * @param count 
      */
-    static childrenCount(chart: OrgChart, node: OrgChart.node, count?: number): number;
-    static childrenTotalCount(chart: OrgChart, node: OrgChart.node, count?: number): number;
-    static collapsedChildrenCount(chart: OrgChart, node: OrgChart.node, count?: number): number;
-    static collapsedChildrenTotalCount(chart: OrgChart, node: OrgChart.node, count?: number): number;
+    static childrenCount(chart: OrgChart, node: OrgChart.node): number;
+    static childrenTotalCount(chart: OrgChart, node: OrgChart.node): number;
+    static collapsedChildrenCount(chart: OrgChart, node: OrgChart.node): number;
+    static collapsedChildrenTotalCount(chart: OrgChart, node: OrgChart.node): number;
     static getRootOf(node: OrgChart.node): OrgChart.node;
 
     /**

@@ -804,6 +804,10 @@ declare class OrgChart extends OrgChartBase {
      * 
      */
     static EDITFORM_CLOSE_BTN: string;
+    /**
+     * Escape HTML to prevent Cross-site scripting (also known as XSS) attacks 
+     */
+    static ESCAPE_HTML: string;
 
     /**
     * @ignore

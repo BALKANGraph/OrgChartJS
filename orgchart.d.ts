@@ -1115,6 +1115,13 @@ declare namespace OrgChart {
         on(type: "click" | "show" | "drag" | "drop" | "mouseenter" | "mouseout", listener: (sender: circleMenuUI, args: any, args1: any, args2: any) => void | boolean): circleMenuUI;
     }
 
+    interface keyNavigation {
+        /**
+         * Set focus to specified id on initial load
+         */
+        focusId: number | string
+    }
+
     interface toolbarUI {
         init(obj: OrgChart, toolbar: toolbar): void;
         showLayout(): void;
@@ -1322,12 +1329,15 @@ declare namespace OrgChart {
          * Enable keyboard navigation. Use "f" for find, arrows and space to navigate in the chart. Default value - *false*.
          * ```typescript     
          * var chart = new OrgChart('#tree', {
-         *      enableKeyNavigation: true
+         *      keyNavigation: true
+         * });
+         * var chart = new OrgChart('#tree', {
+         *      keyNavigation: { focusId: 5 }
          * });
          * ```
          * {@link https://balkan.app/OrgChartJS/Docs/KeyNavigation | See doc...}
          */
-        enableKeyNavigation?: boolean,
+         keyNavigation?: boolean | OrgChart.keyNavigation,
         /**
          * Shows mini map over the expanded tree. Default value - *false*.
          * ```typescript     

@@ -1147,6 +1147,25 @@ declare namespace OrgChart {
         fullScreen?: boolean
     }
 
+    interface miniMap  {
+        colors?: Array<string>,
+        selectorBackgroundColor?: string,
+        backgroundColor?: string,
+        focusStroke?: string,
+        opacity?: Number,
+        border?: string,
+        width?: Number,
+        height?: Number,
+        padding?: Number,
+        position?: OrgChart.position,
+    }
+
+    interface position  {
+        top?: string,
+        left?: string,
+        right?: string,
+        bottom?: string
+    }
 
     interface exportOptions  {
         margin?: Array<number>,

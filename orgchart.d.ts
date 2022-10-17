@@ -807,7 +807,12 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Escape HTML to prevent Cross-site scripting (also known as XSS) attacks 
      */
-    static ESCAPE_HTML: string;
+    static ESCAPE_HTML: boolean;
+
+    /**
+     * Align children of assistant vertically 
+     */
+    static VERTICAL_CHILDREN_ASSISTANT: boolean;
 
     /**
     * @ignore

@@ -1058,6 +1058,15 @@ declare namespace OrgChart {
     interface filterUI {
         init(instance: OrgChart): void;   
         update(): void;
+        /**
+         * Opens filter Tab 
+         * @param filterTabName the name of the filter tab
+         */
+        show(filterTabName): void;
+        /**
+         * Hides the filter tabs
+         */
+        hide(): void;
         addFilterTag(data: object): boolean;
     }
 
@@ -1901,8 +1910,19 @@ declare namespace OrgChart {
           *   filterBy: ['country', 'title']
           * });
           * ```      
+          * ```typescript       
+          * var chart = new OrgChart('#tree', {
+          *   filterBy: {
+          *         name: { 'name 2': { checked: false, text: 'My text 2'} },
+          *         title: {}
+          *   }
+          * });
+          * ```      
           */
-        filterBy?: string | Array<string> | boolean,
+        filterBy?: string | Array<string> | {[key: string]: { [key: string] : {
+            checked: boolean,
+            text?: string
+        } }},
         /**
           * @ignore
           */

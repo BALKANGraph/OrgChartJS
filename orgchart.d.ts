@@ -1062,7 +1062,7 @@ declare namespace OrgChart {
          * Opens filter Tab 
          * @param filterTabName the name of the filter tab
          */
-        show(filterTabName): void;
+        show(filterTabName: string): void;
         /**
          * Hides the filter tabs
          */

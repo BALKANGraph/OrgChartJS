@@ -614,7 +614,7 @@ declare class OrgChart extends OrgChartBase {
     toolbarUI: OrgChart.toolbarUI;    
     config: OrgChart.options
 
-    static fileUploadDialog(callback: (file: any) => void): void;
+    static fileUploadDialog(args: Object, callback: (file: any) => void): void;
     static isMobile(): boolean;
     /**
      * Checks if the used libraris is licnsed or not

@@ -2129,8 +2129,6 @@ declare namespace OrgChart {
     var t: any;
 }
 
-export default OrgChart
-
 declare class OrgChartBase {
 
     static icon: {
@@ -2342,3 +2340,4 @@ declare namespace OrgChart {
         enableDragDrop?: boolean,
     }
 }
+export default OrgChart

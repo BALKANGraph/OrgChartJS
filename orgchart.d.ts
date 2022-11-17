@@ -32,7 +32,7 @@ declare class OrgChart extends OrgChartBase {
      * Gets node data.
      * @param id identification number of the node
      */
-    get(id: string | number): object;
+    get(id: string | number): OrgChart.node;
     /**
      * If specified node has assistant/s or partner/s as children will return false.
      * @param id identification number of the node
@@ -1021,7 +1021,7 @@ declare namespace OrgChart {
          * @param detailsMode If true the edit form is in read only mode
          * @param dontAnim 
          */
-        show(id: string | number, detailsMode: boolean, dontAnim?: boolean): void;
+        show(id: string | number, detailsMode?: boolean, dontAnim?: boolean): void;
         /**
          * Hides the edit form
          */

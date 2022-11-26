@@ -729,9 +729,13 @@ declare class OrgChart extends OrgChartBase {
     */
     static STRING_TAGS: boolean;
     /**
-    * @ignore
-    */
+     * Search placeholder
+     */
     static SEARCH_PLACEHOLDER: string;
+    /**
+     * Search help symbol. 
+     */
+    static SEARCH_HELP_SYMBOL: string;
     /**
     * @ignore
     */
@@ -1053,6 +1057,8 @@ declare namespace OrgChart {
          */
         find(value: string): void;
         createItem(img: string, id: string | number, first: string, second: string): string;
+        helpView(): string;
+        addMatchTag(id: string | number) : boolean;
     }
 
     
@@ -1674,6 +1680,19 @@ declare namespace OrgChart {
          * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}
          */
         searchFieldsWeight?: { [key: string]: number },
+    	/**
+         * Search in field with abbreviation.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   searchFiledsAbbreviation: {
+         *       "n": "name", 
+         *       "a": "My Address" 
+         *   }
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}
+         */
+         searchFiledsAbbreviation?: { [key: string]: string },
         /**
          * Array of node data JSON objects. nodes option is the data source of the chart. Node JSON objects could have unlimited number of properties, id, pid, ppid, stpid and tags are reserved node properties.
          * - id - unique identifier, it clould be integer or string

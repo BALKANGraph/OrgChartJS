@@ -736,6 +736,11 @@ declare class OrgChart extends OrgChartBase {
      * Search help symbol. 
      */
     static SEARCH_HELP_SYMBOL: string;
+
+    /**
+     * Close search result list by click outside list and clean search input 
+     */
+    static SEARCH_CLOSE_RESULT_ON_ESCAPE_OR_CLICKOUTSIDE: boolean;
     /**
     * @ignore
     */

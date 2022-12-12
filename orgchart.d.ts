@@ -191,11 +191,11 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Search in the chart.
      * @param value search for value
-     * @param searchInFileds search in field names
+     * @param searchInFields search in field names
      * @param retrieveFields retrive data for fields
      * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}            
      */
-    search(value: string, searchInFileds?: Array<string>, retrieveFields?: Array<string>): Array<{
+    search(value: string, searchInFields?: Array<string>, retrieveFields?: Array<string>): Array<{
         id: number | string,
         name: string,
         __score: number,
@@ -1689,7 +1689,7 @@ declare namespace OrgChart {
          * Search in field with abbreviation.
          * ```typescript     
          * var chart = new OrgChart('#tree', {
-         *   searchFiledsAbbreviation: {
+         *   searchFieldsAbbreviation: {
          *       "n": "name", 
          *       "a": "My Address" 
          *   }
@@ -1697,7 +1697,7 @@ declare namespace OrgChart {
          * ```
          * {@link https://balkan.app/OrgChartJS/Docs/Search | See doc...}
          */
-         searchFiledsAbbreviation?: { [key: string]: string },
+         searchFieldsAbbreviation?: { [key: string]: string },
         /**
          * Array of node data JSON objects. nodes option is the data source of the chart. Node JSON objects could have unlimited number of properties, id, pid, ppid, stpid and tags are reserved node properties.
          * - id - unique identifier, it clould be integer or string

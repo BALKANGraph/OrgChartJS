@@ -369,7 +369,7 @@ declare class OrgChart extends OrgChartBase {
      * @category Event Listeners
      * @param listener 
      */
-    onField(listener: (args: { 
+    onField(listener: (this: OrgChart, args: { 
         /**
          * the node
          */
@@ -403,7 +403,7 @@ declare class OrgChart extends OrgChartBase {
      * @category Event Listeners
      * @param listener 
      */
-    onInit(listener: () => void): OrgChart;
+    onInit(listener: (this: OrgChart) => void): OrgChart;
     
 
 
@@ -418,7 +418,7 @@ declare class OrgChart extends OrgChartBase {
      * @category Event Listeners
      * @param listener 
      */        
-    onRedraw(listener: () => void): OrgChart;
+    onRedraw(listener: (this: OrgChart) => void): OrgChart;
 
     /**
      * The onExpandCollpaseButtonClick event occurs when the chart is redrawed.
@@ -432,7 +432,7 @@ declare class OrgChart extends OrgChartBase {
      * @category Event Listeners
      * @param listener 
      */         
-    onExpandCollpaseButtonClick(listener: (args: {
+    onExpandCollpaseButtonClick(listener: (this: OrgChart, args: {
         /**
          * Indicates id the operation is collaps or expand
          */
@@ -459,7 +459,7 @@ declare class OrgChart extends OrgChartBase {
      * @category Event Listeners
      * @param listener 
      */             
-    onExportStart(listener: (args: 
+    onExportStart(listener: (this: OrgChart, args: 
         {
         /**
          * the content to be exported
@@ -516,7 +516,7 @@ declare class OrgChart extends OrgChartBase {
      * @category Event Listeners
      * @param listener 
      */         
-    onExportEnd(listener: (args: 
+    onExportEnd(listener: (this: OrgChart, args: 
         /**
          * for PDF/PNG
          */
@@ -576,7 +576,7 @@ declare class OrgChart extends OrgChartBase {
      * @category Event Listeners
      * @param listener 
      */   
-    onNodeClick(listener: (args: {
+    onNodeClick(listener: (this: OrgChart, args: {
         /**
          * node JSON object
          */
@@ -598,7 +598,7 @@ declare class OrgChart extends OrgChartBase {
      * @category Event Listeners
      * @param listener 
      */       
-    onNodeDoubleClick(listener: (args: {
+    onNodeDoubleClick(listener: (this: OrgChart, args: {
         /**
          * clicked node data
          */

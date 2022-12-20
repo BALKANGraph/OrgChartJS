@@ -1081,6 +1081,7 @@ declare namespace OrgChart {
          */
         hide(): void;
         addFilterTag(data: object): boolean;
+        filterBy?: any;
     }
 
 

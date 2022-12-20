@@ -608,6 +608,7 @@ declare class OrgChart extends OrgChartBase {
     editUI: OrgChart.editUI;
     searchUI: OrgChart.searchUI;
     nodeMenuUI: OrgChart.menuUI;
+    filterUI: OrgChart.filterUI;
     nodeCircleMenuUI: OrgChart.circleMenuUI;
     nodeContextMenuUI: OrgChart.menuUI;
     menuUI: OrgChart.menuUI;

@@ -605,6 +605,8 @@ declare class OrgChart extends OrgChartBase {
         data: object
     }) => void): OrgChart;
 
+    element: HTMLElement;
+
     editUI: OrgChart.editUI;
     searchUI: OrgChart.searchUI;
     nodeMenuUI: OrgChart.menuUI;

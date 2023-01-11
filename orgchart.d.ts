@@ -1208,6 +1208,7 @@ declare namespace OrgChart {
         footer?: string,
         openInNewTab?: boolean,
         expandChildren?: boolean,
+        min?: boolean,
         nodeId? : number | string
     }
 

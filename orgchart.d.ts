@@ -1116,7 +1116,7 @@ declare namespace OrgChart {
          * @param secondNodeId 
          * @param menu 
          */
-        show(x: number, y: number, firstNodeId: string | number, secondNodeId: string | number, menu: { [key: string]: menu }): void;
+        show(x: number | HTMLElement, y?: number, firstNodeId?: string | number, secondNodeId?: string | number, menu?: { [key: string]: menu }): void;
     }
 
     interface circleMenuUI {

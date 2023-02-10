@@ -1188,6 +1188,7 @@ declare namespace OrgChart {
         height?: Number,
         padding?: Number,
         position?: OrgChart.position,
+        draggable?: boolean
     }
 
     interface position  {

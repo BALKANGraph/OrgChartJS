@@ -2319,7 +2319,11 @@ declare class OrgChartBase {
         /**
          * dropped node id
          */
-        dropId: string | number
+        dropId: string | number,
+        /**
+         * draging element
+         */
+        dragNodeElement: HTMLElement
     }) => void): OrgChart;
 }
 

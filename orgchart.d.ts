@@ -1367,6 +1367,16 @@ declare namespace OrgChart {
          * ```
          */
         enableSearch?: boolean,
+        
+        /**
+         * You can disable chart pan. Default value - *true*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      enablePan: false
+         * });
+         * ```
+         */
+        enablePan?: boolean,
 
         /**
          * Enable touch instead of mouse for particular devices with touchscreen/touchpad/trackpad. Default value - *false*.
@@ -1376,6 +1386,7 @@ declare namespace OrgChart {
          * });
          * ```
          */
+        
         enableTouch?: boolean,
         /**
          * Enable keyboard navigation. Use "f" for find, arrows and space to navigate in the chart. Default value - *false*.

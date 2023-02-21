@@ -1044,7 +1044,7 @@ declare namespace OrgChart {
          * @param avatarUrl avatar url
          */
         setAvatar(avatarUrl?: string): void;
-        static renderHeaderContent(title: string, photo: string, node: OrgChart.node, data: object): string;        
+        // static renderHeaderContent(title: string, photo: string, node: OrgChart.node, data: object): string;        
     }
 
     interface searchUI {

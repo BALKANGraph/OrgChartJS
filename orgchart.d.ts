@@ -830,7 +830,6 @@ declare class OrgChart extends OrgChartBase {
     /**
     * @ignore
     */
-    static element: HTMLElement;
 
     static randomId(): any;
     static searchUI: any;

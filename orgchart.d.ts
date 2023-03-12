@@ -1248,6 +1248,11 @@ declare namespace OrgChart {
         template?: string,
         label?: string
     }
+    interface dottedLine {
+        from?: string | number,
+        to?: string | number,
+        tags?: Array<string>
+    }
     interface orderBy {
         field?: string,
         desc?: boolean
@@ -1759,6 +1764,31 @@ declare namespace OrgChart {
          * ```
          */
         slinks?: Array<OrgChart.link>,
+
+         /**
+         * Adds dotted line.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   dottedLines: [
+         *       {from: 6, to: 1 }
+         *   ]
+         * });
+         * ```
+         */
+        dottedLines?: Array<OrgChart.dottedLine>,
+
+         /**
+         * Adds group dotted line.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   groupDottedLines: [
+         *       {from: 6, to: 1 }
+         *   ]
+         * });
+         * ```
+         */
+        groupDottedLines?: Array<OrgChart.dottedLine>,
+
         /**
          * The gap between each level. Default value - *60*
          * ```typescript     

@@ -1067,6 +1067,9 @@ declare namespace OrgChart {
         createItem(img: string, id: string | number, first: string, second: string): string;
         helpView(): string;
         addMatchTag(id: string | number) : boolean;
+        input: HTMLElement;
+        searchTableWrapper: HTMLElement; 
+        lastSearch: Array<object>;        
     }
 
     

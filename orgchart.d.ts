@@ -1664,7 +1664,7 @@ declare namespace OrgChart {
          * Link binding in Org Chart JS maps node data to link template parameters.
          * ```typescript     
          * var chart = new OrgChart('#tree', {
-         *   nodeBinding: {
+         *   linkBinding: {
          *       link_field_0: "createdAt"
          *   },
          *   nodes: [

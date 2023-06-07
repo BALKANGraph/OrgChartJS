@@ -84,8 +84,9 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Load nodes data.
      * @param data node data array
+     * @param callback function called after the load
      */
-    load(data: Array<object>): OrgChart;
+    load(data: Array<object>, callback?: () => void): OrgChart;
 
     /**
      * Updates the node data, redraws the chart and fires update event.
@@ -98,8 +99,9 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Loads nodes from xml.
      * @param xml Xml with node structure
+     * @param callback function called after the load
      */
-    loadXML(xml: string): OrgChart;
+    loadXML(xml: string, callback?: () => void): OrgChart;
     /**
      * Gets nodes as xml.
      */

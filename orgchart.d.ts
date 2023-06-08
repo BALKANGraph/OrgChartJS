@@ -283,19 +283,19 @@ declare class OrgChart extends OrgChartBase {
      * @param filename The name of the exported file
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
      */
-    exportCSV(filename: string): void;
+    exportCSV(filename: string | OrgChart.exportCSVXMLJSONOptions): void;
     /**
      * Exports to XML   
      * @param filename The name of the exported file
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
      */
-    exportXML(filename: string): void;
+    exportXML(filename: string | OrgChart.exportCSVXMLJSONOptions): void;
     /**
      * Exports to JSON   
      * @param filename The name of the exported file
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
      */
-     exportJSON(filename: string): void;
+     exportJSON(filename: string | OrgChart.exportCSVXMLJSONOptions ): void;
 
     /**
      * Shares node data, uses build-in  device sharing functionallity.
@@ -1213,6 +1213,13 @@ declare namespace OrgChart {
         header?: string,
         footer?: string,
         openInNewTab?: boolean,
+        expandChildren?: boolean,
+        min?: boolean,
+        nodeId? : number | string
+    }
+
+    interface exportCSVXMLJSONOptions  {
+        filename?: string,
         expandChildren?: boolean,
         min?: boolean,
         nodeId? : number | string

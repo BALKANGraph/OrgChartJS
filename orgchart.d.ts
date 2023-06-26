@@ -357,7 +357,21 @@ declare class OrgChart extends OrgChartBase {
      * @param front show on front or back 
      * @param anim animation type
      */
-     magnify(id: string | number, scale: number, front?: boolean, anim?: OrgChart.anim | null, callback?: () => void): void;
+     magnify(id: string | number, scale: number, front?: boolean, anim?: OrgChart.anim | null, callback?: () => void): void;     
+
+    /**
+     * Starts the move 
+     * @param movePosition move position
+     * @param tick callback function in each step
+     * @param func the name of the animation function, for example OrgChart.anim.inSin
+     * @param duration duration before going to 100 percent speed
+     */
+    moveStart(movePosition: OrgChart.move, tick?: () => void, func?: OrgChart.anim, duration?: number): void;
+    
+    /**
+     * Ends the move
+     */
+    moveEnd(): void;
 
     /**
      * The onField() method of the OrgChart class sets up a function that will be called whenever the specified event is delivered to the target.
@@ -391,7 +405,11 @@ declare class OrgChart extends OrgChartBase {
         /**
          * name of the field
          */
-        name: string 
+        name: string         
+        /**
+         * field template name
+         */
+        field: string 
     }) => void | boolean): OrgChart;
 
     /**
@@ -1265,6 +1283,13 @@ declare namespace OrgChart {
         field?: string,
         desc?: boolean
     }
+    interface move {
+        left?: boolean,
+        right?: boolean,
+        up?: boolean,
+        down?: boolean,
+    }
+
     enum orientation {
         top,
         bottom,
@@ -2245,19 +2270,6 @@ declare class OrgChartBase {
     removeNode(id: string | number, callback?: () => void, fireEvent?: boolean): void;
 
 
-    /**
-     * Starts the move 
-     * @param movePosition move position
-     * @param tick callback function in each step
-     * @param func the name of the animation function, for example OrgChart.anim.inSin
-     * @param duration duration before going to 100 percent speed
-     */
-    moveStart(movePosition: OrgChart.move, tick?: () => void, func?: OrgChart.anim, duration?: number): void;
-    /**
-     * Ends the move
-     */
-    moveEnd(): void;
-
 
        
 
@@ -2380,13 +2392,6 @@ declare class OrgChartBase {
 }
 
 declare namespace OrgChart {
-    interface move {
-        left?: boolean,
-        right?: boolean,
-        up?: boolean,
-        down?: boolean,
-    }
-
     interface node {
         /**
          * same pid you provided in the source node, the default value is null if not provided or if node with the same id does not exist

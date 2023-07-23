@@ -1124,6 +1124,11 @@ declare namespace OrgChart {
          */
         showStickIn(stickToElement: HTMLElement, firstNodeId: string | number, secondNodeId: string | number, menu: { [key: string]: menu }): void;
         /**
+         * Returns true if the menu is visible
+         */
+        isVisible(): boolean;
+
+        /**
          * Hieds the menu
          */
         hide(): void;

@@ -1314,7 +1314,9 @@ declare namespace OrgChart {
         mixed,
         tree,
         treeLeftOffset,
-        treeRightOffset
+        treeRightOffset,
+        treeLeft,
+        treeRight
     }
 
     enum align {
@@ -1947,6 +1949,8 @@ declare namespace OrgChart {
          * - OrgChart.layout.tree
          * - OrgChart.layout.treeLeftOffset
          * - OrgChart.layout.treeRightOffset
+         * - OrgChart.layout.treeLeft
+         * - OrgChart.layout.treeRight
          * 
          * Default value - *OrgChart.layout.normal*
          * ```typescript     

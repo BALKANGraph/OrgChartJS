@@ -785,7 +785,7 @@ declare class OrgChart extends OrgChartBase {
     */
     static MIXED_LAYOUT_FOR_NODES_WITH_COLLAPSED_CHILDREN: boolean;
     /**
-    * Use mixed layout for example tree or treeLeftOffset if mumber of children is more then specified value
+    * Use mixed layout for example tree or treeLeftOffset if number of children is more then specified value
     */
     static MIXED_LAYOUT_IF_NUMBER_OF_CHILDREN_IS_MORE_THEN: boolean;
     /**

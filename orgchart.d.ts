@@ -854,6 +854,7 @@ declare class OrgChart extends OrgChartBase {
     static randomId(): any;
     static searchUI: any;
     static editUI: any;
+    static pdfPrevUI: any;
     static attr: any;
     static toolbarUI: any;
     static elements: any;

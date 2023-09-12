@@ -2402,7 +2402,11 @@ declare class OrgChartBase {
         /**
          * draging element
          */
-        dragNodeElement: HTMLElement
+        dragNodeElement: HTMLElement,
+        /**
+         * Mouse event
+         */
+        event: MouseEvent
     }) => void): OrgChart;
 }
 

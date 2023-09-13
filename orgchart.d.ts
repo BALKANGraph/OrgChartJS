@@ -1112,7 +1112,7 @@ declare namespace OrgChart {
     }
 
 
-    interface menuUI {
+    declare class menuUI  {
         init(obj: OrgChart, menu: { [key: string]: menu }): void;
         /**
          * The on() method of the menuUI interface sets up a function that will be called whenever the specified event is delivered to the target.     * 
@@ -1149,7 +1149,7 @@ declare namespace OrgChart {
         show(x: number | HTMLElement, y?: number, firstNodeId?: string | number, secondNodeId?: string | number, menu?: { [key: string]: menu }): void;
     }
 
-    interface circleMenuUI {
+    declare class circleMenuUI {
         /**
          * Inits circle menu instance
          * @param obj 

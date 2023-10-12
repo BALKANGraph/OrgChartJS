@@ -662,6 +662,15 @@ declare class OrgChart extends OrgChartBase {
     static isNEU(val: any): boolean;
     static gradientCircleForDefs(id: string | number, colors: Array<string> | string, r: number, strokeWidth: number): string;
     static convertCsvToNodes(text: string) : Array<Object>;
+    /**
+    * SVG Path rounding function. Takes an input path string or commands and outputs a path
+    * string where all line-line corners have been rounded. 
+    * @param commands The SVG input path or commands array
+    * @param radius 
+    * @param useFractionalRadius The amount to round the corners, either a value in the SVG coordinate space, or, if useFractionalRadius is true, a value from 0 to 1.
+    * @returns A new SVG path string with the rounding
+    */
+    static roundPathCorners(commands: string | Array<Array<any>>, radius: number, useFractionalRadius: boolean) : string;
     static convertNodesToCsv(nodes: Array<Object>) : string;
     static wrapText(text: string, field: Object): string;
     /**

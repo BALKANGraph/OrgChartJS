@@ -223,6 +223,15 @@ declare class OrgChart extends OrgChartBase {
      */
     destroy(): void;
     /**
+     * Replaces the id, pid, stpid, ppid and the ids in clinks, slinks, dottedLines, groupDottedLines.
+     * After the replacment updates the UI
+     * @param old_new_ids dictionary containing old and new ids
+     * @param callback called when the replacment completes
+     */
+    replaceIds(old_new_ids:  {
+        [key: string]: string | number
+    }, callback?: () => void): void;
+    /**
      * Adds curved link.
      * @param from from node with id
      * @param to to node with id

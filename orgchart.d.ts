@@ -1095,7 +1095,7 @@ declare namespace OrgChart {
          * @param type A case-sensitive string representing the event type to listen for.
          * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
          */        
-        on(type: "searchclick", listener: (sender: OrgChart, args: any, args1: any, args2: any) => void | boolean): searchUI;
+        on(type: "add-item" | "show-items" | "hide" | "searchclick" , listener: (sender: searchUI, args: any, args1: any, args2: any) => void | boolean): searchUI;
         /**
          * Hides the search grid
          */
@@ -1111,6 +1111,14 @@ declare namespace OrgChart {
         input: HTMLElement;
         searchTableWrapper: HTMLElement; 
         lastSearch: Array<object>;        
+        /**
+         * OrgChart instance
+         */
+        instance: OrgChart;
+        /**
+         * Search in field with abbreviation.
+         */
+        searchFieldsAbbreviation: {[key: string]: string};
     }
 
     
@@ -1127,7 +1135,16 @@ declare namespace OrgChart {
          */
         hide(): void;
         addFilterTag(data: object): boolean;
+                /**
+         * The on() method of the filterUI interface sets up a function that will be called whenever the specified event is delivered to the target.     * 
+         * @category Event Listeners
+         * @param type A case-sensitive string representing the event type to listen for.
+         * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
+         */
+        on(type: "update" | "add-item" | "add-filter" | "show-items" , listener: (sender: filterUI, args: any, args1: any, args2: any) => void | boolean): filterUI;
         filterBy?: any;
+        element: HTMLElement;
+        instance: OrgChart;
     }
 
 

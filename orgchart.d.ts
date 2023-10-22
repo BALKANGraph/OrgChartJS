@@ -376,7 +376,34 @@ declare class OrgChart extends OrgChartBase {
      * @param duration duration before going to 100 percent speed
      */
     moveStart(movePosition: OrgChart.move, tick?: () => void, func?: OrgChart.anim, duration?: number): void;
+    /**
+     * Undo data operations like adding/removing nodes. Set undoRedoStorageName option before calling this method.
+     * @param callback called when the animation completes
+     */
+    undo(callback?: () => void): void;
+    /**
+     * Redo data operations like adding/removing nodes. Set undoRedoStorageName option before calling this method.
+     * @param callback called when the animation completes
+     */
+    redo(callback?: () => void): void;
+
+    /**
+     * Clears all Redo stack steps.
+     */
+    clearRedo(): void;
     
+    /**
+     * Clears all Undo stack steps.
+     */
+    clearUndo(): void;
+    /**
+     * Returns the number of Undo stack steps
+     */
+    undoStepsCount(): number;
+    /**
+     * Returns the number of Redo stack steps
+     */    
+    redoStepsCount(): number;    
     /**
      * Ends the move
      */
@@ -1209,6 +1236,21 @@ declare namespace OrgChart {
          * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
          */        
         on(type: "click" | "show" | "drag" | "drop" | "mouseenter" | "mouseout", listener: (sender: circleMenuUI, args: any, args1: any, args2: any) => void | boolean): circleMenuUI;
+    }
+
+    interface undoRedoUI {
+        /**
+         * Inits undoRedoUI
+         * @param instance 
+         */
+        init(instance: OrgChart): void;
+        /**
+         * Refreshes the UI buttonss
+         */
+        refresh(): void;
+        undoElement: HTMLElement;
+        redoElement: HTMLElement;
+        instance: OrgChart;
     }
 
     interface keyNavigation {
@@ -2125,6 +2167,10 @@ declare namespace OrgChart {
         menuUI?: OrgChart.menuUI,
         /**
          * @ignore
+         */      
+        undoRedoUI?: OrgChart.undoRedoUI,
+        /**
+         * @ignore
          */
          UI?: any,        
         /**
@@ -2241,6 +2287,10 @@ declare namespace OrgChart {
             writeToUrlParams?: boolean
         },
         /**
+         * Set the session storage name to use undo/redo functionallity.
+         */
+        undoRedoStorageName?: string,
+        /**
          * Configure the buildin edit form.
          * {@link https://balkan.app/OrgChartJS/Docs/Edit | See doc...}   
          */                
@@ -2301,7 +2351,9 @@ declare class OrgChartBase {
         happy: (w: string| number, h: string| number, c: string| number) => string,
         sad: (w: string| number, h: string| number, c: string| number) => string,
         share: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
-        user: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string
+        user: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        undo: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        redo: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string
     }
 
 
@@ -2331,14 +2383,14 @@ declare class OrgChartBase {
      * @param type A case-sensitive string representing the event type to listen for.
      * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
      */
-    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "adding" | "added" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "removed" | "ready" | "ripple" | "node-initialized" | "nodes-initialized" | "node-layout", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
+    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "ready" | "ripple" | "node-initialized" | "nodes-initialized" | "node-layout", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
 
     /**
      * Removes an event listener previously registered. The event listener to be removed is identified using a combination of the event type and the event listener function itself. Returns true if success and false if fail.
      * @param type A string which specifies the type of event for which to remove an event listener
      * @param listener The event listener function of the event handler to remove from the event target
      */
-    removeListener(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "adding" | "added" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "removed" | "ready" | "ripple" | "node-initialized" | "nodes-initialized" | "node-layout", listener?: () => void): boolean;
+    removeListener(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "ready" | "ripple" | "node-initialized" | "nodes-initialized" | "node-layout", listener?: () => void): boolean;
 
 
     /**
@@ -2362,6 +2414,21 @@ declare class OrgChartBase {
          */
         newData: object
     }) => void): OrgChart;
+
+        /**
+     * Occurs when new nodes are added, removed, updated or imported, also when slink or clink is added or removed and after undo or redo operations.
+     * Use this event listener to synch your server side database with this.config.nodes, this.config.clinks, this.config.slinks etc.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onUpdated(() => {
+     *  //Update your server database with this.config.nodes, this.config.clinks, this.config.slinks etc.
+     * });
+     * ```
+     * @category Event Listeners
+     */
+    onUpdated(): OrgChart;
+
+    
 
 
     /**

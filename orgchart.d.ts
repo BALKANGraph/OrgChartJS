@@ -667,6 +667,7 @@ declare class OrgChart extends OrgChartBase {
     searchUI: OrgChart.searchUI;
     nodeMenuUI: OrgChart.menuUI;
     filterUI: OrgChart.filterUI;
+    undoRedoUI: OrgChart.undoRedoUI;
     nodeCircleMenuUI: OrgChart.circleMenuUI;
     nodeContextMenuUI: OrgChart.menuUI;
     menuUI: OrgChart.menuUI;
@@ -1248,8 +1249,31 @@ declare namespace OrgChart {
          * Refreshes the UI buttonss
          */
         refresh(): void;
-        undoElement: HTMLElement;
-        redoElement: HTMLElement;
+        /** 
+         * @ignore
+         */
+        on(type: "change", listener: (sender: undoRedoUI, args: any) => void | boolean): undoRedoUI;
+        /**
+         * Occurs when the undo redo buttons needs to updated.
+         *  ```typescript     
+         * var chart = new OrgChart('#tree', {});
+         * chart.undoRedoUI.onChange((args) => {
+         * //return false; to cancel the operation
+         * });
+         * ```
+         * @category Event Listeners
+         * @param listener 
+         */
+        onChange(listener: (args: {
+            /**
+             * Undo stack steps count
+             */
+            undoStepsCount: number,
+            /**
+             * Redo stack steps count
+             */
+            redoStepsCount: number
+        }) => void): undoRedoUI;
         instance: OrgChart;
     }
 

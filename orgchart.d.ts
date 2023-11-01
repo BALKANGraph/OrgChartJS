@@ -1045,7 +1045,15 @@ declare namespace OrgChart {
         /**
          * indicates if the node is child of partner node
          */
-        isChildOfPartner?: boolean
+        isChildOfPartner?: boolean,
+        /**
+         * move the the node on x axis 
+         */
+        movex?: number | undefined,
+        /**
+         * move the the node on y axis 
+         */
+        movey?: number | undefined
     }
 
 
@@ -1476,6 +1484,13 @@ declare namespace OrgChart {
         none
     }
 
+
+    
+    enum draggable {
+        node
+        //tree
+    }
+
     
 
     interface options  {
@@ -1710,6 +1725,10 @@ declare namespace OrgChart {
          * ```
          */
         showXScroll?: boolean ,
+        /**
+         * Draggable node, drag the node anywhere on the canvas
+         */
+        draggable?: OrgChart.draggable,
         /**
          * Shows vertical scrollbar. Default value - *false*.
          * ```typescript     

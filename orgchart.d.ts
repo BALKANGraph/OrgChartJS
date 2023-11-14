@@ -1461,6 +1461,11 @@ declare namespace OrgChart {
         boundary
     }
 
+    enum draggable {
+        node,
+        tree
+    }
+
 
     enum action {
         update,
@@ -1486,10 +1491,6 @@ declare namespace OrgChart {
 
 
     
-    enum draggable {
-        node
-        //tree
-    }
 
     
 
@@ -2532,7 +2533,13 @@ declare class OrgChartBase {
          * dragged node id
          */
         dragId: string | number, 
-        event: MouseEvent
+        event: MouseEvent,
+        /**
+         * array of node ids
+         * 
+         * this property is initialized only if draggable option is set
+         */
+        nodeIds: Array<string | number>
     }) => void): OrgChart;
     /**
      * The onDrop event occurs when a node is dropped. *enableDragDrop* option has to be turned on.

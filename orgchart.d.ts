@@ -135,6 +135,13 @@ declare class OrgChart extends OrgChartBase {
      * @param viewBox 
      */
     getScale(viewBox?: Array<number>): number;
+
+    /**
+     * Sets the current scale of the chart. 
+     * Returns the actual scale limited by scaleMax and scaleMin
+     * @param newScale new scale value
+     */
+    setScale(newScale: number): number;
     /**
      * Animates specified node with ripple animation - highlight the node.
      * @param id the id of the node

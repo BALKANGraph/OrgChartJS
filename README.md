@@ -56,6 +56,8 @@ bower install orgchart.js
 ```
 
 
+## 1 click to talk 2 us
+
 [![OrgChart](https://balkangraph.com/content/img/phone-icon4.png)](https://webcall.me/BALKANGraph)
 
 

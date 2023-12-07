@@ -195,8 +195,9 @@ declare class OrgChart extends OrgChartBase {
      * Sets orientation.
      * @param orientation  orientation type
      * @param lcn lyout config name for the specified sub tree
+     * @param callback called at the end of animation
      */
-    setOrientation(orientation: OrgChart.orientation, lcn?: string): void;
+    setOrientation(orientation: OrgChart.orientation, lcn?: string, callback?: () => void): void;
     /**
      * Search in the chart.
      * @param value search for value

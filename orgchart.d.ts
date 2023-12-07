@@ -680,7 +680,8 @@ declare class OrgChart extends OrgChartBase {
     nodeContextMenuUI: OrgChart.menuUI;
     menuUI: OrgChart.menuUI;
     toolbarUI: OrgChart.toolbarUI;    
-    config: OrgChart.options
+    config: OrgChart.options;
+    roots: Array<OrgChart.node>;
 
     static fileUploadDialog(scallback: (file: any) => void): void;
     static isMobile(): boolean;

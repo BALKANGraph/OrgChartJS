@@ -198,6 +198,15 @@ declare class OrgChart extends OrgChartBase {
      * @param callback called at the end of animation
      */
     setOrientation(orientation: OrgChart.orientation, lcn?: string, callback?: () => void): void;
+
+
+    /**
+     * Moves specified nodes to the visible area.
+     * @param ids  Array of node ids
+     * @param callback called at the end of animation
+     */
+    moveNodesToVisibleArea(ids: Array<number | string>, callback?: () => void): void;
+
     /**
      * Search in the chart.
      * @param value search for value

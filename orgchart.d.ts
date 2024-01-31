@@ -1651,7 +1651,7 @@ declare namespace OrgChart {
          */
         nodeContextMenu?: OrgChart.menu,
         /**
-         * Enables export to excel, export to svg and other OrgChart operations. Also you can define your own OrgChart operation.
+         * Enables export to csv, export to svg and other OrgChart operations. Also you can define your own OrgChart operation.
          * ```typescript     
          * var chart = new OrgChart('#tree', {
          *      menu:{

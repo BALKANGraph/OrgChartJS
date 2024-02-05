@@ -684,6 +684,8 @@ declare class OrgChart extends OrgChartBase {
     searchUI: OrgChart.searchUI;
     nodeMenuUI: OrgChart.menuUI;
     filterUI: OrgChart.filterUI;
+    xScrollUI: OrgChart.xScrollUI;
+    yScrollUI: OrgChart.yScrollUI;
     undoRedoUI: OrgChart.undoRedoUI;
     nodeCircleMenuUI: OrgChart.circleMenuUI;
     nodeContextMenuUI: OrgChart.menuUI;
@@ -1201,6 +1203,24 @@ declare namespace OrgChart {
         instance: OrgChart;
     }
 
+
+    
+    
+    interface xScrollUI {
+        addListener(svg: HTMLElement): void;   
+        create(width: number): void;   
+        setPosition(width: number): void;   
+        on(type: "change", listener: (sender: xScrollUI, args: any, args1: any, args2: any) => void | boolean): xScrollUI;
+        element: HTMLElement;
+    }
+
+    interface yScrollUI {
+        addListener(svg: HTMLElement): void;   
+        create(width: number): void;   
+        setPosition(width: number): void;   
+        on(type: "change", listener: (sender: yScrollUI, args: any, args1: any, args2: any) => void | boolean): yScrollUI;
+        element: HTMLElement;
+    }
 
     interface menuUI  {
         init(obj: OrgChart, menu: { [key: string]: menu }): void;
@@ -2198,11 +2218,11 @@ declare namespace OrgChart {
         /**
           * @ignore
           */
-        xScrollUI?: any,
+        xScrollUI?: OrgChart.xScrollUI,
         /**
           * @ignore
           */
-        yScrollUI?: any,
+        yScrollUI?: OrgChart.yScrollUI,
         /**
           * @ignore
           */

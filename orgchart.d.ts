@@ -839,9 +839,13 @@ declare class OrgChart extends OrgChartBase {
     */
     static FIXED_POSITION_ON_CLICK: boolean;
     /**
-    * @ignore
+    * Render links before nodes, default is false
     */
     static RENDER_LINKS_BEFORE_NODES: boolean;
+    /**
+    * Render clinks before nodes, default is false
+    */
+    static RENDER_CLINKS_BEFORE_NODES: boolean;
     /**
     * @ignore
     */

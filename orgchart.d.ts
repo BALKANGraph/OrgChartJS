@@ -924,7 +924,7 @@ declare class OrgChart extends OrgChartBase {
     static randomId(): any;
     static searchUI: any;
     static editUI: any;
-    static pdfPrevUI: any;
+    static pdfPrevUI: OrgChart.pdfPrevUI;
     // static menuUI: any;
     static attr: any;
     static toolbarUI: any;
@@ -1325,6 +1325,12 @@ declare namespace OrgChart {
             redoStepsCount: number
         }) => void): undoRedoUI;
         instance: OrgChart;
+    }
+
+    interface pdfPrevUI {
+        show(chart: OrgChart, options: exportOptions): pdfPrevUI;
+        hide(chart: OrgChart): void;
+
     }
 
     interface keyNavigation {

@@ -918,6 +918,11 @@ declare class OrgChart extends OrgChartBase {
     static VERTICAL_CHILDREN_ASSISTANT: boolean;
 
     /**
+    * Cut nodes when export with pages, dafault is false
+    */
+    static EXPORT_PAGES_CUT_NODES: boolean;
+
+    /**
     * @ignore
     */
 

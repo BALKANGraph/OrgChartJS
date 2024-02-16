@@ -1514,7 +1514,7 @@ declare namespace OrgChart {
         boundary
     }
 
-    enum draggable {
+    enum movable {
         node,
         tree
     }
@@ -1780,9 +1780,9 @@ declare namespace OrgChart {
          */
         showXScroll?: boolean ,
         /**
-         * Draggable node, drag the node anywhere on the canvas
+         * movable node, move the node anywhere on the canvas
          */
-        draggable?: OrgChart.draggable,
+        movable?: OrgChart.movable,
         /**
          * Shows vertical scrollbar. Default value - *false*.
          * ```typescript     
@@ -2590,7 +2590,7 @@ declare class OrgChartBase {
         /**
          * array of node ids
          * 
-         * this property is initialized only if draggable option is set
+         * this property is initialized only if movable option is set
          */
         nodeIds: Array<string | number>
     }) => void): OrgChart;

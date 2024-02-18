@@ -1481,7 +1481,8 @@ declare namespace OrgChart {
         treeLeftOffset,
         treeRightOffset,
         treeLeft,
-        treeRight
+        treeRight,
+        grid
     }
 
     enum align {
@@ -2137,6 +2138,11 @@ declare namespace OrgChart {
          * ```          
          */
         layout?: OrgChart.layout | number,
+        /**
+         * Sets the maximum number of columns in grid layout, it has to be even nymber or 'dynamic' string
+         * The default id 'dynamic', that means that the maximum colomn numbers are dinamicly calculated 
+         */
+        layoutGridColumns?: string | number,
         /**
          * The scale factor determines what fraction of the entire scale is visible at one time.
          * - OrgChart.match.height

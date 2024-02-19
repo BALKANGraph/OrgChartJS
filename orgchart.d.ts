@@ -1517,7 +1517,8 @@ declare namespace OrgChart {
 
     enum movable {
         node,
-        tree
+        tree,
+        detachTree
     }
 
 
@@ -2129,6 +2130,7 @@ declare namespace OrgChart {
          * - OrgChart.layout.treeRightOffset
          * - OrgChart.layout.treeLeft
          * - OrgChart.layout.treeRight
+         * - OrgChart.layout.grid
          * 
          * Default value - *OrgChart.layout.normal*
          * ```typescript     

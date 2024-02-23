@@ -1210,6 +1210,7 @@ declare namespace OrgChart {
         filterBy?: any;
         element: HTMLElement;
         instance: OrgChart;
+        static filterBy: string;
     }
 
 

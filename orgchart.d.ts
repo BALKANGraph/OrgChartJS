@@ -730,6 +730,9 @@ declare class OrgChart extends OrgChartBase {
     static roundPathCorners(commands: string | Array<Array<any>>, radius: number, useFractionalRadius: boolean) : string;
     static convertNodesToCsv(nodes: Array<Object>) : string;
     static wrapText(text: string, field: Object): string;
+
+    static filterUI: OrgChart.filterUI;
+
     /**
      * Shows/hides lloading image. Usefull when export large data to pdf. You can override and show your own loading image.
      */

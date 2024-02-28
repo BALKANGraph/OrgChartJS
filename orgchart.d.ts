@@ -731,7 +731,9 @@ declare class OrgChart extends OrgChartBase {
     static convertNodesToCsv(nodes: Array<Object>) : string;
     static wrapText(text: string, field: Object): string;
 
-    static filterUI: OrgChart.filterUI;
+    static filterUI: {
+        labelFilterBy: string
+    };
 
     /**
      * Shows/hides lloading image. Usefull when export large data to pdf. You can override and show your own loading image.
@@ -1213,7 +1215,6 @@ declare namespace OrgChart {
         filterBy?: any;
         element: HTMLElement;
         instance: OrgChart;
-        static filterBy: string;
     }
 
 

@@ -732,7 +732,7 @@ declare class OrgChart extends OrgChartBase {
     static wrapText(text: string, field: Object): string;
 
     static filterUI: {
-        labelFilterBy: string
+        textFilterBy: string
     };
 
     /**

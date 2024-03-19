@@ -928,6 +928,11 @@ declare class OrgChart extends OrgChartBase {
     static EXPORT_PAGES_CUT_NODES: boolean;
 
     /**
+    * Reset movable nodes to its original position when expand or collapse
+    */
+    static RESET_MOVABLE_ONEXPANDCOLLAPSE: boolean;    
+
+    /**
     * @ignore
     */
 

@@ -2095,7 +2095,7 @@ declare namespace OrgChart {
          */
         partnerNodeSeparation?: number,
         /**
-         * The number of colums if the chart has multiple root nodes. Default value - *10*
+         * The maximum number of columns, if the chart has multiple root nodes. Default value - *10*
          * ```typescript     
          * var chart = new OrgChart('#tree', {
          *   columns: 1

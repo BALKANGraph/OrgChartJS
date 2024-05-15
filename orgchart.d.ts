@@ -296,7 +296,6 @@ declare class OrgChart extends OrgChartBase {
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}        
      */
     exportPDFProfile(options: OrgChart.exportOptions, callback?: () => void): void;
-    exportPDFPreview(options: OrgChart.exportOptions): void;
     /**
      * Exports the details form to PDF.
      * @param options export options

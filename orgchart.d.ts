@@ -932,7 +932,7 @@ declare class OrgChart extends OrgChartBase {
     static RESET_MOVABLE_ONEXPANDCOLLAPSE: boolean;    
 
     /**
-    * Gil;ter menu is ordered alphabetically
+    * Filter menu is ordered alphabetically
     */
     static FILTER_ALPHABETICALLY: boolean;   
 

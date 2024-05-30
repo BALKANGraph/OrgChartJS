@@ -44,7 +44,7 @@ declare class OrgChart extends OrgChartBase {
      * @param ids node ids that will be expanded
      * @param callback called after the animation completes
      */
-    expand(id: string | number, ids: Array<string | number>, callback?: () => void): void;
+    expand(id: string | number, ids: Array<string | number> | "all", callback?: () => void): void;
     /**
      * Collapses specified nodes.
      * @param id  the id of the node that will not move

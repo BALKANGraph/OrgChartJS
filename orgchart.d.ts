@@ -1462,6 +1462,13 @@ declare namespace OrgChart {
         template?: string,
         label?: string
     }
+    interface backdrop {
+        id?: string | number,
+        levels?: number,
+        color?: string,
+        opacity?: number,
+        except?: Array<string | number>
+    }
     interface dottedLine {
         from?: string | number,
         to?: string | number,
@@ -2002,6 +2009,19 @@ declare namespace OrgChart {
          */
         slinks?: Array<OrgChart.link>,
 
+        /**
+         * Adds backdrops to the specidied nodes.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   backdrops: [
+         *       { id: 5, levels: 2, color: '#039BE5', opacity: 0.2 }
+         *   ]
+         * });
+         * ```
+         */
+        backdrops?: Array<OrgChart.backdrop>,
+
+
          /**
          * Adds dotted line.
          * ```typescript     
@@ -2044,6 +2064,15 @@ declare namespace OrgChart {
          * ```
          */
         siblingSeparation?: number,
+        /**
+         * The padding between the node and the backdrop. Default value - *15*
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *   backdropSeparation: 15
+         * });
+         * ```
+         */        
+        backdropSeparation?: number,
         /**
          * The gap between subtrees. Default value - *40*
          * ```typescript     

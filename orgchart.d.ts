@@ -769,11 +769,11 @@ declare class OrgChart extends OrgChartBase {
 
     static events: {
         /**
-         * node-created and layout event listeners are obsolete use node-initialized or node-layout instead
+         * layout event listener is obsolete, use node-layout instead
          * @param type 
          * @param listener 
          */
-        on(type: "node-created" | "layout", listener: (args: any, args1: any, args2: any) => void): void
+        on(type: "layout", listener: (args: any, args1: any, args2: any) => void): void
     };
     static state: { clear(stateName: string): void };
 
@@ -805,6 +805,7 @@ declare class OrgChart extends OrgChartBase {
     * @ignore
     */
     static IT_IS_LONELY_HERE: string;
+    static IT_IS_LONELY_HERE_LINK: string;
     /**
     * @ignore
     */
@@ -814,6 +815,8 @@ declare class OrgChart extends OrgChartBase {
         */
         IT_IS_LONELY_HERE_LINK: string
     };
+
+
     /**
     * @ignore
     */

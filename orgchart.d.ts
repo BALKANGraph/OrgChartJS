@@ -899,6 +899,11 @@ declare class OrgChart extends OrgChartBase {
      * The init event listener will be called as soon as the OrgChart become visible.
      */
     static LAZY_LOADING: boolean;
+
+    /**
+     * Minimum in search input before triggering the  search.
+     */
+    static MINIMUM_SYMBOLS_IN_SEARCH_INPUT: number;
    
     /**
      * Hides the Edit Form when the chart is moved with pan
@@ -1201,7 +1206,7 @@ declare namespace OrgChart {
         /**
          * Search in field with abbreviation.
          */
-        searchFieldsAbbreviation: {[key: string]: string};
+        searchFieldsAbbreviation: {[key: string]: string};        
     }
 
     

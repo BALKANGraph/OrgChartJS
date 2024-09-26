@@ -2340,33 +2340,6 @@ declare namespace OrgChart {
          */        
         exportUrl?: string,
         /**
-         * Collapse specified level of the chart and its children if allChildren is true.
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   collapse: {level: 2, allChildren: true}
-         * });
-         * ```          
-         */         
-        collapse?: {
-            level: number,
-            allChildren?: boolean
-        },
-        /**
-         * Expand specified node ids and its children if allChildren is true. The expand option works only if collapse is set.
-         * 
-         * In the example above the second level of the chart will be collapsed but node with id 155 and its children will be expanded.
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   collapse: {level: 2, allChildren: true},
-         *   expand: {nodes: [155], allChildren: true}
-         * });
-         * ```          
-         */         
-        expand?: {
-            nodes?: Array<string | number>,
-            allChildren?: boolean
-        },
-        /**
          * The align option specifies the alignment of the nodes inside Org Chart JS.
          * - OrgChart.align.center - centered
          * - OrgChart.align.orientation - according to the orientation option
@@ -2733,14 +2706,42 @@ declare namespace OrgChart {
 
     interface options {
         /**
- * With the drag and drop features enabled you can move nodes easily and change the tree structure. Default value - *false*.
- * ```typescript     
- * var chart = new OrgChart('#tree', {
- *      enableDragDrop: true
- * });
- * ```
- */
+         * With the drag and drop features enabled you can move nodes easily and change the tree structure. Default value - *false*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      enableDragDrop: true
+         * });
+         * ```
+         */
         enableDragDrop?: boolean,
+                /**
+         * Collapse specified level of the chart and its children if allChildren is true.
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   collapse: {level: 2, allChildren: true}
+         * });
+         * ```          
+         */         
+        collapse?: {
+            level: number,
+            allChildren?: boolean
+        },
+                /**
+         * Expand specified node ids and its children if allChildren is true. The expand option works only if collapse is set.
+         * 
+         * In the example above the second level of the chart will be collapsed but node with id 155 and its children will be expanded.
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   collapse: {level: 2, allChildren: true},
+         *   expand: {nodes: [155], allChildren: true}
+         * });
+         * ```          
+         */         
+        expand?: {
+            nodes?: Array<string | number>,
+            allChildren?: boolean
+        },
     }
+
 }
 export default OrgChart

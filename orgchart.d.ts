@@ -752,8 +752,8 @@ declare class OrgChart extends OrgChartBase {
     }
 
 
-    static templates :{ [key: string]: OrgChart.template} ;
-
+    static templates: { [key: string]: OrgChart.template} ;
+    
 
     static scroll: {
         visible?: boolean,
@@ -778,6 +778,18 @@ declare class OrgChart extends OrgChartBase {
     static state: { clear(stateName: string): void };
 
     static animate(element: Object, attrStart?: Object, attrEnd?: Object, duration?: number, func?: OrgChart.anim, callback?: Function, tick?: boolean): void;
+
+    static miniMap: {
+        colors: Array<string>,
+        selectorBackgroundColor: string,
+        focusStroke: string,
+        opacity: number,
+        border: string,
+        width: number,
+        height: number,
+        padding: number,
+        position: Object
+    };
 
     static VERSION: string;
     /**

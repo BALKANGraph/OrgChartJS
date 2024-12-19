@@ -2251,7 +2251,7 @@ declare namespace OrgChart {
           * ```    
           * ```typescript       
           * var chart = new OrgChart('#tree', {
-          *   orderBy: {field: "orderId", desc: true},
+          *   orderBy: [{field: "orderId", desc: true}],
           *   nodes: [
           *       { id: 10, pid: 1, orderId: 2 },
           *       { id: 11, pid: 1, orderId: 1 }
@@ -2259,7 +2259,7 @@ declare namespace OrgChart {
           * });
           * ```      
           */
-        orderBy?: string | Array<OrgChart.orderBy>,
+        orderBy?: string | Array<string> | OrgChart.orderBy | Array<OrgChart.orderBy>,
         /**
           * Filter the OrgChart by the specified fields.
           * ```typescript       

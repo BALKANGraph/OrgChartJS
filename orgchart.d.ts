@@ -692,8 +692,24 @@ declare class OrgChart extends OrgChartBase {
     toolbarUI: OrgChart.toolbarUI;    
     config: OrgChart.options;
     roots: Array<OrgChart.node>;
+    
+    static fileUploadDialog(callback: (file: any) => void): void;
 
-    static fileUploadDialog(scallback: (file: any) => void): void;
+    static exportPDFFromCharts(optionList: Array<{
+        chartInstance: OrgChart,
+        margin?: Array<number>,
+        padding?: number,
+        landscape?: boolean,
+        type?: "preview" | "nodes",
+        scale?: "fit" | number,
+        format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
+        header?: string,
+        footer?: string,
+        expandChildren?: boolean,
+        min?: boolean,
+        nodeId? : number | string
+    }>, filename?: string, openInNewTab?: boolean, callback: (arrayBuffer: ArrayBuffer) => void): void;
+
     static isMobile(): boolean;
     /**
      * Checks if the used libraris is licnsed or not

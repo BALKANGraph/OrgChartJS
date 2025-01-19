@@ -708,7 +708,7 @@ declare class OrgChart extends OrgChartBase {
         expandChildren?: boolean,
         min?: boolean,
         nodeId? : number | string
-    }>, filename?: string, openInNewTab?: boolean, callback: (arrayBuffer: ArrayBuffer) => void): void;
+    }>, filename?: string, openInNewTab?: boolean, callback?: (arrayBuffer: ArrayBuffer) => void): void;
 
     static isMobile(): boolean;
     /**

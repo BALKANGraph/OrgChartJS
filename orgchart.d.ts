@@ -434,7 +434,7 @@ declare class OrgChart extends OrgChartBase {
      * ```typescript     
      * var chart = new OrgChart('#tree', {});
      * ...
-     * chart.replaceIds();
+     * chart.replaceIds[{2:21, 3:31});
      * ```
      * @param old_new_ids dictionary containing old and new ids
      * @param callback called when the replacment completes
@@ -444,6 +444,12 @@ declare class OrgChart extends OrgChartBase {
     }, callback?: () => void): void;
     /**
      * Adds curved link.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.addClink(4, 0, 'text')
+     * chart.draw();
+     * ```
      * @param from from node with id
      * @param to to node with id
      * @param label link label
@@ -452,12 +458,24 @@ declare class OrgChart extends OrgChartBase {
     addClink(from: string | number, to: string | number, label?: string, template?: string): OrgChart;
     /**
      * Removes curved link.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.removeClink(4, 0)
+     * chart.draw();
+     * ```
      * @param from from node with id
      * @param to to node with id
      */
     removeClink(from: string | number, to: string | number): OrgChart;
     /**
      * Adds second link.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.addSlink(4, 0, 'text')
+     * chart.draw();
+     * ```
      * @param from from node with id
      * @param to to node with id
      * @param label link label
@@ -466,12 +484,19 @@ declare class OrgChart extends OrgChartBase {
     addSlink(from: string | number, to: string | number, label?: string, template?: string): OrgChart;
     /**
      * Removes second link.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.removeSlink(4, 0)
+     * chart.draw();
+     * ```
      * @param from from node with id
      * @param to to node with id
      */    
     removeSlink(from: string | number, to: string | number): OrgChart;
     /**
      * Gets svg html element
+     * 
      */
     getSvg(): SVGAElement;
     /**

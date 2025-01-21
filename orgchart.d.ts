@@ -15,7 +15,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      *  ```typescript     
      * var chart = new OrgChart('#tree', {});
-     * chart.load(nodes);
+     * ...
      * chart.update({ id: 1, name: "Updated Name", title: "Updated Title" });
      * chart.draw();
      * ```

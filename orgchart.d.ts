@@ -13,39 +13,68 @@ declare class OrgChart extends OrgChartBase {
 
 
     /**
-     *  ```typescript     
+     * Updates the node data
+     * ```typescript     
      * var chart = new OrgChart('#tree', {});
      * ...
      * chart.update({ id: 1, name: "Updated Name", title: "Updated Title" });
      * chart.draw();
      * ```
-     * Updates the node data
      * @param newData node data
      */
     update(newData: object): OrgChart;
 
     /**
      * Removes specified node from nodes collection
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.remove(2);
+     * chart.draw();
+     * ```
+     
      * @param id identification number of the node
      */
     remove(id: string | number): OrgChart;
     /**
      * Adds new node to the nodes collection
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.add({ id: 2, pid: 1, name: "Ashley Barnett", title: "Sales Manager" })
+     * chart.draw();
+     * ```
+     
      * @param data node data
      */
     add(data: object): OrgChart;
     /**
      * Gets node data.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * let node = chart.get(2);
+     * ```
      * @param id identification number of the node
      */
     get(id: string | number): OrgChart.node;
     /**
      * If specified node has assistant/s or partner/s as children will return false.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * let canRemove = chart.canRemove(2);
+     * ```
      * @param id identification number of the node
      */
     canRemove(id: string | number): boolean;
     /**
      * Expands specified nodes.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.expand(1, [2]);
+     * ```
      * @param id  the id of the node that will not move during the animation 
      * @param ids node ids that will be expanded
      * @param callback called after the animation completes
@@ -53,6 +82,11 @@ declare class OrgChart extends OrgChartBase {
     expand(id: string | number, ids: Array<string | number> | "all", callback?: () => void): void;
     /**
      * Collapses specified nodes.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.collapse(1, [2]);
+     * ```
      * @param id  the id of the node that will not move
      * @param ids node ids that will be collapsed
      * @param callback called after the animation completes
@@ -60,6 +94,11 @@ declare class OrgChart extends OrgChartBase {
     collapse(id: string | number, ids: Array<string | number>, callback?: () => void): void;
     /**
      * Expand/Collapse lists of nodes.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.expandCollapse(1, [2], [3]);
+     * ```
      * @param id the id of the node that will not move
      * @param expandIds expand all nodes with ids
      * @param collapseIds collpase all nodes with ids
@@ -67,7 +106,12 @@ declare class OrgChart extends OrgChartBase {
      */
     expandCollapse(id: string | number, expandIds: Array<string | number>, collapseIds: Array<string | number>, callback?: () => void): void;
     /**
-     * Changes roots order.
+     * Changes roots order.     
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.changeRoots(1, [2]);
+     * ```
      * @param id id of a node that will not change is position, can be null
      * @param roots roots id array in the required order
      * @param callback called after the roots are changed and animation completes
@@ -75,6 +119,11 @@ declare class OrgChart extends OrgChartBase {
     changeRoots(id: string | number, roots: Array<string | number>, callback?: () => void): void;
     /**
      * Maximize the node. Without parameters maximize all nodes.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.maximize();
+     * ```
      * @param id the id of the node, if id is null, undefined ot empty string will maximize all nodes
      * @param horizontalCenter center horizontally 
      * @param verticalCenter center vertically 
@@ -82,6 +131,11 @@ declare class OrgChart extends OrgChartBase {
      */
     maximize(id?: string | number, horizontalCenter?: boolean, verticalCenter?: boolean, callback?: () => void): void;
     /**
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.minimize();
+     * ```
      * Minimize the node. Without parameters minimize all nodes.
      * @param id the id of the node, if id is null, undefined ot empty string will minimize all nodes
      * @param callback called when the animation completes
@@ -89,6 +143,15 @@ declare class OrgChart extends OrgChartBase {
     minimize(id?: string | number, callback?: () => void): void;
     /**
      * Load nodes data.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.load([
+     *  { id: 1, name: "Denny Curtis" },
+     *  { id: 2, pid: 1, name: "Ashley Barnett" },
+     *  { id: 3, pid: 1, name: "Caden Ellison" }
+     * ]);
+     * ```
      * @param data node data array
      * @param callback function called after the load
      */
@@ -96,6 +159,11 @@ declare class OrgChart extends OrgChartBase {
 
     /**
      * Updates the node data, redraws the chart and fires update event.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.updateNode({ id: 4, pid: 2, name: "Updated Name", title: "Updated Title" });
+     * ```
      * @param data node data
      * @param callback function called when the animation completes
      * @param fireEvent if it set to true the update event is called
@@ -104,16 +172,31 @@ declare class OrgChart extends OrgChartBase {
 
     /**
      * Loads nodes from xml.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * let xml = '<?xml version="1.0" encoding="utf-8" ?><nodes><node id="1" pids="2" name="Amber McKenzie" gender="female"/><node id="2" pids="1" name="Ava Field" gender="male"/><node id="3" pids="4,5" mid="1" fid="2" name="Peter Stevens" gender="male"/></nodes>';
+     * chart.loadXML(xml);
+     * ```
      * @param xml Xml with node structure
      * @param callback function called after the load
      */
     loadXML(xml: string, callback?: () => void): OrgChart;
     /**
      * Gets nodes as xml.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * let xml = chart.getXML();
+     * ```
      */
     getXML(): string;
     /**
      * Draws the chart.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.update({ id: 1, name: "Updated Name", title: "Updated Title" });
+     * chart.draw();
+     * ```
      * @param action Action for example OrgChart.action.centerNode, default is OrgChart.action.update
      * @param actionParams parameters for the action
      * @param callback called when the animation completes
@@ -121,23 +204,48 @@ declare class OrgChart extends OrgChartBase {
     draw(action?: OrgChart.action, actionParams?: any, callback?: () => void): void;
     /**
      * Gets the width of the container.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * let width = chart.width();
+     * ```
      */
     width(): number;
     /**
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * let height = chart.height();
+     * ```
      * Gets the height of the container.
      */
     height(): number;
     /**
      * Gets the view box attribute of the svg html element.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * let viewBox = chart.getViewBox();
+     * ```
      */
     getViewBox(): Array<number>;
     /**
      * Sets the view box attribute of the svg html element.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.setViewBox();
+     * ```
      * @param viewBox 
      */
     setViewBox(viewBox: Array<number>): void;
     /**
      * Gets the current scale of the chart.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * let scale = chart.getScale();
+     * ```
      * @param viewBox 
      */
     getScale(viewBox?: Array<number>): number;
@@ -145,11 +253,21 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Sets the current scale of the chart. 
      * Returns the actual scale limited by scaleMax and scaleMin
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.setScale(1.2);
+     * ```
      * @param newScale new scale value
      */
     setScale(newScale: number): number;
     /**
      * Animates specified node with ripple animation - highlight the node.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.ripple(2);
+     * ```
      * @param id the id of the node
      * @param clientX x value of the ripple center in the node
      * @param clientY y value of the ripple center in the node
@@ -157,6 +275,11 @@ declare class OrgChart extends OrgChartBase {
     ripple(id: string | number, clientX?: number, clientY?: number): void;
     /**
      * Centers specified node on the screen.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.center(2);
+     * ```
      * @param nodeId the id of the node
      * @param options parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS, childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS, rippleId: rippleId, vertical: false, horizontal: false
      * @param callback called when the animation completes
@@ -170,43 +293,78 @@ declare class OrgChart extends OrgChartBase {
     } | null, callback?: () => void): void;
     /**
      * Fits the content to the visible area.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.fit();
+     * ```
      * @param callback called when the animation completes
      */
     fit(callback?: () => void): void;
     /**
      * Toggles full screen mode.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.toggleFullScreen();
+     * ```
      */
     toggleFullScreen(): void;
     /**
      * Gets the node as {@link OrgChart.node} object.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * let node = chart.getNode(2);
+     * ```
      * @param nodeId 
      */
     getNode(nodeId: string | number): OrgChart.node;
-    /**
-     * Sets layout.
-     * @param layout layout type
-     * @param lcn lyout config name for the specified sub tree
-     */
 
     /**
      * Adds new node to the nodes collection, redraws the chart and fires remove event
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.addNode({ id: 1, name: "Denny Curtis", title: "CEO" });
+     * ```
      * @param data node data
      * @param callback called at the end of animation
      * @param fireEvent indicates if the add event will be called or not
      */
     addNode(data: object, callback?: () => void, fireEvent?: boolean): void;  
 
+    /**
+     * Sets layout.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.setLayout(OrgChart.tree);
+     * ```
+     * @param layout layout type
+     * @param lcn lyout config name for the specified sub tree
+     */
+
     setLayout(layout: OrgChart.layout | number, lcn?: string): void;
     /**
      * Sets orientation.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.setOrientation(2);
+     * ```
      * @param orientation  orientation type
      * @param lcn lyout config name for the specified sub tree
      * @param callback called at the end of animation
      */
     setOrientation(orientation: OrgChart.orientation, lcn?: string, callback?: () => void): void;
 
-
     /**
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.moveNodesToVisibleArea([2, 3]);
+     * ```
      * Moves specified nodes to the visible area.
      * @param ids  Array of node ids
      * @param callback called at the end of animation
@@ -215,6 +373,11 @@ declare class OrgChart extends OrgChartBase {
 
     /**
      * Search in the chart.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.search("Ava");
+     * ```
      * @param value search for value
      * @param searchInFields search in field names
      * @param retrieveFields retrive data for fields
@@ -229,25 +392,50 @@ declare class OrgChart extends OrgChartBase {
     }>;
     /**
      * Gets collpased node ids of the specifeid node
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * let ids = chart.getCollapsedIds(2);
+     * ```
      * @param node 
      */
     getCollapsedIds(node: OrgChart.node): Array<string | number>;
     /**
      * State to url.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * let url = chart.stateToUrl();
+     * ```
      * {@link https://balkan.app/OrgChartJS/Docs/State | See doc...}  
      */
     stateToUrl(): string;
     /**
      * Genereates unique identification number that can be used for new nodes
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * let id = chart.generateId();
+     * ```
      */
     generateId(): string;
     /**
      * Destroys the object.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.destroy();
+     * ```
      */
     destroy(): void;
     /**
      * Replaces the id, pid, stpid, ppid and the ids in clinks, slinks, dottedLines, groupDottedLines.
      * After the replacment updates the UI
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * ...
+     * chart.replaceIds();
+     * ```
      * @param old_new_ids dictionary containing old and new ids
      * @param callback called when the replacment completes
      */

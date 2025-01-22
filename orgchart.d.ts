@@ -6,6 +6,9 @@ declare class OrgChart extends OrgChartBase {
     visibleNodeIds: Array<number | string>;
 
     /**
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ```
      * @param element HTML element or string selector for example '#tree'
      * @param options configuration options
      */
@@ -15,7 +18,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Updates the node data
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.update({ id: 1, name: "Updated Name", title: "Updated Title" });
      * chart.draw();
@@ -27,7 +30,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Removes specified node from nodes collection
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.remove(2);
      * chart.draw();
@@ -39,7 +42,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Adds new node to the nodes collection
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.add({ id: 2, pid: 1, name: "Ashley Barnett", title: "Sales Manager" })
      * chart.draw();
@@ -51,7 +54,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Gets node data.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * let node = chart.get(2);
      * ```
@@ -61,7 +64,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * If specified node has assistant/s or partner/s as children will return false.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * let canRemove = chart.canRemove(2);
      * ```
@@ -71,7 +74,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Expands specified nodes.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.expand(1, [2]);
      * ```
@@ -83,7 +86,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Collapses specified nodes.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.collapse(1, [2]);
      * ```
@@ -95,7 +98,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Expand/Collapse lists of nodes.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.expandCollapse(1, [2], [3]);
      * ```
@@ -108,7 +111,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Changes roots order.     
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.changeRoots(1, [2]);
      * ```
@@ -120,7 +123,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Maximize the node. Without parameters maximize all nodes.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.maximize();
      * ```
@@ -132,7 +135,7 @@ declare class OrgChart extends OrgChartBase {
     maximize(id?: string | number, horizontalCenter?: boolean, verticalCenter?: boolean, callback?: () => void): void;
     /**
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.minimize();
      * ```
@@ -144,7 +147,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Load nodes data.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.load([
      *  { id: 1, name: "Denny Curtis" },
@@ -160,7 +163,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Updates the node data, redraws the chart and fires update event.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.updateNode({ id: 4, pid: 2, name: "Updated Name", title: "Updated Title" });
      * ```
@@ -173,7 +176,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Loads nodes from xml.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * let xml = '<?xml version="1.0" encoding="utf-8" ?><nodes><node id="1" pids="2" name="Amber McKenzie" gender="female"/><node id="2" pids="1" name="Ava Field" gender="male"/><node id="3" pids="4,5" mid="1" fid="2" name="Peter Stevens" gender="male"/></nodes>';
      * chart.loadXML(xml);
      * ```
@@ -184,7 +187,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Gets nodes as xml.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * let xml = chart.getXML();
      * ```
      */
@@ -192,7 +195,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Draws the chart.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.update({ id: 1, name: "Updated Name", title: "Updated Title" });
      * chart.draw();
@@ -205,7 +208,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Gets the width of the container.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * let width = chart.width();
      * ```
@@ -213,7 +216,7 @@ declare class OrgChart extends OrgChartBase {
     width(): number;
     /**
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * let height = chart.height();
      * ```
@@ -223,7 +226,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Gets the view box attribute of the svg html element.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * let viewBox = chart.getViewBox();
      * ```
@@ -232,7 +235,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Sets the view box attribute of the svg html element.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.setViewBox();
      * ```
@@ -242,7 +245,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Gets the current scale of the chart.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * let scale = chart.getScale();
      * ```
@@ -254,7 +257,7 @@ declare class OrgChart extends OrgChartBase {
      * Sets the current scale of the chart. 
      * Returns the actual scale limited by scaleMax and scaleMin
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.setScale(1.2);
      * ```
@@ -264,7 +267,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Animates specified node with ripple animation - highlight the node.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.ripple(2);
      * ```
@@ -276,7 +279,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Centers specified node on the screen.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.center(2);
      * ```
@@ -294,7 +297,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Fits the content to the visible area.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.fit();
      * ```
@@ -304,7 +307,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Toggles full screen mode.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.toggleFullScreen();
      * ```
@@ -313,7 +316,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Gets the node as {@link OrgChart.node} object.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * let node = chart.getNode(2);
      * ```
@@ -324,7 +327,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Adds new node to the nodes collection, redraws the chart and fires remove event
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.addNode({ id: 1, name: "Denny Curtis", title: "CEO" });
      * ```
@@ -337,7 +340,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Sets layout.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.setLayout(OrgChart.tree);
      * ```
@@ -349,7 +352,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Sets orientation.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.setOrientation(2);
      * ```
@@ -361,7 +364,7 @@ declare class OrgChart extends OrgChartBase {
 
     /**
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.moveNodesToVisibleArea([2, 3]);
      * ```
@@ -374,7 +377,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Search in the chart.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.search("Ava");
      * ```
@@ -393,7 +396,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Gets collpased node ids of the specifeid node
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * let ids = chart.getCollapsedIds(2);
      * ```
@@ -403,7 +406,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * State to url.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * let url = chart.stateToUrl();
      * ```
@@ -413,7 +416,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Genereates unique identification number that can be used for new nodes
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * let id = chart.generateId();
      * ```
@@ -422,7 +425,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Destroys the object.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.destroy();
      * ```
@@ -432,7 +435,7 @@ declare class OrgChart extends OrgChartBase {
      * Replaces the id, pid, stpid, ppid and the ids in clinks, slinks, dottedLines, groupDottedLines.
      * After the replacment updates the UI
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.replaceIds[{2:21, 3:31});
      * ```
@@ -445,7 +448,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Adds curved link.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.addClink(4, 0, 'text')
      * chart.draw();
@@ -459,7 +462,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Removes curved link.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.removeClink(4, 0)
      * chart.draw();
@@ -471,7 +474,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Adds second link.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.addSlink(4, 0, 'text')
      * chart.draw();
@@ -485,7 +488,7 @@ declare class OrgChart extends OrgChartBase {
     /**
      * Removes second link.
      * ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * ...
      * chart.removeSlink(4, 0)
      * chart.draw();
@@ -496,20 +499,39 @@ declare class OrgChart extends OrgChartBase {
     removeSlink(from: string | number, to: string | number): OrgChart;
     /**
      * Gets svg html element
-     * 
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * let svg = chart.getSvg();
+     * ```
      */
     getSvg(): SVGAElement;
     /**
      * Gets node html element
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * let nodeElement = chart.getNodeElement(2);
+     * ```
      * @param id node id
      */
     getNodeElement(id: string | number): HTMLElement;
     /**
      * Gets menu button html element
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * let menuButton = chart.getMenuButton(2);
+     * ```
      */
     getMenuButton(): HTMLElement;
     /**
      * Exports the details form to PDF.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.exportPDFProfile({nodeId: 2});
+     * ```
      * @param options export options
      * @param callback called when the export completes
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}        
@@ -517,6 +539,11 @@ declare class OrgChart extends OrgChartBase {
     exportPDFProfile(options: OrgChart.exportOptions, callback?: () => void): void;
     /**
      * Exports the details form to PDF.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.exportPNGProfile({nodeId: 2});
+     * ```
      * @param options export options
      * @param callback called when the export completes
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}        
@@ -524,24 +551,44 @@ declare class OrgChart extends OrgChartBase {
     exportPNGProfile(options: OrgChart.exportOptions, callback?: () => void): void;
     /**
      * Exports to CSV
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.exportCSV();
+     * ```
      * @param filename The name of the exported file
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
      */
-    exportCSV(filename: string | OrgChart.exportCSVXMLJSONOptions): void;
+    exportCSV(filename?: string | OrgChart.exportCSVXMLJSONOptions): void;
     /**
      * Exports to XML   
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.exportXML();
+     * ```
      * @param filename The name of the exported file
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
      */
     exportXML(filename: string | OrgChart.exportCSVXMLJSONOptions): void;
     /**
      * Exports to JSON   
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.exportJSON();
+     * ```
      * @param filename The name of the exported file
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
      */
-     exportJSON(filename: string | OrgChart.exportCSVXMLJSONOptions ): void;
+     exportJSON(filename?: string | OrgChart.exportCSVXMLJSONOptions ): void;
 
     /**
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.shareProfile(2);
+     * ```
      * Shares node data, uses build-in  device sharing functionallity.
      * @param id node id 
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
@@ -549,6 +596,11 @@ declare class OrgChart extends OrgChartBase {
     shareProfile(id: string | number): void;
     /**
      * Exports to PDF document
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.exportPDF();
+     * ```
      * @param options export options
      * @param callback called when the export completes
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
@@ -556,6 +608,11 @@ declare class OrgChart extends OrgChartBase {
     exportPDF(options?: OrgChart.exportOptions, callback?: () => void): void;    
     /**
      * Exports to PNG document
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.exportPNG();
+     * ```
      * @param options export options 
      * @param callback called when the export completes
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
@@ -563,6 +620,11 @@ declare class OrgChart extends OrgChartBase {
     exportPNG(options?: OrgChart.exportOptions, callback?: () => void): void;
     /**
      * Exports to SVG document
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.exportSVG();
+     * ```
      * @param options export options 
      * @param callback called when the export completes
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
@@ -570,23 +632,43 @@ declare class OrgChart extends OrgChartBase {
     exportSVG(options?: OrgChart.exportOptions, callback?: () => void): void;
     /**
      * Imports CSV file.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.importCSV();
+     * ```
      * {@link https://balkan.app/OrgChartJS/Docs/Importing | See doc...}       
      */
     importCSV(): void;
     /**
      * Imports XML file.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.importXML();
+     * ```
      * {@link https://balkan.app/OrgChartJS/Docs/Importing | See doc...}       
      */    
     importXML(): void;
 
     /**
      * Imports JSON file.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.importJSON();
+     * ```
      * {@link https://balkan.app/OrgChartJS/Docs/Importing | See doc...}       
      */    
     importJSON(): void;
 
     /**
      * Zoom out or zoom in the chart.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.zoom(true);
+     * ```
      * @param delta true for zoom in, false for zoom out or scale number, if scale is > 1 it will zoom in and scale < 1 zoom out.
      * @param center array [x, y], where x is x percantege from the width and y is y percentage from the height.
      * @param shouldAnimate should animate 
@@ -596,6 +678,11 @@ declare class OrgChart extends OrgChartBase {
     
     /**
      * Magnify(Zoom in) specific node in the chart.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.magnify(2, 1.25);
+     * ```
      * @param id id of the node
      * @param scale scale to magnify
      * @param front show on front or back 
@@ -605,49 +692,91 @@ declare class OrgChart extends OrgChartBase {
 
     /**
      * Starts the move 
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.moveStart({right: true});
+     * ```
      * @param movePosition move position
      * @param tick callback function in each step
      * @param func the name of the animation function, for example OrgChart.anim.inSin
      * @param duration duration before going to 100 percent speed
      */
     moveStart(movePosition: OrgChart.move, tick?: () => void, func?: OrgChart.anim, duration?: number): void;
+
+    /**
+     * Ends the move
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.moveEnd();
+     */
+    moveEnd(): void;
+
     /**
      * Undo data operations like adding/removing nodes. Set undoRedoStorageName option before calling this method.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.undo();
+     * ```
      * @param callback called when the animation completes
      */
     undo(callback?: () => void): void;
     /**
      * Redo data operations like adding/removing nodes. Set undoRedoStorageName option before calling this method.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.redo();
+     * ```
      * @param callback called when the animation completes
      */
     redo(callback?: () => void): void;
 
     /**
      * Clears all Redo stack steps.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.clearRedo();
+     * ```
      */
     clearRedo(): void;
     
     /**
      * Clears all Undo stack steps.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.clearUndo();
+     * ```
      */
     clearUndo(): void;
     /**
      * Returns the number of Undo stack steps
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * let undoSteps = chart.undoStepsCount();
+     * ```
      */
     undoStepsCount(): number;
     /**
      * Returns the number of Redo stack steps
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * let redoSteps = chart.redoStepsCount();
+     * ```
      */    
     redoStepsCount(): number;    
-    /**
-     * Ends the move
-     */
-    moveEnd(): void;
+
 
     /**
      * The onField() method of the OrgChart class sets up a function that will be called whenever the specified event is delivered to the target.
      *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * chart.onField((args) => {
      *      //return false; to cancel
      * });
@@ -685,8 +814,8 @@ declare class OrgChart extends OrgChartBase {
 
     /**
      * Occurs when the nodes in OrgChart has been created and loaded to the DOM.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
      * chart.onInit(() => {
      * });
      * chart.load(nodes);
@@ -696,12 +825,10 @@ declare class OrgChart extends OrgChartBase {
      */
     onInit(listener: (this: OrgChart) => void): OrgChart;
     
-
-
     /**
      * The onRedraw event occurs when the chart is redrawed.
      *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * chart.onRedraw(() => {
      * });
      * chart.load(nodes);
@@ -713,8 +840,8 @@ declare class OrgChart extends OrgChartBase {
 
     /**
      * The onExpandCollpaseButtonClick event occurs when the chart is redrawed.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
      * chart.onExpandCollpaseButtonClick(() => {
      *  //return false; to cancel the operation
      * });
@@ -737,10 +864,11 @@ declare class OrgChart extends OrgChartBase {
          */
         ids: Array<number | string>
     }) => void): OrgChart;
+
     /**
      * Occurs in the beginning of the export. Extra css styles can be added to the exported document using this event listener or show loading image.
      *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * chart.onExportStart(() => {
      *  args.styles += '<link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet">';
      *  //return false; to cancel the operation
@@ -795,10 +923,11 @@ declare class OrgChart extends OrgChartBase {
          */
         nodes: Array<object>
     }) => void): OrgChart;
+
     /**
      * Occurs in the beginning of the export. Use this event listener to hide loading image or upload exported document to your server using ArrayBuffer argument.
      *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * chart.onExportEnd(() => {
      *  //return false; to cancel the operation for example id you prefer the exported document to not download
      * });
@@ -855,10 +984,11 @@ declare class OrgChart extends OrgChartBase {
          */
         styles: string,        
     }) => void): OrgChart;
+
     /**
      * On node click event listener.
      *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * let chart = new OrgChart('#tree', {});
      * chart.onNodeClick(() => {
      *  //return false; to cancel the operation      
      * });
@@ -877,10 +1007,11 @@ declare class OrgChart extends OrgChartBase {
          */
         event: any
     }) => void): OrgChart;
+
     /**
      * On node double click event listener.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
      * chart.onNodeDoubleClick(() => {
      *  //return false; to cancel the operation 
      * });
@@ -896,9 +1027,14 @@ declare class OrgChart extends OrgChartBase {
         data: object
     }) => void): OrgChart;
 
+    /**
+     * ?
+     */
     element: HTMLElement;
 
+
     editUI: OrgChart.editUI;
+    
     searchUI: OrgChart.searchUI;
     nodeMenuUI: OrgChart.menuUI;
     filterUI: OrgChart.filterUI;

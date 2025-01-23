@@ -1081,12 +1081,72 @@ declare class OrgChart extends OrgChartBase {
      * @ignore
      */
     yScrollUI: OrgChart.yScrollUI;
+    
+    /**
+     * The chart undoRedoUI object.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * let undoRedoUI = chart.undoRedoUI;
+     * ```
+     */
     undoRedoUI: OrgChart.undoRedoUI;
+
+    /**
+     * The chart nodeCircleMenuUI object.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * let nodeCircleMenuUI = chart.nodeCircleMenuUI;
+     * ```
+     */
     nodeCircleMenuUI: OrgChart.circleMenuUI;
+
+    /**
+     * The chart nodeContextMenuUI object.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * let nodeContextMenuUI = chart.nodeContextMenuUI;
+     * ```
+     */
     nodeContextMenuUI: OrgChart.menuUI;
+
+    /**
+     * The chart menuUI object.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * let menuUI = chart.menuUI;
+     * ```
+     */
     menuUI: OrgChart.menuUI;
-    toolbarUI: OrgChart.toolbarUI;    
+
+    /**
+     * The chart toolbarUI object.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * let toolbarUI = chart.toolbarUI;
+     * ```
+     */
+    toolbarUI: OrgChart.toolbarUI;  
+    
+    /**
+     * The chart config object.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * let config = chart.config;
+     * ```
+     */
     config: OrgChart.options;
+
+    /**
+     * All root nodes in the chart
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *      let roots = chart.roots
+     * });
+     * chart.load(nodes)
+     * ```
+     */
+    
     roots: Array<OrgChart.node>;
     
     static fileUploadDialog(callback: (file: any) => void): void;

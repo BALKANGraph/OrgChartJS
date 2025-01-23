@@ -2804,6 +2804,47 @@ declare namespace OrgChart {
         undoRedoStorageName?: string,
         /**
          * Configure the buildin edit form.
+         * ```typescript       
+         * let chart = new OrgChart('#tree', {
+         *      editForm: {
+         *          readOnly: 'false', // the drefault value
+         *          titleBinding: "name", // a property name
+         *          photoBinding: "img", // the photo property name
+         *          focusBinding: "name",
+         *          addMore: "Add am element",
+         *          addMoreBtn: "Add",
+         *          addMoreFieldName: "Element name:",
+         *          saveAndCloseBtn: "Save",
+         *          cancelBtn: "Close",
+         *          generateElementsFromFields: false,
+         *          buttons:  {
+         *              edit: {
+         *                  icon: OrgChart.icon.edit(24,24,'#fff'),
+         *                  text: 'Edit',
+         *                  hideIfEditMode: true,
+         *                  hideIfDetailsMode: false
+         *              },
+         *              share: {
+         *                  icon: OrgChart.icon.share(24,24,'#fff'),
+         *                  text: 'Share'
+         *              },
+         *              pdf: {
+         *                  icon: OrgChart.icon.pdf(24,24,'#fff'),
+         *                  text: 'Save as PDF'
+         *              },
+         *              remove: {
+         *                  icon: OrgChart.icon.remove(24,24,'#fff'),
+         *                  text: 'Remove',
+         *                  hideIfDetailsMode: true
+         *              }
+         *          },
+         *          elements: [
+         *              { type: 'textbox', label: 'Full Name', binding: 'Name' },
+         *              { type: 'textbox', label: 'Phone number', binding: 'phone' }        
+         *          ]
+         *      }
+         * });
+         * ```    
          * {@link https://balkan.app/OrgChartJS/Docs/Edit | See doc...}   
          */                
         editForm?: {

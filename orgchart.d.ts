@@ -1029,36 +1029,46 @@ declare class OrgChart extends OrgChartBase {
 
     /**
      * The tree div element.
+     * ```typescript  
      * let chart = new OrgChart('#tree', {});
      * let element = chart.element;
+     * ```
      */
     element: HTMLElement;
 
     /**
      * The chart editUI object.
+     * ```typescript  
      * let chart = new OrgChart('#tree', {});
      * let editUI = chart.editUI;
+     * ```
      */
     editUI: OrgChart.editUI;
 
     /**
      * The chart searchUI object.
+     * ```typescript  
      * let chart = new OrgChart('#tree', {});
      * let searchUI = chart.searchUI;
+     * ```
      */
     searchUI: OrgChart.searchUI;
     
     /**
      * The chart nodeMenuUI object.
+     * ```typescript  
      * let chart = new OrgChart('#tree', {});
      * let nodeMenuUI = chart.nodeMenuUI;
+     * ```
      */
     nodeMenuUI: OrgChart.menuUI;
 
     /**
      * The chart filterUI object.
+     * ```typescript  
      * let chart = new OrgChart('#tree', {});
      * let filterUI = chart.filterUI;
+     * ```
      */
     filterUI: OrgChart.filterUI;
 

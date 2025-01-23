@@ -2195,6 +2195,13 @@ declare namespace OrgChart {
         showXScroll?: boolean ,
         /**
          * movable node, move the node anywhere on the canvas
+         * ```typescript     
+         * let chart = new OrgChart('#tree', {
+         *      movable: OrgChart.movable.node,
+         *      // movable: OrgChart.movable.tree,
+         *      // movable: OrgChart.movable.detachTree,
+         * });
+         * ```
          */
         movable?: OrgChart.movable,
         /**
@@ -2577,6 +2584,11 @@ declare namespace OrgChart {
         /**
          * Sets the maximum number of columns in grid layout, it has to be even nymber or 'dynamic' string
          * The default id 'dynamic', that means that the maximum colomn numbers are dinamicly calculated 
+         * ```typescript     
+         * let chart = new OrgChart('#tree', {
+         *   layoutGridColumns: 10,
+         * });
+         * ```     
          */
         layoutGridColumns?: string | number,
         /**
@@ -2800,8 +2812,14 @@ declare namespace OrgChart {
         },
         /**
          * Set the session storage name to use undo/redo functionallity.
+         * ```typescript       
+         * let chart = new OrgChart('#tree', {
+         *   undoRedoStorageName: 'myStorageName',
+         * });
+         * ``` 
          */
         undoRedoStorageName?: string,
+        
         /**
          * Configure the buildin edit form.
          * ```typescript       

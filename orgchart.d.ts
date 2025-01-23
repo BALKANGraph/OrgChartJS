@@ -1028,17 +1028,48 @@ declare class OrgChart extends OrgChartBase {
     }) => void): OrgChart;
 
     /**
-     * ?
+     * The tree div element.
+     * let chart = new OrgChart('#tree', {});
+     * let element = chart.element;
      */
     element: HTMLElement;
 
-
+    /**
+     * The chart editUI object.
+     * let chart = new OrgChart('#tree', {});
+     * let editUI = chart.editUI;
+     */
     editUI: OrgChart.editUI;
-    
+
+    /**
+     * The chart searchUI object.
+     * let chart = new OrgChart('#tree', {});
+     * let searchUI = chart.searchUI;
+     */
     searchUI: OrgChart.searchUI;
+    
+    /**
+     * The chart nodeMenuUI object.
+     * let chart = new OrgChart('#tree', {});
+     * let nodeMenuUI = chart.nodeMenuUI;
+     */
     nodeMenuUI: OrgChart.menuUI;
+
+    /**
+     * The chart filterUI object.
+     * let chart = new OrgChart('#tree', {});
+     * let filterUI = chart.filterUI;
+     */
     filterUI: OrgChart.filterUI;
+
+    /**
+     * @ignore
+     */
     xScrollUI: OrgChart.xScrollUI;
+    
+    /**
+     * @ignore
+     */
     yScrollUI: OrgChart.yScrollUI;
     undoRedoUI: OrgChart.undoRedoUI;
     nodeCircleMenuUI: OrgChart.circleMenuUI;
@@ -2819,7 +2850,7 @@ declare namespace OrgChart {
          * ``` 
          */
         undoRedoStorageName?: string,
-        
+
         /**
          * Configure the buildin edit form.
          * ```typescript       

@@ -1,24 +1,117 @@
 
 
 declare class OrgChart {
-    
+        /**
+         * SVG icons
+         * @param w - width 
+         * @param h - height
+         * @param c - color
+         * @param x - X position
+         * @param y  - Y position
+         * @returns string with the SVG definition
+         */
     static icon: {
+        /**
+         *  ```typescript  
+         * let pngIcon = OrgChart.icon.png(24, 24, "#7A7A7A");
+         * ```
+         */
         png: (w: string| number, h: string | number, c: string) => string,
-        pdf: (w: string | number| number, h: string | number, c: string) => string,
+        /**
+         *  ```typescript  
+         * let pdfIcon = OrgChart.icon.pdf(24, 24, "#7A7A7A");
+         * ```
+         */
+        pdf: (w: string | number, h: string | number, c: string) => string,
+        /**
+         *  ```typescript  
+         * let svgIcon = OrgChart.icon.svg(24, 24, "#7A7A7A");
+         * ```
+         */
         svg: (w: string| number, h: string| number, c: string | number) => string,
+        /**
+         * ```typescript
+         * let csvIcon = OrgChart.icon.csv(24, 24, "#7A7A7A");
+         * ```
+         */
         csv: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let excelIcon = OrgChart.icon.excel(24, 24, "#7A7A7A");
+         * ```
+         */
         excel: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let editIcon = OrgChart.icon.edit(24, 24, "#7A7A7A");
+         * ```
+         */
         edit: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let detailsIcon = OrgChart.icon.details(24, 24, "#7A7A7A");
+         * ```
+         */
         details: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let removeIcon = OrgChart.icon.remove(24, 24, "#7A7A7A");
+         * ```
+         */
         remove: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let addIcon = OrgChart.icon.add(24, 24, "#7A7A7A");
+         * ```
+         */
         add: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let xmlIcon = OrgChart.icon.xml(24, 24, "#7A7A7A");
+         * ```
+         */
         xml: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let linkIcon = OrgChart.icon.link(24, 24, "#7A7A7A");
+         * ```
+         */
         link: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let happyIcon = OrgChart.icon.happy(24, 24, "#7A7A7A");
+         * ```
+         */
         happy: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let sadIcon = OrgChart.icon.sad(24, 24, "#7A7A7A");
+         * ```
+         */
         sad: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let shareIcon = OrgChart.icon.share(24, 24, "#7A7A7A");
+         * ```
+         */
         share: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let userIcon = OrgChart.icon.user(24, 24, "#7A7A7A");
+         * ```
+         */
         user: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let undoIcon = OrgChart.icon.undo(24, 24, "#7A7A7A");
+         * ```
+         */
         undo: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let redoIcon = OrgChart.icon.redo(24, 24, "#7A7A7A");
+         * ```
+         */
         redo: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string
     }
 

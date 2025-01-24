@@ -1,6 +1,199 @@
 
 
-declare class OrgChart extends OrgChartBase {
+declare class OrgChart {
+    
+    static icon: {
+        png: (w: string| number, h: string | number, c: string) => string,
+        pdf: (w: string | number| number, h: string | number, c: string) => string,
+        svg: (w: string| number, h: string| number, c: string | number) => string,
+        csv: (w: string| number, h: string| number, c: string| number) => string,
+        excel: (w: string| number, h: string| number, c: string| number) => string,
+        edit: (w: string| number, h: string| number, c: string| number) => string,
+        details: (w: string| number, h: string| number, c: string| number) => string,
+        remove: (w: string| number, h: string| number, c: string| number) => string,
+        add: (w: string| number, h: string| number, c: string| number) => string,
+        xml: (w: string| number, h: string| number, c: string| number) => string,
+        link: (w: string| number, h: string| number, c: string| number) => string,
+        happy: (w: string| number, h: string| number, c: string| number) => string,
+        sad: (w: string| number, h: string| number, c: string| number) => string,
+        share: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        user: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        undo: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        redo: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string
+    }
+
+
+
+    /**
+     * Can update link
+     * @param id child id
+     * @param pid parent id
+     */
+    canUpdateLink(id: string | number, pid: string | number): boolean;
+    
+    /**
+     * Removes specified node from nodes collection, redraws the chart and fires remove event.
+     * @param id identification number of the node
+     * @param callback called at the end of animation
+     * @param fireEvent indicates if the remove event will be called or not
+     */
+    removeNode(id: string | number, callback?: () => void, fireEvent?: boolean): void;
+
+
+
+       
+
+    /**
+     * The on() method of the OrgChart class sets up a function that will be called whenever the specified event is delivered to the target.     * 
+     * @category Event Listeners
+     * @param type A case-sensitive string representing the event type to listen for.
+     * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
+     */
+    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "ready" | "ripple" | "node-initialized" | "nodes-initialized" | "node-layout", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
+
+    /**
+     * Removes an event listener previously registered. The event listener to be removed is identified using a combination of the event type and the event listener function itself. Returns true if success and false if fail.
+     * @param type A string which specifies the type of event for which to remove an event listener
+     * @param listener The event listener function of the event handler to remove from the event target
+     */
+    removeListener(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "ready" | "ripple" | "node-initialized" | "nodes-initialized" | "node-layout", listener?: () => void): boolean;
+
+
+    /**
+     * Occurs when the node data has been updated by updateNode method.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onUpdateNode((args) => {
+     *  //return false; to cancel the operation
+     * });
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onUpdateNode(listener: (args: {
+        /**
+         * old node data
+         */
+        oldData: object,
+        /**
+         * new node data
+         */
+        newData: object
+    }) => void): OrgChart;
+
+        /**
+     * Occurs when new nodes are added, removed, updated or imported, also when slink or clink is added or removed and after undo or redo operations.
+     * Use this event listener to synch your server side database with this.config.nodes, this.config.clinks, this.config.slinks etc.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onUpdated(() => {
+     *  //Update your server database with this.config.nodes, this.config.clinks, this.config.slinks etc.
+     * });
+     * ```
+     * @category Event Listeners
+     */
+    onUpdated(): OrgChart;
+
+    
+
+
+    /**
+     * Occurs when a node has been removed by removeNode method. 
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onRemoveNode((args) => {
+     *  //return false; to cancel the operation
+     * });
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onRemoveNode(listener: (args: {
+        /**
+         * node id
+         */
+        id: number | string,
+        /**
+         * parent ids and sub tree parents ids that needs to be updated on the server. For example if you remove a node that has children all chilren nodes will change their pid to the parent node id of the removed node.
+         */
+        newPidsAndStpidsForIds: {
+            newPidsForIds: { [key in any]: string | number },
+            newStpidsForIds: { [key in any]: string | number }
+        }
+    }) => void): OrgChart;
+
+    /**
+     * Occurs when a node has been added by addNode method.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onAddNode((args) => {     
+     *  //return false; to cancel the operation
+     * });
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onAddNode(listener: (args: {
+        /**
+         * new added data node
+         */
+        data: object
+    }) => void): OrgChart;
+    /**
+     * The onDrag event occurs when a node is dragged. *enableDragDrop* option has to be turned on.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onDrag(() => {
+     *  //return false; to cancel the operation
+     * });
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onDrag(listener: (args: {
+        /**
+         * dragged node id
+         */
+        dragId: string | number, 
+        event: MouseEvent,
+        /**
+         * array of node ids
+         * 
+         * this property is initialized only if movable option is set
+         */
+        nodeIds: Array<string | number>
+    }) => void): OrgChart;
+    /**
+     * The onDrop event occurs when a node is dropped. *enableDragDrop* option has to be turned on.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onDrop(() => {
+     *  //return false; to cancel the operation
+     * });
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onDrop(listener: (args: {
+        /**
+         * dragged node id
+         */
+        dragId: string | number,
+        /**
+         * dropped node id
+         */
+        dropId: string | number,
+        /**
+         * draging element
+         */
+        dragNodeElement: HTMLElement,
+        /**
+         * Mouse event
+         */
+        event: MouseEvent
+    }) => void): OrgChart;
+
+
     nodes: { [key in any]: OrgChart.node };
     isVisible: boolean;
     visibleNodeIds: Array<number | string>;
@@ -1447,7 +1640,92 @@ declare class OrgChart extends OrgChartBase {
     static grCloseTag: any;
 }
 
-declare namespace OrgChart {    
+declare namespace OrgChart {   
+    
+    interface node {
+        /**
+         * same pid you provided in the source node, the default value is null if not provided or if node with the same id does not exist
+         */
+        pid?: string | number,
+    }
+    /**
+     * deprecated, use OrgChart.align.center isntead
+     * @ignore
+     */
+    const CENTER: number;
+    /**
+     * deprecated, use OrgChart.align.orientation isntead
+     * @ignore
+     */
+    const ORIENTATION: number;
+
+
+    /**
+     * deprecated, use OrgChart.layout.normal isntead
+     * @ignore
+     */
+    const normal: number;
+
+    /**
+     * deprecated, use OrgChart.layout.mixed isntead
+     * @ignore
+     */
+    const mixed: number;
+    /**
+     * deprecated, use OrgChart.layout.tree isntead
+     * @ignore
+     */
+    const tree: number;
+    /**
+     * deprecated, use OrgChart.layout.treeLeftOffset isntead
+     * @ignore
+     */
+    const treeLeftOffset: any;
+    /**
+     * deprecated, use OrgChart.layout.treeRightOffset isntead
+     * @ignore
+     */
+    const treeRightOffset: any;
+
+    interface options {
+        /**
+         * With the drag and drop features enabled you can move nodes easily and change the tree structure. Default value - *false*.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      enableDragDrop: true
+         * });
+         * ```
+         */
+        enableDragDrop?: boolean,
+                /**
+         * Collapse specified level of the chart and its children if allChildren is true.
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   collapse: {level: 2, allChildren: true}
+         * });
+         * ```          
+         */         
+        collapse?: {
+            level: number,
+            allChildren?: boolean
+        },
+                /**
+         * Expand specified node ids and its children if allChildren is true. The expand option works only if collapse is set.
+         * 
+         * In the example above the second level of the chart will be collapsed but node with id 155 and its children will be expanded.
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   collapse: {level: 2, allChildren: true},
+         *   expand: {nodes: [155], allChildren: true}
+         * });
+         * ```          
+         */         
+        expand?: {
+            nodes?: Array<string | number>,
+            allChildren?: boolean
+        },
+    }
+    
     /**
      * deprecated
      * @ignore
@@ -3004,286 +3282,4 @@ declare namespace OrgChart {
     };
 
     var t: any;
-}
-
-declare class OrgChartBase {
-
-    static icon: {
-        png: (w: string| number, h: string | number, c: string) => string,
-        pdf: (w: string | number| number, h: string | number, c: string) => string,
-        svg: (w: string| number, h: string| number, c: string | number) => string,
-        csv: (w: string| number, h: string| number, c: string| number) => string,
-        excel: (w: string| number, h: string| number, c: string| number) => string,
-        edit: (w: string| number, h: string| number, c: string| number) => string,
-        details: (w: string| number, h: string| number, c: string| number) => string,
-        remove: (w: string| number, h: string| number, c: string| number) => string,
-        add: (w: string| number, h: string| number, c: string| number) => string,
-        xml: (w: string| number, h: string| number, c: string| number) => string,
-        link: (w: string| number, h: string| number, c: string| number) => string,
-        happy: (w: string| number, h: string| number, c: string| number) => string,
-        sad: (w: string| number, h: string| number, c: string| number) => string,
-        share: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
-        user: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
-        undo: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
-        redo: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string
-    }
-
-
-
-    /**
-     * Can update link
-     * @param id child id
-     * @param pid parent id
-     */
-    canUpdateLink(id: string | number, pid: string | number): boolean;
-    
-    /**
-     * Removes specified node from nodes collection, redraws the chart and fires remove event.
-     * @param id identification number of the node
-     * @param callback called at the end of animation
-     * @param fireEvent indicates if the remove event will be called or not
-     */
-    removeNode(id: string | number, callback?: () => void, fireEvent?: boolean): void;
-
-
-
-       
-
-    /**
-     * The on() method of the OrgChart class sets up a function that will be called whenever the specified event is delivered to the target.     * 
-     * @category Event Listeners
-     * @param type A case-sensitive string representing the event type to listen for.
-     * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
-     */
-    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "ready" | "ripple" | "node-initialized" | "nodes-initialized" | "node-layout", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
-
-    /**
-     * Removes an event listener previously registered. The event listener to be removed is identified using a combination of the event type and the event listener function itself. Returns true if success and false if fail.
-     * @param type A string which specifies the type of event for which to remove an event listener
-     * @param listener The event listener function of the event handler to remove from the event target
-     */
-    removeListener(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "ready" | "ripple" | "node-initialized" | "nodes-initialized" | "node-layout", listener?: () => void): boolean;
-
-
-    /**
-     * Occurs when the node data has been updated by updateNode method.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onUpdateNode((args) => {
-     *  //return false; to cancel the operation
-     * });
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onUpdateNode(listener: (args: {
-        /**
-         * old node data
-         */
-        oldData: object,
-        /**
-         * new node data
-         */
-        newData: object
-    }) => void): OrgChart;
-
-        /**
-     * Occurs when new nodes are added, removed, updated or imported, also when slink or clink is added or removed and after undo or redo operations.
-     * Use this event listener to synch your server side database with this.config.nodes, this.config.clinks, this.config.slinks etc.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onUpdated(() => {
-     *  //Update your server database with this.config.nodes, this.config.clinks, this.config.slinks etc.
-     * });
-     * ```
-     * @category Event Listeners
-     */
-    onUpdated(): OrgChart;
-
-    
-
-
-    /**
-     * Occurs when a node has been removed by removeNode method. 
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onRemoveNode((args) => {
-     *  //return false; to cancel the operation
-     * });
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onRemoveNode(listener: (args: {
-        /**
-         * node id
-         */
-        id: number | string,
-        /**
-         * parent ids and sub tree parents ids that needs to be updated on the server. For example if you remove a node that has children all chilren nodes will change their pid to the parent node id of the removed node.
-         */
-        newPidsAndStpidsForIds: {
-            newPidsForIds: { [key in any]: string | number },
-            newStpidsForIds: { [key in any]: string | number }
-        }
-    }) => void): OrgChart;
-
-    /**
-     * Occurs when a node has been added by addNode method.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onAddNode((args) => {     
-     *  //return false; to cancel the operation
-     * });
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onAddNode(listener: (args: {
-        /**
-         * new added data node
-         */
-        data: object
-    }) => void): OrgChart;
-    /**
-     * The onDrag event occurs when a node is dragged. *enableDragDrop* option has to be turned on.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onDrag(() => {
-     *  //return false; to cancel the operation
-     * });
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onDrag(listener: (args: {
-        /**
-         * dragged node id
-         */
-        dragId: string | number, 
-        event: MouseEvent,
-        /**
-         * array of node ids
-         * 
-         * this property is initialized only if movable option is set
-         */
-        nodeIds: Array<string | number>
-    }) => void): OrgChart;
-    /**
-     * The onDrop event occurs when a node is dropped. *enableDragDrop* option has to be turned on.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onDrop(() => {
-     *  //return false; to cancel the operation
-     * });
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onDrop(listener: (args: {
-        /**
-         * dragged node id
-         */
-        dragId: string | number,
-        /**
-         * dropped node id
-         */
-        dropId: string | number,
-        /**
-         * draging element
-         */
-        dragNodeElement: HTMLElement,
-        /**
-         * Mouse event
-         */
-        event: MouseEvent
-    }) => void): OrgChart;
-}
-
-declare namespace OrgChart {
-    interface node {
-        /**
-         * same pid you provided in the source node, the default value is null if not provided or if node with the same id does not exist
-         */
-        pid?: string | number,
-    }
-    /**
-     * deprecated, use OrgChart.align.center isntead
-     * @ignore
-     */
-    const CENTER: number;
-    /**
-     * deprecated, use OrgChart.align.orientation isntead
-     * @ignore
-     */
-    const ORIENTATION: number;
-
-
-    /**
-     * deprecated, use OrgChart.layout.normal isntead
-     * @ignore
-     */
-    const normal: number;
-
-    /**
-     * deprecated, use OrgChart.layout.mixed isntead
-     * @ignore
-     */
-    const mixed: number;
-    /**
-     * deprecated, use OrgChart.layout.tree isntead
-     * @ignore
-     */
-    const tree: number;
-    /**
-     * deprecated, use OrgChart.layout.treeLeftOffset isntead
-     * @ignore
-     */
-    const treeLeftOffset: any;
-    /**
-     * deprecated, use OrgChart.layout.treeRightOffset isntead
-     * @ignore
-     */
-    const treeRightOffset: any;
-
-    interface options {
-        /**
-         * With the drag and drop features enabled you can move nodes easily and change the tree structure. Default value - *false*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      enableDragDrop: true
-         * });
-         * ```
-         */
-        enableDragDrop?: boolean,
-                /**
-         * Collapse specified level of the chart and its children if allChildren is true.
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   collapse: {level: 2, allChildren: true}
-         * });
-         * ```          
-         */         
-        collapse?: {
-            level: number,
-            allChildren?: boolean
-        },
-                /**
-         * Expand specified node ids and its children if allChildren is true. The expand option works only if collapse is set.
-         * 
-         * In the example above the second level of the chart will be collapsed but node with id 155 and its children will be expanded.
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   collapse: {level: 2, allChildren: true},
-         *   expand: {nodes: [155], allChildren: true}
-         * });
-         * ```          
-         */         
-        expand?: {
-            nodes?: Array<string | number>,
-            allChildren?: boolean
-        },
-    }
-
-}
-export default OrgChart
+}export default OrgChart

@@ -1,6 +1,16 @@
 
 
 declare class OrgChart {
+    /**
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ```
+     * @param element HTML element or string selector for example '#tree'
+     * @param options configuration options
+     */
+    constructor(element: HTMLElement | string, options?: OrgChart.options);
+
+
         /**
          * SVG icons
          * @param w - width 
@@ -304,19 +314,29 @@ declare class OrgChart {
      */
     nodes: { [key in any]: OrgChart.node };
 
-
-    isVisible: boolean;
-    visibleNodeIds: Array<number | string>;
-
     /**
-     * ```typescript     
+     * Returns true if chart is visible
+     * ```typescript  
      * let chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *      console.log(chart.isVisible);
+     * });
+     * chart.load(nodes)
      * ```
-     * @param element HTML element or string selector for example '#tree'
-     * @param options configuration options
      */
-    constructor(element: HTMLElement | string, options?: OrgChart.options);
+    isVisible: boolean;
 
+   /**
+    * Returns the visible nodes ids
+    * ```typescript  
+    * let chart = new OrgChart('#tree', {});
+    * chart.onInit(() => {
+    *      console.log(chart.visibleNodeIds);
+    * });
+    * chart.load(nodes)
+    * ```
+    */
+    visibleNodeIds: Array<number | string>;
 
     /**
      * Updates the node data
@@ -1464,11 +1484,44 @@ declare class OrgChart {
      * chart.load(nodes)
      * ```
      */
-    
     roots: Array<OrgChart.node>;
+
+   /**
+    * Opens file upload dialog
+    * ```typescript  
+    * let chart = new OrgChart('#tree', {});
+    * 
+    * chart.editUI.on('element-btn-click', function (sender, args) {
+    *     OrgChart.fileUploadDialog(function (file) {
+    *         var formData = new FormData();
+    *         formData.append('file', file);
+    *         alert('upload the file');
+    *     })
+    * });
+    * 
+    * chart.load(nodes)
+    * ```
+    */
     
     static fileUploadDialog(callback: (file: any) => void): void;
 
+    /**
+    * Exports multiple charts or a chart by teams.
+    * ```typescript  
+    * let chart1 = new OrgChart('#tree', {});
+    * let chart2 = new OrgChart('#tree', {});
+    * let chart3 = new OrgChart('#tree', {});
+    * let chart4 = new OrgChart('#tree', {});
+    * document.getElementById('btn_export').addEventListener('click', function(){
+    *    OrgChart.exportPDFFromCharts([
+    *        {chartInstance: chart1, scale: 'fit', format: 'A4', header: 'OrgChart 1' },
+    *        {chartInstance: chart2, scale: 'fit', format: 'A4', header: 'OrgChart 2' },
+    *        {chartInstance: chart3, scale: 'fit', format: 'A4', header: 'OrgChart 3' },
+    *        {chartInstance: chart4, scale: 'fit', format: 'A4', header: 'OrgChart 4' },
+    *    ], "test.pdf");
+    * });
+    * ```
+    */
     static exportPDFFromCharts(optionList: Array<{
         chartInstance: OrgChart,
         margin?: Array<number>,
@@ -1484,40 +1537,148 @@ declare class OrgChart {
         nodeId? : number | string
     }>, filename?: string, openInNewTab?: boolean, callback?: (arrayBuffer: ArrayBuffer) => void): void;
 
+    /**
+     * Checks if the screen is mobile
+     * ```typescript  
+     * console.log(OrgChart.isMobile());
+     * ```
+     */
     static isMobile(): boolean;
     /**
-     * Checks if the used libraris is licnsed or not
+     * Checks if the used library is licnsed or not
+     * ```typescript  
+     * console.log(OrgChart.isTrial());
+     * ```
      */
     static isTrial(): boolean;
     /**
      * Count all children nodes of the specified id.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *      console.log(OrgChart.childrenCount(chart, chart.getNode(2)))
+     * });
+     * chart.load(nodes)
+     * ```
      * @param chart OrgChart instance
      * @param node 
      * @param count 
      */
     static childrenCount(chart: OrgChart, node: OrgChart.node): number;
+
+    /**
+     * Count the total (to the leafs) children nodes of the specified id.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *      console.log(OrgChart.childrenTotalCount(chart, chart.getNode(2)))
+     * });
+     * chart.load(nodes)
+     * ```
+     * @param chart OrgChart instance
+     * @param node 
+     * @param count 
+     */
     static childrenTotalCount(chart: OrgChart, node: OrgChart.node): number;
+
+    /**
+     * Count the collapsed children nodes of the specified id.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *      console.log(OrgChart.collapsedChildrenCount(chart, chart.getNode(2)))
+     * });
+     * chart.load(nodes)
+     * ```
+     * @param chart OrgChart instance
+     * @param node 
+     * @param count 
+     */
     static collapsedChildrenCount(chart: OrgChart, node: OrgChart.node): number;
+
+    /**
+     * Count the total (to the leafs) collapsed children nodes of the specified id.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *      console.log(OrgChart.collapsedChildrenCount(chart, chart.getNode(2)))
+     * });
+     * chart.load(nodes)
+     * ```
+     * @param chart OrgChart instance
+     * @param node 
+     * @param count 
+     */
     static collapsedChildrenTotalCount(chart: OrgChart, node: OrgChart.node): number;
+
+    /**
+     * Get the root node of the specified id.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *      let root = OrgChart.getRootOf(chart.getNode(4));
+     * });
+     * chart.load(nodes)
+     * ```
+     * @param node 
+     */
     static getRootOf(node: OrgChart.node): OrgChart.node;
 
     /**
      * is null, empty or undefined
+     * ```typescript  
+     * console.log(OrgChart.isNEU(any_prmeter))
+     * ```
      * @param val 
      */
     static isNEU(val: any): boolean;
-    static gradientCircleForDefs(id: string | number, colors: Array<string> | string, r: number, strokeWidth: number): string;
-    static convertCsvToNodes(text: string) : Array<Object>;
+
     /**
-    * SVG Path rounding function. Takes an input path string or commands and outputs a path
-    * string where all line-line corners have been rounded. 
-    * @param commands The SVG input path or commands array
-    * @param radius 
-    * @param useFractionalRadius The amount to round the corners, either a value in the SVG coordinate space, or, if useFractionalRadius is true, a value from 0 to 1.
-    * @returns A new SVG path string with the rounding
-    */
+     * Defines gradient circle form array of colors
+     * ```typescript  
+     * OrgChart.templates.myTemplate.defs = OrgChart.gradientCircleForDefs('circle', ['#FF0000', '#FFD800'], 60, 10);
+     * ```
+     * @param id - id of the element
+     * @param colors - array of colors
+     * @param r - radius
+     * @param strokeWidth - stroke width
+     */
+    static gradientCircleForDefs(id: string | number, colors: Array<string> | string, r: number, strokeWidth: number): string;
+    
+    /**
+     * Convert CSV to nodes
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * fetch('https://balkan.app/content/data.csv')
+     *   .then(response => response.text())
+     *   .then(text => {
+     *       var nodes = OrgChart.convertCsvToNodes(text);
+     *       chart.load(nodes);
+     *   });
+     * ```
+     * @param text 
+     */
+    static convertCsvToNodes(text: string) : Array<Object>;
+
+    /**
+     * @ignore
+     */
     static roundPathCorners(commands: string | Array<Array<any>>, radius: number, useFractionalRadius: boolean) : string;
+    
+    /**
+     * @ignore
+     */
     static convertNodesToCsv(nodes: Array<Object>) : string;
+
+     /**
+     * Replace a text in a field
+     * let chart = new OrgChart('#tree', {});
+     * chart.onField(function (args) {
+     *   var val = OrgChart.wrapText(args.value, OrgChart.templates.ana.field_1)
+     *   args.value = val;
+     * });
+     * chart.load(nodes);
+     */
     static wrapText(text: string, field: Object): string;
 
     static filterUI: {

@@ -118,7 +118,10 @@ declare class OrgChart {
 
 
     /**
-     * Can update link
+     * Can update link (Does the node is dropping under itself)
+     * ```typescript
+     * let canDropTheNode = chart.canUpdateLink(draggedNodeId, droppedNodeId));
+     * ```
      * @param id child id
      * @param pid parent id
      */
@@ -126,6 +129,10 @@ declare class OrgChart {
     
     /**
      * Removes specified node from nodes collection, redraws the chart and fires remove event.
+     * ```typescript
+     * var chart = new OrgChart('#tree', {});
+     * chart.removeNode(2);
+     * ```
      * @param id identification number of the node
      * @param callback called at the end of animation
      * @param fireEvent indicates if the remove event will be called or not

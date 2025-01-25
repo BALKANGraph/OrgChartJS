@@ -127,24 +127,16 @@ declare class OrgChart {
      */
     canUpdateLink(id: string | number, pid: string | number): boolean;
     
-    /**
-     * Removes specified node from nodes collection, redraws the chart and fires remove event.
-     * ```typescript
-     * var chart = new OrgChart('#tree', {});
-     * chart.removeNode(2);
-     * ```
-     * @param id identification number of the node
-     * @param callback called at the end of animation
-     * @param fireEvent indicates if the remove event will be called or not
-     */
-    removeNode(id: string | number, callback?: () => void, fireEvent?: boolean): void;
-
-
-
-       
 
     /**
      * The on() method of the OrgChart class sets up a function that will be called whenever the specified event is delivered to the target.     * 
+     * ```typescript
+     * let chart = new OrgChart('#tree', {});
+     * chart.on('init', function () {
+     *      // console.log("initiated")
+     * })
+     * chart.load(nodes);
+     * ```
      * @category Event Listeners
      * @param type A case-sensitive string representing the event type to listen for.
      * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
@@ -153,6 +145,15 @@ declare class OrgChart {
 
     /**
      * Removes an event listener previously registered. The event listener to be removed is identified using a combination of the event type and the event listener function itself. Returns true if success and false if fail.
+     * let chart = new OrgChart('#tree', {});
+     * let listener = function(sender, args){
+     *      console.log(sender.removeListener('update', listener));
+     * };
+     * chart.on('update', listener);
+     * chart.load(nodes)
+    };
+
+    family.on('update', listener);
      * @param type A string which specifies the type of event for which to remove an event listener
      * @param listener The event listener function of the event handler to remove from the event target
      */
@@ -195,8 +196,6 @@ declare class OrgChart {
     onUpdated(): OrgChart;
 
     
-
-
     /**
      * Occurs when a node has been removed by removeNode method. 
      *  ```typescript     
@@ -293,8 +292,19 @@ declare class OrgChart {
         event: MouseEvent
     }) => void): OrgChart;
 
-
+    /**
+     * All chart nodes
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *      let nodes = chart.nodes;
+     * });
+     * chart.load(nodes)
+     * ```
+     */
     nodes: { [key in any]: OrgChart.node };
+
+
     isVisible: boolean;
     visibleNodeIds: Array<number | string>;
 
@@ -344,6 +354,33 @@ declare class OrgChart {
      * @param data node data
      */
     add(data: object): OrgChart;
+
+    /**
+     * Adds new node to the nodes collection, redraws the chart and fires remove event
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.addNode({ id: 1, name: "Denny Curtis", title: "CEO" });
+     * ```
+     * @param data node data
+     * @param callback called at the end of animation
+     * @param fireEvent indicates if the add event will be called or not
+     */
+    addNode(data: object, callback?: () => void, fireEvent?: boolean): void;  
+
+    /**
+     * Removes specified node from nodes collection, redraws the chart and fires remove event.
+     * ```typescript
+     * var chart = new OrgChart('#tree', {});
+     * chart.removeNode(2);
+     * ```
+     * @param id identification number of the node
+     * @param callback called at the end of animation
+     * @param fireEvent indicates if the remove event will be called or not
+     */
+    removeNode(id: string | number, callback?: () => void, fireEvent?: boolean): void;
+
+    
     /**
      * Gets node data.
      * ```typescript     
@@ -617,18 +654,6 @@ declare class OrgChart {
      */
     getNode(nodeId: string | number): OrgChart.node;
 
-    /**
-     * Adds new node to the nodes collection, redraws the chart and fires remove event
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * ...
-     * chart.addNode({ id: 1, name: "Denny Curtis", title: "CEO" });
-     * ```
-     * @param data node data
-     * @param callback called at the end of animation
-     * @param fireEvent indicates if the add event will be called or not
-     */
-    addNode(data: object, callback?: () => void, fireEvent?: boolean): void;  
 
     /**
      * Sets layout.

@@ -1902,11 +1902,17 @@ declare class OrgChart {
 
     /**
      * Align children of assistant vertically 
+     * ```typescript
+     * OrgChart.VERTICAL_CHILDREN_ASSISTANT = true;
+     * ```
      */
     static VERTICAL_CHILDREN_ASSISTANT: boolean;
 
     /**
     * Cut nodes when export with pages, dafault is false
+     * ```typescript
+     * OrgChart.EXPORT_PAGES_CUT_NODES = true;
+     * ```
     */
     static EXPORT_PAGES_CUT_NODES: boolean;
 
@@ -1916,7 +1922,10 @@ declare class OrgChart {
     static RESET_MOVABLE_ONEXPANDCOLLAPSE: boolean;    
 
     /**
-    * Filter menu is ordered alphabetically
+    * Filter menu is ordered alphabetically by default
+     * ```typescript
+     * OrgChart.EXPORT_PAGES_CUT_NODES = false;
+     * ```
     */
     static FILTER_ALPHABETICALLY: boolean;   
 

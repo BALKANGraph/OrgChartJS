@@ -1924,7 +1924,7 @@ declare class OrgChart {
     /**
     * Filter menu is ordered alphabetically by default
      * ```typescript
-     * OrgChart.EXPORT_PAGES_CUT_NODES = false;
+     * OrgChart.FILTER_ALPHABETICALLY = false;
      * ```
     */
     static FILTER_ALPHABETICALLY: boolean;   

@@ -1871,9 +1871,10 @@ declare class OrgChart {
     */
     static SCALE_FACTOR: number;
     /**
+     * default auto
     * @ignore
     */
-    static LAZY_LOADING_FACTOR: number;
+    static LAZY_LOADING_FACTOR: number | string;
     /**
      * Can be used to instruct the browser to defer loading of OrgChart that are off-screen until the user scrolls near them.
      * The init event listener will be called as soon as the OrgChart become visible.

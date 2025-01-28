@@ -1897,6 +1897,9 @@ declare class OrgChart {
     static EDITFORM_CLOSE_BTN: string;
     /**
      * Escape HTML to prevent Cross-site scripting (also known as XSS) attacks 
+     * ```typescript
+     * OrgChart.ESCAPE_HTML = true; // the default value is false
+     * ```
      */
     static ESCAPE_HTML: boolean;
 
@@ -1918,6 +1921,10 @@ declare class OrgChart {
 
     /**
     * Reset movable nodes to its original position when expand or collapse
+    * Works with *movable nodes* functionality
+     * ```typescript
+     * OrgChart.RESET_MOVABLE_ONEXPANDCOLLAPSE = true;
+     * ```
     */
     static RESET_MOVABLE_ONEXPANDCOLLAPSE: boolean;    
 

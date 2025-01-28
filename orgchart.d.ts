@@ -1770,6 +1770,12 @@ declare class OrgChart {
     * @ignore
     */
     static IT_IS_LONELY_HERE: string;
+    /**
+     * The text that we have if the chart is empty.
+     * ```TypeScript
+     * OrgChart.IT_IS_LONELY_HERE_LINK = "Click here to add your first node"
+     * ```
+     */
     static IT_IS_LONELY_HERE_LINK: string;
     /**
     * @ignore
@@ -1792,15 +1798,24 @@ declare class OrgChart {
     static STRING_TAGS: boolean;
     /**
      * Search placeholder
+     * ```TypeScript
+     * OrgChart.SEARCH_PLACEHOLDER = "Chercher"; // the default value is "Search"
+     * ```
      */
     static SEARCH_PLACEHOLDER: string;
     /**
      * Search help symbol. 
+     * ```TypeScript
+     * OrgChart.SEARCH_HELP_SYMBOL = "help";
+     * ```
      */
     static SEARCH_HELP_SYMBOL: string;
 
     /**
      * Close search result list by click outside list and clean search input 
+     * ```TypeScript
+     * OrgChart.SEARCH_CLOSE_RESULT_ON_ESCAPE_OR_CLICKOUTSIDE = true; // default value is false
+     * ```
      */
     static SEARCH_CLOSE_RESULT_ON_ESCAPE_OR_CLICKOUTSIDE: boolean;
     /**
@@ -1872,6 +1887,9 @@ declare class OrgChart {
    
     /**
      * Hides the Edit Form when the chart is moved with pan
+     * ```typescript
+     * OrgChart.HIDE_EDIT_FORM_ON_PAN = false; // the default value is true
+     * ```
      */
     static HIDE_EDIT_FORM_ON_PAN: boolean;
 

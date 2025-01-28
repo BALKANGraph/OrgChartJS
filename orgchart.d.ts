@@ -1672,12 +1672,14 @@ declare class OrgChart {
 
      /**
      * Replace a text in a field
+     * ```typescript
      * let chart = new OrgChart('#tree', {});
      * chart.onField(function (args) {
      *   var val = OrgChart.wrapText(args.value, OrgChart.templates.ana.field_1)
      *   args.value = val;
      * });
      * chart.load(nodes);
+     * ```
      */
     static wrapText(text: string, field: Object): string;
 
@@ -1872,15 +1874,25 @@ declare class OrgChart {
      * Hides the Edit Form when the chart is moved with pan
      */
     static HIDE_EDIT_FORM_ON_PAN: boolean;
+
+    /**
+    * @ignore
+    */
     static ARRAY_FIELDS: Array<string>;
 
     /**
      * Csv import and export delimiter/separator
+     * ```typescript
+     * OrgChart.CSV_DELIMITER = ',';
+     * ```
      */
     static CSV_DELIMITER: string;
 
     /**
-     * 
+     * Edit Form close button
+     * ```typescript
+     * OrgChart.EDITFORM_CLOSE_BTN = '<div data-edit-from-close style="text-align:right; font-size: 34px; padding: 7px 7px 0 0; cursor: pointer;">X</div>';
+     * ```
      */
     static EDITFORM_CLOSE_BTN: string;
     /**
@@ -1890,11 +1902,17 @@ declare class OrgChart {
 
     /**
      * Align children of assistant vertically 
+     * ```typescript
+     * OrgChart.VERTICAL_CHILDREN_ASSISTANT = true;
+     * ```
      */
     static VERTICAL_CHILDREN_ASSISTANT: boolean;
 
     /**
     * Cut nodes when export with pages, dafault is false
+     * ```typescript
+     * OrgChart.EXPORT_PAGES_CUT_NODES = true;
+     * ```
     */
     static EXPORT_PAGES_CUT_NODES: boolean;
 
@@ -1904,7 +1922,10 @@ declare class OrgChart {
     static RESET_MOVABLE_ONEXPANDCOLLAPSE: boolean;    
 
     /**
-    * Filter menu is ordered alphabetically
+    * Filter menu is ordered alphabetically by default
+     * ```typescript
+     * OrgChart.FILTER_ALPHABETICALLY = false;
+     * ```
     */
     static FILTER_ALPHABETICALLY: boolean;   
 

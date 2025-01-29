@@ -1909,11 +1909,18 @@ declare class OrgChart {
     */
     static MOVE_STEP: number;
     /**
-    * @ignore
+    * Set the clink curve value
+    * set to 0 for a straight clicnk
+    * ```typescript
+    * OrgChart.CLINK_CURVE = 1.5;
+    * ```
     */
     static CLINK_CURVE: number;
     /**
-    * @ignore
+    * Set the limit of the search result items
+    * ```typescript
+    * OrgChart.SEARCH_RESULT_LIMIT = 5;
+    * ```
     */
     static SEARCH_RESULT_LIMIT: number;
     /**
@@ -1925,8 +1932,12 @@ declare class OrgChart {
     */
     static SCALE_FACTOR: number;
     /**
-     * default auto
-    * @ignore
+     * Determines when the invisible nodes will become visible.
+     * The number tells on how many free pixel to show nodes
+     * The defaul value is *auto*
+     * ```typescript
+     * OrgChart.LAZY_LOADING_FACTOR = 10;
+     * ```
     */
     static LAZY_LOADING_FACTOR: number | string;
     /**
@@ -2755,14 +2766,15 @@ declare namespace OrgChart {
          */
         mode?: "dark" | "light",
         /**
-         * Lazy loading is technique that defers loading of non-critical nodes at page load time. Instead, these non-critical nodes are loaded at the moment of need. Default value - *auto*.
+         * Lazy loading is technique that defers loading of non-critical nodes at page load time. Instead, these non-critical nodes are loaded at the moment of need. Default value - *true*.
+         * The default value is *auto*
          * ```typescript     
          * var chart = new OrgChart('#tree', {
          *      lazyLoading: false
          * });
          * ```
          */
-        lazyLoading?: boolean,
+        lazyLoading?: boolean | string,
 
  
 

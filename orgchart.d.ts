@@ -1684,7 +1684,19 @@ declare class OrgChart {
     static wrapText(text: string, field: Object): string;
 
     static filterUI: {
+        /**
+         * Change the text "Filter by"
+         * ```typescript
+         * OrgChart.filterUI.textFilterBy = 'Filtre par';
+         * ```
+         */
         textFilterBy: string,
+        /**
+         * Chart the text "all"
+         * ```typescript
+         * OrgChart.filterUI.all = '[Toute]'
+         * ```
+         */
         all: string,
     };
 
@@ -1692,22 +1704,64 @@ declare class OrgChart {
      * Shows/hides lloading image. Usefull when export large data to pdf. You can override and show your own loading image.
      */
     static loading: {
+        /**
+         * ```typescript
+         * let chart = new OrgChart('#tree', {});
+         * chart.on('init', function (sender) {
+         *   OrgChart.loading.show(sender);
+         *});
+         * ```
+         * @param chart 
+         * @returns void
+         */
         show: (chart: OrgChart) => void,
+        /**
+         * ```typescript
+         * let chart = new OrgChart('#tree', {});
+         * fetch('https://balkan.app/content/100k.json')
+         *   .then((response) => response.json())
+         *   .then((data) => chart.load(data, function () {
+         *       OrgChart.loading.hide(chart);
+         *   }));
+         * ```
+         * @param chart 
+         * @returns void
+         */
         hide: (chart: OrgChart) => void
     }
-
+    /**
+     * ```typescript
+     * OrgChart.clinkTemplates.myTemplate = Object.assign({}, OrgChart.clinkTemplates.orange);
+     * ```
+     */
     static clinkTemplates: {
         [key: string]: OrgChart.linkTemplate
     }
-
+    /**
+     * ```typescript
+     * OrgChart.slinkTemplates.myTemplate = Object.assign({}, OrgChart.slinkTemplates.orange);
+     * ```
+     */
     static slinkTemplates: {
         [key: string]: OrgChart.linkTemplate
     }
 
-
+    /**
+     * ```typescript
+     * OrgChart.templates.mainTemplate = Object.assign({}, OrgChart.templates.ana);
+     * ```
+     */
     static templates: { [key: string]: OrgChart.template} ;
     
 
+    /**
+     * ```typescript
+     * let chart = new OrgChart(document.getElementById("tree"), {
+     *     ...
+     *    showXScroll: OrgChart.scroll.visible,
+     * });
+     * ```
+     */
     static scroll: {
         visible?: boolean,
         smooth?: number,

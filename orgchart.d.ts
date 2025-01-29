@@ -1932,11 +1932,18 @@ declare class OrgChart {
     /**
      * Can be used to instruct the browser to defer loading of OrgChart that are off-screen until the user scrolls near them.
      * The init event listener will be called as soon as the OrgChart become visible.
+     * Default value: true
+     * ```typescript
+     * OrgChart.LAZY_LOADING = false;
+     * ```
      */
     static LAZY_LOADING: boolean;
 
     /**
-     * Minimum in search input before triggering the  search.
+     * Minimum in search input before triggering the search.
+     * ```typescript
+     * OrgChart.MINIMUM_SYMBOLS_IN_SEARCH_INPUT = 3;
+     * ```
      */
     static MINIMUM_SYMBOLS_IN_SEARCH_INPUT: number;
    

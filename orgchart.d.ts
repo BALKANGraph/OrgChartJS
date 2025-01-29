@@ -1882,26 +1882,47 @@ declare class OrgChart {
     static FIXED_POSITION_ON_CLICK: boolean;
     /**
     * Render links before nodes, default is false
+    * ```typescript
+    * OrgChart.RENDER_LINKS_BEFORE_NODES = true;
+    * ```
     */
     static RENDER_LINKS_BEFORE_NODES: boolean;
     /**
     * Render clinks before nodes, default is false
+    * ```typescript
+    * OrgChart.RENDER_CLINKS_BEFORE_NODES = true;
+    * ```
     */
     static RENDER_CLINKS_BEFORE_NODES: boolean;
     /**
-    * @ignore
+    * If false arrange vertically the nodes wothout children
+    * Default value: true
+    * ```typescript
+    * OrgChart.MIXED_LAYOUT_ALL_NODES = false;
+    * ```
     */
     static MIXED_LAYOUT_ALL_NODES: boolean;
     /**
-    * @ignore
+    * Set mixed layout if there are collapsed children
+    * Defaul value: false
+    * ```typescript
+    * OrgChart.MIXED_LAYOUT_FOR_NODES_WITH_COLLAPSED_CHILDREN = true;
+    * ```
     */
     static MIXED_LAYOUT_FOR_NODES_WITH_COLLAPSED_CHILDREN: boolean;
     /**
     * Use mixed layout for example tree or treeLeftOffset if number of children is more then specified value
+    * Default value: 1
+    * ```typescript
+    * OrgChart.MIXED_LAYOUT_IF_NUMBER_OF_CHILDREN_IS_MORE_THEN = 0;
+    * ```
     */
-    static MIXED_LAYOUT_IF_NUMBER_OF_CHILDREN_IS_MORE_THEN: boolean;
+    static MIXED_LAYOUT_IF_NUMBER_OF_CHILDREN_IS_MORE_THEN: number;
     /**
-    * @ignore
+    * Set the radius of the roundet links
+    * ```typescript
+    * OrgChart.LINK_ROUNDED_CORNERS = 20;
+    * ```
     */
     static LINK_ROUNDED_CORNERS: number;
     /**

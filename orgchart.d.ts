@@ -2612,6 +2612,10 @@ declare namespace OrgChart {
          * Export all parents of nodeId if defined
          */
         includeDirectParents?: boolean,
+        /**
+         * Export all direct children and collpase other children, highter priority then expandChildren
+         */
+        includeDirectChildren?: boolean,
         min?: boolean,
         nodeId? : number | string
     }

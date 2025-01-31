@@ -2609,13 +2609,13 @@ declare namespace OrgChart {
         openInNewTab?: boolean,
         expandChildren?: boolean,
         /**
-         * Export all parents of nodeId if defined
+         * Export parents of nodeId 
          */
-        includeDirectParents?: boolean,
-        /**
-         * Export all direct children and collpase other children, highter priority then expandChildren
+        parentLevels?: boolean,
+        /** 
+         * Export children of nodeId 
          */
-        includeDirectChildren?: boolean,
+        childLevels?: boolean,
         min?: boolean,
         nodeId? : number | string
     }

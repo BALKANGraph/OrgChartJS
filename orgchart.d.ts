@@ -2094,20 +2094,49 @@ declare class OrgChart {
     static FILTER_ALPHABETICALLY: boolean;   
 
     /**
-    * @ignore
+    * Generates random id for a node
+    * ```typescript
+    * let id = OrgChart.randomId();
+    * ```
     */
-
     static randomId(): any;
+
+    /**
+     * @ignore
+     */
     static searchUI: any;
+    /**
+     * @ignore
+     */
     static editUI: any;
+    /**
+     * @ignore
+     */
     static pdfPrevUI: OrgChart.pdfPrevUI;
     // static menuUI: any;
+    /**
+     * @ignore
+     */
     static attr: any;
+    /**
+     * @ignore
+     */
     static toolbarUI: any;
+    /**
+     * @ignore
+     */
     static elements: any;
-
+    /**
+     * @ignore
+     */
     static expcollOpenTag: any;
+        /**
+     * @ignore
+     */
     static upOpenTag: any;
+        /**
+     * @ignore
+     */
     static grCloseTag: any;
 }
 

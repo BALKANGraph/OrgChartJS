@@ -1773,7 +1773,9 @@ declare class OrgChart {
         opera?: { smooth?: number; speed?: number; }
     };
     
-
+    /**
+     * @ignore
+     */
     static events: {
         /**
          * layout event listener is obsolete, use node-layout instead
@@ -1782,10 +1784,47 @@ declare class OrgChart {
          */
         on(type: "layout", listener: (args: any, args1: any, args2: any) => void): void
     };
+    
+    /**
+     * @ignore
+     */
     static state: { clear(stateName: string): void };
 
+    /**
+     * Animate an element
+     * ```typescript
+     * editForm.prototype.show = function (nodeId) {
+     *      OrgChart.animate(div, { opacity: 0, right: -100 }, { opacity: 1, right: 10 }, 300, OrgChart.anim.outSin);
+     * };
+     * ```
+     * @param element - element 
+     * @param attrStart - object with start CSS properties
+     * @param attrEnd - object with end CSS properties
+     * @param duration - duration in miliseconds
+     * @param func - funcition to animate with
+     * @param callback - callback function
+     */
     static animate(element: Object, attrStart?: Object, attrEnd?: Object, duration?: number, func?: OrgChart.anim, callback?: Function, tick?: boolean): void;
 
+    /**
+     * Minimap options.
+     * ```typescript
+     * OrgChart.miniMap.colors = ["#FFCA28", "#F57C00", "#039be5", "#757575"];
+     * OrgChart.miniMap.selectorBackgroundColor = "#888888";
+     * OrgChart.miniMap.focusStroke = "#039BE5";
+     * OrgChart.miniMap.opacity = 0.8;
+     * OrgChart.miniMap.border = '2px solid #039BE5';
+     * OrgChart.miniMap.width = 200;
+     * OrgChart.miniMap.height = 100;
+     * OrgChart.miniMap.padding = 10;
+     * OrgChart.miniMap.position = {
+     *      top: 'padding',
+     *      left: 'padding',
+     *      right: undefined,
+     *      bottom: undefined
+     * };
+     * ```
+     */
     static miniMap: {
         colors: Array<string>,
         selectorBackgroundColor: string,
@@ -1798,6 +1837,12 @@ declare class OrgChart {
         position: Object
     };
 
+    /**
+     * OrgChart version
+     * ```typescript
+     * OrgChart.VERSION;
+     * ```
+     */
     static VERSION: string;
     /**
     * @ignore

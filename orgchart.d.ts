@@ -2141,7 +2141,7 @@ declare class OrgChart {
 }
 
 declare namespace OrgChart {   
-    
+
     interface node {
         /**
          * same pid you provided in the source node, the default value is null if not provided or if node with the same id does not exist
@@ -2186,7 +2186,6 @@ declare namespace OrgChart {
      * @ignore
      */
     const treeRightOffset: any;
-
 
     interface options {
         /**
@@ -2243,14 +2242,9 @@ declare namespace OrgChart {
      */
     const COLLAPSE_SUB_CHILDRENS: number;
 
-    /**
-     * 
-     */
+
     var template: object;
 
-    /**
-     * @ignore
-     */
     interface node {
         /**
          * the same id you provided in the source node
@@ -2376,14 +2370,12 @@ declare namespace OrgChart {
         movey?: number | undefined
     }
 
-
    /**
     * OrgChart JS template
     * ```typescript
     * OrgChart.templates.myTemplate = Object.assign({}, OrgChart.templates.ana);
     * ```
     */
-     
     interface template  
          {
             /**
@@ -2406,7 +2398,7 @@ declare namespace OrgChart {
              * ```
              */
             size?: Array<number>,
-
+            
             /**
              * Size of the expandCollapse button
              * ```typescript
@@ -2414,7 +2406,7 @@ declare namespace OrgChart {
              * ```
              */
             expandCollapseSize?: number,
-
+            
             /**
              * Adjust link positions
              * ```typescript
@@ -2432,7 +2424,7 @@ declare namespace OrgChart {
                 toX?: number,
                 toY?: number
             },
-
+            
             /**
              * Ripple
              * ```typescript
@@ -2448,7 +2440,7 @@ declare namespace OrgChart {
                 color?: string,
                 rect?: Array<number>
             },
-
+            
             /**
              * Assistance link
              * ```typescript
@@ -2459,7 +2451,7 @@ declare namespace OrgChart {
              * ```
              */
             assistanseLink?: string,
-
+            
             /**
              * Assistance link
              * ```typescript
@@ -2470,7 +2462,7 @@ declare namespace OrgChart {
              * ```
              */
             svg?: string,
-
+            
             /**
              * Link
              * ```typescript
@@ -2479,7 +2471,7 @@ declare namespace OrgChart {
              * ```
              */
             link?: string,
-
+            
             /**
              * Pointer
              * ```typescript
@@ -2494,7 +2486,7 @@ declare namespace OrgChart {
              * ```
              */
             pointer?: string,
-
+            
             /**
              * Node
              * ```typescript
@@ -2503,7 +2495,7 @@ declare namespace OrgChart {
              * ```
              */
             node?: string,
-
+            
             /**
              * Plus/expand button
              * ```typescript
@@ -2514,7 +2506,7 @@ declare namespace OrgChart {
              * ```
              */
             plus?: string,
-
+            
             /**
              * Minus/collapse button
              * ```typescript
@@ -2524,7 +2516,7 @@ declare namespace OrgChart {
              * ```
              */
             minus?: string,
-
+            
             /**
              * Node menu button
              * ```typescript
@@ -2537,7 +2529,7 @@ declare namespace OrgChart {
              * ```
              */
             nodeMenuButton?: string,
-
+            
             /**
              * Menu button
              * ```typescript
@@ -2550,7 +2542,7 @@ declare namespace OrgChart {
              * ```
              */
             menuButton?: string,
-
+            
             /**
              * Node image
              * ```typescript
@@ -2561,7 +2553,7 @@ declare namespace OrgChart {
              * ```
              */
             img_0?: string,
-
+            
             /**
              * Link label
              * ```typescript
@@ -2570,7 +2562,7 @@ declare namespace OrgChart {
              * ```
              */
             link_field_0?: string,
-
+            
             /**
              * Edit form header color
              * ```typescript
@@ -2592,7 +2584,7 @@ declare namespace OrgChart {
              * ```
              */
             nodeCircleMenuButton?: object,
-
+            
             /**
              * Minimized template
              * ```typescript
@@ -2605,7 +2597,7 @@ declare namespace OrgChart {
              * ```
              */
             min?: template,
-
+            
             /**
              * A field
              * ```typescript
@@ -3984,10 +3976,7 @@ declare namespace OrgChart {
            elements?: Array<OrgChart.editFormElement | Array<OrgChart.editFormElement>>
         }
     }
-    
-    /**
-     * @ignore
-     */
+
     var ui: {
         defs(fromrender: string): string;
         lonely(config: Object): string;
@@ -4001,8 +3990,5 @@ declare namespace OrgChart {
 
     };
 
-    /**
-     * @ignore
-     */
     var t: any;
 }export default OrgChart

@@ -2244,7 +2244,7 @@ declare namespace OrgChart {
     const COLLAPSE_SUB_CHILDRENS: number;
 
     /**
-     * @ignore
+     * 
      */
     var template: object;
 
@@ -2615,7 +2615,7 @@ declare namespace OrgChart {
              */
             [name: string]: any
         }
-        
+
     interface editUI {
         /**
          * Inits edit ui

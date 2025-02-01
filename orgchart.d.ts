@@ -155,12 +155,14 @@ declare class OrgChart {
 
     /**
      * Removes an event listener previously registered. The event listener to be removed is identified using a combination of the event type and the event listener function itself. Returns true if success and false if fail.
+     * ```typescript
      * let chart = new OrgChart('#tree', {});
      * let listener = function(sender, args){
      *      console.log(sender.removeListener('update', listener));
      * };
      * chart.on('update', listener);
      * chart.load(nodes)
+     * ```
     };
 
     family.on('update', listener);
@@ -2373,34 +2375,233 @@ declare namespace OrgChart {
 
     interface template  
          {
+            /**
+             * SVG <defs?> of the template
+             * ```typescript
+             * OrgChart.templates.rony.defs = 
+             *  `<filter id="{randId}" x="0" y="0" width="200%" height="200%">
+             *      <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5"></feOffset>
+             *      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5"></feGaussianBlur>
+             *      <feBlend in="SourceGraphic" in2="blurOut" mode="normal"></feBlend>
+             *  </filter>`;
+             * ```
+             */
             defs?: string,
+
+             /**
+             * Size of the template
+             * ```typescript
+             * OrgChart.templates.myTemplate.size = [200, 100];
+             * ```
+             */
             size?: Array<number>,
+
+            /**
+             * Size of the expandCollapse button
+             * ```typescript
+             * OrgChart.templates.myTemplate.expandCollapseSize = 30;
+             * ```
+             */
             expandCollapseSize?: number,
+
+            /**
+             * Adjust link positions
+             * ```typescript
+             * OrgChart.templates.myTemplate.linkAdjuster = {
+             *  fromX: 0,
+             *  fromY: -10,
+             *  toX: 0,
+             *  toY: 0
+             * }
+             * ```
+             */
             linkAdjuster?: {
                 fromX?: number,
                 fromY?: number,
                 toX?: number,
                 toY?: number
             },
+
+            /**
+             * Ripple
+             * ```typescript
+             * OrgChart.templates.myTemplate.ripple = 
+             *  radius: 100,
+             *  color: "#e6e6e6",
+             *  rect: null
+             * }
+             * ```
+             */
             ripple?: {
                 radius?: number,
                 color?: string,
                 rect?: Array<number>
             },
+
+            /**
+             * Assistance link
+             * ```typescript
+             * OrgChart.templates.ana.assistanseLink = 
+             *  `<path stroke-linejoin="round" stroke="#aeaeae" stroke-width="2px" fill="none" 
+             *  d="M{xa},{ya} {xb},{yb} {xc},{yc} {xd},{yd} L{xe},{ye}" />`;
+             * }
+             * ```
+             */
             assistanseLink?: string,
+
+            /**
+             * Assistance link
+             * ```typescript
+             * OrgChart.templates.ana.svg =
+             *  `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+             *      style="display:block;" width="{w}" height="{h}" viewBox="{viewBox}">{content}
+             *  </svg>`;
+             * ```
+             */
             svg?: string,
+
+            /**
+             * Link
+             * ```typescript
+             * OrgChart.templates.ana.link = 
+             *  `<path stroke-linejoin="round" stroke="#aeaeae" stroke-width="1px" fill="none" d="{rounded}" />`;
+             * ```
+             */
             link?: string,
+
+            /**
+             * Pointer
+             * ```typescript
+             * OrgChart.templates.ana.pointer =
+             *  `<g data-pointer="pointer" transform="matrix(0,0,0,0,100,100)"> 
+             *      <radialGradient id="pointerGradient">
+             *          <stop stop-color="#ffffff" offset="0" />
+             *          <stop stop-color="#C1C1C1" offset="1" />
+             *      </radialGradient>
+             *      <circle cx="16" cy="16" r="16" stroke-width="1" stroke="#acacac" fill="url(#pointerGradient)"></circle>
+             *  </g>`;
+             * ```
+             */
             pointer?: string,
+
+            /**
+             * Node
+             * ```typescript
+             * OrgChart.templates.ana.node =
+             *  `<rect x="0" y="0" height="{h}" width="{w}" fill="#039BE5" stroke-width="1" stroke="#aeaeae" rx="7" ry="7"></rect>`;
+             * ```
+             */
             node?: string,
+
+             /**
+             * Plus/expand button
+             * ```typescript
+             * OrgChart.templates.ana.plus =
+             *  `<circle cx="15" cy="15" r="15" fill="#ffffff" stroke="#aeaeae" stroke-width="1"></circle>
+             *  <line x1="4" y1="15" x2="26" y2="15" stroke-width="1" stroke="#aeaeae"></line>
+             *  <line x1="15" y1="4" x2="15" y2="26" stroke-width="1" stroke="#aeaeae"></line>`;
+             * ```
+             */
             plus?: string,
+
+            /**
+             * Minus/collapse button
+             * ```typescript
+             *  OrgChart.templates.ana.minus =
+             *  `<circle cx="15" cy="15" r="15" fill="#ffffff" stroke="#aeaeae" stroke-width="1"></circle>
+             *  <line x1="4" y1="15" x2="26" y2="15" stroke-width="1" stroke="#aeaeae"></line>`;
+             * ```
+             */
             minus?: string,
+
+            /**
+             * Node menu button
+             * ```typescript
+             *  OrgChart.templates.ana.nodeMenuButton = 
+             *      `<g style="cursor:pointer;" transform="matrix(1,0,0,1,225,105)" data-ctrl-n-menu-id="{id}">
+             *          <rect x="-4" y="-10" fill="#000000" fill-opacity="0" width="22" height="22"></rect>
+             *          <circle cx="0" cy="0" r="2" fill="#ffffff"></circle>
+             *          <circle cx="7" cy="0" r="2" fill="#ffffff"></circle><circle cx="14" cy="0" r="2" fill="#ffffff"></circle>
+             *      </g>`;
+             * ```
+             */
             nodeMenuButton?: string,
+
+            /**
+             * Menu button
+             * ```typescript
+             *  OrgChart.templates.ana.menuButton = 
+             *      `<div style="position:absolute;right:{p}px;top:{p}px; width:40px;height:50px;cursor:pointer;" data-ctrl-menu="">
+             *          <hr style="background-color: #7A7A7A; height: 3px; border: none;">
+             *          <hr style="background-color: #7A7A7A; height: 3px; border: none;">
+             *          <hr style="background-color: #7A7A7A; height: 3px; border: none;">
+             *      </div>`;
+             * ```
+             */
             menuButton?: string,
+
+            /**
+             * Node image
+             * ```typescript
+             *  OrgChart.templates.ana.img_0 =  
+             *     `<clipPath id="{randId}"><circle cx="50" cy="30" r="40"></circle></clipPath>
+             *     <image preserveAspectRatio="xMidYMid slice" clip-path="url(#{randId})" xlink:href="{val}" x="10" y="-10" width="80" height="80">
+             *     </image>`;
+             * ```
+             */
             img_0?: string,
+
+            /**
+             * Link label
+             * ```typescript
+             *  OrgChart.templates.ana.link_field_0 =  
+             *     `<text text-anchor="middle" fill="#aeaeae" data-width="290" x="0" y="0" style="font-size:10px;">{val}</text>`;
+             * ```
+             */
             link_field_0?: string,
+
+            /**
+             * Edit form header color
+             * ```typescript
+             *  OrgChart.templates.ana.editFormHeaderColor = '#039BE5'
+             * ```
+             */
             editFormHeaderColor?: string,
+
+            /**
+             * EMode circle menu button
+             * ```typescript
+             *  OrgChart.templates.ana.nodeCircleMenuButton = {
+             *      radius: 18,
+             *      x: 250,
+             *      y: 60,
+             *      color: '#fff',
+             *      stroke: '#aeaeae'
+             *  }
+             * ```
+             */
             nodeCircleMenuButton?: object,
+
+            /**
+             * Minimized template
+             * ```typescript
+             * OrgChart.templates.ana.min = Object.assign({}, OrgChart.templates.ana);
+             * OrgChart.templates.ana.min.size = [250, 60];
+             * OrgChart.templates.ana.min.img_0 = "";
+             * OrgChart.templates.ana.min.field_0 =
+             *  `<text data-width="230" style="font-size: 18px;" fill="#ffffff" x="125" y="40" text-anchor="middle">{val}</text>`;
+             * OrgChart.templates.ana.min.field_1 = "";
+             * ```
+             */
             min?: template,
+
+            /**
+             * A field
+             * ```typescript
+             *  OrgChart.templates.orgTemplate.number =
+             *      `<text width="230" style="font-size: 11px;"  fill="#64696b" x="150" y="53"  text-anchor="start">{val}</text>`;
+             * ```
+             */
             [name: string]: any
         }
 
@@ -3773,6 +3974,9 @@ declare namespace OrgChart {
         }
     }
 
+    /**
+     * @ignore
+     */
     var ui: {
         defs(fromrender: string): string;
         lonely(config: Object): string;
@@ -3786,5 +3990,8 @@ declare namespace OrgChart {
 
     };
 
+    /**
+     * @ignore
+     */
     var t: any;
 }export default OrgChart

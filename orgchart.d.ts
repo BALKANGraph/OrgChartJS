@@ -155,12 +155,14 @@ declare class OrgChart {
 
     /**
      * Removes an event listener previously registered. The event listener to be removed is identified using a combination of the event type and the event listener function itself. Returns true if success and false if fail.
+     * ```typescript
      * let chart = new OrgChart('#tree', {});
      * let listener = function(sender, args){
      *      console.log(sender.removeListener('update', listener));
      * };
      * chart.on('update', listener);
      * chart.load(nodes)
+     * ```
     };
 
     family.on('update', listener);
@@ -1488,9 +1490,8 @@ declare class OrgChart {
 
    /**
     * Opens file upload dialog
-    * ```typescript  
+    * ```typescript
     * let chart = new OrgChart('#tree', {});
-    * 
     * chart.editUI.on('element-btn-click', function (sender, args) {
     *     OrgChart.fileUploadDialog(function (file) {
     *         var formData = new FormData();
@@ -1498,7 +1499,6 @@ declare class OrgChart {
     *         alert('upload the file');
     *     })
     * });
-    * 
     * chart.load(nodes)
     * ```
     */

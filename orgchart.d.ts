@@ -8,7 +8,7 @@ declare class OrgChart {
      * @param element HTML element or string selector for example '#tree'
      * @param options configuration options
      */
-    constructor(element: HTMLElement | string, options?: OrgChart.options);
+    constructor(element?: HTMLElement | string, options?: OrgChart.options);
 
 
         /**

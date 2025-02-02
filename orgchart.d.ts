@@ -1348,6 +1348,15 @@ declare class OrgChart {
         event: any
     }) => void): OrgChart;
 
+
+    onAIToolCalls(listener: (this: OrgChart, args: {
+        toolCalls: Array<{
+            FunctionName : string,
+            FunctionResult  : string,
+            FunctionArguments  : { [key: string]: any }
+        }>
+    }) => void): OrgChart;
+
     /**
      * On node double click event listener.
      * ```typescript     
@@ -1760,12 +1769,11 @@ declare class OrgChart {
      * ```typescript
      * let chart = new OrgChart(document.getElementById("tree"), {
      *     ...
-     *    showXScroll: OrgChart.scroll.visible,
+     *    showXScroll: true,
      * });
      * ```
      */
     static scroll: {
-        visible?: boolean,
         smooth?: number,
         speed?: number,
         safari?: { smooth?: number; speed?: number; },
@@ -2842,6 +2850,48 @@ declare namespace OrgChart {
     }
 
 
+    /**
+     * When you implement function calling in a prompt, you create a tools object, which contains one or more function declarations.
+     */
+    interface aiChatTool  {
+        /**
+         * The unique identifier for the function within the API call.
+         */
+        functionName?: string,
+        /**
+         * A comprehensive explanation of the function's purpose and capabilities.
+         */
+        functionDescription?: string,
+        /**
+         * Defines the input data required by the function.
+         */
+        functionParameters?: {
+            /**
+             * Specifies the overall data type, such as object.
+             */
+            type?: "object",
+            /**
+             * Lists individual parameters.
+             */
+            properties?: {
+                [key: string]: {
+                    /**
+                     * The data type of the parameter, such as string, integer, boolean.
+                     */
+                    type?: string,
+                    /**
+                     * A clear explanation of the parameter's purpose and expected format.
+                     */
+                    description?: string
+                }
+            }, 
+            /**
+             * An array of strings listing the parameter names that are mandatory for the function to operate.
+             */
+            required?: Array<string>         
+        }
+    }
+
 
     interface toolbar  {
         layout?: boolean,
@@ -3088,6 +3138,17 @@ declare namespace OrgChart {
          */
         enableSearch?: boolean,
         
+
+        /**
+         * Enables artificial intelligence. Default value is false.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      enableAI: false
+         * });
+         * ```
+         */
+        enableAI?: boolean,
+
         /**
          * You can disable chart pan. Default value - *true*.
          * ```typescript     
@@ -3198,6 +3259,20 @@ declare namespace OrgChart {
          * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
          */
         menu?: OrgChart.menu,
+
+        /**
+         * Array of tools called by the AI     
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      aiChatTools: [{
+         *          functionName: 'fit',  
+         *          functionDescription: 'Fit chart to the screen.',    
+         *      }]
+         * });
+         * ```        
+         * {@link https://balkan.app/OrgChartJS/Docs/AI | See doc...}   
+         */
+        aiChatTools?: Array<OrgChart.aiChatTool>,
         /**
          * With the toolbar enabled allows you to change the layout, zoom in/out, expand all nodes, etc.
          * ```typescript     

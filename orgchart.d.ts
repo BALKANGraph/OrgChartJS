@@ -2972,13 +2972,13 @@ declare namespace OrgChart {
     }
 
     /**
-     * @ignore
+     * miniMap options
      */
     interface miniMap  {
 
         /**
          * Array of colors to use for the miniMap
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.colors = ["#FFCA28", "#F57C00", "#039be5", "#757575"];
          * ```
          */
@@ -2986,7 +2986,7 @@ declare namespace OrgChart {
 
         /**
          * The background color in the miniMAp
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.selectorBackgroundColor = "#888888";
          * ```
          */
@@ -2995,7 +2995,7 @@ declare namespace OrgChart {
         
         /**
          * The background of the focus
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.backgroundColor = "#fff";
          * ```
          */
@@ -3003,7 +3003,7 @@ declare namespace OrgChart {
 
         /**
          * The stroke of the focus
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.focusStroke = "#039BE5";
          * ```
          */
@@ -3011,7 +3011,7 @@ declare namespace OrgChart {
 
         /**
          * The background opacity
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.opacity = 0.8;
          * ```
          */
@@ -3019,7 +3019,7 @@ declare namespace OrgChart {
 
         /**
          * The miniMap border
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.border = '2px solid #039BE5';
          * ```
          */
@@ -3027,7 +3027,7 @@ declare namespace OrgChart {
         
         /**
          * The miniMap width
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.width = 200;
          * ```
          */
@@ -3035,7 +3035,7 @@ declare namespace OrgChart {
 
         /**
          * The miniMap height
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.width = 100;
          * ```
          */
@@ -3043,7 +3043,7 @@ declare namespace OrgChart {
 
         /**
          * The miniMap padding
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.padding = 10;
          * ```
          */
@@ -3051,7 +3051,7 @@ declare namespace OrgChart {
 
         /**
          * The miniMap position
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.padding = {
          *  top: 'padding',
          *  left: 'padding',
@@ -3065,7 +3065,7 @@ declare namespace OrgChart {
         /**
          * Draggable option
          * default option: true
-         * ```typescrip
+         * ```typescript
          * OrgChart.miniMap.draggable = false;
          * ```
          */

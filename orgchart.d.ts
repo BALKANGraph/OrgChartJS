@@ -2904,12 +2904,70 @@ declare namespace OrgChart {
         }
     }
 
-
+    /**
+     * Toolbar buttons. Set to true if you'd like to show a button
+     */
     interface toolbar  {
+
+        /**
+         * Shows the layout options
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      toolbar: {
+         *          layout: true
+         *      }
+         * });
+         * ```
+         */
         layout?: boolean,
+
+        /**
+         * 
+         * Zoom plus and minus buttons
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      toolbar: {
+         *          zoom: true
+         *      }
+         * });
+         * ```
+         */
         zoom?: boolean,
+
+        /**
+         * Fit to screen option
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      toolbar: {
+         *          fit: true
+         *      }
+         * });
+         * ```
+         */
         fit?: boolean,
+
+        /**
+         * Expand all nodes button
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      toolbar: {
+         *          expandAll: true
+         *      }
+         * });
+         * ```
+         */
         expandAll?: boolean,
+
+        /**
+         * Switch to fullscreen button
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      toolbar: {
+         *          fullScreen: true
+         *      }
+         * });
+         * ```
+         */
         fullScreen?: boolean
     }
 

@@ -2601,7 +2601,7 @@ declare namespace OrgChart {
              * OrgChart.templates.ana.min.field_1 = "";
              * ```
              */
-            min?: template,
+            min?: OrgChart.template,
 
             /**
              * A field

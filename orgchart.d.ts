@@ -2971,20 +2971,108 @@ declare namespace OrgChart {
         fullScreen?: boolean
     }
 
+    /**
+     * @ignore
+     */
     interface miniMap  {
+
+        /**
+         * Array of colors to use for the miniMap
+         * ```typescrip
+         * OrgChart.miniMap.colors = ["#FFCA28", "#F57C00", "#039be5", "#757575"];
+         * ```
+         */
         colors?: Array<string>,
+
+        /**
+         * The background color in the miniMAp
+         * ```typescrip
+         * OrgChart.miniMap.selectorBackgroundColor = "#888888";
+         * ```
+         */
         selectorBackgroundColor?: string,
+
+        
+        /**
+         * The background of the focus
+         * ```typescrip
+         * OrgChart.miniMap.backgroundColor = "#fff";
+         * ```
+         */
         backgroundColor?: string,
+
+        /**
+         * The stroke of the focus
+         * ```typescrip
+         * OrgChart.miniMap.focusStroke = "#039BE5";
+         * ```
+         */
         focusStroke?: string,
+
+        /**
+         * The background opacity
+         * ```typescrip
+         * OrgChart.miniMap.opacity = 0.8;
+         * ```
+         */
         opacity?: Number,
+
+        /**
+         * The miniMap border
+         * ```typescrip
+         * OrgChart.miniMap.border = '2px solid #039BE5';
+         * ```
+         */
         border?: string,
+        
+        /**
+         * The miniMap width
+         * ```typescrip
+         * OrgChart.miniMap.width = 200;
+         * ```
+         */
         width?: Number,
+
+        /**
+         * The miniMap height
+         * ```typescrip
+         * OrgChart.miniMap.width = 100;
+         * ```
+         */
         height?: Number,
+
+        /**
+         * The miniMap padding
+         * ```typescrip
+         * OrgChart.miniMap.padding = 10;
+         * ```
+         */
         padding?: Number,
+
+        /**
+         * The miniMap position
+         * ```typescrip
+         * OrgChart.miniMap.padding = {
+         *  top: 'padding',
+         *  left: 'padding',
+         *  right: undefined,
+         *  bottom: undefined
+         * }
+         * ```
+         */
         position?: OrgChart.position,
+
+        /**
+         * Draggable option
+         * default option: true
+         * ```typescrip
+         * OrgChart.miniMap.draggable = false;
+         * ```
+         */
         draggable?: boolean
     }
 
+    
     interface position  {
         top?: string,
         left?: string,

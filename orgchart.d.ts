@@ -1348,7 +1348,20 @@ declare class OrgChart {
         event: any
     }) => void): OrgChart;
 
-
+    /**
+     * In onAIToolCalls we parse the AI responce to our functions
+     * ```typescript
+     * chart.onAIToolCalls(function(args){
+     *  for(var toolCall of args.toolCalls){
+     *      if (toolCall.FunctionName == 'sendEmail'){
+     *          toolCall.FunctionResult = sendEmail(toolCall.FunctionArguments);
+     *      }
+     *  }
+     * });
+     * ```
+     * [Go to AI doc page for more details](https://balkan.app/OrgChartJS/Docs/AI)
+     * @param listener 
+     */
     onAIToolCalls(listener: (this: OrgChart, args: {
         toolCalls: Array<{
             FunctionName : string,

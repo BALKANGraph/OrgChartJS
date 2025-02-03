@@ -2253,7 +2253,6 @@ declare namespace OrgChart {
     const COLLAPSE_SUB_CHILDRENS: number;
 
 
-    var template: object;
 
     interface node {
         /**

@@ -3274,6 +3274,8 @@ declare namespace OrgChart {
          * ```
          */
         collapse,
+
+        
         exporting,
         init,
 

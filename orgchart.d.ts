@@ -3232,6 +3232,7 @@ declare namespace OrgChart {
         collapse,
         exporting,
         init,
+
         /**
          * OrgChart.action.centerNode = 9;
          * ```typescript
@@ -3241,7 +3242,6 @@ declare namespace OrgChart {
          *  chart.center(2);
          *  console.log(chart.manager.action);
          * });
-         * 
          * chart.load(nodes)
          * ```
          */

@@ -3225,10 +3225,54 @@ declare namespace OrgChart {
         detachTree
     }
 
-
+    /**
+     * [Example with all actions](https://code.balkan.app/org-chart-js/which-action-triggers-redraw#JS)
+     */
     enum action {
+
+        /**
+         * OrgChart.action.update = 7;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         * });
+         * chart.onRedraw(() => {
+         *  if (chart.manager.action == OrgChart.action.update) {
+         *      alert("chart updated");
+         *  }
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         update,
+
+        /**
+         * OrgChart.action.expand = 0;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         * });
+         * chart.onRedraw(() => {
+         *  if (chart.manager.action == OrgChart.action.expand) {
+         *      chart.fit();
+         *  }
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         expand,
+
+        /**
+         * OrgChart.action.collapse = 1;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         * });
+         * chart.onRedraw(() => {
+         *  if (chart.manager.action == OrgChart.action.collapse) {
+         *      chart.fit();
+         *  }
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         collapse,
         exporting,
         init,
@@ -3236,7 +3280,7 @@ declare namespace OrgChart {
         /**
          * OrgChart.action.centerNode = 9;
          * ```typescript
-         * var chart = new OrgChart('#tree', {
+         * let chart = new OrgChart('#tree', {
          * });
          * chart.onInit(() => {
          *  chart.center(2);

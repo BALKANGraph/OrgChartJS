@@ -3300,6 +3300,15 @@ declare namespace OrgChart {
         expandCollapse,
         pan,
         zoom,
+
+        /**
+         * OrgChart.action.ctrlZoom = 22;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  mouseScrool: OrgChart.action.ctrlZoom,
+         * });
+         * ```
+         */
         ctrlZoom,
         xScroll,
         yScroll,        

@@ -3315,16 +3315,85 @@ declare namespace OrgChart {
          * ```
          */
         centerNode,
+
+        /**
+         * @ignore
+         */
         insert,
+
+        /**
+         * @ignore
+         */
         maximize,
+
+        /**
+         * @ignore
+         */
         minimize,
+
+        /**
+         * Opens edit form on node click
+         * OrgChart.action.edit = 1;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  nodeMouseClick: OrgChart.action.edit
+         * });
+         * ```
+         */
         edit,
+
+        /**
+         * Opens the details form
+         * OrgChart.action.details = 13;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  nodeMouseClick: OrgChart.action.edit // default value
+         * });
+         * chart.onNodeClick(function (args) {
+         *  if (args.node.templateName == "group") 
+         *      chart.config.nodeMouseClick = OrgChart.action.pan;
+         *  esle
+         *      chart.config.nodeMouseClick = OrgChart.action.details;
+         * });
+         * ```
+         */
         details,
+
+        /**
+         * Expand/Collapse on node click
+         * OrgChart.action.expandCollapse = 501;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  odeMouseClick: OrgChart.action.expandCollapse,
+         * });
+         * ```
+         */
         expandCollapse,
+
+        /**
+         * Expand/Collapse on node click
+         * OrgChart.action.expandCollapse = 501;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  odeMouseClick: OrgChart.action.expandCollapse,
+         * });
+         * ```
+         */
         pan,
+
+        /**
+         * Set mouse scroll to zoom
+         * OrgChart.action.zoom = 2;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  mouseScrool: OrgChart.action.zoom,
+         * });
+         * ```
+         */
         zoom,
 
         /**
+         * Set Ctrl + mouse scroll to zoom
          * OrgChart.action.ctrlZoom = 22;
          * ```typescript
          * let chart = new OrgChart('#tree', {
@@ -3333,9 +3402,53 @@ declare namespace OrgChart {
          * ```
          */
         ctrlZoom,
+
+        /**
+         * Set mouse scroll to horizontal scroll
+         * OrgChart.action.xScroll = 3;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  mouseScrool: OrgChart.action.xScroll,
+         * });
+         * ```
+         */
         xScroll,
-        yScroll,        
+
+        /**
+         * Set mouse scroll to vertical scroll
+         * OrgChart.action.yScroll = 4;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  mouseScrool: OrgChart.action.yScroll,
+         * });
+         * ```
+         */
+        yScroll,    
+        
+        /**
+         * Navigate with the mouse:
+         * Scroll up/down
+         * Press Shift key to scroll left/right
+         * Press Ctrl key to zoom with mouse scroll button
+         * On Apple Magic Mouse or Logitech G502 you can scroll left/right/up/down without pressing the Shift key
+         * OrgChart.action.scroll = 41;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  mouseScrool: OrgChart.action.scroll,
+         * });
+         * ```
+         */
         scroll,
+
+        /**
+         * Do nothing on mouse scroll
+         * OrgChart.action.none = 5;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  odeMouseClick: OrgChart.action.nonde,
+         * });
+         * ```
+         */
         none
     }
 

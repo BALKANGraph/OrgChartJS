@@ -3221,6 +3221,7 @@ declare namespace OrgChart {
      * let chart = new OrgChart('#tree', {
      *  anim: {func: OrgChart.anim.outBack, duration: 500}
      * });
+     * ```
      */
     enum anim {
         inPow,

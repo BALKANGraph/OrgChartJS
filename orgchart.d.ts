@@ -3275,8 +3275,31 @@ declare namespace OrgChart {
          */
         collapse,
 
-        
+        /**
+         * OrgChart.action.exporting = 14;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         * });
+         * chart.on("field", function (sender, args) {
+         *  if (sender.manager.action == OrgChart.action.exporting) {
+         *      args.value = "hidden";
+         *  }
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         exporting,
+
+        /**
+         * Reload/Initialize the chart
+         * OrgChart.action.init = 6;
+         * ```typescript
+         * document.getElementById("btn").addEventListener("click", function () {
+         *  chart.add({ id: 4, pid: 2, name: "Elliot Patel", title: "Sales" });
+         *  chart.draw(OrgChart.action.init);
+         * });
+         * ```
+         */
         init,
 
         /**

@@ -3189,10 +3189,39 @@ declare namespace OrgChart {
         grid
     }
 
+    /**
+     * Specifies the alignment of the nodes inside OrgChart JS
+     */
     enum align {
+
+        /**
+         * Centered
+         * ```typescript
+         * var chart = new OrgChart('#tree', {
+         *  align: OrgChart.align.center
+         * });
+         * ```
+         */
         center,
+
+        /**
+         * According to the orientation option
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  align: OrgChart.align.orientation
+         * });
+         * ```
+         */
         orientation
     }
+
+    /**
+     * Animations for the transition of the nodes
+     * ```typescript
+     * let chart = new OrgChart('#tree', {
+     *  anim: {func: OrgChart.anim.outBack, duration: 500}
+     * });
+     */
     enum anim {
         inPow,
         outPow,

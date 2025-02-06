@@ -3173,13 +3173,99 @@ declare namespace OrgChart {
      */
     enum orientation {
 
+        /**
+         * top orientation (default)
+         * OrgChart.orientation.top = 0;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  orientation: OrgChart.orientation.left,
+         *  tags: {
+         *      "tag1": {
+         *          subTreeConfig: {
+         *              orientation: OrgChart.orientation.top
+         *          }
+         *      }
+         *  }
+         * });
+         * ```
+         */
         top,
+
+        /**
+         * Bottom orientation
+         * OrgChart.orientation.bottom = 1;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  orientation: OrgChart.orientation.bottom,
+         * });
+         * ```
+         */
         bottom,
+
+        /**
+         * Right orientation
+         * OrgChart.orientation.right = 2;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  orientation: OrgChart.orientation.right,
+         * });
+         * ```
+         */
         right,
+
+        /**
+         * Left orientation
+         * OrgChart.orientation.left = 3;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  orientation: OrgChart.orientation.left,
+         * });
+         * ```
+         */
         left,
+
+        /**
+         * Top lrft orientation
+         * OrgChart.orientation.top_left = 4;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  orientation: OrgChart.orientation.top_left,
+         * });
+         * ```
+         */
         top_left,
+
+        /**
+         * Bottom lrft orientation
+         * OrgChart.orientation.bottom_left = 5;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  orientation: OrgChart.orientation.bottom_left,
+         * });
+         * ```
+         */
         bottom_left,
+
+        /**
+         * Right top orientation
+         * OrgChart.orientation.right_top = 6;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  orientation: OrgChart.orientation.right_top,
+         * });
+         * ```
+         */
         right_top,
+
+        /**
+         * Left top orientation
+         * OrgChart.orientation.left_top = 7;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  orientation: OrgChart.orientation.left_top,
+         * });
+         * ```
+         */
         left_top
     }
 

@@ -3168,7 +3168,11 @@ declare namespace OrgChart {
         down?: boolean,
     }
 
+    /**
+     * Set the chart orientation
+     */
     enum orientation {
+
         top,
         bottom,
         right,
@@ -3178,14 +3182,105 @@ declare namespace OrgChart {
         right_top,
         left_top
     }
+
+    /**
+     * Specifies the layout of the chart
+     */
     enum layout {
+
+        /**
+         * The default layout
+         * OrgChart.layout.normal = OrgChart.normal = 0;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  layout: OrgChart.mixed
+         * });
+         * chart.on('node-layout', function(sender, args){
+         *  if (args.pnode.id == 100){
+         *      args.layout = OrgChart.layout.normal;
+         *  }
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         normal,
+
+        /**
+         * mixed layout
+         * OrgChart.layout.mixed = OrgChart.mixed = 1;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  layout: OrgChart.layout.mixed
+         * });
+         * ```
+         */
         mixed,
+
+        /**
+         * tree layout
+         * OrgChart.layout.tree = OrgChart.tree = 2;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  layout: OrgChart.layout.tree
+         * });
+         * ```
+         */
         tree,
+
+        /**
+         * treeLeftOffset layout
+         * OrgChart.layout.treeLeftOffset = OrgChart.treeLeftOffset = 3;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  layout: OrgChart.layout.treeLeftOffset
+         * });
+         * ```
+         */
         treeLeftOffset,
+
+        /**
+         * treeRightOffset layout
+         * OrgChart.layout.treeRightOffset = OrgChart.treeRightOffset = 4;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  layout: OrgChart.layout.treeRightOffset
+         * });
+         * ```
+         */
         treeRightOffset,
+
+        /**
+         * treeLeft layout
+         * OrgChart.layout.treeLeft = 5;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  layout: OrgChart.layout.treeLeft
+         * });
+         * ```
+         */
         treeLeft,
+
+        /**
+         * treeRight layout
+         * OrgChart.layout.treeRight = 6;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  layout: OrgChart.layout.treeRight
+         * });
+         * ```
+         */
         treeRight,
+
+        /**
+         * Create a grid layoput authomatically calculating authomatically the columns
+         * OrgChart.layout.grid = -1;
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  layout: OrgChart.layout.grid
+         * });
+         * ```
+         * [See grid doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#grid]
+         */
         grid
     }
 
@@ -3243,15 +3338,80 @@ declare namespace OrgChart {
         impulse,
         expPulse
     }
+
+    /**
+     * Specifies a scale that match the boundaries
+     */
     enum match {
+
+        /**
+         * Match height
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  scaleInitial: OrgChart.match.height
+         * });
+         * ```
+         */
         height,
+
+        /**
+         * Match width
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  scaleInitial: OrgChart.match.width
+         * });
+         * ```
+         */
         width,
+
+        /**
+         * Match boundary
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  scaleInitial: OrgChart.match.boundary
+         * });
+         * ```
+         */
         boundary
     }
 
+
+        /**
+         * Add movable functionality
+         */
     enum movable {
+
+        /**
+         * Moves the node
+         * OrgChart.movable.node = 'node';
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  movable: OrgChart.movable.node
+         * });
+         * ```
+         */
         node,
+
+        /**
+         * Moves the tree
+         * OrgChart.movable.tree = 'tree';
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  movable: OrgChart.movable.tree
+         * });
+         * ```
+         */
         tree,
+
+        /**
+         * Detaches the tree
+         * OrgChart.movable.detachTree = 'detachTree';
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  movable: OrgChart.movable.detachTree
+         * });
+         * ```
+         */
         detachTree
     }
 

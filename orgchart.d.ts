@@ -1779,12 +1779,20 @@ declare class OrgChart {
     
 
     /**
+     * You can change the smooth and the speed of the scroll
+     * or you can change the values for any specific browser
      * ```typescript
+     * OrgChart.scroll.smooth = 12;
+     * OrgChart.scroll.speed = 120;  
+     * OrgChart.scroll.safari = {
+     *  smooth: 12,
+     *  speed: 500
+     * }
      * let chart = new OrgChart(document.getElementById("tree"), {
      *     ...
      *    showXScroll: true,
      * });
-     * ```
+     * ``` 
      */
     static scroll: {
         smooth?: number,

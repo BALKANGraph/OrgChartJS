@@ -1408,6 +1408,15 @@ declare class OrgChart {
     editUI: OrgChart.editUI;
 
     /**
+     * The chart aiUI object.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * let aiUI = chart.aiUI;
+     * ```
+     */
+    aiUI: OrgChart.aiUI;
+
+    /**
      * The chart searchUI object.
      * ```typescript  
      * let chart = new OrgChart('#tree', {});
@@ -2659,6 +2668,25 @@ declare namespace OrgChart {
         hide(): void;
         content(id: string | number, detailsMode: boolean, dontAnim: boolean, width: string, dontRenderButtons: boolean): string;
         // static renderHeaderContent(title: string, photo: string, node: OrgChart.node, data: object): string;        
+    }
+
+    
+    interface aiUI {
+        /**
+         * Inits ai ui
+         * @param obj 
+         */
+        init(obj: OrgChart): void;
+        /**
+         * Shows the ai form 
+         * @param dontFocus if true the imput will not be focused
+         * @param dontAnim If true hsoe withput animation
+         */
+        show(dontFocus?: boolean, dontAnim?: boolean): void;
+        /**
+         * Hides the ai form
+         */
+        hide(): void;
     }
 
     interface searchUI {
@@ -4485,6 +4513,10 @@ declare namespace OrgChart {
         /**
           * @ignore
           */
+        aiUI?: OrgChart.aiUI,
+        /**
+          * @ignore
+          */
         searchUI?: OrgChart.searchUI,
         /**
           * @ignore
@@ -4539,6 +4571,16 @@ declare namespace OrgChart {
          * ```          
          */        
         exportUrl?: string,
+
+        /**
+         * The URL to the export server. Default value - *https://orgchartjs.balkan.app*
+         * ```typescript       
+         * var chart = new OrgChart('#tree', {
+         *   serverUrl: "https://myDomain.com"
+         * });
+         * ```          
+         */        
+        serverUrl?: string,
         /**
          * The align option specifies the alignment of the nodes inside Org Chart JS.
          * - OrgChart.align.center - centered

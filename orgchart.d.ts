@@ -2063,6 +2063,15 @@ declare class OrgChart {
      * ```
      */
     static MINIMUM_SYMBOLS_IN_SEARCH_INPUT: number;
+
+    
+    /**
+     * System instructions let you steer the behavior of a model based on your specific needs and use cases.
+     * ```typescript
+     * OrgChart.AI_SYSTEM_MESSAGES = ["You are an HR assistant for interactive Organizational Char in MyCompamyName."];
+     * ```
+     */
+    static AI_SYSTEM_MESSAGES: Array<string>;
    
     /**
      * Hides the Edit Form when the chart is moved with pan

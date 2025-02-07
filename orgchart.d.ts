@@ -2682,10 +2682,14 @@ declare namespace OrgChart {
     
     interface aiUI {
         /**
+         * Prompt text box
+         */
+        inputElement: HTMLInputElement;
+        /**
          * Inits ai ui
          * @param obj 
          */
-        init(obj: OrgChart): void;
+        init(obj: OrgChart): void;        
         /**
          * Shows the ai form 
          * @param dontFocus if true the imput will not be focused

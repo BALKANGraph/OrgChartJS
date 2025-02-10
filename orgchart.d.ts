@@ -1765,6 +1765,8 @@ declare class OrgChart {
     /**
      * ```typescript
      * OrgChart.clinkTemplates.myTemplate = Object.assign({}, OrgChart.clinkTemplates.orange);
+     * OrgChart.clinkTemplates.myTemplate.label = 
+     *  '<text transform="translate(300, 750) rotate(-90)" fill="#F57C00" text-anchor="middle" x="{x}" y="{y}">{val}</text>';
      * ```
      */
     static clinkTemplates: {
@@ -1773,6 +1775,8 @@ declare class OrgChart {
     /**
      * ```typescript
      * OrgChart.slinkTemplates.myTemplate = Object.assign({}, OrgChart.slinkTemplates.orange);
+     * OrgChart.slinkTemplates.myTemplate.labelPosition = 'start';
+     *  
      * ```
      */
     static slinkTemplates: {
@@ -1782,6 +1786,8 @@ declare class OrgChart {
     /**
      * ```typescript
      * OrgChart.templates.mainTemplate = Object.assign({}, OrgChart.templates.ana);
+     * OrgChart.templates.mainTemplate.node = 
+     *  `<rect x="0" y="0" height="80" width="300" fill="#039BE5" stroke-width="1" stroke="#686868" rx="40" ry="40"></rect>`;
      * ```
      */
     static templates: { [key: string]: OrgChart.template} ;
@@ -3185,6 +3191,17 @@ declare namespace OrgChart {
         bottom?: string
     }
 
+    /**
+     * Exports to PDF document
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.exportPDF({
+     *   format: "A4"
+     * });
+     * ```
+     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
+     */
     interface exportOptions  {
         margin?: Array<number>,
         padding?: number,
@@ -3208,19 +3225,51 @@ declare namespace OrgChart {
         nodeId? : number | string
     }
 
+    /**
+     * Exports to CSV, XML or JSON options
+     * ```typescript     
+     *  document.getElementById('export').addEventListener('click', function () {
+     *      chart.exportCSV('My.csv');
+     *  });
+     * ```
+     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
+     */
     interface exportCSVXMLJSONOptions  {
         filename?: string,
         expandChildren?: boolean,
         min?: boolean,
         nodeId? : number | string
     }
-
+    
+    /**
+     * ```typescript
+     * OrgChart.clinkTemplates.myTemplate = Object.assign({}, OrgChart.clinkTemplates.orange);
+     * OrgChart.clinkTemplates.myTemplate.label = 
+     *  '<text transform="translate(300, 750) rotate(-90)" fill="#F57C00" text-anchor="middle" x="{x}" y="{y}">{val}</text>';
+     * ```
+     */
     interface linkTemplate {
         defs?: string,
         link?: string,
         label?: string,
         labelPosition?: string
     }
+
+        /**
+         * Menu options
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      nodeMenu:{
+         *          call: {
+         *              icon: webcallMeIcon,
+         *              text: "Call now",
+         *              onClick: callHandler
+         *          }
+         *      }
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Menus#yourMenu | See doc...}
+         */
     interface menu  {
         [key: string]: {
             text: string,
@@ -3228,6 +3277,27 @@ declare namespace OrgChart {
             onClick?: Function
         }
     }
+        /**
+         * With node circle menu you can add, edit, remove node or create clink/slink with drga and drop. Before setting this option make sure that you defined nodeCircleMenuButton in the ysed template.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *       nodeCircleMenu: {
+         *           editNode: {
+         *               icon: OrgChart.icon.edit(24, 24, '#aeaeae'),
+         *               text: "Edit node",
+         *               color: "white"
+         *           }, 
+         *           addClink: {
+         *               icon: OrgChart.icon.link(24, 24, '#aeaeae'), 
+         *               text: "Add C link",
+         *               color: '#fff',
+         *               draggable: true
+         *           }
+         *       }
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
+         */
     interface circleMenu  {
         [key: string]: {
             text: string,
@@ -3236,6 +3306,21 @@ declare namespace OrgChart {
             draggable?: boolean
         }
     }
+
+        /**
+         * Edit form element
+         * ```typescript       
+         * let chart = new OrgChart('#tree', {
+         *      editForm: {
+         *          elements: [
+         *              { type: 'textbox', label: 'Full Name', binding: 'Name' },
+         *              { type: 'textbox', label: 'Phone number', binding: 'phone' }        
+         *          ]
+         *      }
+         * });
+         * ```    
+         * {@link https://balkan.app/OrgChartJS/Docs/Edit | See doc...}   
+         */    
     interface editFormElement {
         type?: string,
         label?: string,

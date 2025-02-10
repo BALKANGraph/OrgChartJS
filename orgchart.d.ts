@@ -2651,6 +2651,18 @@ declare namespace OrgChart {
             [name: string]: any
         }
 
+
+    /**
+     * Edit/Details Form User Interface
+     * ```typescript
+     * let chart = new OrgChart("#tree", {
+     * });
+     * chart.onInit(function(){
+     *  chart.editUI.show(1); 
+     * });
+     * chart.load(nodes)
+     * ```
+     */
     interface editUI {
         /**
          * Inits edit ui
@@ -2679,7 +2691,18 @@ declare namespace OrgChart {
         // static renderHeaderContent(title: string, photo: string, node: OrgChart.node, data: object): string;        
     }
 
-    
+    /**
+     * AI User Interface
+     * ```typescript
+     * let chart = new OrgChart("#tree", {
+     *  enableAI: true,
+     * });
+     * chart.onInit(function(){
+     *  chart.aiUI.show(); 
+     * });
+     * chart.load(nodes)
+     * ```
+     */
     interface aiUI {
         /**
          * Prompt text box
@@ -3227,6 +3250,10 @@ declare namespace OrgChart {
         template?: string,
         label?: string
     }
+
+    /**
+     * @ignore
+     */
     interface backdrop {
         id?: string | number,
         levels?: number,
@@ -4288,14 +4315,7 @@ declare namespace OrgChart {
         slinks?: Array<OrgChart.link>,
 
         /**
-         * Adds backdrops to the specidied nodes.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *   backdrops: [
-         *       { id: 5, levels: 2, color: '#039BE5', opacity: 0.2 }
-         *   ]
-         * });
-         * ```
+         * @ignore
          */
         backdrops?: Array<OrgChart.backdrop>,
 
@@ -4553,7 +4573,12 @@ declare namespace OrgChart {
             text?: string
         } }},
         /**
-          * @ignore
+          * ```typescript
+          * let chart = new OrgChart('#tree', {
+          *     editUI: new editForm(),
+          * });
+          * ```
+          * [Go to edit doc page for more details](https://balkan.app/OrgChartJS/Docs/Edit#custom)
           */
         editUI?: OrgChart.editUI,
         /**

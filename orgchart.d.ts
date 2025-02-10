@@ -2810,6 +2810,18 @@ declare namespace OrgChart {
         element: HTMLElement;
     }
 
+
+    /**
+     * Menu UI
+     * ```typescript
+     * let chart = new OrgChart("#tree", {
+     * })
+     * chart.onInit(() => {
+     *  chart.menuUI.show(chart.getMenuButton());
+     * })
+     * chart.load(nodes)
+     * ```
+     */
     interface menuUI  {
         init(obj: OrgChart, menu: { [key: string]: menu }): void;
         /**
@@ -2847,6 +2859,15 @@ declare namespace OrgChart {
         show(x: number | HTMLElement, y?: number, firstNodeId?: string | number, secondNodeId?: string | number, menu?: { [key: string]: menu }): void;
     }
 
+    /**
+     * Circle Menu UI
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *  chart.nodeCircleMenuUI.show(1);
+     * });
+     * ```
+     */
     interface circleMenuUI {
         /**
          * Inits circle menu instance
@@ -2856,6 +2877,8 @@ declare namespace OrgChart {
         init(obj: OrgChart, menu: { [key: string]: menu }): void;
         /**
          * Shows circle menu 
+         * 
+         * 
          * @param nodeId 
          * @param menu 
          */

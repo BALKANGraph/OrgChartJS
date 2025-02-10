@@ -83,6 +83,12 @@ declare class OrgChart {
         xml: (w: string| number, h: string| number, c: string| number) => string,
         /**
          * ```typescript
+         * let visioIcon = OrgChart.icon.visio(24, 24, "#7A7A7A");
+         * ```
+         */
+        visio: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
          * let linkIcon = OrgChart.icon.link(24, 24, "#7A7A7A");
          * ```
          */
@@ -970,6 +976,18 @@ declare class OrgChart {
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
      */    
     exportSVG(options?: OrgChart.exportOptions, callback?: () => void): void;
+    /**
+     * Exports to Visio document
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.exportVisio();
+     * ```
+     * @param options export options 
+     * @param callback called when the export completes
+     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
+     */    
+    exportVisio(options?: OrgChart.exportOptions, callback?: () => void): void;
     /**
      * Imports CSV file.
      * ```typescript     
@@ -4752,7 +4770,7 @@ declare namespace OrgChart {
         exportUrl?: string,
 
         /**
-         * The URL to the export server. Default value - *https://orgchartjs.balkan.app*
+         * The URL to the export server. Default value - *https://serverjs.balkan.app*
          * ```typescript       
          * var chart = new OrgChart('#tree', {
          *   serverUrl: "https://myDomain.com"

@@ -2910,9 +2910,42 @@ declare namespace OrgChart {
         layoutIcon?: string;
     }
 
-
     /**
      * When you implement function calling in a prompt, you create a tools object, which contains one or more function declarations.
+     * ```typescript     
+     * var chart = new OrgChart('#tree', {
+     *  enableAI: true,
+     *      aiChatTools: [{
+     *          functionName: 'sendEmail',
+     *          functionDescription: 'Send an email to a given employee with a subject and message.',
+     *          functionParameters: {
+     *              type: "object",
+     *                  properties: {
+     *                      to: {
+     *                          type: "string",
+     *                          description: "The employee email address."
+     *                      },
+     *                      subject: {
+     *                          type: "string",
+     *                          description: "Email subject line."
+     *                      },
+     *                      body: {
+     *                          type: "string",
+     *                          description: "Body of the email message."
+     *                      }
+     *                  },
+     *                  required: [
+     *                      "to",
+     *                      "subject",
+     *                      "body"
+     *                  },
+     *                  additionalProperties: false
+     *              },
+     *              strict: true
+     *      }]
+     * });
+     * ```
+     * [Go to AI doc page for more details](https://balkan.app/OrgChartJS/Docs/AI)
      */
     interface aiChatTool  {
         /**

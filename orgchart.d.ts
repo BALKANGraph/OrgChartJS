@@ -3370,6 +3370,19 @@ declare namespace OrgChart {
         btn?: string,
         vlidators?: { required?: string, email?: string }
     }
+
+    /**
+     * Defines a Slink or Clink.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {
+     *   clinks: [
+     *       { from: 4, to: 0, label: 'text' }, 
+     *       { from: 4, to: 5, template: 'blue', label: '4 reports to 3' },
+     *       { from: 2, to: 6, template: 'yellow', label: 'lorem ipsum' }
+     *   ]
+     * });
+     * ```
+     */
     interface link {
         from?: string | number,
         to?: string | number,
@@ -3387,15 +3400,50 @@ declare namespace OrgChart {
         opacity?: number,
         except?: Array<string | number>
     }
+
+    /**
+     * Node object that shows a secondary connection
+     * ```typescript
+     * let chart = new OrgChart('#tree', {
+     *  dottedLines: [
+     *      { from: 5, to: 1 }
+     *  ]
+     * });
+     * ```
+     * {@link https://balkan.app/OrgChartJS/Docs/DottedLine | See doc...}
+     */
     interface dottedLine {
         from?: string | number,
         to?: string | number,
         tags?: Array<string>
     }
+
+    /**
+     * The orderBy contains the field name and the *desc* value   
+     * ```typescript       
+     * let chart = new OrgChart('#tree', {
+     *   orderBy: [
+     *      { field: 'name', desc: false },
+     *      { field: 'surname', desc: true },
+     *  ]
+     * });
+     * ```      
+     */
     interface orderBy {
         field?: string,
         desc?: boolean
     }
+
+    /**
+     * Contains the move position
+     * ```typescript
+     * document.getElementById('btn_left').addEventListener('mousedown', function(){
+     *  chart.moveStart({
+     *      left: true
+     *  });
+     * });
+     * ```
+     */
     interface move {
         left?: boolean,
         right?: boolean,
@@ -4416,11 +4464,11 @@ declare namespace OrgChart {
         /**
          * Adds curved link.
          * ```typescript     
-         * var chart = new OrgChart('#tree', {
+         * let chart = new OrgChart('#tree', {
          *   clinks: [
-         *       from: 4, to: 0, label: 'text'}, 
-         *       {from: 4, to: 5, template: 'blue', label: '4 reports to 3' },
-         *       {from: 2, to: 6, template: 'yellow', label: 'lorem ipsum' }
+         *       { from: 4, to: 0, label: 'text'}, 
+         *       { from: 4, to: 5, template: 'blue', label: '4 reports to 3' },
+         *       { from: 2, to: 6, template: 'yellow', label: 'lorem ipsum' }
          *   ]
          * });
          * ```
@@ -4429,11 +4477,11 @@ declare namespace OrgChart {
         /**
          * Adds second link.
          * ```typescript     
-         * var chart = new OrgChart('#tree', {
+         * let chart = new OrgChart('#tree', {
          *   slinks: [
-         *       from: 4, to: 0, label: 'text'}, 
-         *       {from: 4, to: 5, template: 'blue', label: '4 reports to 3' },
-         *       {from: 2, to: 6, template: 'yellow', label: 'lorem ipsum' }
+         *       { from: 4, to: 0, label: 'text' }, 
+         *       { from: 4, to: 5, template: 'blue', label: '4 reports to 3' },
+         *       { from: 2, to: 6, template: 'yellow', label: 'lorem ipsum' }
          *   ]
          * });
          * ```

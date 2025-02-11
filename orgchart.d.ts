@@ -2785,23 +2785,67 @@ declare namespace OrgChart {
 
     
     interface filterUI {
+        /**
+         * @ignore
+         */
         init(instance: OrgChart): void;   
+
+        /**
+         * @ignore
+         */
         update(): void;
+
         /**
          * Opens filter Tab 
+         * ```typescript
+         * let chart = new OrgChart("#tree", {
+         * })
+         * chart.onInit(() => {
+         *  chart.filterUI.show("city")
+         * })
+         * chart.load(nodes)
+         * ```
          * @param filterTabName the name of the filter tab
          */
         show(filterTabName: string): void;
+
         /**
-         * Hides the filter tabs
+         * Opens filter Tab 
+         * ```typescript
+         * chart.element.addEventListener('click', function(event){
+         *  if (event.target == chart.getSvg()){
+         *      chart.filterUI.hide();
+         *  }
+         * });
+         * ```
          */
         hide(): void;
+
+        /**
+         * @ignore
+         */
         addFilterTag(data: object): boolean;
                 /**
          * The on() method of the filterUI interface sets up a function that will be called whenever the specified event is delivered to the target.     * 
          * @category Event Listeners
          * @param type A case-sensitive string representing the event type to listen for.
          * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
+         */
+
+        /**
+         * Opens filter Tab 
+         * ```typescript
+         * let chart = new OrgChart("#tree", {
+         * })
+         * chart.filterUI.on('add-filter', function(sender, args){
+         *  let names = Object.keys(sender.filterBy);
+         *  let index = names.indexOf(args.name);
+         *  if (index == names.length - 1) {
+         *      args.html += `<div data-btn-reset style="color: #039BE5;">reset</div>`;
+         *  } 
+         * });
+         * chart.load(nodes)
+         * ```
          */
         on(type: "update" | "add-item" | "add-filter" | "show-items" , listener: (sender: filterUI, args: any, args1: any, args2: any) => void | boolean): filterUI;
         filterBy?: any;

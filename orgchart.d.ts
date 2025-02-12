@@ -2848,14 +2848,31 @@ declare namespace OrgChart {
          * ```
          */
         on(type: "update" | "add-item" | "add-filter" | "show-items" , listener: (sender: filterUI, args: any, args1: any, args2: any) => void | boolean): filterUI;
+        
+        /**
+         * Contains all filters
+         * ```typescript
+         * let chart = new OrgChart("#tree", {
+         * });
+         * chart.onInit(() => {
+         *  let filterBy = chart.filterUI.filterBy
+         * }
+         * chart.load(nodes)
+         * ```
+         */
         filterBy?: any;
+
+        /**
+         * @ignore
+         */
         element: HTMLElement;
+
+        /**
+         * @ignore
+         */
         instance: OrgChart;
     }
 
-
-    
-    
     interface xScrollUI {
         addListener(svg: HTMLElement): void;   
         create(width: number): void;   

@@ -2316,7 +2316,17 @@ declare namespace OrgChart {
     const COLLAPSE_SUB_CHILDRENS: number;
 
 
-
+    /**
+     * The OrgChart node model
+     * ```typescript
+     * var chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *  let node = chart.getNode(2);
+     *  console.log(node);
+     * });
+     * chart.load(nodes)
+     * ```
+     */
     interface node {
         /**
          * the same id you provided in the source node
@@ -2750,9 +2760,19 @@ declare namespace OrgChart {
     }
 
     interface searchUI {
+        /**
+         * @ignore
+         */
         init(obj: OrgChart): void;
         /**
          * The on() method of the searchUI interface sets up a function that will be called whenever the specified event is delivered to the target.     * 
+         * ```typescript
+         * let chart = new OrgChart("#tree", {});
+         * chart.searchUI.on('searchclick', function (sender, args) {
+         *  sender.hide();
+         * });
+         * chart.load(nodes)
+         * ```
          * @category Event Listeners
          * @param type A case-sensitive string representing the event type to listen for.
          * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
@@ -2760,6 +2780,13 @@ declare namespace OrgChart {
         on(type: "add-item" | "show-items" | "hide" | "searchclick" , listener: (sender: searchUI, args: any, args1: any, args2: any) => void | boolean): searchUI;
         /**
          * Hides the search grid
+         * ```typescript
+         * let chart = new OrgChart("#tree", {});
+         * chart.searchUI.on('searchclick', function (sender, args) {
+         *  sender.hide();
+         * });
+         * chart.load(nodes)
+         * ```
          */
         hide(): void;
         /**
@@ -3020,11 +3047,11 @@ declare namespace OrgChart {
          * Shows the PDF Preview UI
          *  ```typescript
          * function pdf() {
-         *  OrgChart.pdfPrevUI.show(chart, {
-         *      format: "A4",
-         *      header: 'My Header',
-         *      footer: 'My Footer. Page {current-page} of {total-pages}'
-         *  });
+         *      OrgChart.pdfPrevUI.show(chart, {
+         *          format: "A4",
+         *          header: 'My Header',
+         *          footer: 'My Footer. Page {current-page} of {total-pages}'
+         *      });
          * }
          * ```
          */
@@ -3034,7 +3061,7 @@ declare namespace OrgChart {
          * Hide the PDF Preview UI
          *  ```typescript
          * chart.element.querySelector('#boc-prev-cancel').addEventListener('click', function () {
-         *  OrgChart.pdfPrevUI.hide(chart);
+         *      OrgChart.pdfPrevUI.hide(chart);
          * });
          * ```
          */
@@ -3047,9 +3074,9 @@ declare namespace OrgChart {
          * Set focus to specified id on initial load
          *  ```typescript     
          * var chart = new OrgChart('#tree', {
-         *  keyNavigation:{
-         *      focusId: 2
-         *  }
+         *      keyNavigation:{
+         *          focusId: 2
+         *      }
          * });
          * ```
          */
@@ -3315,7 +3342,17 @@ declare namespace OrgChart {
         draggable?: boolean
     }
 
-    
+    /**
+     * MiniMap position
+     * ```typescript
+     * OrgChart.miniMap.position = {
+     *      top: 'padding',
+     *      left: 'padding',
+     *      right: undefined,
+     *      bottom: undefined
+     * };
+     * ```
+     */
     interface position  {
         top?: string,
         left?: string,

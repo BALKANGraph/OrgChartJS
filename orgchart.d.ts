@@ -2764,6 +2764,7 @@ declare namespace OrgChart {
          * @ignore
          */
         init(obj: OrgChart): void;
+
         /**
          * The on() method of the searchUI interface sets up a function that will be called whenever the specified event is delivered to the target.     * 
          * ```typescript
@@ -2778,6 +2779,7 @@ declare namespace OrgChart {
          * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
          */        
         on(type: "add-item" | "show-items" | "hide" | "searchclick" , listener: (sender: searchUI, args: any, args1: any, args2: any) => void | boolean): searchUI;
+
         /**
          * Hides the search grid
          * ```typescript
@@ -2789,23 +2791,76 @@ declare namespace OrgChart {
          * ```
          */
         hide(): void;
+
         /**
          * Finds filed data by specified value
+         * ```typescript
+         * let chart = new OrgChart("#tree", {});
+         * chart.onInit(() => {
+         *  chart.searchUI.find("Denny");
+         * });
+         * chart.load(nodes)
+         * ```
          * @param value search for value
          */
         find(value: string): void;
+
+        /**
+         * ```typescript
+         * OrgChart.searchUI.createItem = function (img, id, first, second) {
+         *  return 
+         *      `<tr data-search-item-id="${id}">
+         *          <td class="boc-search-image-td">
+         *              <div class="boc-search-photo" style="background-image: url(${img})"></div>
+         *          </td>
+         *          <td class="boc-search-text-td">${first} <br/>${second}</td>
+         *      </tr>`;
+         * };
+         * ```
+         * @param img 
+         * @param id 
+         * @param first 
+         * @param second 
+         */
         createItem(img: string, id: string | number, first: string, second: string): string;
+
+        /**
+         * @ignore
+         */
         helpView(): string;
+
+        /**
+         * @ignore
+         */
         addMatchTag(id: string | number) : boolean;
+
+        /**
+         * Input field
+         * ```typescript
+         * let chart = new OrgChart("#tree", {});
+         * chart.onInit(() => {
+         *  chart.searchUI.input.focus();
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         input: HTMLElement;
+
+        /**
+         * @ignore
+         */
         searchTableWrapper: HTMLElement; 
+
+        /**
+         * @ignore
+         */
         lastSearch: Array<object>;        
         /**
-         * OrgChart instance
+         * @ignore
          */
         instance: OrgChart;
         /**
-         * Search in field with abbreviation.
+         * @ignore
          */
         searchFieldsAbbreviation: {[key: string]: string};        
     }

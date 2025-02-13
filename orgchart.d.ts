@@ -2978,11 +2978,13 @@ declare namespace OrgChart {
     interface undoRedoUI {
         /**
          * Inits undoRedoUI
+         * @ignore
          * @param instance 
          */
         init(instance: OrgChart): void;
         /**
          * Refreshes the UI buttonss
+         * @ignore
          */
         refresh(): void;
         /** 
@@ -3014,7 +3016,28 @@ declare namespace OrgChart {
     }
 
     interface pdfPrevUI {
+        /**
+         * Shows the PDF Preview UI
+         *  ```typescript
+         * function pdf() {
+         *  OrgChart.pdfPrevUI.show(chart, {
+         *      format: "A4",
+         *      header: 'My Header',
+         *      footer: 'My Footer. Page {current-page} of {total-pages}'
+         *  });
+         * }
+         * ```
+         */
         show(chart: OrgChart, options: exportOptions): pdfPrevUI;
+
+        /**
+         * Hide the PDF Preview UI
+         *  ```typescript
+         * chart.element.querySelector('#boc-prev-cancel').addEventListener('click', function () {
+         *  OrgChart.pdfPrevUI.hide(chart);
+         * });
+         * ```
+         */
         hide(chart: OrgChart): void;
 
     }
@@ -3022,6 +3045,13 @@ declare namespace OrgChart {
     interface keyNavigation {
         /**
          * Set focus to specified id on initial load
+         *  ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *  keyNavigation:{
+         *      focusId: 2
+         *  }
+         * });
+         * ```
          */
         focusId: number | string
     }

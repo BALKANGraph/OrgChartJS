@@ -3138,18 +3138,136 @@ declare namespace OrgChart {
         focusId: number | string
     }
 
+    /**
+     * Toolbar UI
+     */
     interface toolbarUI {
+        /**
+         * @ignore
+         * @param obj 
+         * @param toolbar 
+         */
         init(obj: OrgChart, toolbar: toolbar): void;
+
+        /**
+         * Shows the layout
+         *  ```typescript     
+         * var chart = new OrgChart('#tree', {});
+         * chart.onInit(function(){
+         *  this.toolbarUI.showLayout();
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         showLayout(): void;
+
+        /**
+         * Hides the layout
+         *  ```typescript     
+         * var chart = new OrgChart('#tree', {});
+         * chart.onInit(function(){
+         *  this.toolbarUI.hideLayout();
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         hideLayout(): void;
 
-
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.expandAllIcon =
+         *  `<svg style="margin-bottom:7px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border: 1px solid #cacaca;background-color: #f9f9f9;display: block;cursor: pointer;" width="32px" height="32px">
+         *      <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#757575" /></marker>
+         *      <line x1="11" y1="11" x2="6" y2="6" stroke="#757575" stroke-width="2" marker-end="url(#arrow)" />
+         *      <line x1="21" y1="11" x2="26" y2="6" stroke="#757575" stroke-width="2" marker-end="url(#arrow)" />
+         *      <line x1="21" y1="21" x2="26" y2="26" stroke="#757575" stroke-width="2" marker-end="url(#arrow)" />
+         *      <line x1="11" y1="21" x2="6" y2="26" stroke="#757575" stroke-width="2" marker-end="url(#arrow)" />
+         *      <rect x="12" y="12" width="8" height="8" fill="#757575"></rect>
+         *  </svg>`;
+         * ```
+         */
         expandAllIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.fitIcon =
+         *  `<svg style="margin-bottom:7px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border: 1px solid #cacaca;background-color: #f9f9f9;display: block;cursor: pointer;" width="32px" height="32px">
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,11 L4,4 L11,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,11 L28,4 L21,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,21 L28,28 L21,28"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,21 L4,28 L11,28"></path>
+         *      <circle cx="16" cy="16" r="5" fill="#757575"></circle>
+         *  </svg>`;
+         * ```
+         */
         fitIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.openFullScreenIcon =
+         *  `<svg  style="margin-bottom:7px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border: 1px solid #cacaca;background-color: #f9f9f9;display: block;cursor: pointer;" width="32px" height="32px">
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,11 L4,4 L11,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,11 L28,4 L21,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,21 L28,28 L21,28"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,21 L4,28 L11,28"></path>
+         *      <line x1="5" y1="5" x2="27" y2="27" stroke-width="3" stroke="#757575"></line>
+         *      <line x1="5" y1="27" x2="27" y2="5" stroke-width="3" stroke="#757575"></line>
+         *  </svg>`;
+         * ```
+         */
         openFullScreenIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.closeFullScreenIcon =
+         *  `<svg style="margin-bottom:7px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border: 1px solid #cacaca;background-color: #f9f9f9;display: block;cursor: pointer;" width="32px" height="32px">
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,11 L4,4 L11,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,11 L28,4 L21,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,21 L28,28 L21,28"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,21 L4,28 L11,28"></path>
+         *      <rect x="11" y="11" width="10" height="10" stroke-width="3" fill="none" stroke="#757575" ></rect>
+         *  </svg>`;
+         * ```
+         */
         closeFullScreenIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.zoomInIcon =
+         *  `<svg style="box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border-left: 1px solid #cacaca; border-right: 1px solid #cacaca; border-top: 1px solid #cacaca; background-color: #f9f9f9;display: block; cursor: pointer;" width="32px" height="32px" >
+         *      <g>
+         *          <rect fill="#f9f9f9" x="0" y="0" width="32" height="32" ></rect>
+         *          <line x1="8" y1="16" x2="24" y2="16" stroke-width="3" stroke="#757575"></line>
+         *          <line x1="16" y1="8" x2="16" y2="24" stroke-width="3" stroke="#757575"></line>
+         *      </g>
+         *      <line x1="4" y1="32" x2="28" y2="32" stroke-width="1" stroke="#cacaca"></line>
+         *  </svg>`;
+         * ```
+         */
         zoomInIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.zoomOutIcon =
+         *  `<svg style="box-shadow: 0px 1px 4px rgba(0,0,0,0.3); margin-bottom:7px; border-left: 1px solid #cacaca; border-right: 1px solid #cacaca; border-bottom: 1px solid #cacaca; background-color: #f9f9f9;display: block; cursor: pointer;" width="32px" height="32px" >
+         *      <g>
+         *          <rect fill="#f9f9f9" x="0" y="0" width="32" height="32" ></rect>
+         *          <line x1="8" y1="16" x2="24" y2="16" stroke-width="3" stroke="#757575"></line>
+         *      </g>
+         *  </svg>`;
+         * ```
+         */
         zoomOutIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.layoutIcon =
+         *  `<svg ` + OrgChart.attr.tlbr + `="layout" style="box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border: 1px solid #cacaca;background-color: #f9f9f9;display: block;cursor: pointer;" width="32px" height="32px">
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M8,24 L16,14 L24,24"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M8,16 L16,8 L24,16"></path>
+         *  </svg>`;
+         * ```
+         */
         layoutIcon?: string;
     }
 

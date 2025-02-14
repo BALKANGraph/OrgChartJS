@@ -2955,6 +2955,9 @@ declare namespace OrgChart {
         instance: OrgChart;
     }
 
+    /**
+     * @ignore
+     */
     interface xScrollUI {
         addListener(svg: HTMLElement): void;   
         create(width: number): void;   
@@ -2963,6 +2966,9 @@ declare namespace OrgChart {
         element: HTMLElement;
     }
 
+    /**
+     * @ignore
+     */
     interface yScrollUI {
         addListener(svg: HTMLElement): void;   
         create(width: number): void;   

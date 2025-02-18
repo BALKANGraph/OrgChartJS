@@ -418,7 +418,7 @@ declare class OrgChart {
      * ```
      * @param id identification number of the node
      */
-    get(id: string | number): OrgChart.node;
+    get(id: string | number): Node;
     /**
      * If specified node has assistant/s or partner/s as children will return false.
      * ```typescript     
@@ -2213,14 +2213,20 @@ declare class OrgChart {
     static grCloseTag: any;
 }
 
+interface Node {
+    id: number | string,
+    pid?: number | string,
+    [key: string]: any
+}
+
 declare namespace OrgChart {   
     
-    interface node {
-        /**
-         * same pid you provided in the source node, the default value is null if not provided or if node with the same id does not exist
-         */
-        pid?: string | number,
-    }
+    // interface node {
+    //     /**
+    //      * same pid you provided in the source node, the default value is null if not provided or if node with the same id does not exist
+    //      */
+    //     pid?: string | number,
+    // }
     /**
      * deprecated, use OrgChart.align.center isntead
      * @ignore
@@ -4600,7 +4606,7 @@ declare namespace OrgChart {
          * });
          * ```
          */
-        showYScroll?: boolean ,
+        showYScroll?: boolean,
         /**
          * Set template if you want to change the appearance of the chart. Org Chart JS comes with number of build-in templates:
          * - ana

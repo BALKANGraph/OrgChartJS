@@ -2327,7 +2327,6 @@ declare namespace OrgChart {
      * chart.load(nodes)
      * ```
      */
-    
     interface node {
         /**
          * the same id you provided in the source node
@@ -3585,13 +3584,7 @@ declare namespace OrgChart {
      */
     interface exportCSVXMLJSONOptions  {
         filename?: string,
-        /**
-         * @ignore
-         */
         expandChildren?: boolean,
-        /**
-         * @ignore
-         */
         min?: boolean,
         nodeId? : number | string
     }

@@ -2316,7 +2316,18 @@ declare namespace OrgChart {
     const COLLAPSE_SUB_CHILDRENS: number;
 
 
-
+    /**
+     * The OrgChart node model
+     * ```typescript
+     * var chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     *  let node = chart.getNode(2);
+     *  console.log(node);
+     * });
+     * chart.load(nodes)
+     * ```
+     */
+    
     interface node {
         /**
          * the same id you provided in the source node
@@ -2750,35 +2761,107 @@ declare namespace OrgChart {
     }
 
     interface searchUI {
+        /**
+         * @ignore
+         */
         init(obj: OrgChart): void;
+
         /**
          * The on() method of the searchUI interface sets up a function that will be called whenever the specified event is delivered to the target.     * 
+         * ```typescript
+         * let chart = new OrgChart("#tree", {});
+         * chart.searchUI.on('searchclick', function (sender, args) {
+         *  sender.hide();
+         * });
+         * chart.load(nodes)
+         * ```
          * @category Event Listeners
          * @param type A case-sensitive string representing the event type to listen for.
          * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
          */        
         on(type: "add-item" | "show-items" | "hide" | "searchclick" , listener: (sender: searchUI, args: any, args1: any, args2: any) => void | boolean): searchUI;
+
         /**
          * Hides the search grid
+         * ```typescript
+         * let chart = new OrgChart("#tree", {});
+         * chart.searchUI.on('searchclick', function (sender, args) {
+         *  sender.hide();
+         * });
+         * chart.load(nodes)
+         * ```
          */
         hide(): void;
+
         /**
          * Finds filed data by specified value
+         * ```typescript
+         * let chart = new OrgChart("#tree", {});
+         * chart.onInit(() => {
+         *  chart.searchUI.find("Denny");
+         * });
+         * chart.load(nodes)
+         * ```
          * @param value search for value
          */
         find(value: string): void;
+
+        /**
+         * ```typescript
+         * OrgChart.searchUI.createItem = function (img, id, first, second) {
+         *  return 
+         *      `<tr data-search-item-id="${id}">
+         *          <td class="boc-search-image-td">
+         *              <div class="boc-search-photo" style="background-image: url(${img})"></div>
+         *          </td>
+         *          <td class="boc-search-text-td">${first} <br/>${second}</td>
+         *      </tr>`;
+         * };
+         * ```
+         * @param img 
+         * @param id 
+         * @param first 
+         * @param second 
+         */
         createItem(img: string, id: string | number, first: string, second: string): string;
+
+        /**
+         * @ignore
+         */
         helpView(): string;
+
+        /**
+         * @ignore
+         */
         addMatchTag(id: string | number) : boolean;
+
+        /**
+         * Input field
+         * ```typescript
+         * let chart = new OrgChart("#tree", {});
+         * chart.onInit(() => {
+         *  chart.searchUI.input.focus();
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         input: HTMLElement;
+
+        /**
+         * @ignore
+         */
         searchTableWrapper: HTMLElement; 
+
+        /**
+         * @ignore
+         */
         lastSearch: Array<object>;        
         /**
-         * OrgChart instance
+         * @ignore
          */
         instance: OrgChart;
         /**
-         * Search in field with abbreviation.
+         * @ignore
          */
         searchFieldsAbbreviation: {[key: string]: string};        
     }
@@ -2873,6 +2956,9 @@ declare namespace OrgChart {
         instance: OrgChart;
     }
 
+    /**
+     * @ignore
+     */
     interface xScrollUI {
         addListener(svg: HTMLElement): void;   
         create(width: number): void;   
@@ -2881,6 +2967,9 @@ declare namespace OrgChart {
         element: HTMLElement;
     }
 
+    /**
+     * @ignore
+     */
     interface yScrollUI {
         addListener(svg: HTMLElement): void;   
         create(width: number): void;   
@@ -2978,11 +3067,13 @@ declare namespace OrgChart {
     interface undoRedoUI {
         /**
          * Inits undoRedoUI
+         * @ignore
          * @param instance 
          */
         init(instance: OrgChart): void;
         /**
          * Refreshes the UI buttonss
+         * @ignore
          */
         refresh(): void;
         /** 
@@ -3014,7 +3105,28 @@ declare namespace OrgChart {
     }
 
     interface pdfPrevUI {
+        /**
+         * Shows the PDF Preview UI
+         *  ```typescript
+         * function pdf() {
+         *      OrgChart.pdfPrevUI.show(chart, {
+         *          format: "A4",
+         *          header: 'My Header',
+         *          footer: 'My Footer. Page {current-page} of {total-pages}'
+         *      });
+         * }
+         * ```
+         */
         show(chart: OrgChart, options: exportOptions): pdfPrevUI;
+
+        /**
+         * Hide the PDF Preview UI
+         *  ```typescript
+         * chart.element.querySelector('#boc-prev-cancel').addEventListener('click', function () {
+         *      OrgChart.pdfPrevUI.hide(chart);
+         * });
+         * ```
+         */
         hide(chart: OrgChart): void;
 
     }
@@ -3022,22 +3134,147 @@ declare namespace OrgChart {
     interface keyNavigation {
         /**
          * Set focus to specified id on initial load
+         *  ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      keyNavigation:{
+         *          focusId: 2
+         *      }
+         * });
+         * ```
          */
         focusId: number | string
     }
 
+    /**
+     * Toolbar UI
+     */
     interface toolbarUI {
+        /**
+         * @ignore
+         * @param obj 
+         * @param toolbar 
+         */
         init(obj: OrgChart, toolbar: toolbar): void;
+
+        /**
+         * Shows the layout
+         *  ```typescript     
+         * var chart = new OrgChart('#tree', {});
+         * chart.onInit(function(){
+         *  this.toolbarUI.showLayout();
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         showLayout(): void;
+
+        /**
+         * Hides the layout
+         *  ```typescript     
+         * var chart = new OrgChart('#tree', {});
+         * chart.onInit(function(){
+         *  this.toolbarUI.hideLayout();
+         * });
+         * chart.load(nodes)
+         * ```
+         */
         hideLayout(): void;
 
-
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.expandAllIcon =
+         *  `<svg style="margin-bottom:7px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border: 1px solid #cacaca;background-color: #f9f9f9;display: block;cursor: pointer;" width="32px" height="32px">
+         *      <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#757575" /></marker>
+         *      <line x1="11" y1="11" x2="6" y2="6" stroke="#757575" stroke-width="2" marker-end="url(#arrow)" />
+         *      <line x1="21" y1="11" x2="26" y2="6" stroke="#757575" stroke-width="2" marker-end="url(#arrow)" />
+         *      <line x1="21" y1="21" x2="26" y2="26" stroke="#757575" stroke-width="2" marker-end="url(#arrow)" />
+         *      <line x1="11" y1="21" x2="6" y2="26" stroke="#757575" stroke-width="2" marker-end="url(#arrow)" />
+         *      <rect x="12" y="12" width="8" height="8" fill="#757575"></rect>
+         *  </svg>`;
+         * ```
+         */
         expandAllIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.fitIcon =
+         *  `<svg style="margin-bottom:7px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border: 1px solid #cacaca;background-color: #f9f9f9;display: block;cursor: pointer;" width="32px" height="32px">
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,11 L4,4 L11,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,11 L28,4 L21,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,21 L28,28 L21,28"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,21 L4,28 L11,28"></path>
+         *      <circle cx="16" cy="16" r="5" fill="#757575"></circle>
+         *  </svg>`;
+         * ```
+         */
         fitIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.openFullScreenIcon =
+         *  `<svg  style="margin-bottom:7px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border: 1px solid #cacaca;background-color: #f9f9f9;display: block;cursor: pointer;" width="32px" height="32px">
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,11 L4,4 L11,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,11 L28,4 L21,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,21 L28,28 L21,28"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,21 L4,28 L11,28"></path>
+         *      <line x1="5" y1="5" x2="27" y2="27" stroke-width="3" stroke="#757575"></line>
+         *      <line x1="5" y1="27" x2="27" y2="5" stroke-width="3" stroke="#757575"></line>
+         *  </svg>`;
+         * ```
+         */
         openFullScreenIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.closeFullScreenIcon =
+         *  `<svg style="margin-bottom:7px;box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border: 1px solid #cacaca;background-color: #f9f9f9;display: block;cursor: pointer;" width="32px" height="32px">
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,11 L4,4 L11,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,11 L28,4 L21,4"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M28,21 L28,28 L21,28"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M4,21 L4,28 L11,28"></path>
+         *      <rect x="11" y="11" width="10" height="10" stroke-width="3" fill="none" stroke="#757575" ></rect>
+         *  </svg>`;
+         * ```
+         */
         closeFullScreenIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.zoomInIcon =
+         *  `<svg style="box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border-left: 1px solid #cacaca; border-right: 1px solid #cacaca; border-top: 1px solid #cacaca; background-color: #f9f9f9;display: block; cursor: pointer;" width="32px" height="32px" >
+         *      <g>
+         *          <rect fill="#f9f9f9" x="0" y="0" width="32" height="32" ></rect>
+         *          <line x1="8" y1="16" x2="24" y2="16" stroke-width="3" stroke="#757575"></line>
+         *          <line x1="16" y1="8" x2="16" y2="24" stroke-width="3" stroke="#757575"></line>
+         *      </g>
+         *      <line x1="4" y1="32" x2="28" y2="32" stroke-width="1" stroke="#cacaca"></line>
+         *  </svg>`;
+         * ```
+         */
         zoomInIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.zoomOutIcon =
+         *  `<svg style="box-shadow: 0px 1px 4px rgba(0,0,0,0.3); margin-bottom:7px; border-left: 1px solid #cacaca; border-right: 1px solid #cacaca; border-bottom: 1px solid #cacaca; background-color: #f9f9f9;display: block; cursor: pointer;" width="32px" height="32px" >
+         *      <g>
+         *          <rect fill="#f9f9f9" x="0" y="0" width="32" height="32" ></rect>
+         *          <line x1="8" y1="16" x2="24" y2="16" stroke-width="3" stroke="#757575"></line>
+         *      </g>
+         *  </svg>`;
+         * ```
+         */
         zoomOutIcon?: string;
+
+        /**
+         * ```typescript
+         * OrgChart.toolbarUI.layoutIcon =
+         *  `<svg ` + OrgChart.attr.tlbr + `="layout" style="box-shadow: 0px 1px 4px rgba(0,0,0,0.3); border: 1px solid #cacaca;background-color: #f9f9f9;display: block;cursor: pointer;" width="32px" height="32px">
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M8,24 L16,14 L24,24"></path>
+         *      <path stroke-width="3" fill="none" stroke="#757575" d="M8,16 L16,8 L24,16"></path>
+         *  </svg>`;
+         * ```
+         */
         layoutIcon?: string;
     }
 
@@ -3285,7 +3522,17 @@ declare namespace OrgChart {
         draggable?: boolean
     }
 
-    
+    /**
+     * MiniMap position
+     * ```typescript
+     * OrgChart.miniMap.position = {
+     *      top: 'padding',
+     *      left: 'padding',
+     *      right: undefined,
+     *      bottom: undefined
+     * };
+     * ```
+     */
     interface position  {
         top?: string,
         left?: string,
@@ -3338,7 +3585,13 @@ declare namespace OrgChart {
      */
     interface exportCSVXMLJSONOptions  {
         filename?: string,
+        /**
+         * @ignore
+         */
         expandChildren?: boolean,
+        /**
+         * @ignore
+         */
         min?: boolean,
         nodeId? : number | string
     }

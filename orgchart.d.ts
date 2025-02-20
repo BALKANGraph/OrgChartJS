@@ -1,5 +1,38 @@
 
 
+
+/**
+ * ```typescript  
+ * <!DOCTYPE html>
+ * <html>
+ *  <head>    
+ *    <meta charset="utf-8">
+ *    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ *    <title>OrgChartJS</title>
+ *    <style>
+ *        html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: Helvetica; }
+ *        #tree { width: 100%; height: 100%; }
+ *    </style>
+ * </head>
+ * <body>
+ *    <script src="https://cdn.balkan.app/orgchart.js"></script>
+ *    <div id="tree"></div>
+ *    <script>
+ *        let chart = new OrgChart(document.getElementById("tree"), {
+ *            mouseScrool: OrgChart.action.scroll,
+ *            enableDragDrop: true,
+ *            nodeBinding: { field_0: "name" },
+ *            nodes: [
+ *                { id: 1, name: "Amber McKenzie" },
+ *                { id: 2, pid: 1, name: "Ava Field" },
+ *                { id: 3, pid: 1, name: "Peter Stevens" }
+ *            ]
+ *        });
+ *    </script>
+ * </body>
+ * </html>
+ * ```
+ */
 declare class OrgChart {
     /**
      * ```typescript     

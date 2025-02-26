@@ -2491,13 +2491,18 @@ declare namespace OrgChart {
         movey?: number | undefined
     }
 
-
+    /**
+     * Template definition
+     * ```typescript
+     * OrgChart.templates.myTemplate = Object.assign({}, OrgChart.templates.ana);
+     * ```
+     */
     interface template  
          {
             /**
              * SVG <defs?> of the template
              * ```typescript
-             * OrgChart.templates.rony.defs = 
+             * OrgChart.templates.myTemplate.defs = 
              *  `<filter id="{randId}" x="0" y="0" width="200%" height="200%">
              *      <feOffset result="offOut" in="SourceAlpha" dx="5" dy="5"></feOffset>
              *      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="5"></feGaussianBlur>
@@ -2560,7 +2565,7 @@ declare namespace OrgChart {
             /**
              * Assistance link
              * ```typescript
-             * OrgChart.templates.ana.assistanseLink = 
+             * OrgChart.templates.myTemplate.assistanseLink = 
              *  `<path stroke-linejoin="round" stroke="#aeaeae" stroke-width="2px" fill="none" 
              *  d="M{xa},{ya} {xb},{yb} {xc},{yc} {xd},{yd} L{xe},{ye}" />`;
              * }
@@ -2571,7 +2576,7 @@ declare namespace OrgChart {
             /**
              * Assistance link
              * ```typescript
-             * OrgChart.templates.ana.svg =
+             * OrgChart.templates.myTemplate.svg =
              *  `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
              *      style="display:block;" width="{w}" height="{h}" viewBox="{viewBox}">{content}
              *  </svg>`;
@@ -2582,7 +2587,7 @@ declare namespace OrgChart {
             /**
              * Link
              * ```typescript
-             * OrgChart.templates.ana.link = 
+             * OrgChart.templates.myTemplate.link = 
              *  `<path stroke-linejoin="round" stroke="#aeaeae" stroke-width="1px" fill="none" d="{rounded}" />`;
              * ```
              */
@@ -2591,7 +2596,7 @@ declare namespace OrgChart {
             /**
              * Pointer
              * ```typescript
-             * OrgChart.templates.ana.pointer =
+             * OrgChart.templates.myTemplate.pointer =
              *  `<g data-pointer="pointer" transform="matrix(0,0,0,0,100,100)"> 
              *      <radialGradient id="pointerGradient">
              *          <stop stop-color="#ffffff" offset="0" />
@@ -2606,7 +2611,7 @@ declare namespace OrgChart {
             /**
              * Node
              * ```typescript
-             * OrgChart.templates.ana.node =
+             * OrgChart.templates.myTemplate.node =
              *  `<rect x="0" y="0" height="{h}" width="{w}" fill="#039BE5" stroke-width="1" stroke="#aeaeae" rx="7" ry="7"></rect>`;
              * ```
              */
@@ -2615,7 +2620,7 @@ declare namespace OrgChart {
              /**
              * Plus/expand button
              * ```typescript
-             * OrgChart.templates.ana.plus =
+             * OrgChart.templates.myTemplate.plus =
              *  `<circle cx="15" cy="15" r="15" fill="#ffffff" stroke="#aeaeae" stroke-width="1"></circle>
              *  <line x1="4" y1="15" x2="26" y2="15" stroke-width="1" stroke="#aeaeae"></line>
              *  <line x1="15" y1="4" x2="15" y2="26" stroke-width="1" stroke="#aeaeae"></line>`;
@@ -2626,7 +2631,7 @@ declare namespace OrgChart {
             /**
              * Minus/collapse button
              * ```typescript
-             *  OrgChart.templates.ana.minus =
+             *  OrgChart.templates.myTemplate.minus =
              *  `<circle cx="15" cy="15" r="15" fill="#ffffff" stroke="#aeaeae" stroke-width="1"></circle>
              *  <line x1="4" y1="15" x2="26" y2="15" stroke-width="1" stroke="#aeaeae"></line>`;
              * ```
@@ -2636,7 +2641,7 @@ declare namespace OrgChart {
             /**
              * Node menu button
              * ```typescript
-             *  OrgChart.templates.ana.nodeMenuButton = 
+             *  OrgChart.templates.myTemplate.nodeMenuButton = 
              *      `<g style="cursor:pointer;" transform="matrix(1,0,0,1,225,105)" data-ctrl-n-menu-id="{id}">
              *          <rect x="-4" y="-10" fill="#000000" fill-opacity="0" width="22" height="22"></rect>
              *          <circle cx="0" cy="0" r="2" fill="#ffffff"></circle>
@@ -2649,7 +2654,7 @@ declare namespace OrgChart {
             /**
              * Menu button
              * ```typescript
-             *  OrgChart.templates.ana.menuButton = 
+             *  OrgChart.templates.myTemplate.menuButton = 
              *      `<div style="position:absolute;right:{p}px;top:{p}px; width:40px;height:50px;cursor:pointer;" data-ctrl-menu="">
              *          <hr style="background-color: #7A7A7A; height: 3px; border: none;">
              *          <hr style="background-color: #7A7A7A; height: 3px; border: none;">
@@ -2662,7 +2667,7 @@ declare namespace OrgChart {
             /**
              * Node image
              * ```typescript
-             *  OrgChart.templates.ana.img_0 =  
+             *  OrgChart.templates.myTemplate.img_0 =  
              *     `<clipPath id="{randId}"><circle cx="50" cy="30" r="40"></circle></clipPath>
              *     <image preserveAspectRatio="xMidYMid slice" clip-path="url(#{randId})" xlink:href="{val}" x="10" y="-10" width="80" height="80">
              *     </image>`;
@@ -2673,7 +2678,7 @@ declare namespace OrgChart {
             /**
              * Link label
              * ```typescript
-             *  OrgChart.templates.ana.link_field_0 =  
+             *  OrgChart.templates.myTemplate.link_field_0 =  
              *     `<text text-anchor="middle" fill="#aeaeae" data-width="290" x="0" y="0" style="font-size:10px;">{val}</text>`;
              * ```
              */
@@ -2682,7 +2687,7 @@ declare namespace OrgChart {
             /**
              * Edit form header color
              * ```typescript
-             *  OrgChart.templates.ana.editFormHeaderColor = '#039BE5'
+             *  OrgChart.templates.myTemplate.editFormHeaderColor = '#039BE5'
              * ```
              */
             editFormHeaderColor?: string,
@@ -2690,7 +2695,7 @@ declare namespace OrgChart {
             /**
              * EMode circle menu button
              * ```typescript
-             *  OrgChart.templates.ana.nodeCircleMenuButton = {
+             *  OrgChart.templates.myTemplate.nodeCircleMenuButton = {
              *      radius: 18,
              *      x: 250,
              *      y: 60,
@@ -2704,20 +2709,20 @@ declare namespace OrgChart {
             /**
              * Minimized template
              * ```typescript
-             * OrgChart.templates.ana.min = Object.assign({}, OrgChart.templates.ana);
-             * OrgChart.templates.ana.min.size = [250, 60];
-             * OrgChart.templates.ana.min.img_0 = "";
-             * OrgChart.templates.ana.min.field_0 =
+             * OrgChart.templates.myTemplate.min = Object.assign({}, OrgChart.templates.ana);
+             * OrgChart.templates.myTemplate.min.size = [250, 60];
+             * OrgChart.templates.myTemplate.min.img_0 = "";
+             * OrgChart.templates.myTemplate.min.field_0 =
              *  `<text data-width="230" style="font-size: 18px;" fill="#ffffff" x="125" y="40" text-anchor="middle">{val}</text>`;
-             * OrgChart.templates.ana.min.field_1 = "";
+             * OrgChart.templates.myTemplate.min.field_1 = "";
              * ```
              */
             min?: OrgChart.template,
 
             /**
-             * A field
+             * A custom field definition
              * ```typescript
-             *  OrgChart.templates.orgTemplate.number =
+             *  OrgChart.templates.myTemplate.number =
              *      `<text width="230" style="font-size: 11px;"  fill="#64696b" x="150" y="53"  text-anchor="start">{val}</text>`;
              * ```
              */

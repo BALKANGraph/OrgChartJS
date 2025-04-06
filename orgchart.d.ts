@@ -1784,6 +1784,16 @@ declare class OrgChart {
         all: string,
     };
 
+    static aiUI: {
+        /**
+         * Change the title 
+         * ```typescript
+         * OrgChart.aiUI.title = 'AI for My Company';
+         * ```
+         */
+        title: string
+    };
+
     /**
      * Shows/hides lloading image. Usefull when export large data to pdf. You can override and show your own loading image.
      */

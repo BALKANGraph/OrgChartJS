@@ -685,6 +685,9 @@ declare class OrgChart {
         vertical: boolean,
         horizontal: boolean
     } | null, callback?: () => void): void;
+
+
+
     /**
      * Fits the content to the visible area.
      * ```typescript     
@@ -1393,6 +1396,25 @@ declare class OrgChart {
          * node JSON object
          */
         node: OrgChart.node,
+        /**
+         * the browser event
+         */
+        event: any
+    }) => void): OrgChart;
+
+
+        /**
+     * On canvas SVG click event listener.
+     *  ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onCanvasClick(() => {  
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */   
+    onCanvasClick(listener: (this: OrgChart, args: {
         /**
          * the browser event
          */

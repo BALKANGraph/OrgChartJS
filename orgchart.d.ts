@@ -1628,8 +1628,10 @@ declare class OrgChart {
     * });
     * ```
     */
-    static exportPDFFromCharts(optionList: Array<{
+    static exportPDFFromCharts(optionList: Array<{        
         chartInstance: OrgChart,
+        childLevels?: number,
+        parentLevels?: number,
         margin?: Array<number>,
         padding?: number,
         landscape?: boolean,

@@ -2643,7 +2643,7 @@ declare namespace OrgChart {
             pointer?: string,
 
             /**
-             * Node
+             * Node definition - A string that should contain SVG markup.
              * ```typescript
              * OrgChart.templates.myTemplate.node =
              *  `<rect x="0" y="0" height="{h}" width="{w}" fill="#039BE5" stroke-width="1" stroke="#aeaeae" rx="7" ry="7"></rect>`;

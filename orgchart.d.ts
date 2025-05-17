@@ -2643,7 +2643,7 @@ declare namespace OrgChart {
             pointer?: string,
 
             /**
-             * Node definition - A string that should contain SVG markup.
+             * Node definition - A string that should contains SVG markup.
              * ```typescript
              * OrgChart.templates.myTemplate.node =
              *  `<rect x="0" y="0" height="{h}" width="{w}" fill="#039BE5" stroke-width="1" stroke="#aeaeae" rx="7" ry="7"></rect>`;
@@ -4419,6 +4419,7 @@ declare namespace OrgChart {
          *      mode: "dark"
          * });
          * ```
+         * [How to change mode dynamically](https://code.balkan.app/org-chart-js/light/dark-mode-toggle-use-menu-option-to-toggle)
          */
         mode?: "dark" | "light",
         /**

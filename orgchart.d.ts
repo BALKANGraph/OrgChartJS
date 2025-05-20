@@ -86,6 +86,12 @@ declare class OrgChart {
         excel: (w: string| number, h: string| number, c: string| number) => string,
         /**
          * ```typescript
+         * let powerpointIcon = OrgChart.icon.powerpoint(24, 24, "#7A7A7A");
+         * ```
+         */
+        powerpoint: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
          * let editIcon = OrgChart.icon.edit(24, 24, "#7A7A7A");
          * ```
          */
@@ -1024,6 +1030,34 @@ declare class OrgChart {
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
      */    
     exportVisio(options?: OrgChart.exportOptions, callback?: () => void): void;
+    exportToPowerPoint(options?: {
+        openInNewTab?: boolean,
+        landscape?: boolean,
+        filename?: string,
+        // width?: number,
+        // height?: number,        
+        padding?: number,
+        margin?: Array<number>,
+        nodeId?: number | string,
+        expandChildren?: boolean,
+        childLevels?: boolean,
+        parentLevels?: boolean,
+        min?: boolean,
+        pages?: {
+            chartInstance?: OrgChart,
+            nodeId?: number | string,
+            expandChildren?: boolean,
+            childLevels?: boolean,
+            parentLevels?: boolean,
+            min?: boolean,
+            header?: string,
+            footer?: string
+        },
+        format?: "Screen" | "Widescreen" | "Standard" | "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
+        header?: string,
+        footer?: string
+    }, callback?: () => void): void;
+
     /**
      * Imports CSV file.
      * ```typescript     
@@ -3651,6 +3685,9 @@ declare namespace OrgChart {
         nodeId? : number | string
     }
 
+
+
+
     /**
      * Exports to CSV, XML or JSON options
      * ```typescript     
@@ -4419,7 +4456,6 @@ declare namespace OrgChart {
          *      mode: "dark"
          * });
          * ```
-         * [How to change mode dynamically](https://code.balkan.app/org-chart-js/light/dark-mode-toggle-use-menu-option-to-toggle)
          */
         mode?: "dark" | "light",
         /**

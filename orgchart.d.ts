@@ -2316,6 +2316,13 @@ declare class OrgChart {
     static grCloseTag: any;
 }
 
+
+/**
+ * The node JSON data
+ * ```ts
+ * { id: 2, pid: 1, tags: ["HR"], name: "Anna Smith" }
+ * ```
+ */
 interface nodeData {
 
     /**

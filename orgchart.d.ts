@@ -232,11 +232,11 @@ declare class OrgChart {
         /**
          * old node data
          */
-        oldData: object,
+        oldData: nodeData,
         /**
          * new node data
          */
-        newData: object
+        newData: nodeData
     }) => void): OrgChart;
 
         /**
@@ -293,7 +293,7 @@ declare class OrgChart {
         /**
          * new added data node
          */
-        data: object
+        data: nodeData
     }) => void): OrgChart;
     /**
      * The onDrag event occurs when a node is dragged. *enableDragDrop* option has to be turned on.
@@ -433,7 +433,8 @@ declare class OrgChart {
      * @param callback called at the end of animation
      * @param fireEvent indicates if the add event will be called or not
      */
-    addNode(data: object, callback?: () => void, fireEvent?: boolean): void;  
+    addNode(data: nodeData, callback?: () => void, fireEvent?: boolean): void;  
+    // addNode(data: object, callback?: () => void, fireEvent?: boolean): void;  
 
     /**
      * Removes specified node from nodes collection, redraws the chart and fires remove event.
@@ -457,7 +458,7 @@ declare class OrgChart {
      * ```
      * @param id identification number of the node
      */
-    get(id: string | number): Node;
+    get(id: string | number): nodeData;
     /**
      * If specified node has assistant/s or partner/s as children will return false.
      * ```typescript     
@@ -552,10 +553,11 @@ declare class OrgChart {
      *  { id: 3, pid: 1, name: "Caden Ellison" }
      * ]);
      * ```
-     * @param data node data array
+     * @param data nodes data array
      * @param callback function called after the load
      */
-    load(data: Array<object>, callback?: () => void): OrgChart;
+    load(data: Array<nodeData>, callback?: () => void): OrgChart;
+    // load(data: Array<object>, callback?: () => void): OrgChart;
 
     /**
      * Updates the node data, redraws the chart and fires update event.
@@ -568,7 +570,7 @@ declare class OrgChart {
      * @param callback function called when the animation completes
      * @param fireEvent if it set to true the update event is called
      */
-    updateNode(data: object, callback?: () => void, fireEvent?: boolean): void;
+    updateNode(data: nodeData, callback?: () => void, fireEvent?: boolean): void;
 
     /**
      * Loads nodes from xml.
@@ -2314,9 +2316,33 @@ declare class OrgChart {
     static grCloseTag: any;
 }
 
-interface Node {
+interface nodeData {
+
+    /**
+     * the id of the node
+     */
     id: number | string,
+
+    /**
+     * the parent id
+     */
     pid?: number | string,
+
+    /**
+     * the parent partner id
+     */
+    ppid?: number | string,
+
+    /**
+     * the subtree parent id
+     */
+    stPid?: number | string,
+
+    /**
+     * Set custom configuration for the tagged node
+     *{@link https://balkan.app/OrgChartJS/Docs/Tags | See Tags doc page...} 
+     */
+    tags?: Array<string>,
     [key: string]: any
 }
 
@@ -4746,7 +4772,9 @@ declare namespace OrgChart {
          * - Set node as assistant {@link https://balkan.app/OrgChartJS/Docs/Assistant | See doc...}
          * - Change node menu, circle menu and context menu items for tagged node/s {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
          * - Set the node level {@link https://balkan.app/OrgChartJS/Demos/SubLevels | See demo...}
-         * - Set specific options for sub trees like layout templates etc {@link https://balkan.app/OrgChartJS/Docs/SubTrees | See doc...}          
+         * - Set specific options for sub trees like layout templates, etc. {@link https://balkan.app/OrgChartJS/Docs/SubTrees | See doc...}        
+         * - Set custom CSS, for example node color, field color, etc. {@link https://balkan.app/OrgChartJS/Docs/CSSCustomization | See CSS doc page...}  
+         * - {@link https://balkan.app/OrgChartJS/Docs/Tags | See Tags doc page...}  
          * ```typescript     
          * var chart = new OrgChart('#tree', {
          *      tags: {

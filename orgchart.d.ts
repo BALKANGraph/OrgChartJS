@@ -434,7 +434,6 @@ declare class OrgChart {
      * @param fireEvent indicates if the add event will be called or not
      */
     addNode(data: nodeData, callback?: () => void, fireEvent?: boolean): void;  
-    // addNode(data: object, callback?: () => void, fireEvent?: boolean): void;  
 
     /**
      * Removes specified node from nodes collection, redraws the chart and fires remove event.
@@ -557,7 +556,8 @@ declare class OrgChart {
      * @param callback function called after the load
      */
     load(data: Array<nodeData>, callback?: () => void): OrgChart;
-    // load(data: Array<object>, callback?: () => void): OrgChart;
+
+
 
     /**
      * Updates the node data, redraws the chart and fires update event.
@@ -2315,7 +2315,6 @@ declare class OrgChart {
      */
     static grCloseTag: any;
 }
-
 
 /**
  * The node JSON data
@@ -4779,7 +4778,8 @@ declare namespace OrgChart {
          * - Set node as assistant {@link https://balkan.app/OrgChartJS/Docs/Assistant | See doc...}
          * - Change node menu, circle menu and context menu items for tagged node/s {@link https://balkan.app/OrgChartJS/Docs/Menus | See doc...}
          * - Set the node level {@link https://balkan.app/OrgChartJS/Demos/SubLevels | See demo...}
-         * - Set specific options for sub trees like layout templates, etc. {@link https://balkan.app/OrgChartJS/Docs/SubTrees | See doc...}        
+         * - Set specific options for sub trees like layout templates etc {@link https://balkan.app/OrgChartJS/Docs/SubTrees | See doc...}          
+         *  * - Set specific options for sub trees like layout templates, etc. {@link https://balkan.app/OrgChartJS/Docs/SubTrees | See doc...}        
          * - Set custom CSS, for example node color, field color, etc. {@link https://balkan.app/OrgChartJS/Docs/CSSCustomization | See CSS doc page...}  
          * - {@link https://balkan.app/OrgChartJS/Docs/Tags | See Tags doc page...}  
          * ```typescript     

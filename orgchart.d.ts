@@ -1045,7 +1045,7 @@ declare class OrgChart {
         childLevels?: boolean,
         parentLevels?: boolean,
         min?: boolean,
-        pages?: {
+        pages?: Array<{
             chartInstance?: OrgChart,
             nodeId?: number | string,
             expandChildren?: boolean,
@@ -1054,7 +1054,7 @@ declare class OrgChart {
             min?: boolean,
             header?: string,
             footer?: string
-        },
+        }>,
         format?: "Screen" | "Widescreen" | "Standard" | "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
         header?: string,
         footer?: string

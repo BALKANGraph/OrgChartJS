@@ -4649,7 +4649,8 @@ declare namespace OrgChart {
          */
         aiChatTools?: Array<OrgChart.aiChatTool>,
         /**
-         * With the toolbar enabled allows you to change the layout, zoom in/out, expand all nodes, etc.
+         * Shows a toolbar
+         * The toolbar options allow you to change the layout, zoom in/out, expand all nodes, etc.
          * ```typescript     
          * var chart = new OrgChart('#tree', {
          *      toolbar: {

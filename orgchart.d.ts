@@ -1055,7 +1055,7 @@ declare class OrgChart {
             header?: string,
             footer?: string
         }>,
-        format?: "Screen" | "Widescreen" | "Standard" | "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
+        format?: "Screen" | "Widescreen" | "Standard",
         header?: string,
         footer?: string
     }, callback?: () => void): void;

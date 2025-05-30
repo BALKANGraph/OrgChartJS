@@ -1523,6 +1523,8 @@ declare class OrgChart {
      */
     nodeMenuUI: OrgChart.menuUI;
 
+    powerPointPreviewUI: OrgChart.exportUI;
+
     /**
      * The chart filterUI object.
      * ```typescript  

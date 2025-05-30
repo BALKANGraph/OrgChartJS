@@ -86,10 +86,16 @@ declare class OrgChart {
         excel: (w: string| number, h: string| number, c: string| number) => string,
         /**
          * ```typescript
-         * let powerpointIcon = OrgChart.icon.powerpoint(24, 24, "#7A7A7A");
+         * let powerPointIcon = OrgChart.icon.powerpoint(24, 24, "#7A7A7A");
          * ```
          */
         powerpoint: (w: string| number, h: string| number, c: string| number) => string,
+        /**
+         * ```typescript
+         * let powerPointPreviewIcon = OrgChart.icon.pppreview(24, 24, "#7A7A7A");
+         * ```
+         */
+        pppreview: (w: string| number, h: string| number, c: string| number) => string,
         /**
          * ```typescript
          * let editIcon = OrgChart.icon.edit(24, 24, "#7A7A7A");
@@ -1032,33 +1038,7 @@ declare class OrgChart {
      * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
      */    
     exportVisio(options?: OrgChart.exportOptions, callback?: () => void): void;
-    exportToPowerPoint(options?: {
-        openInNewTab?: boolean,
-        landscape?: boolean,
-        filename?: string,
-        // width?: number,
-        // height?: number,        
-        padding?: number,
-        margin?: Array<number>,
-        nodeId?: number | string,
-        expandChildren?: boolean,
-        childLevels?: boolean,
-        parentLevels?: boolean,
-        min?: boolean,
-        pages?: Array<{
-            chartInstance?: OrgChart,
-            nodeId?: number | string,
-            expandChildren?: boolean,
-            childLevels?: boolean,
-            parentLevels?: boolean,
-            min?: boolean,
-            header?: string,
-            footer?: string
-        }>,
-        format?: "Screen" | "Widescreen" | "Standard",
-        header?: string,
-        footer?: string
-    }, callback?: () => void): void;
+    exportToPowerPoint(options?: OrgChart.exportPowerPontOptions, callback?: () => void): void;
 
     /**
      * Imports CSV file.
@@ -3170,6 +3150,15 @@ declare namespace OrgChart {
         show(x: number | HTMLElement, y?: number, firstNodeId?: string | number, secondNodeId?: string | number, menu?: { [key: string]: menu }): void;
     }
 
+    interface exportUI  {
+        get instance(): OrgChart;
+        get options(): OrgChart.exportPowerPontOptions;
+        init(obj: OrgChart): void;
+        isVisible(): boolean;
+        hide(): void;
+        show(options: OrgChart.exportPowerPontOptions): void;
+    }
+
     /**
      * Circle Menu UI
      *  ```typescript     
@@ -3715,6 +3704,36 @@ declare namespace OrgChart {
         childLevels?: boolean,
         min?: boolean,
         nodeId? : number | string
+    }
+
+
+    
+    interface exportPowerPontOptions {
+        openInNewTab?: boolean,
+        landscape?: boolean,
+        filename?: string,
+        // width?: number,
+        // height?: number,        
+        padding?: number,
+        margin?: Array<number>,
+        nodeId?: number | string,
+        expandChildren?: boolean,
+        childLevels?: boolean,
+        parentLevels?: boolean,
+        min?: boolean,
+        pages?: Array<{
+            chartInstance?: OrgChart,
+            nodeId?: number | string,
+            expandChildren?: boolean,
+            childLevels?: boolean,
+            parentLevels?: boolean,
+            min?: boolean,
+            header?: string,
+            footer?: string
+        }>,
+        format?: "Screen" | "Widescreen" | "Standard",
+        header?: string,
+        footer?: string
     }
 
 
@@ -5238,6 +5257,10 @@ declare namespace OrgChart {
           * @ignore
           */
         nodeMenuUI?: OrgChart.menuUI,
+        /**
+          * @ignore
+          */
+        powerPointPreviewUI?: OrgChart.exportUI,        
         /**
           * @ignore
           */

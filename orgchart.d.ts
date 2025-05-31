@@ -2865,6 +2865,10 @@ declare namespace OrgChart {
      */
     interface aiUI {
         /**
+         * The width of the ai UI
+         */
+        get width(): number;
+        /**
          * Prompt text box
          */
         inputElement: HTMLInputElement;
@@ -2883,6 +2887,10 @@ declare namespace OrgChart {
          * Hides the ai form
          */
         hide(): void;
+        /**
+         * Returns true if the ai UI is visible
+         */
+        isVisible(): boolean;
     }
 
     interface searchUI {
@@ -3153,6 +3161,10 @@ declare namespace OrgChart {
     }
 
     interface exportUI  {
+        /**
+         * The width of the EXPORT UI
+         */
+        get width(): number;
         get instance(): OrgChart;
         get options(): OrgChart.exportPowerPontOptions;
         init(obj: OrgChart): void;

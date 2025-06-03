@@ -3743,7 +3743,8 @@ declare namespace OrgChart {
             parentLevels?: boolean,
             min?: boolean,
             header?: string,
-            footer?: string
+            footer?: string,
+            content?:  string
         }>,
         format?: "Screen" | "Widescreen" | "Standard",
         header?: string,

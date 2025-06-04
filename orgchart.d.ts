@@ -3724,7 +3724,6 @@ declare namespace OrgChart {
     
     interface exportPowerPontOptions {
         openInNewTab?: boolean,
-        landscape?: boolean,
         filename?: string,
         // width?: number,
         // height?: number,        

@@ -1039,6 +1039,7 @@ declare class OrgChart {
      */    
     exportVisio(options?: OrgChart.exportOptions, callback?: () => void): void;
     exportToPowerPoint(options?: OrgChart.exportPowerPontOptions, callback?: () => void): void;
+    exportToPDF(options?: OrgChart.exportPowerPontOptions, callback?: () => void): void;
 
     /**
      * Imports CSV file.
@@ -1524,6 +1525,8 @@ declare class OrgChart {
     nodeMenuUI: OrgChart.menuUI;
 
     powerPointPreviewUI: OrgChart.exportUI;
+
+    pdfPreviewUI: OrgChart.exportUI;
 
     /**
      * The chart filterUI object.
@@ -5275,6 +5278,11 @@ declare namespace OrgChart {
           * @ignore
           */
         powerPointPreviewUI?: OrgChart.exportUI,        
+        
+        /**
+          * @ignore
+          */
+        pdfPreviewUI?: OrgChart.exportUI,   
         /**
           * @ignore
           */

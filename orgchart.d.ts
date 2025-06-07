@@ -1039,7 +1039,7 @@ declare class OrgChart {
      */    
     exportVisio(options?: OrgChart.exportOptions, callback?: () => void): void;
     exportToPowerPoint(options?: OrgChart.exportPowerPontOptions, callback?: () => void): void;
-    exportToPDF(options?: OrgChart.exportPowerPontOptions, callback?: () => void): void;
+    exportToPDF(options?: OrgChart.exportPDFOptions, callback?: () => void): void;
 
     /**
      * Imports CSV file.
@@ -1524,9 +1524,9 @@ declare class OrgChart {
      */
     nodeMenuUI: OrgChart.menuUI;
 
-    powerPointPreviewUI: OrgChart.exportUI;
+    powerPointPreviewUI: OrgChart.powerPointPreviewUI;
 
-    pdfPreviewUI: OrgChart.exportUI;
+    pdfPreviewUI: OrgChart.pdfPreviewUI;
 
     /**
      * The chart filterUI object.
@@ -3163,7 +3163,7 @@ declare namespace OrgChart {
         show(x: number | HTMLElement, y?: number, firstNodeId?: string | number, secondNodeId?: string | number, menu?: { [key: string]: menu }): void;
     }
 
-    interface exportUI  {
+    interface powerPointPreviewUI  {
         /**
          * The width of the EXPORT UI
          */
@@ -3174,6 +3174,19 @@ declare namespace OrgChart {
         isVisible(): boolean;
         hide(): void;
         show(options: OrgChart.exportPowerPontOptions): void;
+    }
+
+    interface pdfPreviewUI  {
+        /**
+         * The width of the EXPORT UI
+         */
+        get width(): number;
+        get instance(): OrgChart;
+        get options(): OrgChart.exportPDFOptions;
+        init(obj: OrgChart): void;
+        isVisible(): boolean;
+        hide(): void;
+        show(options: OrgChart.exportPDFOptions): void;
     }
 
     /**
@@ -3749,6 +3762,35 @@ declare namespace OrgChart {
             content?:  string
         }>,
         format?: "Screen" | "Widescreen" | "Standard",
+        header?: string,
+        footer?: string
+    }
+
+    interface exportPDFOptions {
+        openInNewTab?: boolean,
+        filename?: string,
+        lanscape?: boolean,
+        // width?: number,
+        // height?: number,        
+        padding?: number,
+        margin?: Array<number>,
+        nodeId?: number | string,
+        expandChildren?: boolean,
+        childLevels?: boolean,
+        parentLevels?: boolean,
+        min?: boolean,
+        pages?: Array<{
+            chartInstance?: OrgChart,
+            nodeId?: number | string,
+            expandChildren?: boolean,
+            childLevels?: boolean,
+            parentLevels?: boolean,
+            min?: boolean,
+            header?: string,
+            footer?: string,
+            content?:  string
+        }>,
+        format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
         header?: string,
         footer?: string
     }
@@ -5277,12 +5319,12 @@ declare namespace OrgChart {
         /**
           * @ignore
           */
-        powerPointPreviewUI?: OrgChart.exportUI,        
+        powerPointPreviewUI?: OrgChart.powerPointPreviewUI,        
         
         /**
           * @ignore
           */
-        pdfPreviewUI?: OrgChart.exportUI,   
+        pdfPreviewUI?: OrgChart.pdfPreviewUI,   
         /**
           * @ignore
           */

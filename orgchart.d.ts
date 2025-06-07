@@ -3740,12 +3740,11 @@ declare namespace OrgChart {
     
     interface exportPowerPontOptions {
         openInNewTab?: boolean,
-        filename?: string,
+        fileName?: string,
         // width?: number,
         // height?: number,        
         padding?: number,
         margin?: Array<number>,
-        nodeId?: number | string,
         expandChildren?: boolean,
         childLevels?: boolean,
         parentLevels?: boolean,
@@ -3768,13 +3767,12 @@ declare namespace OrgChart {
 
     interface exportPDFOptions {
         openInNewTab?: boolean,
-        filename?: string,
-        lanscape?: boolean,
+        fileName?: string,
+        landscape?: boolean,
         // width?: number,
         // height?: number,        
         padding?: number,
         margin?: Array<number>,
-        nodeId?: number | string,
         expandChildren?: boolean,
         childLevels?: boolean,
         parentLevels?: boolean,

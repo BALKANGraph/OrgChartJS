@@ -1490,6 +1490,18 @@ declare class OrgChart {
     element: HTMLElement;
 
     /**
+     * The tree div element.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * let mainElement = chart.mainElement;
+     * ```
+     */
+    mainElement: HTMLElement;
+
+    get leftElement(): HTMLElement;
+
+
+    /**
      * The chart editUI object.
      * ```typescript  
      * let chart = new OrgChart('#tree', {});

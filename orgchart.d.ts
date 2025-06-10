@@ -3815,7 +3815,7 @@ declare namespace OrgChart {
             footer?: string,
             content?:  string
         }>,
-        format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
+        format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal" | "auto",
         header?: string,
         footer?: string
     }
@@ -3823,9 +3823,7 @@ declare namespace OrgChart {
     interface exportPNGOptions {
         openInNewTab?: boolean,
         fileName?: string,
-        //landscape?: boolean,
-        width?: number,
-        height?: number,        
+        //landscape?: boolean,  
         padding?: number,
         margin?: Array<number>,
         expandChildren?: boolean,

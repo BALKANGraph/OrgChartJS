@@ -4928,6 +4928,7 @@ declare namespace OrgChart {
                 nodeMenu?: OrgChart.menu,
                 nodeCircleMenu?: OrgChart.circleMenu,
                 nodeContextMenu?: OrgChart.menu,
+                min?: boolean,
                 subTreeConfig?: {
                     orientation?: OrgChart.orientation,
                     levelSeparation?: number,

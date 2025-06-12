@@ -1041,6 +1041,7 @@ declare class OrgChart {
     exportToPowerPoint(options?: OrgChart.exportPowerPontOptions, callback?: () => void): void;
     exportToPDF(options?: OrgChart.exportPDFOptions, callback?: () => void): void;
     exportToPNG(options?: OrgChart.exportPNGOptions, callback?: () => void): void;
+    exportToSVG(options?: OrgChart.exportSVGOptions, callback?: () => void): void;
 
     /**
      * Imports CSV file.
@@ -1540,6 +1541,7 @@ declare class OrgChart {
     powerPointPreviewUI: OrgChart.powerPointPreviewUI;
 
     pdfPreviewUI: OrgChart.pdfPreviewUI;
+    svgPreviewUI: OrgChart.svgfPreviewUI;
     pngPreviewUI: OrgChart.pngPreviewUI;
 
     /**
@@ -3203,6 +3205,7 @@ declare namespace OrgChart {
         show(options: OrgChart.exportPDFOptions): void;
     }
 
+
     interface pngPreviewUI  {
         /**
          * The width of the EXPORT UI
@@ -3215,6 +3218,9 @@ declare namespace OrgChart {
         hide(): void;
         show(options: OrgChart.exportPNGOptions): void;
     }
+
+    
+    interface svgPreviewUI extends OrgChart.pngPreviewUI {}
 
     /**
      * Circle Menu UI
@@ -5376,6 +5382,11 @@ declare namespace OrgChart {
           * @ignore
           */
         pdfPreviewUI?: OrgChart.pdfPreviewUI,   
+
+        /**
+         * @ignore
+         */
+        svgPreviewUI?: OrgChart.svgPreviewUI,   
 
         /**
           * @ignore

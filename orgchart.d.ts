@@ -3186,6 +3186,15 @@ declare namespace OrgChart {
         get width(): number;
         get instance(): OrgChart;
         get options(): OrgChart.exportPowerPontOptions;
+
+        locExport: string;
+        locCancel: string;
+        locParentLevels: string;
+        locChildLevels: string;
+        locClickToAdd: string;
+        locAddNew: string;
+        locRemove: string;
+
         init(obj: OrgChart): void;
         isVisible(): boolean;
         hide(): void;
@@ -3199,10 +3208,20 @@ declare namespace OrgChart {
         get width(): number;
         get instance(): OrgChart;
         get options(): OrgChart.exportPDFOptions;
+        
+        locExport: string;
+        locCancel: string;
+        locParentLevels: string;
+        locChildLevels: string;
+        locClickToAdd: string;
+        locAddNew: string;
+        locRemove: string;
+
         init(obj: OrgChart): void;
         isVisible(): boolean;
         hide(): void;
         show(options: OrgChart.exportPDFOptions): void;
+        
     }
 
 
@@ -3213,6 +3232,16 @@ declare namespace OrgChart {
         get width(): number;
         get instance(): OrgChart;
         get options(): OrgChart.exportPNGOptions;
+        
+        
+        locExport: string;
+        locCancel: string;
+        locParentLevels: string;
+        locChildLevels: string;
+        locClickToAdd: string;
+        locAddNew: string;
+        locRemove: string;
+
         init(obj: OrgChart): void;
         isVisible(): boolean;
         hide(): void;
@@ -3810,7 +3839,8 @@ declare namespace OrgChart {
         childLevels?: boolean,
         parentLevels?: boolean,
         min?: boolean,
-        pages?: Array<{
+        pages?: Array<{            
+            isProfile?: boolean,
             chartInstance?: OrgChart,
             nodeId?: number | string,
             expandChildren?: boolean,

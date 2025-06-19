@@ -3216,6 +3216,8 @@ declare namespace OrgChart {
         locClickToAdd: string;
         locAddNew: string;
         locRemove: string;
+        locPrintTree: string;
+        locPrintProfile: string;
 
         init(obj: OrgChart): void;
         isVisible(): boolean;

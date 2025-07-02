@@ -2867,6 +2867,8 @@ declare namespace OrgChart {
          */
         hide(): void;
         content(id: string | number, detailsMode: boolean, dontAnim: boolean, width: string, dontRenderButtons: boolean): string;
+
+        setAvatar(url: string): void;
         // static renderHeaderContent(title: string, photo: string, node: OrgChart.node, data: object): string;        
     }
 

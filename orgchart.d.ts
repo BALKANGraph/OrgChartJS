@@ -1252,10 +1252,10 @@ declare class OrgChart {
     onRedraw(listener: (this: OrgChart) => void): OrgChart;
 
     /**
-     * The onExpandCollpaseButtonClick event occurs when the chart is redrawed.
+     * The onExpandCollapseButtonClick event occurs when the chart is redrawed.
      * ```typescript     
      * let chart = new OrgChart('#tree', {});
-     * chart.onExpandCollpaseButtonClick(() => {
+     * chart.onExpandCollapseButtonClick(() => {
      *  //return false; to cancel the operation
      * });
      * chart.load(nodes);
@@ -1263,7 +1263,7 @@ declare class OrgChart {
      * @category Event Listeners
      * @param listener 
      */         
-    onExpandCollpaseButtonClick(listener: (this: OrgChart, args: {
+    onExpandCollapseButtonClick(listener: (this: OrgChart, args: {
         /**
          * Indicates id the operation is collaps or expand
          */

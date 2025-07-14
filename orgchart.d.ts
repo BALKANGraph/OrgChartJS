@@ -930,7 +930,7 @@ declare class OrgChart {
      * ```
      * @param options export options
      * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}        
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingPdfPng#profile | See doc...}        
      */
     exportPDFProfile(options: OrgChart.exportOptions, callback?: () => void): void;
     /**
@@ -942,7 +942,7 @@ declare class OrgChart {
      * ```
      * @param options export options
      * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}        
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingPdfPng#profile | See doc...}        
      */
     exportPNGProfile(options: OrgChart.exportOptions, callback?: () => void): void;
     /**
@@ -953,7 +953,7 @@ declare class OrgChart {
      * chart.exportCSV();
      * ```
      * @param filename The name of the exported file
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther#options | See doc...}            
      */
     exportCSV(filename?: string | OrgChart.exportCSVXMLJSONOptions): void;
     /**
@@ -964,7 +964,7 @@ declare class OrgChart {
      * chart.exportXML();
      * ```
      * @param filename The name of the exported file
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther#options | See doc...}            
      */
     exportXML(filename: string | OrgChart.exportCSVXMLJSONOptions): void;
     /**
@@ -975,7 +975,7 @@ declare class OrgChart {
      * chart.exportJSON();
      * ```
      * @param filename The name of the exported file
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther#options | See doc...}            
      */
      exportJSON(filename?: string | OrgChart.exportCSVXMLJSONOptions ): void;
 
@@ -986,8 +986,7 @@ declare class OrgChart {
      * chart.shareProfile(2);
      * ```
      * Shares node data, uses build-in  device sharing functionallity.
-     * @param id node id 
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
+     * @param id node id          
      */
     shareProfile(id: string | number): void;
     /**
@@ -999,7 +998,7 @@ declare class OrgChart {
      * ```
      * @param options export options
      * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingPdfPng#pdfOptions | See doc...}       
      */
     exportPDF(options?: OrgChart.exportOptions, callback?: () => void): void;    
     /**
@@ -1011,7 +1010,7 @@ declare class OrgChart {
      * ```
      * @param options export options 
      * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingPdfPng#pngOptions | See doc...}       
      */
     exportPNG(options?: OrgChart.exportOptions, callback?: () => void): void;
     /**
@@ -1023,7 +1022,7 @@ declare class OrgChart {
      * ```
      * @param options export options 
      * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther#svgOptions | See doc...}       
      */    
     exportSVG(options?: OrgChart.exportOptions, callback?: () => void): void;
     /**
@@ -1035,13 +1034,13 @@ declare class OrgChart {
      * ```
      * @param options export options 
      * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther | See doc...}       
      */    
     exportVisio(options?: OrgChart.exportOptions, callback?: () => void): void;
     exportToPowerPoint(options?: OrgChart.exportPowerPontOptions, callback?: () => void): void;
     exportToPDF(options?: OrgChart.exportPDFOptions, callback?: () => void): void;
     exportToPNG(options?: OrgChart.exportPNGOptions, callback?: () => void): void;
-    exportToSVG(options?: OrgChart.exportSVGOptions, callback?: () => void): void;
+    exportToSVG(options?: OrgChart.exportPNGOptions, callback?: () => void): void;
 
     /**
      * Imports CSV file.
@@ -1541,7 +1540,7 @@ declare class OrgChart {
     powerPointPreviewUI: OrgChart.powerPointPreviewUI;
 
     pdfPreviewUI: OrgChart.pdfPreviewUI;
-    svgPreviewUI: OrgChart.svgfPreviewUI;
+    svgPreviewUI: OrgChart.pngPreviewUI;
     pngPreviewUI: OrgChart.pngPreviewUI;
 
     /**
@@ -3779,7 +3778,7 @@ declare namespace OrgChart {
      *   format: "A4"
      * });
      * ```
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}       
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingPdfPng | See doc...}       
      */
     interface exportOptions  {
         margin?: Array<number>,
@@ -3897,7 +3896,7 @@ declare namespace OrgChart {
      *      chart.exportCSV('My.csv');
      *  });
      * ```
-     * {@link https://balkan.app/OrgChartJS/Docs/Exporting | See doc...}            
+     * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther#options | See doc...}            
      */
     interface exportCSVXMLJSONOptions  {
         filename?: string,

@@ -1036,11 +1036,15 @@ declare class OrgChart {
      * @param callback called when the export completes
      * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther | See doc...}       
      */    
-    exportVisio(options?: OrgChart.exportOptions, callback?: () => void): void;
+    exportToVisio(options?: OrgChart.exportOptions, callback?: () => void): void;
     exportToPowerPoint(options?: OrgChart.exportPowerPontOptions, callback?: () => void): void;
     exportToPDF(options?: OrgChart.exportPDFOptions, callback?: () => void): void;
     exportToPNG(options?: OrgChart.exportPNGOptions, callback?: () => void): void;
     exportToSVG(options?: OrgChart.exportPNGOptions, callback?: () => void): void;
+    exportToPDFProfile(nodeId: number | string, callback?: () => void):  void;
+
+
+    
 
     /**
      * Imports CSV file.

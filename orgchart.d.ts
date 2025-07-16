@@ -1030,7 +1030,7 @@ declare class OrgChart {
      * ```typescript     
      * let chart = new OrgChart('#tree', {});
      * ...
-     * chart.exportVisio();
+     * chart.exportToVisio();
      * ```
      * @param options export options 
      * @param callback called when the export completes

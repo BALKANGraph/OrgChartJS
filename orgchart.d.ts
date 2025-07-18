@@ -1036,11 +1036,11 @@ declare class OrgChart {
      * @param callback called when the export completes
      * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther | See doc...}       
      */    
-    exportToVisio(options?: OrgChart.exportOptions, callback?: () => void): void;
+    exportToVisio(options?: OrgChart.exportVisioOptions, callback?: () => void): void;
     exportToPowerPoint(options?: OrgChart.exportPowerPontOptions, callback?: () => void): void;
     exportToPDF(options?: OrgChart.exportPDFOptions, callback?: () => void): void;
     exportToPNG(options?: OrgChart.exportPNGOptions, callback?: () => void): void;
-    exportToSVG(options?: OrgChart.exportPNGOptions, callback?: () => void): void;
+    exportToSVG(options?: OrgChart.exportSVGOptions, callback?: () => void): void;
     exportToPDFProfile(nodeId: number | string, callback?: () => void):  void;
 
 
@@ -3817,15 +3817,15 @@ declare namespace OrgChart {
         padding?: number,
         margin?: Array<number>,
         expandChildren?: boolean,
-        childLevels?: boolean,
-        parentLevels?: boolean,
+        childLevels?: number,
+        parentLevels?: number,
         min?: boolean,
         pages?: Array<{
             chartInstance?: OrgChart,
             nodeId?: number | string,
             expandChildren?: boolean,
-            childLevels?: boolean,
-            parentLevels?: boolean,
+            childLevels?: number,
+            parentLevels?: number,
             min?: boolean,
             header?: string,
             footer?: string,
@@ -3845,16 +3845,16 @@ declare namespace OrgChart {
         padding?: number,
         margin?: Array<number>,
         expandChildren?: boolean,
-        childLevels?: boolean,
-        parentLevels?: boolean,
+        childLevels?: number,
+        parentLevels?: number,
         min?: boolean,
         pages?: Array<{            
             isProfile?: boolean,
             chartInstance?: OrgChart,
             nodeId?: number | string,
             expandChildren?: boolean,
-            childLevels?: boolean,
-            parentLevels?: boolean,
+            childLevels?: number,
+            parentLevels?: number,
             min?: boolean,
             header?: string,
             footer?: string,
@@ -3872,16 +3872,16 @@ declare namespace OrgChart {
         padding?: number,
         margin?: Array<number>,
         expandChildren?: boolean,
-        childLevels?: boolean,
-        parentLevels?: boolean,
+        childLevels?: number,
+        parentLevels?: number,
         min?: boolean,
         pages?: Array<{
             chartInstance?: OrgChart,
             nodeId?: number | string,
             expandChildren?: boolean,
-            childLevels?: boolean,
-            parentLevels?: boolean,
-            min?: boolean,
+            childLevels?: number,
+            parentLevels?: number,
+            min?: boolean,e
             header?: string,
             footer?: string,
             content?:  string
@@ -3890,6 +3890,20 @@ declare namespace OrgChart {
         header?: string,
         footer?: string
     }
+
+    interface exportSVGOptions extends  exportPNGOptions {}
+
+    interface exportVisioOptions {
+        fileName?: string,
+        padding?: number,
+        margin?: Array<number>,
+        expandChildren?: boolean,
+        childLevels?: number,
+        parentLevels?: number,
+        min?: boolean,
+        header?: string,
+        footer?: string
+    }  
 
 
 

@@ -1286,7 +1286,7 @@ declare class OrgChart {
      *  ```typescript     
      * let chart = new OrgChart('#tree', {});
      * chart.onExportStart(() => {
-     *  args.styles += '<link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet">';
+     *  args.styles += '<link href="[link to my styles]" rel="stylesheet">';
      *  //return false; to cancel the operation
      * });
      * chart.load(nodes);
@@ -1294,50 +1294,25 @@ declare class OrgChart {
      * @category Event Listeners
      * @param listener 
      */             
-    onExportStart(listener: (this: OrgChart, args: 
-        {
-        /**
-         * the content to be exported
-         * 
-         * this property is initialized only for PDF/PNG/SVG exports
-         */
-        content: string,
-        /**
-         * export options
-         * 
-         * this property is initialized only for PDF/PNG/SVG exports
-         */
-        options: OrgChart.exportOptions,
-        /**
-         * add extra styles
-         * 
-         * this property is initialized only for PDF/PNG/SVG exports
-         */
-        styles: string,
-        /**
-         * an object that discribes pages to be exported
-         * 
-         * this property is initialized only for PDF/PNG exports
-         */
-        pages: any,
-        /**
-         * extension
-         * 
-         * this property is initialized only for CSV/XML
-         */
-        ext: string,
-        /**
-         * filename, you can change the filename here
-         * 
-         * this property is initialized only for CSV/XML exports
-         */
-        filename: string,
-        /**
-         * array of node objects
-         * 
-         * this property is initialized only for CSV/XML exports
-         */
-        nodes: Array<object>
+    onExportStart(listener: (this: OrgChart, args: {
+            options: {
+                childLevels?: number,
+                expandChildren?: boolean,
+                fileName?: string,
+                footer?: string,
+                header?: string,
+                height?: number,
+                width?: number,
+                landscape?: boolean,
+                margin?: Array<number>,
+                min?: boolean,
+                openInNewTab?: boolean,
+                padding?: number,
+                parentLevels?: number,
+                styles?: string,
+                type?: string,
+                pages?: Array<SVGElement>
+            }
     }) => void): OrgChart;
 
     /**

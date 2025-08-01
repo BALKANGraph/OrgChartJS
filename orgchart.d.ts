@@ -1309,10 +1309,26 @@ declare class OrgChart {
                 openInNewTab?: boolean,
                 padding?: number,
                 parentLevels?: number,
-                styles?: string,
                 type?: string,
-                pages?: Array<SVGElement>
-            }
+                pages?: Array<{            
+                    chartInstance?: OrgChart,
+                    childLevels?: number,
+                    expandChildren?: boolean,
+                    footer?: string,
+                    header?: string,
+                    margin?: Array<number>,
+                    min?: boolean,
+                    padding?: number,
+                    parentLevels?: number,
+                    isProfile?: boolean,
+                    nodeId?: number | string,
+                    content?:  string,
+                    height?: number,
+                    width?: number,
+                }>
+            },
+            pages?: Array<SVGElement>,            
+            styles?: string
     }) => void): OrgChart;
 
     /**

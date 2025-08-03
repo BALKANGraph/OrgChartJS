@@ -921,30 +921,8 @@ declare class OrgChart {
      * ```
      */
     getMenuButton(): HTMLElement;
-    /**
-     * Exports the details form to PDF.
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * ...
-     * chart.exportPDFProfile({nodeId: 2});
-     * ```
-     * @param options export options
-     * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/ExportingPdfPng#profile | See doc...}        
-     */
-    exportPDFProfile(options: OrgChart.exportOptions, callback?: () => void): void;
-    /**
-     * Exports the details form to PDF.
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * ...
-     * chart.exportPNGProfile({nodeId: 2});
-     * ```
-     * @param options export options
-     * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/ExportingPdfPng#profile | See doc...}        
-     */
-    exportPNGProfile(options: OrgChart.exportOptions, callback?: () => void): void;
+
+
     /**
      * Exports to CSV
      * ```typescript     
@@ -989,42 +967,7 @@ declare class OrgChart {
      * @param id node id          
      */
     shareProfile(id: string | number): void;
-    /**
-     * Exports to PDF document
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * ...
-     * chart.exportPDF();
-     * ```
-     * @param options export options
-     * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/ExportingPdfPng#pdfOptions | See doc...}       
-     */
-    exportPDF(options?: OrgChart.exportOptions, callback?: () => void): void;    
-    /**
-     * Exports to PNG document
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * ...
-     * chart.exportPNG();
-     * ```
-     * @param options export options 
-     * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/ExportingPdfPng#pngOptions | See doc...}       
-     */
-    exportPNG(options?: OrgChart.exportOptions, callback?: () => void): void;
-    /**
-     * Exports to SVG document
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * ...
-     * chart.exportSVG();
-     * ```
-     * @param options export options 
-     * @param callback called when the export completes
-     * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther#svgOptions | See doc...}       
-     */    
-    exportSVG(options?: OrgChart.exportOptions, callback?: () => void): void;
+
     /**
      * Exports to Visio document
      * ```typescript     
@@ -1377,13 +1320,7 @@ declare class OrgChart {
          * 
          * this property is initialized only for CSV/XML/SVG exports
          */
-        content: string
-        /**
-         * export options
-         * 
-         * this property is initialized only for SVG exports
-         */
-        options: OrgChart.exportOptions,
+        content: string,
         /**
          * add extra styles
          * 
@@ -1642,39 +1579,6 @@ declare class OrgChart {
     
     static fileUploadDialog(callback: (file: any) => void): void;
 
-    /**
-    * Exports multiple charts or a chart by teams.
-    * ```typescript  
-    * let chart1 = new OrgChart('#tree', {});
-    * let chart2 = new OrgChart('#tree', {});
-    * let chart3 = new OrgChart('#tree', {});
-    * let chart4 = new OrgChart('#tree', {});
-    * document.getElementById('btn_export').addEventListener('click', function(){
-    *    OrgChart.exportPDFFromCharts([
-    *        {chartInstance: chart1, scale: 'fit', format: 'A4', header: 'OrgChart 1' },
-    *        {chartInstance: chart2, scale: 'fit', format: 'A4', header: 'OrgChart 2' },
-    *        {chartInstance: chart3, scale: 'fit', format: 'A4', header: 'OrgChart 3' },
-    *        {chartInstance: chart4, scale: 'fit', format: 'A4', header: 'OrgChart 4' },
-    *    ], "test.pdf");
-    * });
-    * ```
-    */
-    static exportPDFFromCharts(optionList: Array<{        
-        chartInstance: OrgChart,
-        childLevels?: number,
-        parentLevels?: number,
-        margin?: Array<number>,
-        padding?: number,
-        landscape?: boolean,
-        type?: "preview" | "nodes",
-        scale?: "fit" | number,
-        format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
-        header?: string,
-        footer?: string,
-        expandChildren?: boolean,
-        min?: boolean,
-        nodeId? : number | string
-    }>, filename?: string, openInNewTab?: boolean, callback?: (arrayBuffer: ArrayBuffer) => void): void;
 
     /**
      * Checks if the screen is mobile
@@ -2280,10 +2184,6 @@ declare class OrgChart {
      * @ignore
      */
     static editUI: any;
-    /**
-     * @ignore
-     */
-    static pdfPrevUI: OrgChart.pdfPrevUI;
     // static menuUI: any;
     /**
      * @ignore
@@ -3328,32 +3228,7 @@ declare namespace OrgChart {
         instance: OrgChart;
     }
 
-    interface pdfPrevUI {
-        /**
-         * Shows the PDF Preview UI
-         *  ```typescript
-         * function pdf() {
-         *      OrgChart.pdfPrevUI.show(chart, {
-         *          format: "A4",
-         *          header: 'My Header',
-         *          footer: 'My Footer. Page {current-page} of {total-pages}'
-         *      });
-         * }
-         * ```
-         */
-        show(chart: OrgChart, options: exportOptions): pdfPrevUI;
 
-        /**
-         * Hide the PDF Preview UI
-         *  ```typescript
-         * chart.element.querySelector('#boc-prev-cancel').addEventListener('click', function () {
-         *      OrgChart.pdfPrevUI.hide(chart);
-         * });
-         * ```
-         */
-        hide(chart: OrgChart): void;
-
-    }
 
     interface keyNavigation {
         /**
@@ -3764,39 +3639,7 @@ declare namespace OrgChart {
         bottom?: string
     }
 
-    /**
-     * Exports to PDF document
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * ...
-     * chart.exportPDF({
-     *   format: "A4"
-     * });
-     * ```
-     * {@link https://balkan.app/OrgChartJS/Docs/ExportingPdfPng | See doc...}       
-     */
-    interface exportOptions  {
-        margin?: Array<number>,
-        padding?: number,
-        landscape?: boolean,
-        filename?: string,
-        scale?: "fit" | number,
-        format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
-        header?: string,
-        footer?: string,
-        openInNewTab?: boolean,
-        expandChildren?: boolean,
-        /**
-         * Export parents of nodeId 
-         */
-        parentLevels?: boolean,
-        /** 
-         * Export children of nodeId 
-         */
-        childLevels?: boolean,
-        min?: boolean,
-        nodeId? : number | string
-    }
+
 
 
     
@@ -5465,15 +5308,8 @@ declare namespace OrgChart {
          * @ignore
          */
          UI?: any,        
-        /**
-         * The URL to the export server. Default value - *https://balkan.app/export*
-         * ```typescript       
-         * var chart = new OrgChart('#tree', {
-         *   exportUrl: "https://balkan.app/export"
-         * });
-         * ```          
-         */        
-        exportUrl?: string,
+
+         
 
         /**
          * The URL to the export server. Default value - *https://serverjs.balkan.app*

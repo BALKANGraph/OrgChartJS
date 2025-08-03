@@ -928,34 +928,34 @@ declare class OrgChart {
      * ```typescript     
      * let chart = new OrgChart('#tree', {});
      * ...
-     * chart.exportCSV();
+     * chart.exportToCSV();
      * ```
      * @param filename The name of the exported file
      * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther#options | See doc...}            
      */
-    exportCSV(filename?: string | OrgChart.exportCSVXMLJSONOptions): void;
+    exportToCSV(filename?: string | OrgChart.exportCSVXMLJSONOptions): void;
     /**
      * Exports to XML   
      * ```typescript     
      * let chart = new OrgChart('#tree', {});
      * ...
-     * chart.exportXML();
+     * chart.exportToXML();
      * ```
      * @param filename The name of the exported file
      * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther#options | See doc...}            
      */
-    exportXML(filename: string | OrgChart.exportCSVXMLJSONOptions): void;
+    exportToXML(filename: string | OrgChart.exportCSVXMLJSONOptions): void;
     /**
      * Exports to JSON   
      * ```typescript     
      * let chart = new OrgChart('#tree', {});
      * ...
-     * chart.exportJSON();
+     * chart.exportToJSON();
      * ```
      * @param filename The name of the exported file
      * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther#options | See doc...}            
      */
-     exportJSON(filename?: string | OrgChart.exportCSVXMLJSONOptions ): void;
+     exportToJSON(filename?: string | OrgChart.exportCSVXMLJSONOptions ): void;
 
     /**
      * ```typescript     
@@ -3745,7 +3745,7 @@ declare namespace OrgChart {
      * Exports to CSV, XML or JSON options
      * ```typescript     
      *  document.getElementById('export').addEventListener('click', function () {
-     *      chart.exportCSV('My.csv');
+     *      chart.exportToCSV('My.csv');
      *  });
      * ```
      * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther#options | See doc...}            

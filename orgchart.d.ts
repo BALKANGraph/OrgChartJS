@@ -2569,7 +2569,7 @@ declare namespace OrgChart {
             assistanseLink?: string,
 
             /**
-             * Assistance link
+             * Template main svg definition
              * ```typescript
              * OrgChart.templates.myTemplate.svg =
              *  `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -2581,6 +2581,7 @@ declare namespace OrgChart {
 
             /**
              * Link
+             * Defines the link color, width and curve
              * ```typescript
              * OrgChart.templates.myTemplate.link = 
              *  `<path stroke-linejoin="round" stroke="#aeaeae" stroke-width="1px" fill="none" d="{rounded}" />`;

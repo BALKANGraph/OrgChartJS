@@ -1452,6 +1452,15 @@ declare class OrgChart {
     aiUI: OrgChart.aiUI;
 
     /**
+     * The chart orgscribeUI object.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * let orgscribeUI = chart.orgscribeUI;
+     * ```
+     */
+    orgscribeUI: OrgChart.orgscribeUI;
+
+    /**
      * The chart searchUI object.
      * ```typescript  
      * let chart = new OrgChart('#tree', {});
@@ -1752,6 +1761,7 @@ declare class OrgChart {
          */
         title: string
     };
+
 
     /**
      * Shows/hides lloading image. Usefull when export large data to pdf. You can override and show your own loading image.
@@ -2099,6 +2109,19 @@ declare class OrgChart {
      */
     static AI_SYSTEM_MESSAGES: Array<string>;
    
+
+    /**
+     * A string used for indentation of child nodes.
+     * Each tree level increases the indentation by one repetition of this string.
+     * Example: if offset = " ", then level 1 children are indented by " ",
+     * level 2 by "  ", and so on.
+     * ```typescript
+     * OrgChart.ORGSCRIBE_OFFSET = '-';
+     * ```
+     */
+    static ORGSCRIBE_OFFSET: Array<string>;
+
+
     /**
      * Hides the Edit Form when the chart is moved with pan
      * ```typescript
@@ -2808,6 +2831,47 @@ declare namespace OrgChart {
          */
         isVisible(): boolean;
     }
+
+
+/**
+     * Orgscribe User Interface - Orgscribe like Markdown for orgcharts
+     * ```typescript
+     * let chart = new OrgChart("#tree", {});
+     * chart.onInit(function(){
+     *  chart.orgscribeUIUI.show(); 
+     * });
+     * chart.load(nodes)
+     * ```
+     */
+    interface orgscribeUI {
+        /**
+         * The width of the orgscribe UI
+         */
+        get width(): number;
+        /**
+         * Text area
+         */
+        textAreaElement: HTMLInputElement;
+        /**
+         * Inits orgscribe ui
+         * @param obj 
+         */
+        init(obj: OrgChart): void;        
+        /**
+         * Shows the orgscribe form 
+         * @param dontFocus if true the imput will not be focused
+         * @param dontAnim If true hsoe withput animation
+         */
+        show(dontFocus?: boolean, dontAnim?: boolean): void;
+        /**
+         * Hides the orgscribe form
+         */
+        hide(): void;
+        /**
+         * Returns true if the orgscribe UI is visible
+         */
+        isVisible(): boolean;
+    }    
 
     interface searchUI {
         /**
@@ -5241,6 +5305,10 @@ declare namespace OrgChart {
           * @ignore
           */
         aiUI?: OrgChart.aiUI,
+        /**
+          * @ignore
+          */
+        orgscribeUI?: OrgChart.orgscribeUI,        
         /**
           * @ignore
           */

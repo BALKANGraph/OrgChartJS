@@ -1452,13 +1452,13 @@ declare class OrgChart {
     aiUI: OrgChart.aiUI;
 
     /**
-     * The chart orgscribeUI object.
+     * The chart orgScribeUI object.
      * ```typescript  
      * let chart = new OrgChart('#tree', {});
-     * let orgscribeUI = chart.orgscribeUI;
+     * let orgScribeUI = chart.orgScribeUI;
      * ```
      */
-    orgscribeUI: OrgChart.orgscribeUI;
+    orgScribeUI: OrgChart.orgScribeUI;
 
     /**
      * The chart searchUI object.
@@ -2838,12 +2838,12 @@ declare namespace OrgChart {
      * ```typescript
      * let chart = new OrgChart("#tree", {});
      * chart.onInit(function(){
-     *  chart.orgscribeUIUI.show(); 
+     *  chart.orgScribeUIUI.show(); 
      * });
      * chart.load(nodes)
      * ```
      */
-    interface orgscribeUI {
+    interface orgScribeUI {
         /**
          * The width of the orgscribe UI
          */
@@ -5308,7 +5308,7 @@ declare namespace OrgChart {
         /**
           * @ignore
           */
-        orgscribeUI?: OrgChart.orgscribeUI,        
+        orgScribeUI?: OrgChart.orgScribeUI,        
         /**
           * @ignore
           */

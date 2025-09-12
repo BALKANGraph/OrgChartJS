@@ -173,7 +173,86 @@ declare class OrgChart {
          * let redoIcon = OrgChart.icon.redo(24, 24, "#7A7A7A");
          * ```
          */
-        redo: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string
+        redo: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+
+       
+        /**
+         * ```typescript
+         * let fitIcon = OrgChart.icon.fit(24, 24, "#7A7A7A");
+         * ```
+         */
+        fit: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+
+
+        /**
+         * ```typescript
+         * let expand_allIcon = OrgChart.icon.expand_all(24, 24, "#7A7A7A");
+         * ```
+         */
+        expand_all: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+
+                /**
+         * ```typescript
+         * let full_screenIcon = OrgChart.icon.full_screen(24, 24, "#7A7A7A");
+         * ```
+         */
+        full_screen: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let zoom_inIcon = OrgChart.icon.zoom_in(24, 24, "#7A7A7A");
+         * ```
+         */
+        zoom_in: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let zoom_outIcon = OrgChart.icon.zoom_out(24, 24, "#7A7A7A");
+         * ```
+         */
+        zoom_out: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let layout_mixedIcon = OrgChart.icon.layout_mixed(24, 24, "#7A7A7A");
+         * ```
+         */
+        layout_mixed: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let layout_normalIcon = OrgChart.icon.layout_normal(24, 24, "#7A7A7A");
+         * ```
+         */
+        layout_normal: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let layout_right_offsetIcon = OrgChart.icon.layout_right_offset(24, 24, "#7A7A7A");
+         * ```
+         */
+        layout_right_offset: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let layout_left_offsetIcon = OrgChart.icon.layout_left_offset(24, 24, "#7A7A7A");
+         * ```
+         */
+        layout_left_offset: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let layout_treeIcon = OrgChart.icon.layout_tree(24, 24, "#7A7A7A");
+         * ```
+         */
+        layout_tree: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let layout_gridIcon = OrgChart.icon.layout_grid(24, 24, "#7A7A7A");
+         * ```
+         */
+        layout_grid: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+        /**
+         * ```typescript
+         * let cursorIcon = OrgChart.icon.cursor(24, 24, "#7A7A7A");
+         * ```
+         */
+        cursor: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+
+
     }
 
 
@@ -1520,6 +1599,15 @@ declare class OrgChart {
      * ```
      */
     nodeCircleMenuUI: OrgChart.circleMenuUI;
+
+    /**
+     * The chart controlsUI object.
+     * ```typescript  
+     * let chart = new OrgChart('#tree', {});
+     * let controlsUI = chart.controlsUI;
+     * ```
+     */
+    controlsUI: OrgChart.controlsUI;    
 
     /**
      * The chart nodeContextMenuUI object.
@@ -3140,6 +3228,31 @@ declare namespace OrgChart {
         show(x: number | HTMLElement, y?: number, firstNodeId?: string | number, secondNodeId?: string | number, menu?: { [key: string]: menu }): void;
     }
 
+
+        /**
+     * Menu UI
+     * ```typescript
+     * let chart = new OrgChart("#tree", {
+     * })
+     * chart.onInit(() => {
+     *  chart.controlsUI.show();
+     * })
+     * chart.load(nodes)
+     * ```
+     */
+    interface controlsUI  {
+        init(obj: OrgChart): void;
+
+        /**
+         * Hieds controls
+         */
+        hide(): void;
+        /**
+         * Shows controls
+         */
+        show(): void;
+    }
+
     interface powerPointPreviewUI  {
         /**
          * The width of the EXPORT UI
@@ -3858,6 +3971,29 @@ declare namespace OrgChart {
             onClick?: Function
         }
     }
+
+        /**
+         * Menu options
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      controls:{
+         *          call: {
+         *              icon: webcallMeIcon,
+         *              title: "Call now",
+         *              onClick: callHandler
+         *          }
+         *      }
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Controls | See doc...}
+         */
+    interface controls  {
+        [key: string]: {
+            title: string,
+            icon?: string,
+            onClick?: Function
+        }
+    }    
         /**
          * With node circle menu you can add, edit, remove node or create clink/slink with drga and drop. Before setting this option make sure that you defined nodeCircleMenuButton in the ysed template.
          * ```typescript     
@@ -4652,6 +4788,24 @@ declare namespace OrgChart {
          * ```
          */
         miniMap?: boolean,
+
+        /**
+         * Enables edit, add, remove and other node operations. Also you can define your own node operation.
+         * ```typescript     
+         * var chart = new OrgChart('#tree', {
+         *      controls:{
+         *          fit: {title:"Fit to Screen"},
+         *       	zoom_in: {title:"Zoom In"},
+         *       	zoom_out: {textitle:"Zoom Out"},
+         *          myMenuItem: {title:"My control", onClick: function {}}
+         *      }
+         * });
+         * ```
+         * {@link https://balkan.app/OrgChartJS/Docs/Controls | See doc...}
+         */
+        controls?: OrgChart.controls;
+
+
         /**
          * Enables edit, add, remove and other node operations. Also you can define your own node operation.
          * ```typescript     
@@ -5357,6 +5511,12 @@ declare namespace OrgChart {
           * @ignore
           */
         nodeContextMenuUI?: OrgChart.menuUI,
+
+        /**
+          * @ignore
+          */
+        controlsUI?: OrgChart.controlsUI,
+
         /**
           * @ignore
           */

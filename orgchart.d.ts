@@ -4756,16 +4756,7 @@ declare namespace OrgChart {
          */
         enablePan?: boolean,
 
-        /**
-         * Enable touch instead of mouse for particular devices with touchscreen/touchpad/trackpad. Default value - *false*.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      enableTouch: true
-         * });
-         * ```
-         */
-        
-        enableTouch?: boolean,
+ 
         /**
          * Enable keyboard navigation. Use "f" for find, arrows and space to navigate in the chart. Default value - *false*.
          * ```typescript     

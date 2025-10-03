@@ -2480,6 +2480,10 @@ declare namespace OrgChart {
         /**
          *  partner parent id, it is the partner parent node id of the partner node, it is the same ppid you provided in the source node, the default value is undefined.
          */
+        pid?: string | number,
+        /**
+         * parent id, it is the parent node id, it is the same pid you provided in the source node, the default value is undefined.
+         */
         ppid?: string | number,
         /**
          * a reference to the parent node, default value is null, if the nodes is collapse this proprty is not initalized and can be null even if pid is not null

@@ -1812,6 +1812,7 @@ declare class OrgChart {
 
      /**
      * Replace a text in a field
+     * See [Text Overflow](https://balkan.app/OrgChartJS/Docs/TextOverflow) doc page for more details
      * ```typescript
      * let chart = new OrgChart('#tree', {});
      * chart.onField(function (args) {
@@ -3897,12 +3898,12 @@ declare namespace OrgChart {
             expandChildren?: boolean,
             childLevels?: number,
             parentLevels?: number,
-            min?: boolean,e
+            min?: boolean,
             header?: string,
             footer?: string,
             content?:  string
         }>,
-        //format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal",
+
         header?: string,
         footer?: string
     }

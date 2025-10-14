@@ -3358,6 +3358,12 @@ declare namespace OrgChart {
          * @param menu 
          */
         show(nodeId: string | number, menu?: { [key: string]: menu }): void;
+        
+        /**
+         * Indicates if the circle menu is open or close (visible or unvisible)
+         */
+        isVisible(): boolean;
+
         /**
          * Hides circle menu 
          */

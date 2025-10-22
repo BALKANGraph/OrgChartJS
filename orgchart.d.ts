@@ -3644,6 +3644,7 @@ declare namespace OrgChart {
 
     /**
      * Toolbar buttons. Set to true if you'd like to show a button
+     * 
      * For better experiense please use the new feature Controls instead of Toolbars.
      */
     interface toolbar  {

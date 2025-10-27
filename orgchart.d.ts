@@ -3986,7 +3986,7 @@ declare namespace OrgChart {
     }
 
         /**
-         * Controls are small buttons displayed on the chart that let users quickly perform actions such as exporting, zooming, switching layouts, or fitting the chart to the screen.
+         * Menu options
          * ```typescript     
          * var chart = new OrgChart('#tree', {
          *      controls:{
@@ -4001,7 +4001,6 @@ declare namespace OrgChart {
          * {@link https://balkan.app/OrgChartJS/Docs/Controls | See doc...}
          */
     interface controls  {
-        
         [key: string]: {
             title: string,
             icon?: string,

@@ -791,6 +791,18 @@ declare class OrgChart {
      * @param callback called when the animation completes
      */
     fit(callback?: () => void): void;
+
+        /**
+     * Fits the content to the visible area if it is ouside of the visible area.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * ...
+     * chart.fitOfOutside();
+     * ```
+     * @param callback called when the animation completes
+     */
+    fitIfOutside(callback?: () => void): void;
+
     /**
      * Toggles full screen mode.
      * ```typescript     
@@ -4430,7 +4442,17 @@ declare namespace OrgChart {
          * });
          * ```
          */
-        boundary
+        boundary,
+
+        /**
+         * Match boundary if outside of the visible area
+         * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  scaleInitial: OrgChart.match.boundaryIfOutside
+         * });
+         * ```
+         */
+        boundaryIfOutside
     }
 
 

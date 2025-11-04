@@ -5396,12 +5396,13 @@ declare namespace OrgChart {
          * - OrgChart.match.height
          * - OrgChart.match.width
          * - OrgChart.match.boundary
+         * - OrgChart.match.boundaryIfOutside
          * - [number]
          * 
          * Default value - *1*
          * ```typescript     
          * var chart = new OrgChart('#tree', {
-         *   scaleInitial: OrgChart.match.boundary
+         *   scaleInitial: OrgChart.match.boundaryIfOutside
          * });
          * ```          
          * {@link https://balkan.app/OrgChartJS/Docs/Layout | See doc...}         

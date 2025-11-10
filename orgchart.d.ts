@@ -5673,6 +5673,7 @@ declare namespace OrgChart {
          *          photoBinding: "img", // the photo property name
          *          focusBinding: "name",
          *          addMore: "Add am element",
+         *          saveOnHide: false,
          *          addMoreBtn: "Add",
          *          addMoreFieldName: "Element name:",
          *          saveAndCloseBtn: "Save",
@@ -5714,6 +5715,10 @@ declare namespace OrgChart {
             photoBinding?: string,            
             focusBinding?: string,
             addMore?: string,
+            /**
+             * "Save" and "Cancel" buttons are invisible when true, and the orgchart is saved when the edit form hides.
+             */
+            saveOnHide?: boolean,
             addMoreBtn?: string,
             addMoreFieldName?: string,
             saveAndCloseBtn?: string,

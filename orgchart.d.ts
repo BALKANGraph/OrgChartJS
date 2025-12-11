@@ -2222,6 +2222,18 @@ declare class OrgChart {
      */
     static ORGSCRIBE_OFFSET: Array<string>;
 
+    /**
+     * The scroll step in TreeGrid layout, OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight
+     */
+    static TREEGRID_WHEEL_STEP: string;
+
+
+    /**
+     * The width on pixels of the scroll bar in TreeGrid layout, OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight
+     */
+    static TREEGRID_SCROLLBAR_WIDTH: number;
+
+
 
     /**
      * Hides the Edit Form when the chart is moved with pan
@@ -2611,7 +2623,28 @@ declare namespace OrgChart {
         /**
          * move the the node on y axis 
          */
-        movey?: number | undefined
+        movey?: number | undefined,
+        /**
+         * Pinned nodes at the top in TreeGrid layout, works with OrgChart.layout.
+         * By default is undefined it is initialized only with OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight lyouts.
+         */
+        treeGridPinnedIds?: Array<string | number> | undefined,
+        /**
+         * Gets the number of pixels by which the TreeGrid content is scrolled from its top edge.
+         * By default is undefined it is initialized only with OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight lyouts.
+         */
+        treeGridScrollTop?: number | undefined,        
+        /**
+         * Gets the max number of pixels by which the TreeGrid content can be scrolled from its top edge.
+         * By default is undefined it is initialized only with OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight lyouts.
+         */
+        treeGridScrollTopMax?: number | undefined, 
+        
+        /**
+         * Gets the type of the tree grid, foxed or auto.
+         * By default is undefined it is initialized only with OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight lyouts
+         */
+        treeGridType?: "fixed" | "auto" | string
     }
 
     /**
@@ -4351,7 +4384,44 @@ declare namespace OrgChart {
          * ```
          * [See grid doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#grid]
          */
-        grid
+        grid,
+        /**
+         * Tree grid layout with fixed height of the group node         
+        * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  tags: {
+         *      treeGridGroupTag: {
+         *          template: 'treeGrid',
+         *          subTreeConfig: {
+         *              template: 'treeGrid',
+         *              layout: OrgChart.layout.treeGridAutoHeight
+         *          }
+         *      }
+         *  }
+         * });
+         * ```
+         * [See grid doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#treeGridFixedHeight]
+         */       
+        treeGridFixedHeight,
+        
+        /**
+         * Tree grid layout with auto height of the group node
+        * ```typescript
+         * let chart = new OrgChart('#tree', {
+         *  tags: {
+         *      treeGridGroupTag: {
+         *          template: 'treeGrid',
+         *          subTreeConfig: {
+         *              template: 'treeGrid',
+         *              layout: OrgChart.layout.treeGridAutoHeight
+         *          }
+         *      }
+         *  }
+         * });
+         * ```
+         * [See grid doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#treeGridAutoHeight]
+         */
+        treeGridAutoHeight
     }
 
     /**
@@ -5039,7 +5109,7 @@ declare namespace OrgChart {
          * ```
          * {@link https://balkan.app/OrgChartJS/Docs/PredefinedTemplates | See doc...}
          */
-        template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | string,
+        template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeGrid" | "treeGridGroup" | string,
         /**
          * With tags option you can:
          * - Set a specific template for tagged node/s {@link https://balkan.app/OrgChartJS/Docs/MultipleTemplates | See doc...}
@@ -5061,7 +5131,7 @@ declare namespace OrgChart {
          */
         tags?: {
             [key: string]: {
-                template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | string,
+                template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeGrid" | "treeGridGroup" | string,
                 subLevels?: number,
                 nodeMenu?: OrgChart.menu,
                 nodeCircleMenu?: OrgChart.circleMenu,
@@ -5078,7 +5148,8 @@ declare namespace OrgChart {
                     collapse?: {
                         level?: number,
                         allChildren?: boolean
-                    }
+                    },
+                    template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeGrid" | "treeGridGroup" | string
                 }
             };
         },

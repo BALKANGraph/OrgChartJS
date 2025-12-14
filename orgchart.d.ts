@@ -2223,13 +2223,13 @@ declare class OrgChart {
     static ORGSCRIBE_OFFSET: Array<string>;
 
     /**
-     * The scroll step in TreeGrid layout, OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight
+     * The scroll step in TreeGrid layout OrgChart.layout.treeGrid
      */
     static TREEGRID_WHEEL_STEP: string;
 
 
     /**
-     * The width on pixels of the scroll bar in TreeGrid layout, OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight
+     * The width on pixels of the scroll bar in TreeGrid layout OrgChart.layout.treeGrid
      */
     static TREEGRID_SCROLLBAR_WIDTH: number;
 
@@ -2626,25 +2626,25 @@ declare namespace OrgChart {
         movey?: number | undefined,
         /**
          * Pinned nodes at the top in TreeGrid layout, works with OrgChart.layout.
-         * By default is undefined it is initialized only with OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight lyouts.
+         * By default is undefined it is initialized only with  OrgChart.layout.treeGrid lyouts.
          */
         treeGridPinnedIds?: Array<string | number> | undefined,
         /**
          * Gets the number of pixels by which the TreeGrid content is scrolled from its top edge.
-         * By default is undefined it is initialized only with OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight lyouts.
+         * By default is undefined it is initialized only with  OrgChart.layout.treeGrid lyouts.
          */
         treeGridScrollTop?: number | undefined,        
         /**
          * Gets the max number of pixels by which the TreeGrid content can be scrolled from its top edge.
-         * By default is undefined it is initialized only with OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight lyouts.
+         * By default is undefined it is initialized only with  OrgChart.layout.treeGrid lyouts.
          */
         treeGridScrollTopMax?: number | undefined, 
         
         /**
          * Gets the type of the tree grid, foxed or auto.
-         * By default is undefined it is initialized only with OrgChart.layout.treeGridAutoHeight or OrgChart.layout.treeGridFixedHeight lyouts
+         * By default is undefined it is initialized only with  OrgChart.layout.treeGrid lyouts
          */
-        treeGridType?: "fixed" | "auto" | string
+        isTreeGrid?: boolean | undefined
     }
 
     /**
@@ -4394,34 +4394,15 @@ declare namespace OrgChart {
          *          template: 'treeGrid',
          *          subTreeConfig: {
          *              template: 'treeGrid',
-         *              layout: OrgChart.layout.treeGridAutoHeight
+         *              layout: OrgChart.layout.treeGrid
          *          }
          *      }
          *  }
          * });
          * ```
-         * [See grid doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#treeGridFixedHeight]
+         * [See grid doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#treeGrid]
          */       
-        treeGridFixedHeight,
-        
-        /**
-         * Tree grid layout with auto height of the group node
-        * ```typescript
-         * let chart = new OrgChart('#tree', {
-         *  tags: {
-         *      treeGridGroupTag: {
-         *          template: 'treeGrid',
-         *          subTreeConfig: {
-         *              template: 'treeGrid',
-         *              layout: OrgChart.layout.treeGridAutoHeight
-         *          }
-         *      }
-         *  }
-         * });
-         * ```
-         * [See grid doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#treeGridAutoHeight]
-         */
-        treeGridAutoHeight
+        treeGrid
     }
 
     /**
@@ -5816,12 +5797,11 @@ declare namespace OrgChart {
         lonely(config: Object): string;
         pointer(config: Object, action: OrgChart.action, scale: number): string;
         node(node: OrgChart.node, data: Object, animations: OrgChart.anim, config: Object, x: number | undefined, y: number | undefined, nodeBinding: Object | undefined, action: OrgChart.action, scale: number, sender: Object): string; 
-        nodeBtns(config: Object, node: OrgChart.node, action: OrgChart.action, t: Object, sender: Object): string;
-        expandCollapseBtn(chart: OrgChart, node: OrgChart.node, layoutConfigs: any, action: OrgChart.action, scale: number): string;
+        nodeBtns(config: Object, node: OrgChart.node, data: Object, action: OrgChart.action, t: Object, sender: Object): string;
+        expandCollapseBtn(chart: OrgChart, node: OrgChart.node, data: Object, config: Object, layoutConfigs: any, action: OrgChart.action, scale: number): string;
         link(node: OrgChart.node, obj: Object, scale: number, bordersByRootIdAndLevel: Object, nodes: Object, action: OrgChart.action): Array<string>;
         svg(width: number, height: number, viewBox: Array<number>, config: Object, content: string, scale: number): string;
         menuButton(config: Object): string;
-
     };
 
     /**

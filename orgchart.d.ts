@@ -2223,15 +2223,15 @@ declare class OrgChart {
     static ORGSCRIBE_OFFSET: Array<string>;
 
     /**
-     * The scroll step in TreeGrid layout OrgChart.layout.treeGrid
+     * The scroll step in TreeList layout OrgChart.layout.treeList
      */
-    static TREEGRID_WHEEL_STEP: string;
+    static TREELIST_WHEEL_STEP: string;
 
 
     /**
-     * The width on pixels of the scroll bar in TreeGrid layout OrgChart.layout.treeGrid
+     * The width on pixels of the scroll bar in TreeList layout OrgChart.layout.treeList
      */
-    static TREEGRID_SCROLLBAR_WIDTH: number;
+    static TREELIST_SCROLLBAR_WIDTH: number;
 
 
 
@@ -2625,26 +2625,26 @@ declare namespace OrgChart {
          */
         movey?: number | undefined,
         /**
-         * Pinned nodes at the top in TreeGrid layout, works with OrgChart.layout.
-         * By default is undefined it is initialized only with  OrgChart.layout.treeGrid lyouts.
+         * Pinned nodes at the top in TreeList layout, works with OrgChart.layout.
+         * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts.
          */
-        treeGridPinnedIds?: Array<string | number> | undefined,
+        treeListPinnedIds?: Array<string | number> | undefined,
         /**
-         * Gets the number of pixels by which the TreeGrid content is scrolled from its top edge.
-         * By default is undefined it is initialized only with  OrgChart.layout.treeGrid lyouts.
+         * Gets the number of pixels by which the TreeList content is scrolled from its top edge.
+         * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts.
          */
-        treeGridScrollTop?: number | undefined,        
+        treeListScrollTop?: number | undefined,        
         /**
-         * Gets the max number of pixels by which the TreeGrid content can be scrolled from its top edge.
-         * By default is undefined it is initialized only with  OrgChart.layout.treeGrid lyouts.
+         * Gets the max number of pixels by which the TreeList content can be scrolled from its top edge.
+         * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts.
          */
-        treeGridScrollTopMax?: number | undefined, 
+        treeListScrollTopMax?: number | undefined, 
         
         /**
          * Gets the type of the tree grid, foxed or auto.
-         * By default is undefined it is initialized only with  OrgChart.layout.treeGrid lyouts
+         * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts
          */
-        isTreeGrid?: boolean | undefined
+        isTreeList?: boolean | undefined
     }
 
     /**
@@ -4390,19 +4390,19 @@ declare namespace OrgChart {
         * ```typescript
          * let chart = new OrgChart('#tree', {
          *  tags: {
-         *      treeGridGroupTag: {
-         *          template: 'treeGrid',
+         *      treeListGroupTag: {
+         *          template: 'treeList',
          *          subTreeConfig: {
-         *              template: 'treeGrid',
-         *              layout: OrgChart.layout.treeGrid
+         *              template: 'treeList',
+         *              layout: OrgChart.layout.treeList
          *          }
          *      }
          *  }
          * });
          * ```
-         * [See grid doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#treeGrid]
+         * [See grid doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#treeList]
          */       
-        treeGrid
+        treeList
     }
 
     /**
@@ -5090,7 +5090,7 @@ declare namespace OrgChart {
          * ```
          * {@link https://balkan.app/OrgChartJS/Docs/PredefinedTemplates | See doc...}
          */
-        template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeGrid" | "treeGridGroup" | string,
+        template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeList" | "treeListGroup" | string,
         /**
          * With tags option you can:
          * - Set a specific template for tagged node/s {@link https://balkan.app/OrgChartJS/Docs/MultipleTemplates | See doc...}
@@ -5112,7 +5112,7 @@ declare namespace OrgChart {
          */
         tags?: {
             [key: string]: {
-                template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeGrid" | "treeGridGroup" | string,
+                template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeList" | "treeListGroup" | string,
                 subLevels?: number,
                 nodeMenu?: OrgChart.menu,
                 nodeCircleMenu?: OrgChart.circleMenu,
@@ -5130,7 +5130,7 @@ declare namespace OrgChart {
                         level?: number,
                         allChildren?: boolean
                     },
-                    template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeGrid" | "treeGridGroup" | string
+                    template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeList" | "treeListGroup" | string
                 }
             };
         },

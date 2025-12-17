@@ -2624,27 +2624,34 @@ declare namespace OrgChart {
          * move the the node on y axis 
          */
         movey?: number | undefined,
-        /**
-         * Pinned nodes at the top in TreeList layout, works with OrgChart.layout.
-         * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts.
-         */
-        treeListPinnedIds?: Array<string | number> | undefined,
-        /**
-         * Gets the number of pixels by which the TreeList content is scrolled from its top edge.
-         * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts.
-         */
-        treeListScrollTop?: number | undefined,        
-        /**
-         * Gets the max number of pixels by which the TreeList content can be scrolled from its top edge.
-         * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts.
-         */
-        treeListScrollTopMax?: number | undefined, 
+
+        treeList?: {
+            /**
+             * Pinned nodes at the top in TreeList layout, works with OrgChart.layout.
+             * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts.
+             */            
+            pinnedIds?: [],
+            /**
+             * Gets the number of pixels by which the TreeList content is scrolled from its top edge.
+             * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts.
+             */            
+            scrollTop?:  number,
+            /**
+             * Gets the max number of pixels by which the TreeList content can be scrolled from its top edge.
+             * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts.
+             */            
+            scrollTopMax?: number,
+            /**
+             * Max height, comes from the template treeListMaxHeight
+             */
+            maxHeight?: number
+        }
         
         /**
          * Gets the type of the tree grid, foxed or auto.
          * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts
          */
-        isTreeList?: boolean | undefined
+        isTreeListItem?: boolean | undefined
     }
 
     /**
@@ -2875,6 +2882,16 @@ declare namespace OrgChart {
              * ```
              */
             min?: OrgChart.template,
+
+
+            /**
+             * Max height if the layout is tree list
+             * ```typescript
+             * OrgChart.templates.myTemplate.treeListMaxHeight = 450;
+             * ```
+             */
+            treeListMaxHeight?: number,
+
 
             /**
              * A custom field definition
@@ -4386,7 +4403,7 @@ declare namespace OrgChart {
          */
         grid,
         /**
-         * Tree grid layout with fixed height of the group node         
+         * Tree list layout with fixed height of the group node         
         * ```typescript
          * let chart = new OrgChart('#tree', {
          *  tags: {
@@ -4400,7 +4417,7 @@ declare namespace OrgChart {
          *  }
          * });
          * ```
-         * [See grid doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#treeList]
+         * [See tree list doc page for more details][https://balkan.app/OrgChartJS/Docs/Layout#treeList]
          */       
         treeList
     }
@@ -5424,6 +5441,7 @@ declare namespace OrgChart {
          * - OrgChart.layout.treeLeft
          * - OrgChart.layout.treeRight
          * - OrgChart.layout.grid
+         * - OrgChart.layout.gridList
          * 
          * Default value - *OrgChart.layout.normal*
          * ```typescript     

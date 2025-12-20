@@ -2235,13 +2235,13 @@ declare class OrgChart {
 
 
 
-    /**
-     * Hides the Edit Form when the chart is moved with pan
-     * ```typescript
-     * OrgChart.HIDE_EDIT_FORM_ON_PAN = false; // the default value is true
-     * ```
-     */
-    static HIDE_EDIT_FORM_ON_PAN: boolean;
+    // /**
+    //  * Hides the Edit Form when the chart is moved with pan
+    //  * ```typescript
+    //  * OrgChart.HIDE_EDIT_FORM_ON_PAN = false; // the default value is true
+    //  * ```
+    //  */
+    // static HIDE_EDIT_FORM_ON_PAN: boolean;
 
     /**
     * @ignore
@@ -5743,11 +5743,9 @@ declare namespace OrgChart {
          *          photoBinding: "img", // the photo property name
          *          focusBinding: "name",
          *          addMore: "Add am element",
-         *          saveOnHide: false,
          *          addMoreBtn: "Add",
          *          addMoreFieldName: "Element name:",
          *          saveAndCloseBtn: "Save",
-         *          cancelBtn: "Close",
          *          generateElementsFromFields: false,
          *          buttons:  {
          *              edit: {
@@ -5788,11 +5786,9 @@ declare namespace OrgChart {
             /**
              * "Save" and "Cancel" buttons are invisible when true, and the orgchart is saved when the edit form hides.
              */
-            saveOnHide?: boolean,
             addMoreBtn?: string,
             addMoreFieldName?: string,
             saveAndCloseBtn?: string,
-            cancelBtn?: string,
             generateElementsFromFields?: boolean,
             buttons?: {
                 [key: string]: {

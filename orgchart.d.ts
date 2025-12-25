@@ -1981,7 +1981,7 @@ declare class OrgChart {
      * @param func - funcition to animate with
      * @param callback - callback function
      */
-    static animate(element: Object, attrStart?: Object, attrEnd?: Object, duration?: number, func?: OrgChart.anim, callback?: Function, tick?: boolean): void;
+    static animate(element: Object, attrStart?: Object, attrEnd?: Object, duration?: number, func?: OrgChart.anim, callback?: Function, tick?: Function): void;
 
     /**
      * Minimap options.

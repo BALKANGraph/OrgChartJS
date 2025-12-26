@@ -1703,65 +1703,6 @@ declare class OrgChart {
      * ```
      */
     static isTrial(): boolean;
-    /**
-     * Count all children nodes of the specified id.
-     * ```typescript  
-     * let chart = new OrgChart('#tree', {});
-     * chart.onInit(() => {
-     *      console.log(OrgChart.childrenCount(chart, chart.getNode(2)))
-     * });
-     * chart.load(nodes)
-     * ```
-     * @param chart OrgChart instance
-     * @param node 
-     * @param count 
-     */
-    static childrenCount(chart: OrgChart, node: OrgChart.node): number;
-
-    /**
-     * Count the total (to the leafs) children nodes of the specified id.
-     * ```typescript  
-     * let chart = new OrgChart('#tree', {});
-     * chart.onInit(() => {
-     *      console.log(OrgChart.childrenTotalCount(chart, chart.getNode(2)))
-     * });
-     * chart.load(nodes)
-     * ```
-     * @param chart OrgChart instance
-     * @param node 
-     * @param count 
-     */
-    static childrenTotalCount(chart: OrgChart, node: OrgChart.node): number;
-
-    /**
-     * Count the collapsed children nodes of the specified id.
-     * ```typescript  
-     * let chart = new OrgChart('#tree', {});
-     * chart.onInit(() => {
-     *      console.log(OrgChart.collapsedChildrenCount(chart, chart.getNode(2)))
-     * });
-     * chart.load(nodes)
-     * ```
-     * @param chart OrgChart instance
-     * @param node 
-     * @param count 
-     */
-    static collapsedChildrenCount(chart: OrgChart, node: OrgChart.node): number;
-
-    /**
-     * Count the total (to the leafs) collapsed children nodes of the specified id.
-     * ```typescript  
-     * let chart = new OrgChart('#tree', {});
-     * chart.onInit(() => {
-     *      console.log(OrgChart.collapsedChildrenCount(chart, chart.getNode(2)))
-     * });
-     * chart.load(nodes)
-     * ```
-     * @param chart OrgChart instance
-     * @param node 
-     * @param count 
-     */
-    static collapsedChildrenTotalCount(chart: OrgChart, node: OrgChart.node): number;
 
     /**
      * Get the root node of the specified id.
@@ -2548,6 +2489,24 @@ declare namespace OrgChart {
          * template name, you can specify multiple templates with tags in one chart
          */
         templateName?: string,
+
+        /**
+         * Number of direct child nodes.
+         */
+        childCount?: number,
+        /**
+         * Number of direct child nodes that are currently collapsed (hidden).
+         */
+        collapsedChildCount?: number,
+        /**
+         * Total number of collapsed descendant nodes (collapsed at any depth).
+         */
+        deepCollapsedChildCount?: number,
+        /**
+         * Total number of descendant nodes (children at all levels).
+         */
+        deepChildCount?: number,
+
         /**
          * a reference to the left node neighbor, the default value is undefined
          */

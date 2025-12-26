@@ -1223,44 +1223,7 @@ declare class OrgChart {
     redoStepsCount(): number;    
 
 
-    /**
-     * The onField() method of the OrgChart class sets up a function that will be called whenever the specified event is delivered to the target.
-     *  ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * chart.onField((args) => {
-     *      //return false; to cancel
-     * });
-     * chart.load(nodes);
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onField(listener: (this: OrgChart, args: { 
-        /**
-         * the node
-         */
-        node: OrgChart.node, 
-        /**
-         * node data json object
-         */
-        data: object, 
-        /**
-         * value of the filed, can be changed in the event
-         */
-        value: any, 
-        /**
-         * svg or html element of the filed, can be changed in the event
-         */
-        element: string, 
-        /**
-         * name of the field
-         */
-        name: string         
-        /**
-         * field template name
-         */
-        field: string 
-    }) => void | boolean): OrgChart;
+
 
     /**
      * Occurs when the nodes in OrgChart has been created and loaded to the DOM.
@@ -4958,15 +4921,7 @@ declare namespace OrgChart {
          * ```
          */
         toolbar?: OrgChart.toolbar,
-        /**
-         * Stops the chart locking to the top of the screen once you move it.
-         * ```typescript     
-         * var chart = new OrgChart('#tree', {
-         *      sticky: false
-         * });
-         * ```
-         */
-        sticky?: boolean,
+
         /**
          * nodeMouseClick can accept the following values:
          * - OrgChart.action.edit - will open the edit view for the clicked node on the right hand side

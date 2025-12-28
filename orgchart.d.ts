@@ -1738,7 +1738,7 @@ declare class OrgChart {
      * chart.load(nodes);
      * ```
      */
-    static wrapText(text: string, field: Object): string;
+    static wrapText(value: Object, svgElementAsSring: string, width?: number, lines: number): string;
 
     static filterUI: {
         /**
@@ -2136,6 +2136,14 @@ declare class OrgChart {
      * The width on pixels of the scroll bar in TreeList layout OrgChart.layout.treeList
      */
     static TREELIST_SCROLLBAR_WIDTH: number;
+
+    /**
+     * Whether to embed external images as Base64 data URIs.
+     * Enabling this ensures the SVG is "standalone" and won't have broken image 
+     * links when shared or viewed offline.
+     */
+    static CONVERT_IMAGES_TO_BASE64_BEFORE_EXPORT: boolean;
+
 
 
 

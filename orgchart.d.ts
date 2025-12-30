@@ -1727,7 +1727,13 @@ declare class OrgChart {
     static convertNodesToCsv(nodes: Array<Object>) : string;
 
      /**
-     * Replace a text in a field
+     * Wraps and formats text to fit within a given width and number of lines,
+     * returning an SVG-compatible string.
+     *
+     * The method measures the provided value and inserts line breaks so the text
+     * fits inside the specified width. If the text exceeds the allowed number of
+     * lines, it will be truncated according to the internal wrapping rules.
+     * 
      * See [Text Overflow](https://balkan.app/OrgChartJS/Docs/TextOverflow) doc page for more details
      * ```typescript
      * let chart = new OrgChart('#tree', {});
@@ -2557,7 +2563,10 @@ declare namespace OrgChart {
          * move the the node on y axis 
          */
         movey?: number | undefined,
-
+        /**
+         * TreeList layout state and configuration.
+         * Available only when using OrgChart.layout.treeList.
+         */
         treeList?: {
             /**
              * Pinned nodes at the top in TreeList layout, works with OrgChart.layout.
@@ -2581,8 +2590,10 @@ declare namespace OrgChart {
         }
         
         /**
-         * Gets the type of the tree grid, foxed or auto.
-         * By default is undefined it is initialized only with  OrgChart.layout.treeList lyouts
+         * Indicates whether this node is rendered as a Tree List item.
+         * 
+         * When `true`, the node is displayed using the Tree List layout
+         * instead of the standard chart layout.
          */
         isTreeListItem?: boolean | undefined
     }
@@ -2712,7 +2723,7 @@ declare namespace OrgChart {
              *  `<rect x="0" y="0" height="{h}" width="{w}" fill="#039BE5" stroke-width="1" stroke="#aeaeae" rx="7" ry="7"></rect>`;
              * ```
              */
-            node?: string,
+            node?: string | ((node: OrgChart.node, data: OrgChart.nodeData, template: OrgChart.template, config: OrgChart.options) => string),
 
              /**
              * Plus/expand button
@@ -2723,7 +2734,7 @@ declare namespace OrgChart {
              *  <line x1="15" y1="4" x2="15" y2="26" stroke-width="1" stroke="#aeaeae"></line>`;
              * ```
              */
-            plus?: string,
+            plus?: string | ((node: OrgChart.node, data: OrgChart.nodeData, template: OrgChart.template, config: OrgChart.options) => string),
 
             /**
              * Minus/collapse button
@@ -2733,7 +2744,7 @@ declare namespace OrgChart {
              *  <line x1="4" y1="15" x2="26" y2="15" stroke-width="1" stroke="#aeaeae"></line>`;
              * ```
              */
-            minus?: string,
+            minus?: string | ((node: OrgChart.node, data: OrgChart.nodeData, template: OrgChart.template, config: OrgChart.options) => string),
 
             /**
              * Node menu button
@@ -2746,7 +2757,7 @@ declare namespace OrgChart {
              *      </g>`;
              * ```
              */
-            nodeMenuButton?: string,
+            nodeMenuButton?: string | ((node: OrgChart.node, data: OrgChart.nodeData, template: OrgChart.template, config: OrgChart.options) => string),
 
             /**
              * Menu button
@@ -2770,7 +2781,7 @@ declare namespace OrgChart {
              *     </image>`;
              * ```
              */
-            img_0?: string,
+            img_0?: string | ((node: OrgChart.node, data: OrgChart.nodeData, template: OrgChart.template, config: OrgChart.options) => string),
 
             /**
              * Link label
@@ -2818,7 +2829,9 @@ declare namespace OrgChart {
 
 
             /**
-             * Max height if the layout is tree list
+            * Sets the maximum height of the Tree List.
+            * When the content exceeds this height, vertical scrolling is enabled.
+            * If set to Number.MAX_SAFE_INTEGER no scrolling is enabled.
              * ```typescript
              * OrgChart.templates.myTemplate.treeListMaxHeight = 450;
              * ```

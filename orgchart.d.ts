@@ -2127,13 +2127,16 @@ declare class OrgChart {
     static ORGSCRIBE_OFFSET: Array<string>;
 
     /**
-     * The scroll step in TreeList layout OrgChart.layout.treeList
+     * Mouse wheel scroll step (in pixels) for the TreeList layout.
+     * Controls vertical scroll speed in `OrgChart.layout.treeList`.
+     * Larger values scroll faster; smaller values scroll slower.
+     * Default: half of the first TreeList item height.
      */
     static TREELIST_WHEEL_STEP: string;
 
 
     /**
-     * The width on pixels of the scroll bar in TreeList layout OrgChart.layout.treeList
+     * Scrollbar width (in pixels) for the TreeList layout.
      */
     static TREELIST_SCROLLBAR_WIDTH: number;
 

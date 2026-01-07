@@ -4424,51 +4424,64 @@ declare namespace OrgChart {
     }
 
     /**
-     * Specifies a scale that match the boundaries
+     * Defines how the initial chart scale is calculated to fit the container.
      */
     enum match {
 
         /**
-         * Match height
-         * ```typescript
+         * Scales the chart to fit the container **height**.
+         *
+         * ```ts
          * let chart = new OrgChart('#tree', {
-         *  scaleInitial: OrgChart.match.height
+         *   scaleInitial: OrgChart.match.height
          * });
          * ```
          */
         height,
 
         /**
-         * Match width
-         * ```typescript
+         * Scales the chart to fit the container **width**.
+         *
+         * ```ts
          * let chart = new OrgChart('#tree', {
-         *  scaleInitial: OrgChart.match.width
+         *   scaleInitial: OrgChart.match.width
          * });
          * ```
          */
         width,
 
         /**
-         * Match boundary
-         * ```typescript
+         * Scales the chart to fit **both width and height**,
+         * ensuring the entire chart is visible.
+         *
+         * ```ts
          * let chart = new OrgChart('#tree', {
-         *  scaleInitial: OrgChart.match.boundary
+         *   scaleInitial: OrgChart.match.boundary
          * });
          * ```
          */
         boundary,
 
         /**
-         * Match boundary if outside of the visible area
-         * ```typescript
+         * Scales the chart to fit the boundaries **only if**
+         * part of the chart is outside the visible area.
+         *
+         * If the chart already fits, no scaling is applied.
+         *
+         * ```ts
          * let chart = new OrgChart('#tree', {
-         *  scaleInitial: OrgChart.match.boundaryIfOutside
+         *   scaleInitial: OrgChart.match.boundaryIfOutside
          * });
          * ```
          */
-        boundaryIfOutside
-    }
+        boundaryIfOutside,
 
+        /**
+         * Disables automatic scaling.
+         * The chart is rendered at its default scale.
+         */
+        none
+    }
 
         /**
          * Add movable functionality

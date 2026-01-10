@@ -5420,7 +5420,7 @@ declare namespace OrgChart {
          * - OrgChart.match.boundaryIfOutside
          * - [number]
          * 
-         * Default value - OrgChart.match.boundaryIfOutside
+         * Default value - *1*
          * ```typescript     
          * var chart = new OrgChart('#tree', {
          *   scaleInitial: OrgChart.match.boundaryIfOutside

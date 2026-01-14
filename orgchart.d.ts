@@ -3282,6 +3282,27 @@ declare namespace OrgChart {
         locAddNew: string;
         locRemove: string;
 
+        /**
+         * Buttons visibility configuration.
+         * Each flag controls whether the corresponding UI button is displayed.
+         * 
+         * - `true`  → show the button
+         * - `false` → hide the button
+         */
+        buttons: {
+            /** Show / hide the parent levels navigation button */
+            parentLevels: boolean;
+
+            /** Show / hide the child levels navigation button */
+            childLevels: boolean;
+
+            /** Show / hide the remove page button */
+            removePage: boolean;
+
+            /** Show / hide the add new page button */
+            addNewPage: boolean;
+        },        
+
         init(obj: OrgChart): void;
         isVisible(): boolean;
         hide(): void;
@@ -3307,6 +3328,32 @@ declare namespace OrgChart {
         locPrintProfile: string;
         locLandscape: string;
         locPortrait: string;
+        /**
+         * Buttons visibility configuration.
+         * Each flag controls whether the corresponding UI button is displayed.
+         * 
+         * - `true`  → show the button
+         * - `false` → hide the button
+         */
+        buttons: {
+            /** Show / hide the parent levels navigation button */
+            parentLevels: boolean;
+
+            /** Show / hide the child levels navigation button */
+            childLevels: boolean;
+
+            /** Show / hide the print profile or tree button */
+            printProfileOrTree: boolean;
+
+            /** Show / hide the remove page button */
+            removePage: boolean;
+
+            /** Show / hide the add new page button */
+            addNewPage: boolean;
+
+            /** Show / hide the landscape / portrait toggle button */
+            landscapePortrait: boolean;
+        },
 
         init(obj: OrgChart): void;
         isVisible(): boolean;
@@ -3332,6 +3379,27 @@ declare namespace OrgChart {
         locClickToAdd: string;
         locAddNew: string;
         locRemove: string;
+
+        /**
+         * Buttons visibility configuration.
+         * Each flag controls whether the corresponding UI button is displayed.
+         * 
+         * - `true`  → show the button
+         * - `false` → hide the button
+         */
+        buttons: {
+            /** Show / hide the parent levels navigation button */
+            parentLevels: boolean;
+
+            /** Show / hide the child levels navigation button */
+            childLevels: boolean;
+
+            /** Show / hide the remove page button */
+            removePage: boolean;
+
+            /** Show / hide the add new page button */
+            addNewPage: boolean;
+        },        
 
         init(obj: OrgChart): void;
         isVisible(): boolean;

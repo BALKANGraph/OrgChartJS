@@ -1732,19 +1732,9 @@ declare class OrgChart {
      *
      * The method measures the provided value and inserts line breaks so the text
      * fits inside the specified width. If the text exceeds the allowed number of
-     * lines, it will be truncated according to the internal wrapping rules.
-     * 
-     * See [Text Overflow](https://balkan.app/OrgChartJS/Docs/TextOverflow) doc page for more details
-     * ```typescript
-     * let chart = new OrgChart('#tree', {});
-     * chart.onField(function (args) {
-     *   var val = OrgChart.wrapText(args.value, OrgChart.templates.ana.field_1)
-     *   args.value = val;
-     * });
-     * chart.load(nodes);
-     * ```
+     * lines, it will be truncated according to the internal wrapping rules. 
      */
-    static wrapText(value: Object, svgElementAsSring: string, width?: number, lines: number): string;
+    static wrapText(value: Object, svgElementAsSring: string, width?: number, lines?: number): string;
 
     static filterUI: {
         /**
@@ -2294,7 +2284,7 @@ interface nodeData {
     /**
      * the subtree parent id
      */
-    stPid?: number | string,
+    stpid?: number | string,
 
     /**
      * Set custom configuration for the tagged node

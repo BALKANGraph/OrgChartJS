@@ -3263,6 +3263,7 @@ declare namespace OrgChart {
         get width(): number;
         get instance(): OrgChart;
         get options(): OrgChart.exportPowerPointOptions;
+        get selectedPage(): OrgChart.exportPowerPointPage;
 
         locExport: string;
         locCancel: string;
@@ -3294,6 +3295,7 @@ declare namespace OrgChart {
         },        
 
         init(obj: OrgChart): void;
+        refresh(): void;
         isVisible(): boolean;
         hide(): void;
         show(options: OrgChart.exportPowerPointOptions): void;
@@ -3310,6 +3312,7 @@ declare namespace OrgChart {
         get width(): number;
         get instance(): OrgChart;
         get options(): OrgChart.exportPDFOptions;
+        get selectedPage(): OrgChart.exportPDFPage;
         
         locExport: string;
         locCancel: string;
@@ -3350,6 +3353,7 @@ declare namespace OrgChart {
         },
 
         init(obj: OrgChart): void;
+        refresh(): void;
         isVisible(): boolean;
         hide(): void;
         show(options: OrgChart.exportPDFOptions): void;
@@ -3369,6 +3373,7 @@ declare namespace OrgChart {
         get width(): number;
         get instance(): OrgChart;
         get options(): OrgChart.exportPNGOptions;
+        get selectedPage(): OrgChart.exportPNGPage;
         
         
         locExport: string;
@@ -3401,6 +3406,7 @@ declare namespace OrgChart {
         },        
 
         init(obj: OrgChart): void;
+        refresh(): void;
         isVisible(): boolean;
         hide(): void;
         show(options: OrgChart.exportPNGOptions): void;
@@ -3419,6 +3425,7 @@ declare namespace OrgChart {
         get width(): number;
         get instance(): OrgChart;
         get options(): OrgChart.exportPNGOptions;
+        get selectedPage(): OrgChart.exportPNGPage;
         
         
         locExport: string;
@@ -3451,6 +3458,7 @@ declare namespace OrgChart {
         },        
 
         init(obj: OrgChart): void;
+        refresh(): void;
         isVisible(): boolean;
         hide(): void;
         show(options: OrgChart.exportPNGOptions): void;

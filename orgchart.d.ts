@@ -1071,7 +1071,7 @@ declare class OrgChart {
      * {@link https://balkan.app/OrgChartJS/Docs/ExportingOther | See doc...}       
      */    
     exportToVisio(options?: OrgChart.exportVisioOptions, callback?: () => void): void;
-    exportToPowerPoint(options?: OrgChart.exportPowerPontOptions, callback?: () => void): void;
+    exportToPowerPoint(options?: OrgChart.exportPowerPointOptions, callback?: () => void): void;
     exportToPDF(options?: OrgChart.exportPDFOptions, callback?: () => void): void;
     exportToPNG(options?: OrgChart.exportPNGOptions, callback?: () => void): void;
     exportToSVG(options?: OrgChart.exportSVGOptions, callback?: () => void): void;
@@ -3262,7 +3262,7 @@ declare namespace OrgChart {
          */
         get width(): number;
         get instance(): OrgChart;
-        get options(): OrgChart.exportPowerPontOptions;
+        get options(): OrgChart.exportPowerPointOptions;
 
         locExport: string;
         locCancel: string;
@@ -3296,7 +3296,11 @@ declare namespace OrgChart {
         init(obj: OrgChart): void;
         isVisible(): boolean;
         hide(): void;
-        show(options: OrgChart.exportPowerPontOptions): void;
+        show(options: OrgChart.exportPowerPointOptions): void;
+
+        selectPage(index: number) : void;      
+        removePage(index: number) : void;    
+        addPage(page: OrgChart.exportPowerPointPage) : void;           
     }
 
     interface pdfPreviewUI  {
@@ -3349,7 +3353,12 @@ declare namespace OrgChart {
         isVisible(): boolean;
         hide(): void;
         show(options: OrgChart.exportPDFOptions): void;
-        
+
+        selectPage(index: number) : void;      
+        removePage(index: number) : void;       
+        toggelePrintTreeOrProfile() : void;  
+        toggleLanscape(): void;      
+        addPage(page: OrgChart.exportPDFPage) : void;       
     }
 
 
@@ -3395,10 +3404,60 @@ declare namespace OrgChart {
         isVisible(): boolean;
         hide(): void;
         show(options: OrgChart.exportPNGOptions): void;
+        selectPage(index: number) : void;      
+        removePage(index: number) : void;       
+        addPage(page: OrgChart.exportPNGPage) : void;           
     }
 
+
     
-    interface svgPreviewUI extends OrgChart.pngPreviewUI {}
+
+    interface svgPreviewUI  {
+        /**
+         * The width of the EXPORT UI
+         */
+        get width(): number;
+        get instance(): OrgChart;
+        get options(): OrgChart.exportPNGOptions;
+        
+        
+        locExport: string;
+        locCancel: string;
+        locParentLevels: string;
+        locChildLevels: string;
+        locClickToAdd: string;
+        locAddNew: string;
+        locRemove: string;
+
+        /**
+         * Buttons visibility configuration.
+         * Each flag controls whether the corresponding UI button is displayed.
+         * 
+         * - `true`  → show the button
+         * - `false` → hide the button
+         */
+        buttons: {
+            /** Show / hide the parent levels navigation button */
+            parentLevels: boolean;
+
+            /** Show / hide the child levels navigation button */
+            childLevels: boolean;
+
+            /** Show / hide the remove page button */
+            removePage: boolean;
+
+            /** Show / hide the add new page button */
+            addNewPage: boolean;
+        },        
+
+        init(obj: OrgChart): void;
+        isVisible(): boolean;
+        hide(): void;
+        show(options: OrgChart.exportPNGOptions): void;
+        selectPage(index: number) : void;      
+        removePage(index: number) : void;       
+        addPage(page: OrgChart.exportSVGPage) : void;           
+    }
 
     /**
      * Circle Menu UI
@@ -3899,8 +3958,21 @@ declare namespace OrgChart {
 
 
 
+    interface exportPowerPointPage {                    
+            chartInstance?: OrgChart,
+            nodeId?: number | string,
+            expandChildren?: boolean,
+            childLevels?: number,
+            parentLevels?: number,
+            min?: boolean,
+            header?: string,
+            footer?: string,
+            content?:  string
+    }
+
+
     
-    interface exportPowerPontOptions {
+    interface exportPowerPointOptions {
         openInNewTab?: boolean,
         fileName?: string,
         // width?: number,
@@ -3911,20 +3983,23 @@ declare namespace OrgChart {
         childLevels?: number,
         parentLevels?: number,
         min?: boolean,
-        pages?: Array<{
-            chartInstance?: OrgChart,
-            nodeId?: number | string,
-            expandChildren?: boolean,
-            childLevels?: number,
-            parentLevels?: number,
-            min?: boolean,
-            header?: string,
-            footer?: string,
-            content?:  string
-        }>,
+        pages?: Array<OrgChart.exportPowerPointPage>,
         format?: "Screen" | "Widescreen" | "Standard",
         header?: string,
         footer?: string
+    }
+
+    interface exportPDFPage {                    
+        isProfile?: boolean,
+        chartInstance?: OrgChart,
+        nodeId?: number | string,
+        expandChildren?: boolean,
+        childLevels?: number,
+        parentLevels?: number,
+        min?: boolean,
+        header?: string,
+        footer?: string,
+        content?:  string
     }
 
     interface exportPDFOptions {
@@ -3939,8 +4014,13 @@ declare namespace OrgChart {
         childLevels?: number,
         parentLevels?: number,
         min?: boolean,
-        pages?: Array<{            
-            isProfile?: boolean,
+        pages?: Array<OrgChart.exportPDFPage>,
+        format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal" | "auto",
+        header?: string,
+        footer?: string
+    }
+
+    interface exportPNGPage {
             chartInstance?: OrgChart,
             nodeId?: number | string,
             expandChildren?: boolean,
@@ -3950,12 +4030,7 @@ declare namespace OrgChart {
             header?: string,
             footer?: string,
             content?:  string
-        }>,
-        format?: "A1" | "A2" | "A3" | "A4" | "A5" | "A4" | "Letter" | "Legal" | "auto",
-        header?: string,
-        footer?: string
-    }
-
+        }
     interface exportPNGOptions {
         openInNewTab?: boolean,
         fileName?: string,
@@ -3966,7 +4041,13 @@ declare namespace OrgChart {
         childLevels?: number,
         parentLevels?: number,
         min?: boolean,
-        pages?: Array<{
+        pages?: Array<OrgChart.exportPNGPage>,
+        header?: string,
+        footer?: string
+    }
+
+
+    interface exportSVGPage {
             chartInstance?: OrgChart,
             nodeId?: number | string,
             expandChildren?: boolean,
@@ -3976,13 +4057,22 @@ declare namespace OrgChart {
             header?: string,
             footer?: string,
             content?:  string
-        }>,
-
+        }
+    interface exportSVGOptions {
+        openInNewTab?: boolean,
+        fileName?: string,
+        //landscape?: boolean,  
+        padding?: number,
+        margin?: Array<number>,
+        expandChildren?: boolean,
+        childLevels?: number,
+        parentLevels?: number,
+        min?: boolean,
+        pages?: Array<OrgChart.exportSVGPage>,
         header?: string,
         footer?: string
     }
 
-    interface exportSVGOptions extends  exportPNGOptions {}
 
     interface exportVisioOptions {
         fileName?: string,

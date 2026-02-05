@@ -59,73 +59,73 @@ declare class OrgChart {
          * let pngIcon = OrgChart.icon.png(24, 24, "#7A7A7A");
          * ```
          */
-        png: (w: string| number, h: string | number, c: string) => string,
+        png: (w: string| number, h: string | number, c: string, x?: string| number, y?: string| number) => string,
         /**
          *  ```typescript  
          * let pdfIcon = OrgChart.icon.pdf(24, 24, "#7A7A7A");
          * ```
          */
-        pdf: (w: string | number, h: string | number, c: string) => string,
+        pdf: (w: string | number, h: string | number, c: string, x?: string| number, y?: string| number) => string,
         /**
          *  ```typescript  
          * let svgIcon = OrgChart.icon.svg(24, 24, "#7A7A7A");
          * ```
          */
-        svg: (w: string| number, h: string| number, c: string | number) => string,
+        svg: (w: string| number, h: string| number, c: string | number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let csvIcon = OrgChart.icon.csv(24, 24, "#7A7A7A");
          * ```
          */
-        csv: (w: string| number, h: string| number, c: string| number) => string,
+        csv: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let excelIcon = OrgChart.icon.excel(24, 24, "#7A7A7A");
          * ```
          */
-        excel: (w: string| number, h: string| number, c: string| number) => string,
+        excel: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let powerPointIcon = OrgChart.icon.powerpoint(24, 24, "#7A7A7A");
          * ```
          */
-        powerpoint: (w: string| number, h: string| number, c: string| number) => string,
+        powerpoint: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let powerPointPreviewIcon = OrgChart.icon.pppreview(24, 24, "#7A7A7A");
          * ```
          */
-        pppreview: (w: string| number, h: string| number, c: string| number) => string,
+        pppreview: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let editIcon = OrgChart.icon.edit(24, 24, "#7A7A7A");
          * ```
          */
-        edit: (w: string| number, h: string| number, c: string| number) => string,
+        edit: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let detailsIcon = OrgChart.icon.details(24, 24, "#7A7A7A");
          * ```
          */
-        details: (w: string| number, h: string| number, c: string| number) => string,
+        details: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let removeIcon = OrgChart.icon.remove(24, 24, "#7A7A7A");
          * ```
          */
-        remove: (w: string| number, h: string| number, c: string| number) => string,
+        remove: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let addIcon = OrgChart.icon.add(24, 24, "#7A7A7A");
          * ```
          */
-        add: (w: string| number, h: string| number, c: string| number) => string,
+        add: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let xmlIcon = OrgChart.icon.xml(24, 24, "#7A7A7A");
          * ```
          */
-        xml: (w: string| number, h: string| number, c: string| number) => string,
+        xml: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let visioIcon = OrgChart.icon.visio(24, 24, "#7A7A7A");
@@ -137,19 +137,19 @@ declare class OrgChart {
          * let linkIcon = OrgChart.icon.link(24, 24, "#7A7A7A");
          * ```
          */
-        link: (w: string| number, h: string| number, c: string| number) => string,
+        link: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let happyIcon = OrgChart.icon.happy(24, 24, "#7A7A7A");
          * ```
          */
-        happy: (w: string| number, h: string| number, c: string| number) => string,
+        happy: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let sadIcon = OrgChart.icon.sad(24, 24, "#7A7A7A");
          * ```
          */
-        sad: (w: string| number, h: string| number, c: string| number) => string,
+        sad: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let shareIcon = OrgChart.icon.share(24, 24, "#7A7A7A");

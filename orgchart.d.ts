@@ -5614,12 +5614,18 @@ declare namespace OrgChart {
           *   ]
           * });
           * ```    
+          * Order by multiple fields:
           * ```typescript       
           * var chart = new OrgChart('#tree', {
-          *   orderBy: [{field: "orderId", desc: true}],
+          *   orderBy: [
+          *     {field: "name", desc: true},
+          *     {field: 'surname', desc: true},
+          *   ],
           *   nodes: [
-          *       { id: 10, pid: 1, orderId: 2 },
-          *       { id: 11, pid: 1, orderId: 1 }
+          *     { id: 1, name: "a", surname: 1 },
+          *     { id: 2, pid: 1, name: "b", surname: 'a' },
+          *     { id: 3, pid: 1, name: "a", surname: 'b' },
+          *     { id: 4, pid: 1, name: "b", surname: 'c' }
           *   ]
           * });
           * ```      

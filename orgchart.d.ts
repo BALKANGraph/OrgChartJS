@@ -4409,9 +4409,13 @@ declare namespace OrgChart {
 
     enum anchor {
         top_right,
+        right_top,
         bottom_right,
+        right_bottom,
+        left_top,
         top_left,
         bottom_left,
+        left_bottom,
         top,
         bottom,
         left,

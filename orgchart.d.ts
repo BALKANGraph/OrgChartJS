@@ -4168,7 +4168,8 @@ declare namespace OrgChart {
         [key: string]: {
             title: string,
             icon?: string,
-            onClick?: Function
+            onClick?: Function,
+            anchor: OrgChart.anchor
         }
     }    
         /**
@@ -4404,6 +4405,18 @@ declare namespace OrgChart {
          */
         left_top
     }
+
+
+    enum anchor {
+        top_right,
+        bottom_right,
+        top_left,
+        bottom_left,
+        top,
+        bottom,
+        left,
+        right
+    }    
 
     /**
      * Specifies the layout of the chart

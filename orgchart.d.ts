@@ -4169,7 +4169,8 @@ declare namespace OrgChart {
             title: string,
             icon?: string,
             onClick?: Function,
-            anchor: OrgChart.anchor
+            isOn?: boolean,
+            anchor?: OrgChart.anchor
         }
     }    
         /**

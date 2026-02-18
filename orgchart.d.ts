@@ -2144,6 +2144,26 @@ declare class OrgChart {
     static CONVERT_IMAGES_TO_BASE64_BEFORE_EXPORT: boolean;
 
 
+    /**
+     * A dictionary of custom HTTP headers that will be sent with all server-side
+     * JavaScript requests executed by the library.
+     *
+     * Each key represents the header name and the value represents the header value.
+     *
+     * Example:
+     * ```ts
+     * OrgChart.REQUEST_CUSTOM_HEADERS = {
+     *   "My-Access-Key": "Expected-Key",
+     *   "X-Tenant-Id": "my-tenant"
+     * };
+     * ```
+     *
+     * This is typically used when the server requires authentication,
+     * multi-tenant identification, or other contextual headers.
+     */
+    static REQUEST_CUSTOM_HEADERS: {[key: string]: string};
+
+
 
 
     // /**

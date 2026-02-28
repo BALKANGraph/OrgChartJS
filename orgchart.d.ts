@@ -2132,6 +2132,12 @@ declare class OrgChart {
 
 
     /**
+     * Gap between slinks in pixels
+     */
+    static SLINK_GAP: number;
+
+
+    /**
      * Scrollbar width (in pixels) for the TreeList layout.
      */
     static TREELIST_SCROLLBAR_WIDTH: number;

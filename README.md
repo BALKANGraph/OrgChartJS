@@ -1,4 +1,4 @@
-# ![BALKAN OrgChart JS](https://orgchartjs.balkan.app/favicon-32x32.png) BALKAN OrgChart JS
+# ![OrgChart JS](https://orgchartjs.balkan.app/favicon-32x32.png) OrgChart JS
 
 
 

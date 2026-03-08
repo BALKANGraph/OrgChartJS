@@ -1,1 +1,59 @@
-{"author":{"name":"BALKAN App"},"bugs":{"email":"support@balkan.app","url":"https://github.com/BALKANGraph/OrgChartJS/issues"},"deprecated":false,"description":"Ultimate Organizational Chart JavaScript library, Interactive Diagrams","files":["orgchart.js","orgchart.d.ts","package.json","README.md"],"homepage":"https://balkan.app/","keywords":["diagram","chart","tree","orgchart","graph","svg","hierarchy","family-tree","decision-tree","visualization","tree-layout","hierarchical","javascript","js","html","html5"],"license":"SEE LICENSE IN https://balkan.app","main":"orgchart.js","types":"orgchart.d.ts","name":"@balkangraph/orgchart.js","repository":{"type":"git","url":"https://github.com/BALKANGraph/OrgChartJS"},"dependencies":{},"version":"9.01.01"}
+{
+  "author": {
+    "name": "BALKAN App <support@balkan.app> (https://balkan.app)"
+  },
+  "sideEffects": false,
+  "bugs": {
+    "email": "support@balkan.app",
+    "url": "https://github.com/BALKANGraph/OrgChartJS/issues"
+  },
+  "module": "orgchart.js",
+  "exports": {
+    ".": {
+      "import": "./orgchart.js",
+      "require": "./orgchart.js"
+    }
+  },
+  "deprecated": false,
+  "description": "JavaScript organizational chart library for visualizing hierarchy, company structure, and team relationships with interactive diagrams.",
+  "files": [
+    "orgchart.js",
+    "orgchart.d.ts",
+    "package.json",
+    "README.md"
+  ],
+  "homepage": "https://balkan.app/",
+  "keywords": [
+    "orgchart",
+    "org-chart",
+    "organizational-chart",
+    "orgchart-js",
+    "orgchartjs",
+    "org-chart-js",
+    "hierarchy",
+    "tree",
+    "hierarchical-data",
+    "tree-visualization",
+    "data-visualization",
+    "diagram",
+    "employee-chart",
+    "company-structure",
+    "hierarchy-chart",
+    "react-orgchart",
+    "vue-orgchart",
+    "angular-orgchart",
+    "javascript",
+    "typescript",
+    "chart-library"
+  ],
+  "license": "SEE LICENSE IN https://balkan.app",
+  "main": "orgchart.js",
+  "types": "orgchart.d.ts",
+  "name": "@balkangraph/orgchart.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BALKANGraph/OrgChartJS"
+  },
+  "dependencies": {},
+  "version": "9.01.02"
+}

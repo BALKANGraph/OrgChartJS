@@ -46,14 +46,14 @@
     "typescript",
     "chart-library"
   ],
-  "license": "SEE LICENSE IN https://balkan.app",
+  "license": "MIT",
   "main": "orgchart.js",
   "types": "orgchart.d.ts",
-  "name": "@balkangraph/orgchart.js",
+  "name": "balkan-orgchart-js",
   "repository": {
     "type": "git",
     "url": "https://github.com/BALKANGraph/OrgChartJS"
   },
   "dependencies": {},
-  "version": "9.01.02"
+  "version": "9.01.32"
 }

@@ -13,7 +13,7 @@
 
 ## Overview
 
-**OrgChart JS** is FREE Trial, available under [EULA](https://balkan.app/OrgChartJS/Legal/EULA), and comes with all of the core features expected from a JavaScript Organizational chart, including [Expand/Collapse](https://balkan.app/OrgChartJS/Docs/ExpandCollapse), [Custom Template](https://balkan.app/OrgChartJS/Docs/CreatingCustomTemplate), [Minimize/Maximize](https://balkan.app/OrgChartJS/Docs/MinMax), [CSS Customization](https://balkan.app/OrgChartJS/Docs/CSSCustomization) and more. You have 3 options to install OrgChart JS, from NPM, form CDN or Standalone.
+**OrgChart JS** is FREE Trial, available under [EULA](https://balkan.app/OrgChartJS/Legal/EULA). You have 3 options to install OrgChart JS, from NPM, form CDN or Standalone.
 
 <br>
 

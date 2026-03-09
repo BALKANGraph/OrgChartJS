@@ -5979,6 +5979,6 @@ declare namespace OrgChart {
      * @ignore
      */
     var t: any;
-}        
-        export { OrgChart };
-        export default OrgChart;
+}
+export { OrgChart };
+export default OrgChart;

@@ -22,25 +22,25 @@
 ### Step 1 - Installation
 
 ```bash
-npm install balkan‑orgchart‑js
+npm install balkan-orgchart-js
 ```
 
 or with yarn:
 
 ```bash
-yarn add balkan‑orgchart‑js
+yarn add balkan-orgchart-js
 ```
 
 ### Step 2 - Import it in your code
 
 ```javascript
-import OrgChart from "balkan‑orgchart‑js";
+import OrgChart from "balkan-orgchart-js";
 ```
 
 or with CommonJS:
 
 ```javascript
-const { OrgChart } = require("balkan‑orgchart‑js");
+const { OrgChart } = require("balkan-orgchart-js");
 ```
 
 ### Step 3 - Usage

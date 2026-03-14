@@ -317,11 +317,11 @@ declare class OrgChart {
         /**
          * old node data
          */
-        oldData: nodeData,
+        oldData: OrgChart.nodeData,
         /**
          * new node data
          */
-        newData: nodeData
+        newData: OrgChart.nodeData
     }) => void): OrgChart;
 
         /**
@@ -378,7 +378,7 @@ declare class OrgChart {
         /**
          * new added data node
          */
-        data: nodeData
+        data: OrgChart.nodeData
     }) => void): OrgChart;
     /**
      * The onDrag event occurs when a node is dragged. *enableDragDrop* option has to be turned on.
@@ -518,7 +518,7 @@ declare class OrgChart {
      * @param callback called at the end of animation
      * @param fireEvent indicates if the add event will be called or not
      */
-    addNode(data: nodeData, callback?: () => void, fireEvent?: boolean): void;  
+    addNode(data: OrgChart.nodeData, callback?: () => void, fireEvent?: boolean): void;  
 
     /**
      * Removes specified node from nodes collection, redraws the chart and fires remove event.
@@ -532,6 +532,17 @@ declare class OrgChart {
      */
     removeNode(id: string | number, callback?: () => void, fireEvent?: boolean): void;
 
+    /**
+     * Init method can be used if the chart needs to be instantiated without parameters, and init can be called later.
+     * ```typescript     
+     * let chart = new OrgChart();
+     * chart.init('#tree', {})
+     * ```
+     * @param element 
+     * @param options 
+     */
+    init(element?: HTMLElement | string, options?: OrgChart.options): void;
+
     
     /**
      * Gets node data.
@@ -542,7 +553,7 @@ declare class OrgChart {
      * ```
      * @param id identification number of the node
      */
-    get(id: string | number): nodeData;
+    get(id: string | number): OrgChart.nodeData;
     /**
      * If specified node has assistant/s or partner/s as children will return false.
      * ```typescript     
@@ -640,7 +651,7 @@ declare class OrgChart {
      * @param data nodes data array
      * @param callback function called after the load
      */
-    load(data: Array<nodeData>, callback?: () => void): OrgChart;
+    load(data: Array<OrgChart.nodeData>, callback?: () => void): OrgChart;
 
 
 
@@ -655,7 +666,7 @@ declare class OrgChart {
      * @param callback function called when the animation completes
      * @param fireEvent if it set to true the update event is called
      */
-    updateNode(data: nodeData, callback?: () => void, fireEvent?: boolean): void;
+    updateNode(data: OrgChart.nodeData, callback?: () => void, fireEvent?: boolean): void;
 
     /**
      * Loads nodes from xml.
@@ -2284,43 +2295,45 @@ declare class OrgChart {
     static grCloseTag: any;
 }
 
-/**
- * The node JSON data
- * ```ts
- * { id: 2, pid: 1, tags: ["HR"], name: "Anna Smith" }
- * ```
- */
-interface nodeData {
 
-    /**
-     * the id of the node
-     */
-    id: number | string,
-
-    /**
-     * the parent id
-     */
-    pid?: number | string,
-
-    /**
-     * the parent partner id
-     */
-    ppid?: number | string,
-
-    /**
-     * the subtree parent id
-     */
-    stpid?: number | string,
-
-    /**
-     * Set custom configuration for the tagged node
-     *{@link https://balkan.app/OrgChartJS/Docs/Tags | See Tags doc page...} 
-     */
-    tags?: Array<string>,
-    [key: string]: any
-}
 
 declare namespace OrgChart {   
+
+    /**
+     * The node JSON data
+     * ```ts
+     * { id: 2, pid: 1, tags: ["HR"], name: "Anna Smith" }
+     * ```
+     */
+    interface nodeData {
+
+        /**
+         * the id of the node
+         */
+        id: number | string,
+
+        /**
+         * the parent id
+         */
+        pid?: number | string,
+
+        /**
+         * the parent partner id
+         */
+        ppid?: number | string,
+
+        /**
+         * the subtree parent id
+         */
+        stpid?: number | string,
+
+        /**
+         * Set custom configuration for the tagged node
+         *{@link https://balkan.app/OrgChartJS/Docs/Tags | See Tags doc page...} 
+        */
+        tags?: Array<string>,
+        [key: string]: any
+    }    
     
     // interface node {
     //     /**

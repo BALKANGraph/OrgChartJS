@@ -14,6 +14,7 @@
     "orgchart.js",
     "orgchart.mjs",
     "orgchart.d.ts",
+    "orgchart.d.mts",
     "package.json",
     "readme.md"
   ],
@@ -57,5 +58,5 @@
     "url": "git+https://github.com/BALKANGraph/OrgChartJS.git"
   },
   "dependencies": {},
-  "version": "9.1.75"
+  "version": "9.1.76"
 }

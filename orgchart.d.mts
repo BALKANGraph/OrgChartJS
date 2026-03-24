@@ -33,7 +33,7 @@
  * </html>
  * ```
  */
-declare class OrgChart extends OrgChartEventListeners {
+declare class OrgChart  {
     /**
      * ```typescript     
      * let chart = new OrgChart('#tree', {});
@@ -42,6 +42,230 @@ declare class OrgChart extends OrgChartEventListeners {
      * @param options configuration options
      */
     constructor(element?: HTMLElement | string | null, options?: OrgChart.options);
+
+    
+    /**
+     * The on() method of the OrgChart class sets up a function that will be called whenever the specified event is delivered to the target.     * 
+     * ```typescript
+     * let chart = new OrgChart('#tree', {});
+     * chart.on('init', function () {
+     *      // console.log("initiated")
+     * })
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param type A case-sensitive string representing the event type to listen for.
+     * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
+     */
+    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "ready" | "ripple" | "node-initialized" | "nodes-initialized" | "node-layout", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
+
+
+    
+    /**
+     * Occurs when the node data has been updated by updateNode method.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onUpdateNode((args) => {
+     *  //return false; to cancel the operation
+     * });
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onUpdateNode(listener: (this: OrgChart, args: OrgChart.updateNodeEventArgs) => void): OrgChart;
+
+        /**
+     * Occurs when new nodes are added, removed, updated or imported, also when slink or clink is added or removed and after undo or redo operations.
+     * Use this event listener to synch your server side database with this.config.nodes, this.config.clinks, this.config.slinks etc.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onUpdated(() => {
+     *  //Update your server database with this.config.nodes, this.config.clinks, this.config.slinks etc.
+     * });
+     * ```
+     * @category Event Listeners
+     */
+    onUpdated(listener: (this: OrgChart) => void): OrgChart;
+
+    
+    /**
+     * Occurs when a node has been removed by removeNode method. 
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onRemoveNode((args) => {
+     *  //return false; to cancel the operation
+     * });
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onRemoveNode(listener: (this: OrgChart, args: OrgChart.removeNodeEvemtArgs) => void): OrgChart;
+
+    /**
+     * Occurs when a node has been added by addNode method.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onAddNode((args) => {     
+     *  //return false; to cancel the operation
+     * });
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onAddNode(listener: (this: OrgChart, args: OrgChart.addNodeEvemtArgs) => void): OrgChart;
+    /**
+     * The onDrag event occurs when a node is dragged. *enableDragDrop* option has to be turned on.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onDrag(() => {
+     *  //return false; to cancel the operation
+     * });
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onDrag(listener: (this: OrgChart, args: OrgChart.dragEventArgs) => void): OrgChart;
+    /**
+     * The onDrop event occurs when a node is dropped. *enableDragDrop* option has to be turned on.
+     *  ```typescript     
+     * var chart = new OrgChart('#tree', {});
+     * chart.onDrop(() => {
+     *  //return false; to cancel the operation
+     * });
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onDrop(listener: (this: OrgChart, args: OrgChart.dropEventArgs) => void): OrgChart;
+
+    
+
+    /**
+     * Occurs when the nodes in OrgChart has been created and loaded to the DOM.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onInit(() => {
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */
+    onInit(listener: (this: OrgChart) => void): OrgChart;
+    
+    /**
+     * The onRedraw event occurs when the chart is redrawed.
+     *  ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onRedraw(() => {
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */        
+    onRedraw(listener: (this: OrgChart) => void): OrgChart;
+
+    /**
+     * The onExpandCollapseButtonClick event occurs when the chart is redrawed.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onExpandCollapseButtonClick(() => {
+     *  //return false; to cancel the operation
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */         
+    onExpandCollapseButtonClick(listener: (this: OrgChart, args: OrgChart.expandCollapseButtonClickEventArgs) => void): OrgChart;
+
+    /**
+     * Occurs in the beginning of the export. Extra css styles can be added to the exported document using this event listener or show loading image.
+     *  ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onExportStart(() => {
+     *  args.styles += '<link href="[link to my styles]" rel="stylesheet">';
+     *  //return false; to cancel the operation
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */             
+    onExportStart(listener: (this: OrgChart, args: OrgChart.exportStartEventArgs) => void): OrgChart;
+
+    /**
+     * Occurs in the beginning of the export. Use this event listener to hide loading image or upload exported document to your server using ArrayBuffer argument.
+     *  ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onExportEnd(() => {
+     *  //return false; to cancel the operation for example id you prefer the exported document to not download
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */         
+    onExportEnd(listener: (this: OrgChart, args: OrgChart.exportEndEventArgs) => void): OrgChart;
+
+    /**
+     * On node click event listener.
+     *  ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onNodeClick(() => {
+     *  //return false; to cancel the operation      
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */   
+    onNodeClick(listener: (this: OrgChart, args: OrgChart.nodeClickEventArgs) => void): OrgChart;
+
+
+        /**
+     * On canvas SVG click event listener.
+     *  ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onCanvasClick(() => {  
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */   
+    onCanvasClick(listener: (this: OrgChart, args: OrgChart.canvasClickEventArgs) => void): OrgChart;
+
+    /**
+     * In onAIToolCalls we parse the AI responce to our functions
+     * ```typescript
+     * chart.onAIToolCalls(function(args){
+     *  for(var toolCall of args.toolCalls){
+     *      if (toolCall.FunctionName == 'sendEmail'){
+     *          toolCall.FunctionResult = sendEmail(toolCall.FunctionArguments);
+     *      }
+     *  }
+     * });
+     * ```
+     * [Go to AI doc page for more details](https://balkan.app/OrgChartJS/Docs/AI)
+     * @param listener 
+     */
+    onAIToolCalls(listener: (this: OrgChart, args: OrgChart.aiToolCallsEventArgs) => void): OrgChart;
+
+    /**
+     * On node double click event listener.
+     * ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onNodeDoubleClick(() => {
+     *  //return false; to cancel the operation 
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */       
+    onNodeDoubleClick(listener: (this: OrgChart, args: OrgChart.nodeDoubleClickEventArgs) => void): OrgChart;
 
 
         /**
@@ -1909,6 +2133,202 @@ declare class OrgChart extends OrgChartEventListeners {
 
 
 declare namespace OrgChart {   
+
+    interface updateNodeEventArgs{
+        /**
+         * old node data
+         */
+        oldData: OrgChart.nodeData,
+        /**
+         * new node data
+         */
+        newData: OrgChart.nodeData
+    }
+
+    interface removeNodeEvemtArgs{
+        /**
+         * node id
+         */
+        id: number | string,
+        /**
+         * parent ids and sub tree parents ids that needs to be updated on the server. For example if you remove a node that has children all chilren nodes will change their pid to the parent node id of the removed node.
+         */
+        newPidsAndStpidsForIds: {
+            newPidsForIds: { [key in any]: string | number },
+            newStpidsForIds: { [key in any]: string | number }
+        }
+    }
+
+    interface addNodeEvemtArgs{
+        /**
+         * new added data node
+         */
+        data: OrgChart.nodeData
+    }
+
+    interface dragEventArgs{
+        /**
+         * dragged node id
+         */
+        dragId: string | number, 
+        event: MouseEvent,
+        /**
+         * array of node ids
+         * 
+         * this property is initialized only if movable option is set
+         */
+        nodeIds: Array<string | number>
+    }
+
+    interface dropEventArgs{
+        /**
+         * dragged node id
+         */
+        dragId: string | number,
+        /**
+         * dropped node id
+         */
+        dropId: string | number,
+        /**
+         * draging element
+         */
+        dragNodeElement: HTMLElement,
+        /**
+         * Mouse event
+         */
+        event: MouseEvent
+    }
+
+    interface expandCollapseButtonClickEventArgs{
+       /**
+         * Indicates id the operation is collaps or expand
+         */
+        collapsing: boolean,
+        /**
+         * the id of the clicked node
+         */
+        id: number | string,
+        /**
+         *  node ids that will be expanded or collapsed
+         */
+        ids: Array<number | string>
+    }
+
+    interface exportStartEventArgs {
+            options: {
+                childLevels?: number,
+                expandChildren?: boolean,
+                fileName?: string,
+                footer?: string,
+                header?: string,
+                height?: number,
+                width?: number,
+                landscape?: boolean,
+                margin?: Array<number>,
+                min?: boolean,
+                openInNewTab?: boolean,
+                padding?: number,
+                parentLevels?: number,
+                type?: string,
+                pages?: Array<{            
+                    chartInstance?: OrgChart,
+                    childLevels?: number,
+                    expandChildren?: boolean,
+                    footer?: string,
+                    header?: string,
+                    margin?: Array<number>,
+                    min?: boolean,
+                    padding?: number,
+                    parentLevels?: number,
+                    isProfile?: boolean,
+                    nodeId?: number | string,
+                    content?:  string,
+                    height?: number,
+                    width?: number,
+                }>
+            },
+            pages?: Array<SVGElement>,            
+            styles?: string
+    };
+
+    /**
+     * for PDF/PNG
+     */
+    interface exportEndEventArgs  {
+        /**
+         * the array buffer is the exported document, you can save it on a server or send it via email
+         * 
+         * this property is initialized only for PDF/PNG exports
+         */
+        ArrayBuffer: ArrayBuffer
+        /**
+         * extension
+         * 
+         * this property is initialized only for CSV/XML exports
+         */
+        ext: string,
+        /**
+         * filename, you can change the filename here
+         * 
+         * this property is initialized only for CSV/XML exports
+         */
+        filename: string,
+        /**
+         * an array of node objects
+         * 
+         * this property is initialized only for CSV/XML exports
+         */
+        nodes: Array<object>,
+        /**
+         * csv ot xml string
+         * 
+         * this property is initialized only for CSV/XML/SVG exports
+         */
+        content: string,
+        /**
+         * add extra styles
+         * 
+         * this property is initialized only for SVG exports
+         */
+        styles: string,        
+    }
+
+    interface nodeClickEventArgs  {
+        /**
+         * node JSON object
+         */
+        node: OrgChart.node,
+        /**
+         * the browser event
+         */
+        event: any
+    }
+            
+
+    interface canvasClickEventArgs  {
+        /**
+         * the browser event
+         */
+        event: any
+    }
+            
+
+    interface aiToolCallsEventArgs  {
+        toolCalls: Array<{
+            FunctionName : string,
+            FunctionResult  : string,
+            FunctionArguments  : { [key: string]: any }
+        }>
+    }
+        
+
+    interface nodeDoubleClickEventArgs  {
+        /**
+         * clicked node data
+         */
+        data: object
+    }
+    
 
     /**
      * The node JSON data
@@ -5606,402 +6026,5 @@ declare namespace OrgChart {
 }
 
 
-declare class OrgChartEventListeners {
-   
 
-    /**
-     * The on() method of the OrgChart class sets up a function that will be called whenever the specified event is delivered to the target.     * 
-     * ```typescript
-     * let chart = new OrgChart('#tree', {});
-     * chart.on('init', function () {
-     *      // console.log("initiated")
-     * })
-     * chart.load(nodes);
-     * ```
-     * @category Event Listeners
-     * @param type A case-sensitive string representing the event type to listen for.
-     * @param listener The object that receives a notification when an event of the specified type occurs. This must be a JavaScript function. 
-     */
-    on(type: "init" | "field" | "update" | "add" | "remove" | "renderbuttons" | "label" | "render-link" | "drag" | "drop" | "redraw" | "expcollclick" | "exportstart" | "exportend" | "click" | "dbclick" | "slink-click" | "clink-click" | "up-click" | "searchclick" | "import" | "updated" | "key-down" | "visibility-change" | "renderdefs" | "render" | "prerender" | "screen-reader-text" | "ready" | "ripple" | "node-initialized" | "nodes-initialized" | "node-layout", listener: (sender: OrgChart, args?: any, args1?: any, args2?: any) => void | boolean): OrgChart;
-
-
-    
-    /**
-     * Occurs when the node data has been updated by updateNode method.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onUpdateNode((args) => {
-     *  //return false; to cancel the operation
-     * });
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onUpdateNode(listener: (args: {
-        /**
-         * old node data
-         */
-        oldData: OrgChart.nodeData,
-        /**
-         * new node data
-         */
-        newData: OrgChart.nodeData
-    }) => void): OrgChart;
-
-        /**
-     * Occurs when new nodes are added, removed, updated or imported, also when slink or clink is added or removed and after undo or redo operations.
-     * Use this event listener to synch your server side database with this.config.nodes, this.config.clinks, this.config.slinks etc.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onUpdated(() => {
-     *  //Update your server database with this.config.nodes, this.config.clinks, this.config.slinks etc.
-     * });
-     * ```
-     * @category Event Listeners
-     */
-    onUpdated(): OrgChart;
-
-    
-    /**
-     * Occurs when a node has been removed by removeNode method. 
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onRemoveNode((args) => {
-     *  //return false; to cancel the operation
-     * });
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onRemoveNode(listener: (args: {
-        /**
-         * node id
-         */
-        id: number | string,
-        /**
-         * parent ids and sub tree parents ids that needs to be updated on the server. For example if you remove a node that has children all chilren nodes will change their pid to the parent node id of the removed node.
-         */
-        newPidsAndStpidsForIds: {
-            newPidsForIds: { [key in any]: string | number },
-            newStpidsForIds: { [key in any]: string | number }
-        }
-    }) => void): OrgChart;
-
-    /**
-     * Occurs when a node has been added by addNode method.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onAddNode((args) => {     
-     *  //return false; to cancel the operation
-     * });
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onAddNode(listener: (args: {
-        /**
-         * new added data node
-         */
-        data: OrgChart.nodeData
-    }) => void): OrgChart;
-    /**
-     * The onDrag event occurs when a node is dragged. *enableDragDrop* option has to be turned on.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onDrag(() => {
-     *  //return false; to cancel the operation
-     * });
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onDrag(listener: (args: {
-        /**
-         * dragged node id
-         */
-        dragId: string | number, 
-        event: MouseEvent,
-        /**
-         * array of node ids
-         * 
-         * this property is initialized only if movable option is set
-         */
-        nodeIds: Array<string | number>
-    }) => void): OrgChart;
-    /**
-     * The onDrop event occurs when a node is dropped. *enableDragDrop* option has to be turned on.
-     *  ```typescript     
-     * var chart = new OrgChart('#tree', {});
-     * chart.onDrop(() => {
-     *  //return false; to cancel the operation
-     * });
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onDrop(listener: (args: {
-        /**
-         * dragged node id
-         */
-        dragId: string | number,
-        /**
-         * dropped node id
-         */
-        dropId: string | number,
-        /**
-         * draging element
-         */
-        dragNodeElement: HTMLElement,
-        /**
-         * Mouse event
-         */
-        event: MouseEvent
-    }) => void): OrgChart;
-
-    
-
-    /**
-     * Occurs when the nodes in OrgChart has been created and loaded to the DOM.
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * chart.onInit(() => {
-     * });
-     * chart.load(nodes);
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */
-    onInit(listener: (this: OrgChart) => void): OrgChart;
-    
-    /**
-     * The onRedraw event occurs when the chart is redrawed.
-     *  ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * chart.onRedraw(() => {
-     * });
-     * chart.load(nodes);
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */        
-    onRedraw(listener: (this: OrgChart) => void): OrgChart;
-
-    /**
-     * The onExpandCollapseButtonClick event occurs when the chart is redrawed.
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * chart.onExpandCollapseButtonClick(() => {
-     *  //return false; to cancel the operation
-     * });
-     * chart.load(nodes);
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */         
-    onExpandCollapseButtonClick(listener: (this: OrgChart, args: {
-        /**
-         * Indicates id the operation is collaps or expand
-         */
-        collapsing: boolean,
-        /**
-         * the id of the clicked node
-         */
-        id: number | string,
-        /**
-         *  node ids that will be expanded or collapsed
-         */
-        ids: Array<number | string>
-    }) => void): OrgChart;
-
-    /**
-     * Occurs in the beginning of the export. Extra css styles can be added to the exported document using this event listener or show loading image.
-     *  ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * chart.onExportStart(() => {
-     *  args.styles += '<link href="[link to my styles]" rel="stylesheet">';
-     *  //return false; to cancel the operation
-     * });
-     * chart.load(nodes);
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */             
-    onExportStart(listener: (this: OrgChart, args: {
-            options: {
-                childLevels?: number,
-                expandChildren?: boolean,
-                fileName?: string,
-                footer?: string,
-                header?: string,
-                height?: number,
-                width?: number,
-                landscape?: boolean,
-                margin?: Array<number>,
-                min?: boolean,
-                openInNewTab?: boolean,
-                padding?: number,
-                parentLevels?: number,
-                type?: string,
-                pages?: Array<{            
-                    chartInstance?: OrgChart,
-                    childLevels?: number,
-                    expandChildren?: boolean,
-                    footer?: string,
-                    header?: string,
-                    margin?: Array<number>,
-                    min?: boolean,
-                    padding?: number,
-                    parentLevels?: number,
-                    isProfile?: boolean,
-                    nodeId?: number | string,
-                    content?:  string,
-                    height?: number,
-                    width?: number,
-                }>
-            },
-            pages?: Array<SVGElement>,            
-            styles?: string
-    }) => void): OrgChart;
-
-    /**
-     * Occurs in the beginning of the export. Use this event listener to hide loading image or upload exported document to your server using ArrayBuffer argument.
-     *  ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * chart.onExportEnd(() => {
-     *  //return false; to cancel the operation for example id you prefer the exported document to not download
-     * });
-     * chart.load(nodes);
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */         
-    onExportEnd(listener: (this: OrgChart, args: 
-        /**
-         * for PDF/PNG
-         */
-    {
-        /**
-         * the array buffer is the exported document, you can save it on a server or send it via email
-         * 
-         * this property is initialized only for PDF/PNG exports
-         */
-        ArrayBuffer: ArrayBuffer
-        /**
-         * extension
-         * 
-         * this property is initialized only for CSV/XML exports
-         */
-        ext: string,
-        /**
-         * filename, you can change the filename here
-         * 
-         * this property is initialized only for CSV/XML exports
-         */
-        filename: string,
-        /**
-         * an array of node objects
-         * 
-         * this property is initialized only for CSV/XML exports
-         */
-        nodes: Array<object>,
-        /**
-         * csv ot xml string
-         * 
-         * this property is initialized only for CSV/XML/SVG exports
-         */
-        content: string,
-        /**
-         * add extra styles
-         * 
-         * this property is initialized only for SVG exports
-         */
-        styles: string,        
-    }) => void): OrgChart;
-
-    /**
-     * On node click event listener.
-     *  ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * chart.onNodeClick(() => {
-     *  //return false; to cancel the operation      
-     * });
-     * chart.load(nodes);
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */   
-    onNodeClick(listener: (this: OrgChart, args: {
-        /**
-         * node JSON object
-         */
-        node: OrgChart.node,
-        /**
-         * the browser event
-         */
-        event: any
-    }) => void): OrgChart;
-
-
-        /**
-     * On canvas SVG click event listener.
-     *  ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * chart.onCanvasClick(() => {  
-     * });
-     * chart.load(nodes);
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */   
-    onCanvasClick(listener: (this: OrgChart, args: {
-        /**
-         * the browser event
-         */
-        event: any
-    }) => void): OrgChart;
-
-    /**
-     * In onAIToolCalls we parse the AI responce to our functions
-     * ```typescript
-     * chart.onAIToolCalls(function(args){
-     *  for(var toolCall of args.toolCalls){
-     *      if (toolCall.FunctionName == 'sendEmail'){
-     *          toolCall.FunctionResult = sendEmail(toolCall.FunctionArguments);
-     *      }
-     *  }
-     * });
-     * ```
-     * [Go to AI doc page for more details](https://balkan.app/OrgChartJS/Docs/AI)
-     * @param listener 
-     */
-    onAIToolCalls(listener: (this: OrgChart, args: {
-        toolCalls: Array<{
-            FunctionName : string,
-            FunctionResult  : string,
-            FunctionArguments  : { [key: string]: any }
-        }>
-    }) => void): OrgChart;
-
-    /**
-     * On node double click event listener.
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * chart.onNodeDoubleClick(() => {
-     *  //return false; to cancel the operation 
-     * });
-     * chart.load(nodes);
-     * ```
-     * @category Event Listeners
-     * @param listener 
-     */       
-    onNodeDoubleClick(listener: (this: OrgChart, args: {
-        /**
-         * clicked node data
-         */
-        data: object
-    }) => void): OrgChart;
-}
-
-
-export { OrgChart, OrgChartEventListeners };
 export default OrgChart;

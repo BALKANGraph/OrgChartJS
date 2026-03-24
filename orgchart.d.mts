@@ -99,7 +99,7 @@ declare class OrgChart  {
      * @category Event Listeners
      * @param listener 
      */
-    onRemoveNode(listener: (this: OrgChart, args: OrgChart.removeNodeEvemtArgs) => void): OrgChart;
+    onRemoveNode(listener: (this: OrgChart, args: OrgChart.removeNodeEventArgs) => void): OrgChart;
 
     /**
      * Occurs when a node has been added by addNode method.
@@ -112,7 +112,7 @@ declare class OrgChart  {
      * @category Event Listeners
      * @param listener 
      */
-    onAddNode(listener: (this: OrgChart, args: OrgChart.addNodeEvemtArgs) => void): OrgChart;
+    onAddNode(listener: (this: OrgChart, args: OrgChart.addNodeEventArgs) => void): OrgChart;
     /**
      * The onDrag event occurs when a node is dragged. *enableDragDrop* option has to be turned on.
      *  ```typescript     
@@ -2133,7 +2133,6 @@ declare class OrgChart  {
 
 
 declare namespace OrgChart {   
-
     interface updateNodeEventArgs{
         /**
          * old node data
@@ -2145,7 +2144,7 @@ declare namespace OrgChart {
         newData: OrgChart.nodeData
     }
 
-    interface removeNodeEvemtArgs{
+    interface removeNodeEventArgs{
         /**
          * node id
          */
@@ -2159,7 +2158,7 @@ declare namespace OrgChart {
         }
     }
 
-    interface addNodeEvemtArgs{
+    interface addNodeEventArgs{
         /**
          * new added data node
          */

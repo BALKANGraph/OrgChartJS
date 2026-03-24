@@ -5449,7 +5449,7 @@ declare namespace OrgChart {
          * });
          * ```
          */
-         nodes?: Array<Object>,
+         nodes?: Array<OrgChart.nodeData>,
         /**
          * Adds curved link.
          * ```typescript     

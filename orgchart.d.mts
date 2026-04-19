@@ -2692,6 +2692,26 @@ declare namespace OrgChart {
             size?: Array<number>,
 
             /**
+             * Inner spacing around the node content area.
+             *
+             * Order of values:
+             * [top, right, bottom, left]
+             *
+             * Example:
+             * OrgChart.templates.myTemplate.padding = [10, 15, 10, 15];
+             *
+             * Meaning:
+             * - top:    10px
+             * - right:  15px
+             * - bottom: 10px
+             * - left:   15px
+             *
+             * Use this to prevent content from touching the edges of the node
+             * and to control internal layout spacing.
+             */
+            padding?: [number, number, number, number],
+
+            /**
              * Size of the expandCollapse button
              * ```typescript
              * OrgChart.templates.myTemplate.expandCollapseSize = 30;
@@ -2730,19 +2750,9 @@ declare namespace OrgChart {
             ripple?: {
                 radius?: number,
                 color?: string,
-                rect?: Array<number>
+                rect?: { x: number, y: number, width: number, height: number }
             },
 
-            /**
-             * Assistance link
-             * ```typescript
-             * OrgChart.templates.myTemplate.assistanseLink = 
-             *  `<path stroke-linejoin="round" stroke="#aeaeae" stroke-width="2px" fill="none" 
-             *  d="M{xa},{ya} {xb},{yb} {xc},{yc} {xd},{yd} L{xe},{ye}" />`;
-             * }
-             * ```
-             */
-            assistanseLink?: string,
 
             /**
              * Template main svg definition

@@ -847,7 +847,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.1.99", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.1.101", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -4437,7 +4437,6 @@ e.prototype.init = function(t, n) {
 		color: "#e6e6e6",
 		rect: null
 	},
-	assistanseLink: "<path stroke-linejoin=\"round\" stroke=\"#aeaeae\" stroke-width=\"2px\" fill=\"none\" d=\"M{xa},{ya} {xb},{yb} {xc},{yc} {xd},{yd} L{xe},{ye}\"/>",
 	svg: "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" style=\"display:block;\" width=\"{w}\" height=\"{h}\" viewBox=\"{viewBox}\">{content}</svg>",
 	link: "<path stroke-linejoin=\"round\" stroke=\"#aeaeae\" stroke-width=\"1px\" fill=\"none\" d=\"M{xa},{ya} {xb},{yb} {xc},{yc} L{xd},{yd}\"/>",
 	node: "<rect x=\"0\" y=\"0\" height=\"120\" width=\"250\" fill=\"none\" stroke-width=\"1\" stroke=\"#aeaeae\" rx=\"7\" ry=\"7\"></rect>",
@@ -4474,7 +4473,6 @@ e.prototype.init = function(t, n) {
 	expandCollapseSize: 30,
 	svg: "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"  style=\"display:block;\" width=\"{w}\" height=\"{h}\" viewBox=\"{viewBox}\">{content}</svg>",
 	link: "<path stroke-linejoin=\"round\" stroke=\"#aeaeae\" stroke-width=\"1px\" fill=\"none\" d=\"{rounded}\" />",
-	assistanseLink: "<path stroke-linejoin=\"round\" stroke=\"#aeaeae\" stroke-width=\"2px\" fill=\"none\" d=\"M{xa},{ya} {xb},{yb} {xc},{yc} {xd},{yd} L{xe},{ye}\"/>",
 	node: function(e, t, n, r) {
 		return `<rect x="0" y="0" height="${e.h}" width="${e.w}" fill="#039BE5" stroke-width="1" stroke="#aeaeae" rx="10" ry="10"></rect>`;
 	},

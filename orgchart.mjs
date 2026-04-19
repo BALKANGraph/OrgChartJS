@@ -847,7 +847,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.1.86", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.1.99", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -3667,7 +3667,9 @@ e.prototype.init = function(t, n) {
 		c.filterUI.addFilterTag(f) && p.unshift("filter");
 		var m = c.searchUI.addMatchTag(f.id);
 		m === !0 ? p.unshift("match") : m === !1 && p.unshift("no-match");
-		var h = e._getTemplate(p, r.tags, r.template), g = new e.node(f.id, f.pid, p, h);
+		var h = e._getTemplate(p, r.tags, r.template);
+		f && f.template && (h = f.template);
+		var g = new e.node(f.id, f.pid, p, h);
 		e.isNEU(f.ppid) || (g.ppid = f.ppid), e.isNEU(f.stpid) || (g.stpid = f.stpid), f.movex != null && (g.movex = f.movex), f.movey != null && (g.movey = f.movey), t[f.id] = g, l.push(f.id);
 	}
 	if (r.orderBy != null) {

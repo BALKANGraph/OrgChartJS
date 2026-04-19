@@ -2358,6 +2358,11 @@ declare namespace OrgChart {
         stpid?: number | string,
 
         /**
+         * The template name associated with the specified node.
+         */
+        template?: string,
+
+        /**
          * Set custom configuration for the tagged node
          *{@link https://balkan.app/OrgChartJS/Docs/Tags | See Tags doc page...} 
         */

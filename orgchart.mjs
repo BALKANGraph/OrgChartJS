@@ -847,7 +847,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.0", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.2.1", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -1320,10 +1320,15 @@ e.prototype.init = function(t, n) {
 	if (e.events.publish("show", [this, s]) === !1 || (a = s.menu, !a || Object.keys(a).length == 0)) return !1;
 	var c = this.obj;
 	this.wrapper = e.menuUI._createMenuElement(a, c), this.wrapper.addEventListener("click", function(t) {
-		for (var n = t.target; n && n.hasAttribute && !n.hasAttribute("data-item");) n = n.parentNode;
-		if (n && n.hasAttribute && n.hasAttribute("data-item")) {
-			var s = n.getAttribute("data-item"), c = a[s].onClick;
-			e._onClickHandler(o.obj, s, c, r, i) != 0 && o.hide();
+		for (var n = t.target, s = []; n && n !== o.wrapper;) n.hasAttribute && n.hasAttribute("data-item") && s.unshift(n.getAttribute("data-item")), n = n.parentNode;
+		if (s.length) {
+			var c = !0, l = a;
+			for (var u of s) {
+				var l = l[u];
+				l.subMenu && (l = l.subMenu);
+			}
+			var d = l.onClick;
+			e._onClickHandler(o.obj, u, d, r, i) === !1 && (c = !1), c && o.hide();
 		}
 	}), setTimeout(() => {
 		o.wrapper.classList.add("active");

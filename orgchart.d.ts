@@ -4225,13 +4225,15 @@ declare namespace OrgChart {
          * ```
          * {@link https://balkan.app/OrgChartJS/Docs/Menus#yourMenu | See doc...}
          */
-    interface menu  {
-        [key: string]: {
-            text: string,
-            icon?: string,
-            onClick?: Function
+        interface menu { [key: string]: menuItem; }
+
+        interface menuItem {
+            text: string;
+            icon?: string;
+            onClick?: () => void;
+            devider?: boolean;
+            subMenu?: Record<string, menuItem>;
         }
-    }
 
         /**
          * Menu options

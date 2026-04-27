@@ -847,7 +847,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.29", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.2.30", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -3536,7 +3536,24 @@ e.prototype.init = function(t, n) {
 	this._searchAfterEnterPress && (this._searchAfterEnterPress = !1, this.instance.draw()), this.lastSearch = [], this.xBtn && (this.xBtn.style.display = "none"), this.searchTableWrapper && (this.searchTableWrapper.innerHTML = ""), this.input && (e.isMobile() || (this.input.value = ""), document.activeElement == this.input && this.input.blur(), document.activeElement == this.xBtn && e.input.blurHandler(this.input));
 }, e.searchUI.prototype.on = function(t, n) {
 	return e.events.on(t, n, this._event_id), this;
-}, e === void 0 && (e = {}), e.manager = function(e) {
+}, e.events.on("redraw", function(t, n) {
+	for (var r = t.element.querySelectorAll("[data-n-id]"), i = 0; i < r.length; i++) r[i].addEventListener("mouseover", function(n) {
+		if (!this.contains(n.relatedTarget)) {
+			var r = this.getAttribute("data-n-id"), i = {
+				node: t.getNode(r),
+				event: n
+			};
+			if (e.events.publish("node-mouseover", [t, i]) === !1) return;
+			e._addSelectedStyle(t, i.node, i.node.id);
+		}
+	}), r[i].addEventListener("mouseleave", function(n) {
+		var r = this.getAttribute("data-n-id"), i = {
+			node: t.getNode(r),
+			event: n
+		};
+		e.events.publish("node-mouseleave", [t, i]) !== !1 && e._removeSelectedStyle(t);
+	});
+}), e === void 0 && (e = {}), e.manager = function(e) {
 	this.config = e.config, this.layoutConfigs = e._layoutConfigs, this.visibleNodeIds = [], this.viewBox = null, this.action = null, this.actionParams = null, this.nodes = {}, this.oldNodes = {}, this.maxX = null, this.maxY = null, this.minX = null, this.minY = null, this.bordersByRootIdAndLevel = null, this.roots = null, this.state = null, this.vbIsInitializedFromState = !1, this.rootList = [], this.instance = e, this._fixAdjustForExport = {
 		x: 0,
 		y: 0

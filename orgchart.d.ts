@@ -224,6 +224,34 @@ declare class OrgChart  {
     onNodeClick(listener: (this: OrgChart, args: OrgChart.nodeClickEventArgs) => void): OrgChart;
 
 
+    /**
+     * On node mouse over event listener.
+     *  ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onNodeMouseover(() => {    
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */   
+    onNodeMouseover(listener: (this: OrgChart, args: OrgChart.nodeMouseEventArgs) => void): OrgChart;    
+
+
+        /**
+     * On node mouse over event listener.
+     *  ```typescript     
+     * let chart = new OrgChart('#tree', {});
+     * chart.onNodeMouseleave(() => {    
+     * });
+     * chart.load(nodes);
+     * ```
+     * @category Event Listeners
+     * @param listener 
+     */   
+    onNodeMouseleave(listener: (this: OrgChart, args: OrgChart.nodeMouseEventArgs) => void): OrgChart;    
+
+
         /**
      * On canvas SVG click event listener.
      *  ```typescript     
@@ -2301,6 +2329,17 @@ declare namespace OrgChart {
          * the browser event
          */
         event: any
+    }
+
+    interface nodeMouseEventArgs  {
+        /**
+         * node JSON object
+         */
+        node: OrgChart.node,
+        /**
+         * the browser event
+         */
+        event: MouseEvent
     }
             
 

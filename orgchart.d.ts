@@ -5746,6 +5746,12 @@ declare namespace OrgChart {
          * ```          
          */
         scaleMax?: number,
+
+
+        highlightOnHover?: 'parents' | 'children' | 'none' | 'sameLevel' | 'childrenAndParents',
+
+
+
         /**
           * The orderBy option is used to sort the nodes in ascending order by specified field. The default order is by nodes order in the nodes array. Default value - *null*
           * ```typescript       

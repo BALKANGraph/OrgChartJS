@@ -456,6 +456,7 @@ e.prototype.init = function(t, n) {
 		movable: null,
 		scaleMin: .1,
 		scaleMax: 5,
+		highlightOnHover: "parents",
 		orderBy: null,
 		editUI: null,
 		aiUI: null,
@@ -847,7 +848,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.34", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.2.36", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -3544,16 +3545,64 @@ e.prototype.init = function(t, n) {
 				event: n
 			};
 			if (e.events.publish("node-mouseover", [t, i]) === !1) return;
-			e._addSelectedStyle(t, i.node, i.node.id);
+			e._hover._addSelectedStyle(t, i.node, i.node.id);
 		}
 	}), r[i].addEventListener("mouseleave", function(n) {
 		var r = this.getAttribute("data-n-id"), i = {
 			node: t.getNode(r),
 			event: n
 		};
-		e.events.publish("node-mouseleave", [t, i]) !== !1 && e._removeSelectedStyle(t);
+		e.events.publish("node-mouseleave", [t, i]) !== !1 && e._hover._removeSelectedStyle(t);
 	});
-}), e === void 0 && (e = {}), e.manager = function(e) {
+}), e._hover = {}, e._hover._addSelectedStyle = function(t, n, r) {
+	n.isSplit || t.config.highlightOnHover != "none" && ((t.config.highlightOnHover == "parents" || t.config.highlightOnHover == "childrenAndParents") && e._hover._addSelectedStyleParents(t, n, r), (t.config.highlightOnHover == "children" || t.config.highlightOnHover == "childrenAndParents") && e._hover._addSelectedStyleChildren(t, n, r), t.config.highlightOnHover == "sameLevel" && e._hover._addSelectedStyleSameLevel(t, n, r));
+}, e._hover._addSelectedStyleChildren = function(t, n, r) {
+	var i = t.getNodeElement(n.id);
+	i && i.classList.add("boc-selected");
+	var a = t.element.querySelector(`[data-ctrl-ec-id="${n.id}"]`);
+	if (a && a.classList.add("boc-selected"), n.id != r) {
+		if (n.rightNeighbor && n.rightNeighbor.isSplit && n.rightNeighbor.pid == n.pid) {
+			var o = t.element.querySelector(`[data-l-id="[${n.parent.id}][${n.id}]"]`);
+			o && o.classList.add("boc-selected");
+		}
+		if (n.leftNeighbor && n.leftNeighbor.isSplit && n.leftNeighbor.pid == n.pid) {
+			var o = t.element.querySelector(`[data-l-id="[${n.parent.id}][${n.id}]"]`);
+			o && o.classList.add("boc-selected");
+		}
+		if (n.parent && n.parent.isSplit) {
+			var o = t.element.querySelector(`[data-l-id="[${n.parent.id}][${n.id}]"]`);
+			o && o.classList.add("boc-selected");
+		}
+	}
+	for (var s of n.children) if (s.isSplit) {
+		var o = t.element.querySelector(`[data-l-id="[${n.id}][${s.id}]"]`);
+		o && o.classList.add("boc-selected"), e._hover._addSelectedStyleChildren(t, s, r);
+	}
+	for (var c of n.childrenIds) {
+		var s = t.getNode(c), o = t.element.querySelector(`[data-l-id="[${n.id}][${s.id}]"]`);
+		o && o.classList.add("boc-selected"), e._hover._addSelectedStyleChildren(t, s, r);
+	}
+}, e._hover._addSelectedStyleSameLevel = function(e, t, n) {
+	var r = e.getNodeElement(t.id);
+	r && r.classList.add("boc-selected");
+	for (var i of e.element.querySelectorAll(`[data-l="${t.level}"]`)) i.classList.add("boc-selected");
+}, e._hover._addSelectedStyleParents = function(t, n, r) {
+	var i = t.getNodeElement(n.id);
+	if (i && i.classList.add("boc-selected"), n.parent) {
+		var a = t.element.querySelector(`[data-l-id="[${n.parent.id}][${n.id}]"]`);
+		a && a.classList.add("boc-selected");
+	}
+	if (r != n.id) {
+		var o = t.element.querySelector(`[data-ctrl-ec-id="${n.id}"]`);
+		o && o.classList.add("boc-selected");
+	}
+	n.rightNeighbor && n.rightNeighbor.isSplit && n.rightNeighbor.pid == n.pid && e._hover._addSelectedStyleParents(t, n.rightNeighbor, r), n.leftNeighbor && n.leftNeighbor.isSplit && n.leftNeighbor.pid == n.pid && e._hover._addSelectedStyleParents(t, n.leftNeighbor, r), n.parent && n.parent.isSplit && e._hover._addSelectedStyleParents(t, n.parent, r);
+	var s = t.getNode(n.pid);
+	n.parent && e._hover._addSelectedStyleParents(t, s, r);
+}, e._hover._removeSelectedStyle = function(e) {
+	let t = e.element.querySelectorAll(".boc-selected");
+	for (let e = 0; e < t.length; e++) t[e].classList.remove("boc-selected");
+}, e === void 0 && (e = {}), e.manager = function(e) {
 	this.config = e.config, this.layoutConfigs = e._layoutConfigs, this.visibleNodeIds = [], this.viewBox = null, this.action = null, this.actionParams = null, this.nodes = {}, this.oldNodes = {}, this.maxX = null, this.maxY = null, this.minX = null, this.minY = null, this.bordersByRootIdAndLevel = null, this.roots = null, this.state = null, this.vbIsInitializedFromState = !1, this.rootList = [], this.instance = e, this._fixAdjustForExport = {
 		x: 0,
 		y: 0
@@ -6589,22 +6638,6 @@ e.prototype.init = function(t, n) {
 			e.width = s, e.height = c, i.drawImage(a, 0, 0, s, c), r(e.toDataURL("image/png"));
 		}, a.onerror = i, a.src = e;
 	});
-}, e._addSelectedStyle = function(t, n, r) {
-	var i = t.getNodeElement(n.id);
-	if (i && i.classList.add("boc-selected"), n.parent) {
-		var a = t.element.querySelector(`[data-l-id="[${n.parent.id}][${n.id}]"]`);
-		a && a.classList.add("boc-selected");
-	}
-	if (r != n.id) {
-		var o = t.element.querySelector(`[data-ctrl-ec-id="${n.id}"]`);
-		o && o.classList.add("boc-selected");
-	}
-	n.rightNeighbor && n.rightNeighbor.isSplit && n.rightNeighbor.pid == n.pid && e._addSelectedStyle(t, n.rightNeighbor, r), n.leftNeighbor && n.leftNeighbor.isSplit && n.leftNeighbor.pid == n.pid && e._addSelectedStyle(t, n.leftNeighbor, r), n.parent && n.parent.isSplit && e._addSelectedStyle(t, n.parent, r);
-	var s = t.getNode(n.pid);
-	n.parent && e._addSelectedStyle(t, s, r);
-}, e._removeSelectedStyle = function(e) {
-	let t = e.element.querySelectorAll(".boc-selected");
-	for (let e = 0; e < t.length; e++) t[e].classList.remove("boc-selected");
 }, e.xScrollUI = function(t, n, r, i, a) {
 	this.element = t, this.requestParams = r, this.config = n, this.onSetViewBoxCallback = i, this.onDrawCallback = a, this.position = 0, this.bar = null, this._event_id = e._guid();
 }, e.xScrollUI.prototype.addListener = function(t) {

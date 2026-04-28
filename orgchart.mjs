@@ -848,7 +848,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.40", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.2.41", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -3545,7 +3545,7 @@ e.prototype.init = function(t, n) {
 				event: n
 			};
 			if (e.events.publish("node-mouseover", [t, i]) === !1) return;
-			e._hover._addSelectedStyle(t, i.node, i.node.id);
+			e._hover._addSelectedStyle(t, i.node, i.node.id, t.config.highlightOnHover);
 		}
 	}), r[i].addEventListener("mouseleave", function(n) {
 		var r = this.getAttribute("data-n-id"), i = {
@@ -3554,8 +3554,11 @@ e.prototype.init = function(t, n) {
 		};
 		e.events.publish("node-mouseleave", [t, i]) !== !1 && e._hover._removeSelectedStyle(t);
 	});
-}), e._hover = {}, e._hover._addSelectedStyle = function(t, n, r) {
-	n.isSplit || t.config.highlightOnHover != "none" && ((t.config.highlightOnHover == "parents" || t.config.highlightOnHover == "childrenAndParents") && e._hover._addSelectedStyleParents(t, n, r), (t.config.highlightOnHover == "children" || t.config.highlightOnHover == "childrenAndParents") && e._hover._addSelectedStyleChildren(t, n, r), t.config.highlightOnHover == "sameLevel" && e._hover._addSelectedStyleSameLevel(t, n, r), t.config.highlightOnHover == "self" && e._hover._addSelectedStyleSelf(t, n, r));
+}), e.prototype.highlightNode = function(t, n) {
+	var r = this.getNode(t);
+	return r && e._hover._addSelectedStyle(this, r, r.id, n), this;
+}, e._hover = {}, e._hover._addSelectedStyle = function(t, n, r, i) {
+	n.isSplit || i != "none" && ((i == "parents" || i == "childrenAndParents") && e._hover._addSelectedStyleParents(t, n, r), (i == "children" || i == "childrenAndParents") && e._hover._addSelectedStyleChildren(t, n, r), i == "sameLevel" && e._hover._addSelectedStyleSameLevel(t, n, r), i == "self" && e._hover._addSelectedStyleSelf(t, n, r));
 }, e._hover._addSelectedStyleSelf = function(e, t, n) {
 	var r = e.getNodeElement(t.id);
 	r && r.classList.add("boc-hover");

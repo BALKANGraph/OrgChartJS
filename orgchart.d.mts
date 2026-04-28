@@ -897,6 +897,37 @@ declare class OrgChart  {
 
 
     /**
+     * Highlights a node and optionally related nodes in the chart.
+     *
+     * This method applies a visual highlight state to the target node identified by
+     * `nodeId`. Depending on the `highlightOnHover` mode, it can also highlight
+     * parent nodes, child nodes, sibling nodes on the same level, or a combination
+     * of related nodes.
+     *
+     * @param {string|number} nodeId
+     * The unique identifier of the node to highlight.
+     *
+     * @param {'parents'|'children'|'sameLevel'|'childrenAndParents'|'self'} highlightOnHover
+     * Determines which nodes should be highlighted:
+     * - `'self'` - Highlights only the selected node.
+     * - `'parents'` - Highlights the selected node and its ancestor chain.
+     * - `'children'` - Highlights the selected node and all descendant nodes.
+     * - `'sameLevel'` - Highlights nodes on the same hierarchy level as the selected node.
+     * - `'childrenAndParents'` - Highlights the selected node, its ancestors, and descendants.
+     *
+     * @returns {Orgchart}
+     * Returns the current :contentReference[oaicite:0]{index=0} instance for method chaining.
+     *
+     * @example
+     * chart.highlightNode(12, 'self');
+     *
+     * @example
+     * chart.highlightNode('ceo', 'parents');
+     */
+    highlightNode(nodeId: string | number, highlightOnHover: 'parents' | 'children' | 'sameLevel' | 'childrenAndParents' | 'self'): Orgchart;
+
+
+    /**
      * Fits the content to the visible area.
      * ```typescript     
      * let chart = new OrgChart('#tree', {});

@@ -848,7 +848,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.39", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.2.40", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -3555,7 +3555,10 @@ e.prototype.init = function(t, n) {
 		e.events.publish("node-mouseleave", [t, i]) !== !1 && e._hover._removeSelectedStyle(t);
 	});
 }), e._hover = {}, e._hover._addSelectedStyle = function(t, n, r) {
-	n.isSplit || t.config.highlightOnHover != "none" && ((t.config.highlightOnHover == "parents" || t.config.highlightOnHover == "childrenAndParents") && e._hover._addSelectedStyleParents(t, n, r), (t.config.highlightOnHover == "children" || t.config.highlightOnHover == "childrenAndParents") && e._hover._addSelectedStyleChildren(t, n, r), t.config.highlightOnHover == "sameLevel" && e._hover._addSelectedStyleSameLevel(t, n, r));
+	n.isSplit || t.config.highlightOnHover != "none" && ((t.config.highlightOnHover == "parents" || t.config.highlightOnHover == "childrenAndParents") && e._hover._addSelectedStyleParents(t, n, r), (t.config.highlightOnHover == "children" || t.config.highlightOnHover == "childrenAndParents") && e._hover._addSelectedStyleChildren(t, n, r), t.config.highlightOnHover == "sameLevel" && e._hover._addSelectedStyleSameLevel(t, n, r), t.config.highlightOnHover == "self" && e._hover._addSelectedStyleSelf(t, n, r));
+}, e._hover._addSelectedStyleSelf = function(e, t, n) {
+	var r = e.getNodeElement(t.id);
+	r && r.classList.add("boc-hover");
 }, e._hover._addSelectedStyleChildren = function(t, n, r) {
 	var i = t.getNodeElement(n.id);
 	i && i.classList.add("boc-hover");

@@ -5748,6 +5748,47 @@ declare namespace OrgChart {
         scaleMax?: number,
 
 
+        /**
+         * Controls which related nodes are visually emphasized when hovering a node.
+         *
+         * This option helps users understand relationships in the chart by
+         * automatically highlighting connected nodes while dimming unrelated ones.
+         *
+         * Available values:
+         *
+         * - `'parents'`
+         *   Highlights all ancestor nodes of the hovered node
+         *   (parent, grandparent, etc.).
+         *
+         * - `'children'`
+         *   Highlights all descendant nodes of the hovered node
+         *   (children, grandchildren, etc.).
+         *
+         * - `'none'`
+         *   Disables hover-based relationship highlighting.
+         *
+         * - `'sameLevel'`
+         *   Highlights nodes on the same hierarchy level as the hovered node
+         *   (siblings and other nodes in the same row/depth).
+         *
+         * - `'childrenAndParents'`
+         *   Highlights both ancestor and descendant nodes of the hovered node.
+         *
+         * @default 'none'
+         *
+         * @example
+         * // Highlight managers above the hovered employee
+         * highlightOnHover: 'parents'
+         *
+         * @example
+         * // Highlight the hovered node's team below it
+         * highlightOnHover: 'children'
+         *
+         * @example
+         * // Highlight reporting chain in both directions
+         * highlightOnHover: 'childrenAndParents'
+         */
+
         highlightOnHover?: 'parents' | 'children' | 'none' | 'sameLevel' | 'childrenAndParents',
 
 

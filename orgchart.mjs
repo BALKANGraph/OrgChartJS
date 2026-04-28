@@ -848,7 +848,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.38", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.2.39", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -4600,7 +4600,7 @@ e.prototype.init = function(t, n) {
 	],
 	editFormHeaderColor: "#039BE5",
 	treeListMaxHeight: 500
-}, e.templates.split = Object.assign({}, e.templates.ana), e.templates.split.size = [10, 10], e.templates.split.node = "<circle class=\"boc-hoverable\" cx=\"5\" cy=\"5\" r=\"5\" fill=\"none\" stroke-width=\"1\" stroke=\"#aeaeae\"></circle>", e.templates.split.field_0 = "", e.templates.split.field_1 = "", e.templates.split.img_0 = "", e.templates.dot = Object.assign({}, e.templates.split), e.templates.group = Object.assign({}, e.templates.ana), e.templates.group.size = [250, 120], e.templates.group.padding = [
+}, e.templates.split = Object.assign({}, e.templates.ana), e.templates.split.size = [10, 10], e.templates.split.node = "<circle cx=\"5\" cy=\"5\" r=\"5\" fill=\"none\" stroke-width=\"1\" stroke=\"#aeaeae\"></circle>", e.templates.split.field_0 = "", e.templates.split.field_1 = "", e.templates.split.img_0 = "", e.templates.dot = Object.assign({}, e.templates.split), e.templates.group = Object.assign({}, e.templates.ana), e.templates.group.size = [250, 120], e.templates.group.padding = [
 	50,
 	20,
 	35,
@@ -4984,29 +4984,29 @@ e.prototype.init = function(t, n) {
 				x: 0,
 				y: 0,
 				rotate: 0
-			};
-			u = e.t(b.templateName, b.min, r);
-			var C = u.link;
+			}, C = b.templateName;
+			b.isSplit && (b.leftNeighbor && !b.leftNeighbor.isMirror && b.leftNeighbor.pid == b.pid ? C = b.leftNeighbor.templateName : b.rightNeighbor && !b.rightNeighbor.isMirror && b.rightNeighbor.pid == b.pid && (C = b.rightNeighbor.templateName)), u = e.t(C, b.min, r);
+			var w = u.link;
 			if (b.isChildOfPartner) switch (l.orientation) {
 				case e.orientation.top:
 				case e.orientation.top_left:
-					var w = b.layout == 1 ? void 0 : x.minY - (x.minY - _.maxY) / 2;
-					S = e.ui._linkTopToBottom(b.parentPartner, b, u, m, w, n);
+					var T = b.layout == 1 ? void 0 : x.minY - (x.minY - _.maxY) / 2;
+					S = e.ui._linkTopToBottom(b.parentPartner, b, u, m, T, n);
 					break;
 				case e.orientation.bottom:
 				case e.orientation.bottom_left:
-					var w = b.layout == 1 ? void 0 : x.maxY - (x.maxY - _.minY) / 2;
-					S = e.ui._linkBottomToTop(b.parentPartner, b, u, m, w, n);
+					var T = b.layout == 1 ? void 0 : x.maxY - (x.maxY - _.minY) / 2;
+					S = e.ui._linkBottomToTop(b.parentPartner, b, u, m, T, n);
 					break;
 				case e.orientation.right:
 				case e.orientation.right_top:
-					var w = b.layout == 1 ? void 0 : x.maxX - (x.maxX - _.minX) / 2;
-					S = e.ui._linkRightToLeft(b.parentPartner, b, u, m, w, n);
+					var T = b.layout == 1 ? void 0 : x.maxX - (x.maxX - _.minX) / 2;
+					S = e.ui._linkRightToLeft(b.parentPartner, b, u, m, T, n);
 					break;
 				case e.orientation.left:
 				case e.orientation.left_top:
-					var w = b.layout == 1 ? void 0 : x.minX - (x.minX - _.maxX) / 2;
-					S = e.ui._linkLeftToRight(b.parentPartner, b, u, m, w, n);
+					var T = b.layout == 1 ? void 0 : x.minX - (x.minX - _.maxX) / 2;
+					S = e.ui._linkLeftToRight(b.parentPartner, b, u, m, T, n);
 					break;
 			}
 			else if (v && v.ids.indexOf(b.id) != -1) switch (l.orientation) {
@@ -5028,8 +5028,8 @@ e.prototype.init = function(t, n) {
 					break;
 			}
 			else {
-				var T = b.isAssistant && b.rightNeighbor && b.rightNeighbor.isAssistant && b.parent == b.rightNeighbor.parent, E = b.isAssistant && b.leftNeighbor && b.leftNeighbor.isAssistant && b.parent == b.leftNeighbor.parent;
-				if ((T || b.layout > 1) && b.rightNeighbor && b.rightNeighbor.isSplit) switch (l.orientation) {
+				var E = b.isAssistant && b.rightNeighbor && b.rightNeighbor.isAssistant && b.parent == b.rightNeighbor.parent, D = b.isAssistant && b.leftNeighbor && b.leftNeighbor.isAssistant && b.parent == b.leftNeighbor.parent;
+				if ((E || b.layout > 1) && b.rightNeighbor && b.rightNeighbor.isSplit) switch (l.orientation) {
 					case e.orientation.top:
 					case e.orientation.top_left:
 						S = e.ui._linkRightToLeft(b.rightNeighbor, b, u, m);
@@ -5047,7 +5047,7 @@ e.prototype.init = function(t, n) {
 						S = e.ui._linkBottomToTop(b.rightNeighbor, b, u, m);
 						break;
 				}
-				else if ((E || b.layout > 1) && b.leftNeighbor && b.leftNeighbor.isSplit) switch (l.orientation) {
+				else if ((D || b.layout > 1) && b.leftNeighbor && b.leftNeighbor.isSplit) switch (l.orientation) {
 					case e.orientation.top:
 					case e.orientation.top_left:
 						S = e.ui._linkLeftToRight(b.leftNeighbor, b, u, m, n);
@@ -5071,8 +5071,8 @@ e.prototype.init = function(t, n) {
 						if (b.isPartner == 1) S = e.ui._linkLeftToRight(t, b, u, h);
 						else if (b.isPartner == 2) S = e.ui._linkRightToLeft(t, b, u, h);
 						else {
-							var w = b.layout == 1 ? void 0 : x.minY - (x.minY - _.maxY) / 2;
-							S = e.ui._linkTopToBottom(t, b, u, m, w, n);
+							var T = b.layout == 1 ? void 0 : x.minY - (x.minY - _.maxY) / 2;
+							S = e.ui._linkTopToBottom(t, b, u, m, T, n);
 						}
 						break;
 					case e.orientation.bottom:
@@ -5080,8 +5080,8 @@ e.prototype.init = function(t, n) {
 						if (b.isPartner == 1) S = e.ui._linkLeftToRight(t, b, u, h);
 						else if (b.isPartner == 2) S = e.ui._linkRightToLeft(t, b, u, h);
 						else {
-							var w = b.layout == 1 ? void 0 : x.maxY - (x.maxY - _.minY) / 2;
-							S = e.ui._linkBottomToTop(t, b, u, m, w, n);
+							var T = b.layout == 1 ? void 0 : x.maxY - (x.maxY - _.minY) / 2;
+							S = e.ui._linkBottomToTop(t, b, u, m, T, n);
 						}
 						break;
 					case e.orientation.right:
@@ -5089,8 +5089,8 @@ e.prototype.init = function(t, n) {
 						if (b.isPartner == 1) S = e.ui._linkTopToBottom(t, b, u, h);
 						else if (b.isPartner == 2) S = e.ui._linkBottomToTop(t, b, u, h);
 						else {
-							var w = b.layout == 1 ? void 0 : x.maxX - (x.maxX - _.minX) / 2;
-							S = e.ui._linkRightToLeft(t, b, u, m, w, n);
+							var T = b.layout == 1 ? void 0 : x.maxX - (x.maxX - _.minX) / 2;
+							S = e.ui._linkRightToLeft(t, b, u, m, T, n);
 						}
 						break;
 					case e.orientation.left:
@@ -5098,43 +5098,43 @@ e.prototype.init = function(t, n) {
 						if (b.isPartner == 1) S = e.ui._linkTopToBottom(t, b, u, h);
 						else if (b.isPartner == 2) S = e.ui._linkBottomToTop(t, b, u, h);
 						else {
-							var w = b.layout == 1 ? void 0 : x.minX - (x.minX - _.maxX) / 2;
-							S = e.ui._linkLeftToRight(t, b, u, m, w, n);
+							var T = b.layout == 1 ? void 0 : x.minX - (x.minX - _.maxX) / 2;
+							S = e.ui._linkLeftToRight(t, b, u, m, T, n);
 						}
 						break;
 				}
 			}
-			var D, O = e.ui._draggableLinkPath(n, t, b, S, m, l.orientation);
-			if (O) D = O, C = C.replaceAll("{rounded}", O).replaceAll("{edge}", O).replaceAll("{curve}", D);
-			else if (C.indexOf("{rounded}") != -1) if (S.xa == S.xb && S.xa == S.xc && S.xa == S.xd || S.ya == S.yb && S.ya == S.yc && S.ya == S.yd) D = "M" + S.xa + "," + S.ya + " L" + S.xd + "," + S.yd, C = C.replaceAll("{rounded}", D);
-			else if (Math.abs(S.xa - S.xd) <= e.LINK_ROUNDED_CORNERS && Math.abs(S.xa - S.xc) <= e.LINK_ROUNDED_CORNERS && Math.abs(S.xa - S.xb) <= e.LINK_ROUNDED_CORNERS) D = "M" + S.xa + "," + S.ya + " L" + S.xa + "," + S.yd, C = C.replaceAll("{rounded}", D);
-			else if (Math.abs(S.ya - S.yd) <= e.LINK_ROUNDED_CORNERS && Math.abs(S.ya - S.yc) <= e.LINK_ROUNDED_CORNERS && Math.abs(S.ya - S.yb) <= e.LINK_ROUNDED_CORNERS) D = "M" + S.xa + "," + S.ya + " L" + S.xd + "," + S.ya, C = C.replaceAll("{rounded}", D);
+			var O, k = e.ui._draggableLinkPath(n, t, b, S, m, l.orientation);
+			if (k) O = k, w = w.replaceAll("{rounded}", k).replaceAll("{edge}", k).replaceAll("{curve}", O);
+			else if (w.indexOf("{rounded}") != -1) if (S.xa == S.xb && S.xa == S.xc && S.xa == S.xd || S.ya == S.yb && S.ya == S.yc && S.ya == S.yd) O = "M" + S.xa + "," + S.ya + " L" + S.xd + "," + S.yd, w = w.replaceAll("{rounded}", O);
+			else if (Math.abs(S.xa - S.xd) <= e.LINK_ROUNDED_CORNERS && Math.abs(S.xa - S.xc) <= e.LINK_ROUNDED_CORNERS && Math.abs(S.xa - S.xb) <= e.LINK_ROUNDED_CORNERS) O = "M" + S.xa + "," + S.ya + " L" + S.xa + "," + S.yd, w = w.replaceAll("{rounded}", O);
+			else if (Math.abs(S.ya - S.yd) <= e.LINK_ROUNDED_CORNERS && Math.abs(S.ya - S.yc) <= e.LINK_ROUNDED_CORNERS && Math.abs(S.ya - S.yb) <= e.LINK_ROUNDED_CORNERS) O = "M" + S.xa + "," + S.ya + " L" + S.xd + "," + S.ya, w = w.replaceAll("{rounded}", O);
 			else {
-				var k = e.ui._roundedEdge(S.xa, S.ya, S.xb, S.yb, S.xc, S.yc), A = e.ui._roundedEdge(S.xb, S.yb, S.xc, S.yc, S.xd, S.yd);
-				D = "M" + k.x1 + "," + k.y1 + " " + k.x2 + "," + k.y2 + " Q" + k.qx1 + "," + k.qy1 + " " + k.qx2 + "," + k.qy2 + " L" + A.x2 + "," + A.y2 + " Q" + A.qx1 + "," + A.qy1 + " " + A.qx2 + "," + A.qy2 + " L" + A.x3 + "," + A.y3, C = C.replaceAll("{rounded}", D);
+				var A = e.ui._roundedEdge(S.xa, S.ya, S.xb, S.yb, S.xc, S.yc), j = e.ui._roundedEdge(S.xb, S.yb, S.xc, S.yc, S.xd, S.yd);
+				O = "M" + A.x1 + "," + A.y1 + " " + A.x2 + "," + A.y2 + " Q" + A.qx1 + "," + A.qy1 + " " + A.qx2 + "," + A.qy2 + " L" + j.x2 + "," + j.y2 + " Q" + j.qx1 + "," + j.qy1 + " " + j.qx2 + "," + j.qy2 + " L" + j.x3 + "," + j.y3, w = w.replaceAll("{rounded}", O);
 			}
-			else C.indexOf("{edge}") == -1 ? C.indexOf("{curve}") == -1 ? (D = C.replaceAll("{xa}", S.xa).replaceAll("{ya}", S.ya).replaceAll("{xb}", S.xb).replaceAll("{yb}", S.yb).replaceAll("{xc}", S.xc).replaceAll("{yc}", S.yc).replaceAll("{xd}", S.xd).replaceAll("{yd}", S.yd), C = D) : (D = "M" + S.xa + "," + S.ya + " C" + S.xb + "," + S.yb + " " + S.xc + "," + S.yc + " " + S.xd + "," + S.yd, C = C.replaceAll("{curve}", D)) : (D = "M" + S.xa + "," + S.ya + " " + S.xb + "," + S.yb + " " + S.xc + "," + S.yc + " L" + S.xd + "," + S.yd, C = C.replaceAll("{edge}", D));
+			else w.indexOf("{edge}") == -1 ? w.indexOf("{curve}") == -1 ? (O = w.replaceAll("{xa}", S.xa).replaceAll("{ya}", S.ya).replaceAll("{xb}", S.xb).replaceAll("{yb}", S.yb).replaceAll("{xc}", S.xc).replaceAll("{yc}", S.yc).replaceAll("{xd}", S.xd).replaceAll("{yd}", S.yd), w = O) : (O = "M" + S.xa + "," + S.ya + " C" + S.xb + "," + S.yb + " " + S.xc + "," + S.yc + " " + S.xd + "," + S.yd, w = w.replaceAll("{curve}", O)) : (O = "M" + S.xa + "," + S.ya + " " + S.xb + "," + S.yb + " " + S.xc + "," + S.yc + " L" + S.xd + "," + S.yd, w = w.replaceAll("{edge}", O));
 			d.push(e.linkOpenTag.replaceAll("{id}", t.id).replaceAll("{class}", "link " + b.tags.join(" ")).replaceAll("{child-id}", b.id));
-			var j = {
+			var M = {
 				node: t,
 				cnode: b,
 				p: S,
-				html: C,
+				html: w,
 				action: o
 			};
-			e.events.publish("render-link", [n, j]), d.push(j.html), s && f.push({
+			e.events.publish("render-link", [n, M]), d.push(M.html), s && f.push({
 				id: t.id,
 				childId: b.id,
-				html: j.html
+				html: M.html
 			});
-			var M = "";
-			for (var N in n.config.linkBinding) {
-				var P = n.config.linkBinding[N], F = n._get(b.id);
-				F && (j.value = F[P], j.element = u[N], j.name = P, e.events.publish("label", [n, j]) !== !1 && !e.isNEU(j.value) && !e.isNEU(j.element) && (M += j.element.replace("{val}", j.value)));
+			var N = "";
+			for (var P in n.config.linkBinding) {
+				var F = n.config.linkBinding[P], I = n._get(b.id);
+				I && (M.value = I[F], M.element = u[P], M.name = F, e.events.publish("label", [n, M]) !== !1 && !e.isNEU(M.value) && !e.isNEU(M.element) && (N += M.element.replace("{val}", M.value)));
 			}
-			if (M != "") {
-				var I = S.x, ee = S.y;
-				b.movey != null && (ee += b.movey), M = e.linkFieldsOpenTag.replace("{x}", I).replace("{y}", ee).replace("{rotate}", p) + M + e.grCloseTag, d.push(M);
+			if (N != "") {
+				var ee = S.x, L = S.y;
+				b.movey != null && (L += b.movey), N = e.linkFieldsOpenTag.replace("{x}", ee).replace("{y}", L).replace("{rotate}", p) + N + e.grCloseTag, d.push(N);
 			}
 			d.push(e.grCloseTag);
 		}

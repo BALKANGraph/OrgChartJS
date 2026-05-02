@@ -5378,6 +5378,7 @@ declare namespace OrgChart {
          * - diva
          * - base
          * - isla
+         * - emily
          * - deborah
          * 
          * Default value - *ana*.
@@ -5388,7 +5389,7 @@ declare namespace OrgChart {
          * ```
          * {@link https://balkan.app/OrgChartJS/Docs/PredefinedTemplates | See doc...}
          */
-        template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeListItem" | "clara" | (string & {}),
+        template?: "ana" | "ula" | "olivia" | "emily" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeListItem" | "clara" | (string & {}),
         /**
          * With tags option you can:
          * - Set a specific template for tagged node/s {@link https://balkan.app/OrgChartJS/Docs/MultipleTemplates | See doc...}
@@ -5410,7 +5411,7 @@ declare namespace OrgChart {
          */
         tags?: {
             [key: string]: {
-                template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeListItem" | "clara" | (string & {}),
+                template?: "ana" | "ula" | "olivia" | "emily" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeListItem" | "clara" | (string & {}),
                 subLevels?: number,
                 nodeMenu?: OrgChart.menu,
                 nodeCircleMenu?: OrgChart.circleMenu,
@@ -5428,7 +5429,7 @@ declare namespace OrgChart {
                         level?: number,
                         allChildren?: boolean
                     },
-                    template?: "ana" | "ula" | "olivia" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeListItem" | "clara" | (string & {})
+                    template?: "ana" | "ula" | "olivia" | "emily" | "belinda" | "rony" | "mery" | "polina" | "mila" | "diva" | "luba" | "isla" | "deborah" | "base" | "group" | "invisibleGroup" | "treeListItem" | "clara" | (string & {})
                 }
             };
         },

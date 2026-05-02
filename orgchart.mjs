@@ -23,7 +23,7 @@ e.prototype.init = function(t, n) {
 	if (t && !this._initCalled) {
 		this._initCalled = !0, (typeof t == "string" || t instanceof String) && (t = document.querySelector(t)), this.element = t;
 		var r = this;
-		if (this.config = e.mergeDeep(e._defaultConfig(n), n), this._layoutConfigs = { base: {
+		if (e._reorderNodeBinding(n), this.config = e.mergeDeep(e._defaultConfig(n), n), this._layoutConfigs = { base: {
 			orientation: this.config.orientation,
 			levelSeparation: this.config.levelSeparation,
 			mixedHierarchyNodesSeparation: this.config.mixedHierarchyNodesSeparation,
@@ -848,7 +848,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.42", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.2.43", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -861,7 +861,7 @@ e.prototype.init = function(t, n) {
 	bottom: "bottom",
 	left: "left",
 	right: "right"
-}, e.align = {}, e.align.center = e.CENTER = 8, e.align.orientation = e.ORIENTATION = 9, e.attr = {}, e.attr.l = "data-l", e.attr.id = "data-id", e.attr.sl = "data-sl", e.attr.lbl = "data-lbl", e.attr.val = "data-val", e.attr.tlbr = "data-tlbr", e.attr.item = "data-item", e.attr.layout = "data-layout", e.attr.node_id = "data-n-id", e.attr.link_id = "data-l-id", e.attr.field_name = "data-f-name", e.attr.c_link_to = "data-c-l-to", e.attr.c_link_from = "data-c-l-from", e.attr.s_link_to = "data-s-l-to", e.attr.s_link_from = "data-s-l-from", e.attr.control_add = "data-ctrl-add", e.attr.control_expcoll_id = "data-ctrl-ec-id", e.attr.control_up_id = "data-ctrl-up-id", e.attr.control_export_menu = "data-ctrl-menu", e.attr.control_node_menu_id = "data-ctrl-n-menu-id", e.attr.control_node_circle_menu_id = "data-ctrl-n-c-menu-id", e.attr.control_node_circle_menu_name = "data-ctrl-n-c-menu-name", e.attr.control_node_circle_menu_wrraper_id = "data-ctrl-n-c-menu-wrapper-id", e.attr.width = "data-width", e.attr.text_overflow = "data-text-overflow", e.ID = "id", e.PID = "pid", e.STPID = "stpid", e.TAGS = "tags", e.NODES = "nodes", e.ELASTIC = "elastic", e.ASSISTANT = "Assistant", e.action = {}, e.action.expand = 0, e.action.collapse = 1, e.action.maximize = 101, e.action.minimize = 102, e.action.expandCollapse = 501, e.action.edit = 1, e.action.zoom = 2, e.action.ctrlZoom = 22, e.action.scroll = 41, e.action.xScroll = 3, e.action.yScroll = 4, e.action.none = 5, e.action.init = 6, e.action.update = 7, e.action.move = 70, e.action.pan = 8, e.action.centerNode = 9, e.action.resize = 10, e.action.insert = 11, e.action.insertfirst = 12, e.action.details = 13, e.action.exporting = 14, e.none = 400001, e.scroll = {}, e.scroll.visible = !0, e.scroll.smooth = 12, e.scroll.speed = 120, e.scroll.safari = {
+}, e.align = {}, e.align.center = e.CENTER = 8, e.align.orientation = e.ORIENTATION = 9, e.attr = {}, e.attr.l = "data-l", e.attr.id = "data-id", e.attr.sl = "data-sl", e.attr.lbl = "data-lbl", e.attr.val = "data-val", e.attr.tlbr = "data-tlbr", e.attr.item = "data-item", e.attr.layout = "data-layout", e.attr.node_id = "data-n-id", e.attr.link_id = "data-l-id", e.attr.field_name = "data-f-name", e.attr.c_link_to = "data-c-l-to", e.attr.c_link_from = "data-c-l-from", e.attr.s_link_to = "data-s-l-to", e.attr.s_link_from = "data-s-l-from", e.attr.control_add = "data-ctrl-add", e.attr.control_expcoll_id = "data-ctrl-ec-id", e.attr.control_up_id = "data-ctrl-up-id", e.attr.control_export_menu = "data-ctrl-menu", e.attr.control_node_menu_id = "data-ctrl-n-menu-id", e.attr.control_node_btn = "data-ctrl-n-btn", e.attr.control_node_circle_menu_id = "data-ctrl-n-c-menu-id", e.attr.control_node_circle_menu_name = "data-ctrl-n-c-menu-name", e.attr.control_node_circle_menu_wrraper_id = "data-ctrl-n-c-menu-wrapper-id", e.attr.width = "data-width", e.attr.text_overflow = "data-text-overflow", e.ID = "id", e.PID = "pid", e.STPID = "stpid", e.TAGS = "tags", e.NODES = "nodes", e.ELASTIC = "elastic", e.ASSISTANT = "Assistant", e.action = {}, e.action.expand = 0, e.action.collapse = 1, e.action.maximize = 101, e.action.minimize = 102, e.action.expandCollapse = 501, e.action.edit = 1, e.action.zoom = 2, e.action.ctrlZoom = 22, e.action.scroll = 41, e.action.xScroll = 3, e.action.yScroll = 4, e.action.none = 5, e.action.init = 6, e.action.update = 7, e.action.move = 70, e.action.pan = 8, e.action.centerNode = 9, e.action.resize = 10, e.action.insert = 11, e.action.insertfirst = 12, e.action.details = 13, e.action.exporting = 14, e.none = 400001, e.scroll = {}, e.scroll.visible = !0, e.scroll.smooth = 12, e.scroll.speed = 120, e.scroll.safari = {
 	smooth: 12,
 	speed: 250
 }, e.match = {}, e.match.height = 100001, e.match.width = 100002, e.match.boundary = 100003, e.match.boundaryIfOutside = 100004, e.match.none = 1, e.movable = {}, e.movable.node = "node", e.movable.tree = "tree", e.movable.detachTree = "detachTree", e.layout = {}, e.layout.normal = e.normal = 0, e.layout.mixed = e.mixed = 1, e.layout.tree = e.tree = 2, e.layout.treeLeftOffset = e.treeLeftOffset = 3, e.layout.treeRightOffset = e.treeRightOffset = 4, e.layout.treeLeft = 5, e.layout.treeRight = 6, e.layout.grid = -1, e.layout.treeList = -2, e.nodeOpenTag = "<g " + e.attr.node_id + "=\"{id}\" style=\"opacity: {opacity}\" transform=\"matrix(1,0,0,1,{x},{y})\" class=\"{class}\" " + e.attr.sl + "=\"{sl}\" " + e.attr.l + "=\"{level}\" {lcn}>", e.linkOpenTag = "<g " + e.attr.link_id + "=\"[{id}][{child-id}]\" class=\"{class}\">", e.expcollOpenTag = "<g " + e.attr.control_expcoll_id + "=\"{id}\" transform=\"matrix(1,0,0,1,{x},{y})\"  style=\"cursor:pointer;\">", e.upOpenTag = "<g " + e.attr.control_up_id + "=\"{id}\" transform=\"matrix(1,0,0,1,{x},{y})\" style=\"cursor:pointer;\">", e.linkFieldsOpenTag = "<g transform=\"matrix(1,0,0,1,{x},{y}) rotate({rotate})\">", e.grCloseTag = "</g>", e.A5 = {
@@ -2664,6 +2664,13 @@ e.prototype.init = function(t, n) {
 				this._nodeMenuClickHandler(a.id, r, n);
 				return;
 			}
+			if (r.hasAttribute(e.attr.control_node_btn)) {
+				n.stopPropagation(), n.preventDefault();
+				for (var o = r.getAttribute(e.attr.control_node_btn); !r.hasAttribute(e.attr.node_id);) r = r.parentNode;
+				var i = r.getAttribute(e.attr.node_id);
+				e._onClickHandler(this, o, void 0, i, void 0);
+				return;
+			}
 			if (r.hasAttribute(e.attr.control_node_circle_menu_id)) {
 				n.stopPropagation(), n.preventDefault();
 				var i = r.getAttribute(e.attr.control_node_circle_menu_id);
@@ -2806,10 +2813,10 @@ e.prototype.init = function(t, n) {
 		up: "touchend",
 		touchstart: "touchstart"
 	}), this._treeListUpdateInterval &&= (clearInterval(this._treeListUpdateInterval), null);
-	for (var i = null, a = n.target; a != t && !a.hasAttribute(e.attr.control_node_menu_id) && !a.hasAttribute(e.attr.control_node_circle_menu_id);) {
+	for (var i = null, a = n.target; a != t && !a.hasAttribute(e.attr.control_node_menu_id) && !a.hasAttribute(e.attr.control_node_btn) && !a.hasAttribute(e.attr.control_node_circle_menu_id);) {
 		if (a.hasAttribute) {
 			var o = null;
-			a.hasAttribute(e.attr.node_id) ? o = this.getNode(a.getAttribute(e.attr.node_id)) : a.hasAttribute(e.attr.control_expcoll_id) ? o = this.getNode(a.getAttribute(e.attr.control_expcoll_id)) : (a.hasAttribute(e.attr.control_node_menu_id) || a.hasAttribute(e.attr.control_node_menu_id)) && (o = this.getNode(a.getAttribute(e.attr.control_node_menu_id))), i ||= e._getScrollableTreeListNodeInTouchEnabledDevice(o);
+			a.hasAttribute(e.attr.node_id) ? o = this.getNode(a.getAttribute(e.attr.node_id)) : a.hasAttribute(e.attr.control_expcoll_id) ? o = this.getNode(a.getAttribute(e.attr.control_expcoll_id)) : a.hasAttribute(e.attr.control_node_menu_id) ? o = this.getNode(a.getAttribute(e.attr.control_node_menu_id)) : a.hasAttribute(e.attr.control_node_btn) && (o = this.getNode(a.getAttribute(e.attr.control_node_btn))), i ||= e._getScrollableTreeListNodeInTouchEnabledDevice(o);
 		}
 		if (a.hasAttribute(e.attr.node_id) && !i && (this.config.enableDragDrop || this.config.movable)) {
 			if (n.touches == null || n.touches.length <= 1) {
@@ -4606,6 +4613,46 @@ e.prototype.init = function(t, n) {
 	],
 	editFormHeaderColor: "#039BE5",
 	treeListMaxHeight: 500
+}, e.templates.emily = Object.assign({}, e.templates.ana), e.templates.emily.size = [200, 270], e.templates.emily.defs = "<style>.boc-hover .boc-emily-fill{fill: #039BE5;}\n.boc-hover .boc-hoverable{stroke: #039BE5 !important;}\n.boc-emily-link:hover text{ fill: #F57C00; }\n.boc-emily-link:hover path, .boc-emily-link:hover rect{ stroke: #F57C00; }\n.boc-emily-white{ transition: all 0.3s ease-in-out; }\n.boc-hover-self:hover .boc-emily-white {height: calc(var(--boc-emily-h) - 45px);}\n.boc-hover-self .boc-emily-nodemenu{ opacity: 1;   }\n.boc-emily-photo{ transition: all 0.3s ease-in-out; }\n.boc-emily-btn:hover{cursor:pointer;}\n.boc-emily-btn:hover path{fill:#F57C00 !important;}\n.boc-hover-self .boc-emily-photo{ transform: matrix(0.4,0,0,0.4,0,30) }\n</style>", e.templates.emily.node = function(t, n, r, i) {
+	return `<rect class="boc-emily-fill" x="0" y="0" height="${t.h}" width="${t.w}" fill="#039BE5" stroke ="#aeaeae"   stroke-width="1"  rx="10" ry="10"></rect>        
+          <rect  class="boc-emily-white"   x="0.5"  y="30"  height="${t.h - 80}"  width="${t.w - 1}"  fill="#fff" style="--boc-emily-h:${t.h - 80}px"></rect>
+          <g ${e.attr.control_node_btn}="pdf_profile" class="boc-emily-btn " transform="matrix(1,0,0,1,${t.w - 70},40)">${e.icon.pdf(24, 24, "#039BE5")}<rect  x="0" y="0" width="30" height="30" fill="red" fill-opacity="0"></rect></g>
+          <g ${e.attr.control_node_btn}="share_profile" class="boc-emily-btn" transform="matrix(1,0,0,1,${t.w - 35},40)">${e.icon.share(24, 24, "#039BE5")}<rect x="0" y="0" width="30" height="30" fill="red" fill-opacity="0"></rect></g>
+  `;
+}, e.templates.emily.field_0 = e.templates.emily.name = e.templates.emily.name = function(t, n, r, i, a) {
+	return e.wrapText(a, `<text style="font-size: 18px;" x="${t.w / 2}" y="${t.h - 20}" fill="#fff"  text-anchor="middle"></text>`, t.w - 10, 1);
+}, e.templates.emily.field_1 = e.templates.emily.title = e.templates.emily.title = function(t, n, r, i, a) {
+	return e.wrapText(a, `<text style="font-size: 14px;" x="${t.w / 2}" y="19" fill="#fff"  text-anchor="middle"></text>`, t.w - 10, 1);
+}, e.templates.emily.email = function(t, n, r, i, a) {
+	return n.email ? `<a class="boc-emily-link" href="mailto:${a}">
+            <g transform="matrix(1,0,0,1,7,${t.h - 150})">
+              <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke-width="2" stroke="#039BE5"/>
+              <path d="m3 7 9 6 9-6" fill="none" stroke-width="2" stroke="#039BE5" />
+              ${e.wrapText(a, "<text x=\"30\" y=\"15\" fill=\"#039BE5\" font-size=\"13\"></text>", t.w - 40, 1)}                
+              <rect style="opacity:0" x="0" y="0" width="${t.w - 14}" height="20" fill="red" />
+            </g>  
+          </a>` : "";
+}, e.templates.emily.address = function(e, t, n, r, i) {
+	return t.address ? `<a class="boc-emily-link" target="_blank" href="https://www.google.com/maps/place/${i}/" >
+            <g transform="matrix(1,0,0,1,7,${e.h - 127})">
+              <path d="M1 6l7-3 8 3 7-3v15l-7 3-8-3-7 3zM8 3v18M16 6v18" fill="none" stroke-width="2" stroke="#039BE5" />
+              <text x="30" y="15" fill="#039BE5" font-size="13">${i}</text>
+              <rect style="opacity:0" x="0" y="0" width="${e.w - 14}" height="20" fill="red" />
+            </g>  
+          </a>` : "";
+}, e.templates.emily.description = function(t, n, r, i, a) {
+	return e.wrapText(a, `<text style="font-size: 14px;" x="${t.w / 2}" y="${t.h - 70}" fill="#fff"  text-anchor="middle"></text>`, t.w - 20, 3);
+}, e.templates.emily.img_0 = function(e, t, n, r, i) {
+	return i ? `<g class="boc-emily-photo" transform="matrix(1,0,0,1,0,30)" ><image   preserveAspectRatio="xMidYMid slice" xlink:href="${i}" x="0.5" y="0"  width="${e.w - 1}" height="${e.h - 80}" ></image></g>` : "";
+}, e.templates.emily.nodeMenuButton = function(e, t, n, r) {
+	return `
+        <g style="cursor:pointer;" transform="matrix(1,0,0,1, ${e.w - 25}, 8)" data-ctrl-n-menu-id="${e.id}">
+            <rect x="0" y="0" width="18" height="2.5" rx="1.25" fill="#fff" />
+            <rect x="0" y="6" width="18" height="2.5" rx="1.25" fill="#fff" />
+            <rect x="0" y="12" width="18" height="2.5" rx="1.25" fill="#fff" />
+            <rect x="-5" y="-5" width="30" height="25" fill="transparent" />
+        </g>
+    `;
 }, e.templates.split = Object.assign({}, e.templates.ana), e.templates.split.size = [10, 10], e.templates.split.node = "<circle cx=\"5\" cy=\"5\" r=\"5\" fill=\"none\" stroke-width=\"1\" stroke=\"#aeaeae\"></circle>", e.templates.split.field_0 = "", e.templates.split.field_1 = "", e.templates.split.img_0 = "", e.templates.dot = Object.assign({}, e.templates.split), e.templates.group = Object.assign({}, e.templates.ana), e.templates.group.size = [250, 120], e.templates.group.padding = [
 	50,
 	20,
@@ -6462,7 +6509,7 @@ e.prototype.init = function(t, n) {
 			}]
 		};
 		i != null && (l.expandChildren = !1, l.pages[0].nodeId = i), t.pngPreviewUI.show(l);
-	} else n === "csv_export" || n === "csv" ? t.exportToCSV({ nodeId: i }) : n === "xml_export" || n === "xml" ? t.exportToXML({ nodeId: i }) : n === "json_export" || n === "json" ? t.exportToJSON({ nodeId: i }) : n === "fit" ? t.fit() : n === "expand_all" ? t.expand(null, "all") : n === "full_screen" ? t.toggleFullScreen() : n === "zoom_in" ? t.zoom(!0, null, !0) : n === "zoom_out" || n === "zoom_out" ? t.zoom(!1, null, !0) : n === "layout_mixed" ? t.setLayout(e.layout.mixed) : n === "layout_normal" ? t.setLayout(e.layout.normal) : n === "layout_right_offset" ? t.setLayout(e.layout.treeRightOffset) : n === "layout_left_offset" ? t.setLayout(e.layout.treeLeftOffset) : n === "layout_tree" ? t.setLayout(e.layout.tree) : n === "layout_grid" && t.setLayout(e.layout.grid);
+	} else n === "pdf_profile" || n === "csv" ? t.exportToPDFProfile(i) : n === "share_profile" || n === "csv" ? t.shareProfile(i) : n === "csv_export" || n === "csv" ? t.exportToCSV({ nodeId: i }) : n === "xml_export" || n === "xml" ? t.exportToXML({ nodeId: i }) : n === "json_export" || n === "json" ? t.exportToJSON({ nodeId: i }) : n === "fit" ? t.fit() : n === "expand_all" ? t.expand(null, "all") : n === "full_screen" ? t.toggleFullScreen() : n === "zoom_in" ? t.zoom(!0, null, !0) : n === "zoom_out" || n === "zoom_out" ? t.zoom(!1, null, !0) : n === "layout_mixed" ? t.setLayout(e.layout.mixed) : n === "layout_normal" ? t.setLayout(e.layout.normal) : n === "layout_right_offset" ? t.setLayout(e.layout.treeRightOffset) : n === "layout_left_offset" ? t.setLayout(e.layout.treeLeftOffset) : n === "layout_tree" ? t.setLayout(e.layout.tree) : n === "layout_grid" && t.setLayout(e.layout.grid);
 	else o = r.call(t, i, a);
 	return o;
 }, e._isSVG = function(e) {
@@ -6644,6 +6691,14 @@ e.prototype.init = function(t, n) {
 			e.width = s, e.height = c, i.drawImage(a, 0, 0, s, c), r(e.toDataURL("image/png"));
 		}, a.onerror = i, a.src = e;
 	});
+}, e._reorderNodeBinding = function(e) {
+	if (!e.nodeBinding) return;
+	let t = {};
+	Object.keys(e.nodeBinding).filter((e) => !e.startsWith("img")).forEach((n) => {
+		t[n] = e.nodeBinding[n];
+	}), Object.keys(e.nodeBinding).filter((e) => e.startsWith("img")).forEach((n) => {
+		t[n] = e.nodeBinding[n];
+	}), e.nodeBinding = t;
 }, e.xScrollUI = function(t, n, r, i, a) {
 	this.element = t, this.requestParams = r, this.config = n, this.onSetViewBoxCallback = i, this.onDrawCallback = a, this.position = 0, this.bar = null, this._event_id = e._guid();
 }, e.xScrollUI.prototype.addListener = function(t) {

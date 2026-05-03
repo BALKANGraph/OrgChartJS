@@ -848,7 +848,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.43", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.2.44", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -3565,7 +3565,7 @@ e.prototype.init = function(t, n) {
 	var r = this.getNode(t);
 	return r && e._hover._addSelectedStyle(this, r, r.id, n), this;
 }, e._hover = {}, e._hover._addSelectedStyle = function(t, n, r, i) {
-	n.isSplit || i != "none" && ((i == "parents" || i == "childrenAndParents") && e._hover._addSelectedStyleParents(t, n, r), (i == "children" || i == "childrenAndParents") && e._hover._addSelectedStyleChildren(t, n, r), i == "sameLevel" && e._hover._addSelectedStyleSameLevel(t, n, r), e._hover._addSelectedStyleSelf(t, n, r, i));
+	n.isSplit || ((i == "parents" || i == "childrenAndParents") && e._hover._addSelectedStyleParents(t, n, r), (i == "children" || i == "childrenAndParents") && e._hover._addSelectedStyleChildren(t, n, r), i == "sameLevel" && e._hover._addSelectedStyleSameLevel(t, n, r), e._hover._addSelectedStyleSelf(t, n, r, i));
 }, e._hover._addSelectedStyleSelf = function(e, t, n, r) {
 	var i = e.getNodeElement(t.id);
 	i && (!i.classList.contains("boc-hover") && r == "self" && i.classList.add("boc-hover"), i.classList.add("boc-hover-self"));
@@ -4613,9 +4613,15 @@ e.prototype.init = function(t, n) {
 	],
 	editFormHeaderColor: "#039BE5",
 	treeListMaxHeight: 500
-}, e.templates.emily = Object.assign({}, e.templates.ana), e.templates.emily.size = [200, 270], e.templates.emily.defs = "<style>.boc-hover .boc-emily-fill{fill: #039BE5;}\n.boc-hover .boc-hoverable{stroke: #039BE5 !important;}\n.boc-emily-link:hover text{ fill: #F57C00; }\n.boc-emily-link:hover path, .boc-emily-link:hover rect{ stroke: #F57C00; }\n.boc-emily-white{ transition: all 0.3s ease-in-out; }\n.boc-hover-self:hover .boc-emily-white {height: calc(var(--boc-emily-h) - 45px);}\n.boc-hover-self .boc-emily-nodemenu{ opacity: 1;   }\n.boc-emily-photo{ transition: all 0.3s ease-in-out; }\n.boc-emily-btn:hover{cursor:pointer;}\n.boc-emily-btn:hover path{fill:#F57C00 !important;}\n.boc-hover-self .boc-emily-photo{ transform: matrix(0.4,0,0,0.4,0,30) }\n</style>", e.templates.emily.node = function(t, n, r, i) {
-	return `<rect class="boc-emily-fill" x="0" y="0" height="${t.h}" width="${t.w}" fill="#039BE5" stroke ="#aeaeae"   stroke-width="1"  rx="10" ry="10"></rect>        
-          <rect  class="boc-emily-white"   x="0.5"  y="30"  height="${t.h - 80}"  width="${t.w - 1}"  fill="#fff" style="--boc-emily-h:${t.h - 80}px"></rect>
+}, e.templates.emily = Object.assign({}, e.templates.ana), e.templates.emily.size = [200, 270], e.templates.emily.defs = "<style>.boc-hover .boc-emily-fill{fill: #039BE5;}\n.boc-hover .boc-hoverable{stroke: #039BE5 !important;}\n.boc-emily-link:hover text{ fill: #F57C00; }\n.boc-emily-link:hover path, .boc-emily-link:hover rect{ stroke: #F57C00; }\n.boc-emily-white{ transition: all 0.3s ease-in-out; }\n.boc-hover-self:hover .boc-emily-white {height: calc(var(--boc-emily-h) - 45px);}\n.boc-hover-self .boc-emily-nodemenu{ opacity: 1;   }\n.boc-emily-photo{ transition: all 0.3s ease-in-out; }\n.boc-emily-btn:hover{cursor:pointer;}\n.boc-emily-btn:hover path{fill:#F57C00 !important;}\n.boc-hover-self .boc-emily-photo{ transform: matrix(0.4,0,0,0.4,0,30) }\n</style>", e.templates.emily.padding = [
+	80,
+	0,
+	90,
+	0
+], e.templates.emily.node = function(t, n, r, i) {
+	var a = `<rect  class="boc-emily-white"  x="0.5"  y="30"  height="${t.h - 80}"  width="${t.w - 1}"  fill="#fff" style="--boc-emily-h:${t.h - 80}px"></rect>`;
+	return t.treeList && (a = `<rect  x="0.5"  y="30"  height="${t.h - 125}"  width="${t.w - 1}"  fill="#fff"></rect>`), `<rect class="boc-emily-fill" x="0" y="0" height="${t.h}" width="${t.w}" fill="#039BE5" stroke ="#aeaeae"   stroke-width="1"  rx="10" ry="10"></rect>        
+        ${a}
           <g ${e.attr.control_node_btn}="pdf_profile" class="boc-emily-btn " transform="matrix(1,0,0,1,${t.w - 70},40)">${e.icon.pdf(24, 24, "#039BE5")}<rect  x="0" y="0" width="30" height="30" fill="red" fill-opacity="0"></rect></g>
           <g ${e.attr.control_node_btn}="share_profile" class="boc-emily-btn" transform="matrix(1,0,0,1,${t.w - 35},40)">${e.icon.share(24, 24, "#039BE5")}<rect x="0" y="0" width="30" height="30" fill="red" fill-opacity="0"></rect></g>
   `;
@@ -4643,7 +4649,7 @@ e.prototype.init = function(t, n) {
 }, e.templates.emily.description = function(t, n, r, i, a) {
 	return e.wrapText(a, `<text style="font-size: 14px;" x="${t.w / 2}" y="${t.h - 70}" fill="#fff"  text-anchor="middle"></text>`, t.w - 20, 3);
 }, e.templates.emily.img_0 = function(e, t, n, r, i) {
-	return i ? `<g class="boc-emily-photo" transform="matrix(1,0,0,1,0,30)" ><image   preserveAspectRatio="xMidYMid slice" xlink:href="${i}" x="0.5" y="0"  width="${e.w - 1}" height="${e.h - 80}" ></image></g>` : "";
+	return i && !e.treeList ? `<g class="boc-emily-photo" transform="matrix(1,0,0,1,0,30)" ><image   preserveAspectRatio="xMidYMid slice" xlink:href="${i}" x="0.5" y="0"  width="${e.w - 1}" height="${e.h - 80}" ></image></g>` : "";
 }, e.templates.emily.nodeMenuButton = function(e, t, n, r) {
 	return `
         <g style="cursor:pointer;" transform="matrix(1,0,0,1, ${e.w - 25}, 8)" data-ctrl-n-menu-id="${e.id}">

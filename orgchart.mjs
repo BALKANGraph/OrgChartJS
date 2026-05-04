@@ -848,7 +848,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.47", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.2.48", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -4642,20 +4642,21 @@ e.prototype.init = function(t, n) {
             <g transform="matrix(1,0,0,1,7,${t.h - 150})">
               <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke-width="2" stroke="#039BE5"/>
               <path d="m3 7 9 6 9-6" fill="none" stroke-width="2" stroke="#039BE5" />
-              ${e.wrapText(a, "<text x=\"30\" y=\"15\" fill=\"#039BE5\" font-size=\"13\"></text>", t.w - 40, 1)}                
+              ${e.wrapText(a, "<text x=\"30\" y=\"15\" fill=\"#039BE5\" font-size=\"13\"></text>", t.w - 30, 1)}                
               <rect style="opacity:0" x="0" y="0" width="${t.w - 14}" height="20" fill="red" />
             </g>  
           </a>` : "";
-}, e.templates.emily.address = function(e, t, n, r, i) {
-	return t.address ? `<a class="boc-emily-link" target="_blank" href="https://www.google.com/maps/place/${i}/" >
-            <g transform="matrix(1,0,0,1,7,${e.h - 127})">
+}, e.templates.emily.address = function(t, n, r, i, a) {
+	return n.address ? `<a class="boc-emily-link" target="_blank" href="https://www.google.com/maps/place/${a}/" >
+            <g transform="matrix(1,0,0,1,7,${t.h - 127})">
               <path d="M1 6l7-3 8 3 7-3v15l-7 3-8-3-7 3zM8 3v18M16 6v18" fill="none" stroke-width="2" stroke="#039BE5" />
-              <text x="30" y="15" fill="#039BE5" font-size="13">${i}</text>
-              <rect style="opacity:0" x="0" y="0" width="${e.w - 14}" height="20" fill="red" />
+              
+              ${e.wrapText(a, "<text x=\"30\" y=\"15\" fill=\"#039BE5\" font-size=\"13\"></text>", t.w - 30, 1)}    
+              <rect style="opacity:0" x="0" y="0" width="${t.w - 14}" height="20" fill="red" />
             </g>  
           </a>` : "";
 }, e.templates.emily.description = function(t, n, r, i, a) {
-	return e.wrapText(a, `<text style="font-size: 14px;" x="${t.w / 2}" y="${t.h - 70}" fill="#fff"  text-anchor="middle"></text>`, t.w - 20, 3);
+	return e.wrapText(a, `<text style="font-size: 14px;" x="${t.w / 2}" y="${t.h - 70}" fill="#fff"  text-anchor="middle"></text>`, t.w - 30, 3);
 }, e.templates.emily.img_0 = function(e, t, n, r, i) {
 	return i && !e.treeList ? `<g class="boc-emily-photo" transform="matrix(1,0,0,1,0,30)" ><image   preserveAspectRatio="xMidYMid slice" xlink:href="${i}" x="0.5" y="0"  width="${e.w - 1}" height="${e.h - 80}" ></image></g>` : "";
 }, e.templates.emily.nodeMenuButton = function(e, t, n, r) {

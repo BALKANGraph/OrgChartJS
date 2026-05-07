@@ -848,7 +848,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.48", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.2.49", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -4995,7 +4995,7 @@ e.prototype.init = function(t, n) {
 		var c = "";
 		if (o !== e.action.exporting && !n.isSplit) {
 			var l = a[n.lcn ? n.lcn : "base"], u = e.t(n.templateName, n.min, s);
-			if (n.childrenIds.length > 0) {
+			if (n.childCount) {
 				if (n.hasPartners) {
 					for (var d = !1, f = 0; f < n.childrenIds.length; f++) {
 						var p = t.getNode(n.childrenIds[f]);
@@ -5006,16 +5006,16 @@ e.prototype.init = function(t, n) {
 				var m = e._getDefailtPositionForExpandCollpase(l, n), h = {
 					x: m.x + n.x - u.expandCollapseSize / 2,
 					y: m.y + n.y - u.expandCollapseSize / 2
-				}, g = t.getCollapsedIds(n);
-				g.length ? (typeof u.plus == "function" ? (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", n.x).replace("{y}", n.y), c += u.plus(n, r, u, i, m)) : (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", h.x).replace("{y}", h.y), c += u.plus), c += e.grCloseTag) : (typeof u.minus == "function" ? (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", n.x).replace("{y}", n.y), c += u.minus(n, r, u, i, m)) : (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", h.x).replace("{y}", h.y), c += u.minus), c += e.grCloseTag), (g.length && typeof u.plus != "function" || !g.length && typeof u.minus != "function") && (c.indexOf("{collapsed-children-count}") != -1 && (c = c.replace("{collapsed-children-count}", n.collapsedChildCount)), c.indexOf("{collapsed-children-total-count}") != -1 && (c = c.replace("{collapsed-children-total-count}", n.deepCollapsedChildCount)), c.indexOf("{children-count}") != -1 && (c = c.replace("{children-count}", n.childCount)), c.indexOf("{children-total-count}") != -1 && (c = c.replace("{children-total-count}", n.deepChildCount)));
+				};
+				n.collapsedChildCount ? (typeof u.plus == "function" ? (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", n.x).replace("{y}", n.y), c += u.plus(n, r, u, i, m)) : (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", h.x).replace("{y}", h.y), c += u.plus), c += e.grCloseTag) : (typeof u.minus == "function" ? (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", n.x).replace("{y}", n.y), c += u.minus(n, r, u, i, m)) : (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", h.x).replace("{y}", h.y), c += u.minus), c += e.grCloseTag), (n.collapsedChildCount && typeof u.plus != "function" || !n.collapsedChildCount && typeof u.minus != "function") && (c.indexOf("{collapsed-children-count}") != -1 && (c = c.replace("{collapsed-children-count}", n.collapsedChildCount)), c.indexOf("{collapsed-children-total-count}") != -1 && (c = c.replace("{collapsed-children-total-count}", n.deepCollapsedChildCount)), c.indexOf("{children-count}") != -1 && (c = c.replace("{children-count}", n.childCount)), c.indexOf("{children-total-count}") != -1 && (c = c.replace("{children-total-count}", n.deepChildCount)));
 			}
 			t._nodeHasHiddenParent(n) && (c += e.upOpenTag.replace("{id}", n.id).replace("{x}", n.x).replace("{y}", n.y), c += u.up, c += e.grCloseTag);
 		}
-		var _ = {
+		var g = {
 			html: c,
 			node: n
 		};
-		return e.events.publish("renderbuttons", [t, _]), _.html;
+		return e.events.publish("renderbuttons", [t, g]), g.html;
 	},
 	link: function(t, n, r, i, a, o, s) {
 		var c = t.lcn ? t.lcn : "base", l = n._layoutConfigs[c], u = e.t(t.templateName, t.min, r), d = [], f = [], p = 0, m = l.levelSeparation / 2;

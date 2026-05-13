@@ -252,6 +252,17 @@ declare class OrgChart  {
     onNodeMouseleave(listener: (this: OrgChart, args: OrgChart.nodeMouseEventArgs) => void): OrgChart;    
 
 
+    /**
+     * Fires when the chart requests nodes on demand.
+     * Use this event to dynamically load and append nodes.
+     *
+     * @param listener Callback function triggered on demand node request.
+     * @param listener.args Event arguments containing the requested node data.
+     * @returns {OrgChart} The current chart instance.
+     */    
+    onDemand(listener: (this: OrgChart, args: OrgChart.demandEventArgs) => void): OrgChart;    
+
+
         /**
      * On canvas SVG click event listener.
      *  ```typescript     
@@ -623,6 +634,16 @@ declare class OrgChart  {
      * @param fireEvent indicates if the add event will be called or not
      */
     addNode(data: OrgChart.nodeData, callback?: () => void, fireEvent?: boolean): void;  
+
+    /**
+     * Adds new nodes to the chart while keeping the specified node fixed in its current position.
+     *
+     * @param {string | number} id The id of the node that should remain stationary when the new nodes are added.
+     * @param {Array<OrgChart.nodeData>} dataArray An array of node data objects to add to the chart.
+     * @param {() => void} [callback] A callback function that is called after the nodes are added.
+     * @returns {void}
+     */
+    addNodes(id: string | number, dataArray: Array<OrgChart.nodeData>, callback?: () => void): void;
 
     /**
      * Removes specified node from nodes collection, redraws the chart and fires remove event.
@@ -1026,16 +1047,7 @@ declare class OrgChart  {
         __searchField: string,
         __searchMarks: string
     }>;
-    /**
-     * Gets collpased node ids of the specifeid node
-     * ```typescript     
-     * let chart = new OrgChart('#tree', {});
-     * ...
-     * let ids = chart.getCollapsedIds(2);
-     * ```
-     * @param node 
-     */
-    getCollapsedIds(node: OrgChart.node): Array<string | number>;
+
     /**
      * State to url.
      * ```typescript     
@@ -2372,6 +2384,18 @@ declare namespace OrgChart {
          */
         event: MouseEvent
     }
+
+    interface demandEventArgs  {
+        /**
+         * The id of the clicked node.
+         */
+        id: string | number,
+
+        /**
+         * An array of node ids that should be loaded from the server.
+         */        
+        ids: Array<string | number>
+    }
             
 
     interface canvasClickEventArgs  {
@@ -2603,15 +2627,14 @@ declare namespace OrgChart {
          * template name, you can specify multiple templates with tags in one chart
          */
         templateName?: string,
-
+        
         /**
-         * Number of direct child nodes.
-         */
-        childCount?: number,
-        /**
-         * Number of direct child nodes that are currently collapsed (hidden).
-         */
-        collapsedChildCount?: number,
+         * Array of collapsed direct child node IDs.
+         * 
+         * Contains the IDs of child nodes whose `collapsed` state is `true`.
+         * Always initialized as an array.
+         */        
+        collapsedChildrenIds?: Array<string | number>,
         /**
          * Total number of collapsed descendant nodes (collapsed at any depth).
          */
@@ -2620,6 +2643,12 @@ declare namespace OrgChart {
          * Total number of descendant nodes (children at all levels).
          */
         deepChildCount?: number,
+
+        /**
+         * An array of child node ids.
+         */
+        cids?: Array<number | string>,
+
 
         /**
          * a reference to the left node neighbor, the default value is undefined
@@ -6131,8 +6160,5 @@ declare namespace OrgChart {
      */
     var t: any;
 }
-
-
-
 
 export default OrgChart;

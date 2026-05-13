@@ -397,7 +397,7 @@ e.prototype.init = function(t, n) {
 		}) : n && n();
 	}
 }, e.prototype._nodeHasHiddenParent = function(t) {
-	return !t.parent && !e.isNEU(t.pid) && this.getNode(t.pid);
+	return !t.parent && !e.isNEU(t.pid);
 }, e.prototype.destroy = function() {
 	this._initCalled = !1, this._resizeObserver.unobserve(this.element), e.events.removeForEventId(this._event_id), this.element.innerHTML = null;
 }, e._defaultConfig = function(t) {
@@ -602,6 +602,14 @@ e.prototype.init = function(t, n) {
 	}, function() {
 		i.ripple(t.id), n && n();
 	});
+}, e.prototype.addNodes = function(t, n, r) {
+	if (Array.isArray(n)) {
+		var i = this, a = [];
+		for (var o of n) this.add(o), a.push(o.id);
+		this._ai.setContext(), e.events.publish("updated", [this]), this.filterUI.update(), i._draw(!1, e.action.insert, { id: t }, function() {
+			r && r();
+		});
+	}
 }, e.prototype.add = function(t) {
 	if (t.id ?? console.error("Call addNode without id"), this._putInUndoStack(), this.clearRedo(), this.config.movable && !e.isNEU(t.pid)) {
 		var n = this._get(t.pid);
@@ -848,7 +856,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.2.49", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.3.0", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -2511,12 +2519,13 @@ e.prototype.init = function(t, n) {
 		}, i.readAsText(r.files[0]);
 	}, n.click();
 }, e.prototype.expand = function(t, n, r) {
-	this._treeListExpandCollapseHandler(t), this._resetMovableNodes();
-	var i = {
-		id: t,
-		ids: n
-	};
-	this._draw(!1, e.action.expand, i, r);
+	if (this._treeListExpandCollapseHandler(t), this._resetMovableNodes(), n = this._filterOnlyExistingAndCallOnDemandForOthers(t, n), n.length) {
+		var i = {
+			id: t,
+			ids: n
+		};
+		this._draw(!1, e.action.expand, i, r);
+	}
 }, e.prototype.collapse = function(t, n, r) {
 	this._treeListExpandCollapseHandler(t), this._resetMovableNodes();
 	var i = {
@@ -2525,7 +2534,7 @@ e.prototype.init = function(t, n) {
 	};
 	this._draw(!1, e.action.collapse, i, r);
 }, e.prototype.expandCollapse = function(t, n, r, i) {
-	this._treeListExpandCollapseHandler(t), this._resetMovableNodes(), Array.isArray(n) || (n = []), Array.isArray(r) || (r = []);
+	this._treeListExpandCollapseHandler(t), this._resetMovableNodes(), Array.isArray(n) || (n = []), Array.isArray(r) || (r = []), n = this._filterOnlyExistingAndCallOnDemandForOthers(t, n);
 	var a = {
 		id: t,
 		expandIds: n,
@@ -2540,6 +2549,13 @@ e.prototype.init = function(t, n) {
 		changeRoots: n
 	};
 	this._draw(!1, e.action.update, i, r);
+}, e.prototype._filterOnlyExistingAndCallOnDemandForOthers = function(t, n) {
+	var r = [], i = [];
+	for (var a of n) this.getNode(a) ? i.push(a) : r.push(a);
+	return r.length && e.events.publish("on-demand", [this, {
+		ids: r,
+		id: t
+	}]), i;
 }, e.prototype._resetMovableNodes = function() {
 	if (e.RESET_MOVABLE_ONEXPANDCOLLAPSE && this.config.movable != null) {
 		for (var t = !1, n = 0; n < this.config.nodes.length; n++) {
@@ -2563,43 +2579,46 @@ e.prototype.init = function(t, n) {
 	});
 }, e.prototype._expCollHandler = function(t) {
 	this.nodeMenuUI.hide(), this.nodeContextMenuUI.hide(), this.menuUI.hide(), this.nodeCircleMenuUI.hide();
-	var n = this.getNode(t), r = this.getCollapsedIds(n);
-	if (r.length) {
-		var i = e.events.publish("expcollclick", [
+	var n = this.getNode(t);
+	if (n.collapsedChildrenIds.length) {
+		var r = e.events.publish("expcollclick", [
 			this,
 			!1,
 			t,
-			r
+			n.collapsedChildrenIds
 		]);
-		if (i === !1) return !1;
-		this.expand(t, r, !1);
+		if (r === !1) return !1;
+		this.expand(t, n.collapsedChildrenIds, !1);
 	} else {
-		var i = e.events.publish("expcollclick", [
+		var r = e.events.publish("expcollclick", [
 			this,
 			!0,
 			t,
 			n.childrenIds
 		]);
-		if (i === !1) return !1;
+		if (r === !1) return !1;
 		this.collapse(t, n.childrenIds, !1);
 	}
 }, e.prototype._upHandler = function(t) {
 	this.nodeMenuUI.hide(), this.nodeContextMenuUI.hide(), this.menuUI.hide(), this.nodeCircleMenuUI.hide();
 	var n = this._upHandlerCreateArgs(t);
 	if (e.events.publish("up-click", [this, n]) === !1) return !1;
-	this.changeRoots(n.id, n.roots, !1);
-}, e.prototype._upHandlerCreateArgs = function(e) {
-	var t = this.getNode(e), n = Object.assign([], this.config.roots), r = this.getNode(t.pid), i;
-	if (r && (i = r), i) {
-		if (Array.isArray(n)) {
-			var a = n.indexOf(t.id);
-			a != -1 && n.splice(a, 1);
-		} else n = [];
-		n.push(i.id);
-	}
+	n.roots.length != 0 && this.changeRoots(n.id, n.roots, !1);
+}, e.prototype._upHandlerCreateArgs = function(t) {
+	var n = this.getNode(t), r = Object.assign([], this.config.roots), i = this.getNode(n.pid), a;
+	if (i && (a = i), a) {
+		if (Array.isArray(r)) {
+			var o = r.indexOf(n.id);
+			o != -1 && r.splice(o, 1);
+		} else r = [];
+		r.push(a.id);
+	} else e.events.publish("on-demand", [this, {
+		ids: [n.pid],
+		id: n.id
+	}]);
 	return {
-		id: t.id,
-		roots: n
+		id: n.id,
+		roots: r
 	};
 }, String.prototype.replaceAll || (String.prototype.replaceAll = function(e, t) {
 	return this.replace(new RegExp(e, "g"), t);
@@ -3080,24 +3099,24 @@ e.prototype.init = function(t, n) {
 	var e = { id: this.generateId() };
 	this.addNode(e, null, !0) !== !1 && this.center(e.id);
 }, e.prototype.toggleExpandCollapse = function(t, n) {
-	var r = this.getNode(t), i = this.getCollapsedIds(r);
-	if (i.length) {
-		var a = e.events.publish("expcollclick", [
+	var r = this.getNode(t);
+	if (r.collapsedChildrenIds.length) {
+		var i = e.events.publish("expcollclick", [
 			this,
 			!1,
 			t,
-			i
+			r.collapsedChildrenIds
 		]);
-		if (a === !1) return !1;
-		this.expand(t, i, !1);
+		if (i === !1) return !1;
+		this.expand(t, r.collapsedChildrenIds, !1);
 	} else {
-		var a = e.events.publish("expcollclick", [
+		var i = e.events.publish("expcollclick", [
 			this,
 			!0,
 			t,
 			r.childrenIds
 		]);
-		if (a === !1) return !1;
+		if (i === !1) return !1;
 		this.collapse(t, r.childrenIds, !1);
 	}
 	n && this.ripple(r.id, n.clientX, n.clientY);
@@ -3408,7 +3427,7 @@ e.prototype.init = function(t, n) {
 }, e.prototype.moveEnd = function() {
 	this._moveInterval &&= (clearInterval(this._moveInterval), null);
 }, e === void 0 && (e = {}), e.node = function(e, t, n, r) {
-	this.templateName = r, this.id = e, this.pid = t, this.children = [], this.childrenIds = [], this.parent = null, this.stpid = null, this.stParent = null, this.stChildren = [], this.stChildrenIds = [], this.tags = n, this.childCount = 0, this.collapsedChildCount = 0, this.deepCollapsedChildCount = 0, this.deepChildCount = 0, this.tags ||= [];
+	this.templateName = r, this.id = e, this.pid = t, this.children = [], this.childrenIds = [], this.collapsedChildrenIds = [], this.parent = null, this.stpid = null, this.stParent = null, this.stChildren = [], this.stChildrenIds = [], this.tags = n, this.deepCollapsedChildCount = 0, this.deepChildCount = 0, this.tags ||= [];
 }, e.searchUI = function() {
 	this.lastSearch = [], this._searchAfterEnterPress = !1, this._event_id = e._guid(), this.instance = null;
 }, e.searchUI.prototype.init = function(t) {
@@ -3700,43 +3719,44 @@ e.prototype.init = function(t, n) {
 	} else a == e.action.exporting && r.expandChildren && (t.collapsed = !1);
 	a == e.action.init && s != null ? t.collapsed = !s.exp.has(t.id) : a == e.action.init ? t.tags.indexOf("left-partner") != -1 || t.tags.indexOf("right-partner") != -1 || t.tags.indexOf("partner") != -1 || t.parentPartner ? t.collapsed = n.collapse && o >= n.collapse.level && i.indexOf(t.id) == -1 : t.collapsed = n.collapse && o >= n.collapse.level - 1 && i.indexOf(t.id) == -1 : a == e.action.centerNode || a == e.action.insert || a == e.action.expand || a == e.action.collapse ? i.has(t.id) && (t.collapsed = !1) : a == e.action.update && r && r.changeRoots && r.changeRoots.has(t.id) && (t.collapsed = !1);
 }, e.manager._initNode = function(t, n, r, i, a, o, s) {
-	var c = s.manager.config, l = s.manager.layoutConfigs, u = s.manager.action, d = s.manager.actionParams, f = s.manager.state, p = l[r || "base"];
-	t.parent ?? e.manager._setCollpasedProperty(t, p, d, a, u, i - 1, f, n);
-	for (var m = 0; m < t.childrenIds.length; m++) {
-		var h = n[t.childrenIds[m]];
-		if (e.manager._setCollpasedProperty(h, p, d, a, u, i, f, n), h.collapsed) t.collapsedChildCount++;
+	var c = s.manager.config, l = s.manager.layoutConfigs, u = s.manager.action, d = s.manager.actionParams, f = s.manager.state, p = e._hasOnDemandHandler(s), m = l[r || "base"];
+	t.parent ?? e.manager._setCollpasedProperty(t, m, d, a, u, i - 1, f, n);
+	for (var h = 0; h < t.childrenIds.length; h++) {
+		var g = n[t.childrenIds[h]];
+		if (g) if (e.manager._setCollpasedProperty(g, m, d, a, u, i, f, n), g.collapsed) t.collapsedChildrenIds.push(g.id);
 		else {
-			if (h.parent = t, h.ppid != null) {
-				var g = n[h.ppid];
-				g && (h.parentPartner = g);
+			if (g.parent = t, g.ppid != null) {
+				var _ = n[g.ppid];
+				_ && (g.parentPartner = _);
 			}
-			(h.tags.indexOf("left-partner") != -1 || h.tags.indexOf("right-partner") != -1 || h.tags.indexOf("partner") != -1 || h.parentPartner) && o.indexOf(t.id) == -1 && o.push(t.id), t.children.push(h);
+			(g.tags.indexOf("left-partner") != -1 || g.tags.indexOf("right-partner") != -1 || g.tags.indexOf("partner") != -1 || g.parentPartner) && o.indexOf(t.id) == -1 && o.push(t.id), t.children.push(g);
 		}
+		else p && t.collapsedChildrenIds.push(t.childrenIds[h]);
 	}
-	if (u == e.action.minimize && !t.min ? (d.all || d.id == t.id) && (t.min = !0) : u == e.action.maximize && t.min === !0 ? (d.all || d.id == t.id) && (t.min = !1) : u == e.action.exporting && d.min === !1 ? t.min = !1 : u == e.action.init && f != null && (t.min = f.min.has(t.id)), !t.min && (!t.tags || !t.tags.has("filter"))) for (var m = 0; m < t.stChildrenIds.length; m++) {
-		var h = n[t.stChildrenIds[m]];
-		h.stParent = t, t.stChildren.push(h);
+	if (u == e.action.minimize && !t.min ? (d.all || d.id == t.id) && (t.min = !0) : u == e.action.maximize && t.min === !0 ? (d.all || d.id == t.id) && (t.min = !1) : u == e.action.exporting && d.min === !1 ? t.min = !1 : u == e.action.init && f != null && (t.min = f.min.has(t.id)), !t.min && (!t.tags || !t.tags.has("filter"))) for (var h = 0; h < t.stChildrenIds.length; h++) {
+		var g = n[t.stChildrenIds[h]];
+		g.stParent = t, t.stChildren.push(g);
 	}
 	i != null && (t.level = i), r && (t.lcn = r);
-	var _ = e._getSubLevels(t.tags, c.tags);
-	_ > 0 && (t.subLevels = _), t.tags.indexOf("assistant") != -1 && t.parent != null && (t.isAssistant = !0), p.layout == e.layout.treeList && (t.isTreeListItem = !0), p.template && c.template == t.templateName && (t.templateName = p.template);
-	var v = e.t(t.templateName, t.min);
-	if (t.w = v && v.size ? v.size[0] : 0, t.h = v && v.size ? v.size[1] : 0, t.padding = v && v.padding ? v.padding : [
+	var v = e._getSubLevels(t.tags, c.tags);
+	v > 0 && (t.subLevels = v), t.tags.indexOf("assistant") != -1 && t.parent != null && (t.isAssistant = !0), m.layout == e.layout.treeList && (t.isTreeListItem = !0), m.template && c.template == t.templateName && (t.templateName = m.template);
+	var y = e.t(t.templateName, t.min);
+	if (t.w = y && y.size ? y.size[0] : 0, t.h = y && y.size ? y.size[1] : 0, t.padding = y && y.padding ? y.padding : [
 		0,
 		0,
 		0,
 		0
 	], t.isTreeListItem && t.stParent && t.stParent.treeList == null) {
-		var y = e.t(t.stParent.templateName, t.stParent.min);
+		var b = e.t(t.stParent.templateName, t.stParent.min);
 		t.stParent.treeList = {
 			pinnedIds: [],
 			scrollTop: 0,
 			scrollTopMax: 0,
-			maxHeight: y.treeListMaxHeight
+			maxHeight: b.treeListMaxHeight
 		};
 	}
-	var b = { node: t };
-	e.events.publish("node-initialized", [s, b]);
+	var x = { node: t };
+	e.events.publish("node-initialized", [s, x]);
 }, e.manager._iterate = function(t, n, r, i, a, o, s, c, l, u, d, f) {
 	var p = f.manager.layoutConfigs;
 	if (e.manager._initNode(n, r, l, i, u, d, f), n.isAssistant && (o[n.pid] || (o[n.pid] = []), o[n.pid].push(n.id)), n.subLevels > 0 && s.push(n.id), e.MIXED_LAYOUT_FOR_NODES_WITH_COLLAPSED_CHILDREN && !n.isAssistant && n.parent) {
@@ -3765,41 +3785,54 @@ e.prototype.init = function(t, n) {
 	i++;
 	for (var y = 0; y < n.children.length; y++) n.isTreeListItem && (n.children[y].isTreeListItem = n.isTreeListItem), e.manager._iterate(t, n.children[y], r, i, a, o, s, c, l, u, d, f);
 }, e.manager.__createNodes = function(t, n, r, i, a, o, s, c) {
-	for (var l = [], u = e._addDottedLines(r), d = 0; d < u.length; d++) {
-		var f = u[d], p = e.STRING_TAGS ? f.tags ? f.tags.split(",") : [] : Array.isArray(f.tags) ? f.tags.slice(0) : [];
-		c.filterUI.addFilterTag(f) && p.unshift("filter");
-		var m = c.searchUI.addMatchTag(f.id);
-		m === !0 ? p.unshift("match") : m === !1 && p.unshift("no-match");
-		var h = e._getTemplate(p, r.tags, r.template);
-		f && f.template && (h = f.template);
-		var g = new e.node(f.id, f.pid, p, h);
-		e.isNEU(f.ppid) || (g.ppid = f.ppid), e.isNEU(f.stpid) || (g.stpid = f.stpid), f.movex != null && (g.movex = f.movex), f.movey != null && (g.movey = f.movey), t[f.id] = g, l.push(f.id);
+	for (var l = [], u = e._addDottedLines(r), d = [], f = e._hasOnDemandHandler(c), p = 0; p < u.length; p++) {
+		var m = u[p], h = e.STRING_TAGS ? m.tags ? m.tags.split(",") : [] : Array.isArray(m.tags) ? m.tags.slice(0) : [];
+		c.filterUI.addFilterTag(m) && h.unshift("filter");
+		var g = c.searchUI.addMatchTag(m.id);
+		g === !0 ? h.unshift("match") : g === !1 && h.unshift("no-match");
+		var _ = e._getTemplate(h, r.tags, r.template);
+		m && m.template && (_ = m.template);
+		var v = new e.node(m.id, m.pid, h, _);
+		e.isNEU(m.ppid) || (v.ppid = m.ppid), e.isNEU(m.stpid) || (v.stpid = m.stpid), m.movex != null && (v.movex = m.movex), m.movey != null && (v.movey = m.movey), t[m.id] = v, l.push(m.id), m.cids && d.push(m);
+	}
+	for (var m of d) {
+		var y = t[m.id];
+		for (var b of m.cids) {
+			var x = t[b];
+			x && (!e.isNEU(x.pid) && x.pid != y.id && console.error(`node: ${x.id} has pid: ${x.pid} fifferent from ${y.id}`), x.pid = y.id);
+		}
 	}
 	if (r.orderBy != null) {
-		var _ = e.manager._getOrderSortArray(r.orderBy);
+		var S = e.manager._getOrderSortArray(r.orderBy);
 		l.sort(function(e, t) {
 			var n, r;
 			for (var i of u) if (i.id == e && (n = i), i.id == t && (r = i), n && r) break;
-			for (var a = 0; a < _.length; a++) {
-				var o = n[_[a].field], s = r[_[a].field], c = o, l = s;
+			for (var a = 0; a < S.length; a++) {
+				var o = n[S[a].field], s = r[S[a].field], c = o, l = s;
 				if (c ??= "", l ??= "", typeof c == "string" && typeof l == "string") {
 					var d = c.localeCompare(l);
-					if (_[a].desc && (d *= -1), d !== 0) return d;
+					if (S[a].desc && (d *= -1), d !== 0) return d;
 				} else {
 					var d = o < s ? -1 : o > s ? 1 : 0;
-					if (_[a].desc && (d *= -1), d !== 0) return d;
+					if (S[a].desc && (d *= -1), d !== 0) return d;
 				}
 			}
 		});
 	}
-	for (var d = 0; d < l.length; d++) {
-		var v = l[d], g = t[v], y = o ? o[v] : null, b = t[g.stpid], x = t[g.pid];
-		if (b || (g.stpid = null), x || (g.pid = null), b) {
-			var S = o ? o[b.id] : null;
-			S && (b.min = S.min), b.stChildrenIds.push(g.id);
-		} else x ? (y && (g.collapsed = y.collapsed, g.min = y.min, g.treeList = y.treeList), x.childrenIds.push(g.id)) : (y && (g.collapsed = y.collapsed, g.min = y.min, g.treeList = y.treeList), n.push(g), s.push(g.id));
-		i == e.action.init && (g.min = e._getMin(g, r));
+	for (var p = 0; p < l.length; p++) {
+		var C = l[p], v = t[C], w = o ? o[C] : null, T = t[v.stpid], y = t[v.pid];
+		if (T || (v.stpid = null), !y && !f && (v.pid = null), T) {
+			var E = o ? o[T.id] : null;
+			E && (T.min = E.min), T.stChildrenIds.push(v.id);
+		} else y ? (w && (v.collapsed = w.collapsed, v.min = w.min, v.treeList = w.treeList), y.childrenIds.push(v.id)) : (w && (v.collapsed = w.collapsed, v.min = w.min, v.treeList = w.treeList), n.push(v), s.push(v.id));
+		i == e.action.init && (v.min = e._getMin(v, r));
 	}
+	for (var m of d) {
+		var y = t[m.id];
+		for (var b of m.cids) y.childrenIds.includes(b) || y.childrenIds.push(b);
+	}
+}, e._hasOnDemandHandler = function(t) {
+	return e.events.has("on-demand", t._event_id);
 }, e.manager._createNodes = function(t) {
 	var n = t.manager.config, r = t.manager.layoutConfigs, i = t.manager.action, a = t.manager.actionParams, o = t.manager.oldNodes, s = t.manager.state, c = {}, l = [], u = [];
 	if (e.manager.__createNodes(c, l, n, i, a, o, u, t), n.roots != null) {
@@ -3818,8 +3851,11 @@ e.prototype.init = function(t, n) {
 				}
 				if (!h) {
 					if (!e.isNEU(f.pid)) {
-						var _ = c[f.pid], v = _.childrenIds.indexOf(f.id);
-						v > -1 && _.childrenIds.splice(v, 1);
+						var _ = c[f.pid];
+						if (_) {
+							var v = _.childrenIds.indexOf(f.id);
+							v > -1 && _.childrenIds.splice(v, 1);
+						}
 					}
 					l.push(f);
 				}
@@ -4422,10 +4458,12 @@ e.prototype.init = function(t, n) {
 }, e.manager._addExpandedNodeIdsIterate = function(t, n, r) {
 	for (var i = 0; i < t.childrenIds.length; i++) r.push(t.childrenIds[i]), e.manager._addExpandedNodeIdsIterate(n[t.childrenIds[i]], n, r);
 }, e.manager._setChildCountPropsIterate = function(t, n) {
-	t.w === void 0 && (t.collapsedChildCount = t.childrenIds.length), t.deepChildCount = t.childCount = t.childrenIds.length, t.deepCollapsedChildCount = t.collapsedChildCount;
-	for (var r = n[t.pid]; r;) r.deepCollapsedChildCount += t.collapsedChildCount, r.deepChildCount += t.childCount, r = n[r.pid];
-	for (var i of t.stChildrenIds) e.manager._setChildCountPropsIterate(n[i], n);
-	for (var i of t.childrenIds) e.manager._setChildCountPropsIterate(n[i], n);
+	if (t) {
+		t.w === void 0 && (t.collapsedChildrenIds = t.childrenIds.slice()), t.deepChildCount = t.childrenIds.length, t.deepCollapsedChildCount = t.collapsedChildrenIds.length;
+		for (var r = n[t.pid]; r;) r.deepCollapsedChildCount += t.collapsedChildrenIds.length, r.deepChildCount += t.childrenIds.length, r = n[r.pid];
+		for (var i of t.stChildrenIds) e.manager._setChildCountPropsIterate(n[i], n);
+		for (var i of t.childrenIds) e.manager._setChildCountPropsIterate(n[i], n);
+	}
 }, e.manager._setMinMaxXYAdjustifyIterate = function(t, n, r, i, a, o, s, c) {
 	t.x += o.x, t.y += o.y;
 	for (var l of t.stChildren) e.manager._setMinMaxXYAdjustifyIterate(l, l, r, 0, a, o, s, c);
@@ -4995,7 +5033,7 @@ e.prototype.init = function(t, n) {
 		var c = "";
 		if (o !== e.action.exporting && !n.isSplit) {
 			var l = a[n.lcn ? n.lcn : "base"], u = e.t(n.templateName, n.min, s);
-			if (n.childCount) {
+			if (n.childrenIds.length) {
 				if (n.hasPartners) {
 					for (var d = !1, f = 0; f < n.childrenIds.length; f++) {
 						var p = t.getNode(n.childrenIds[f]);
@@ -5007,7 +5045,7 @@ e.prototype.init = function(t, n) {
 					x: m.x + n.x - u.expandCollapseSize / 2,
 					y: m.y + n.y - u.expandCollapseSize / 2
 				};
-				n.collapsedChildCount ? (typeof u.plus == "function" ? (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", n.x).replace("{y}", n.y), c += u.plus(n, r, u, i, m)) : (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", h.x).replace("{y}", h.y), c += u.plus), c += e.grCloseTag) : (typeof u.minus == "function" ? (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", n.x).replace("{y}", n.y), c += u.minus(n, r, u, i, m)) : (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", h.x).replace("{y}", h.y), c += u.minus), c += e.grCloseTag), (n.collapsedChildCount && typeof u.plus != "function" || !n.collapsedChildCount && typeof u.minus != "function") && (c.indexOf("{collapsed-children-count}") != -1 && (c = c.replace("{collapsed-children-count}", n.collapsedChildCount)), c.indexOf("{collapsed-children-total-count}") != -1 && (c = c.replace("{collapsed-children-total-count}", n.deepCollapsedChildCount)), c.indexOf("{children-count}") != -1 && (c = c.replace("{children-count}", n.childCount)), c.indexOf("{children-total-count}") != -1 && (c = c.replace("{children-total-count}", n.deepChildCount)));
+				n.collapsedChildrenIds.length ? (typeof u.plus == "function" ? (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", n.x).replace("{y}", n.y), c += u.plus(n, r, u, i, m)) : (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", h.x).replace("{y}", h.y), c += u.plus), c += e.grCloseTag) : (typeof u.minus == "function" ? (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", n.x).replace("{y}", n.y), c += u.minus(n, r, u, i, m)) : (c += e.expcollOpenTag.replace("{id}", n.id).replace("{x}", h.x).replace("{y}", h.y), c += u.minus), c += e.grCloseTag), (n.collapsedChildrenIds.length && typeof u.plus != "function" || !n.collapsedChildrenIds.length && typeof u.minus != "function") && (c.indexOf("{collapsed-children-count}") != -1 && (c = c.replace("{collapsed-children-count}", n.collapsedChildrenIds.length)), c.indexOf("{collapsed-children-total-count}") != -1 && (c = c.replace("{collapsed-children-total-count}", n.deepCollapsedChildCount)), c.indexOf("{children-count}") != -1 && (c = c.replace("{children-count}", n.childrenIds.length)), c.indexOf("{children-total-count}") != -1 && (c = c.replace("{children-total-count}", n.deepChildCount)));
 			}
 			t._nodeHasHiddenParent(n) && (c += e.upOpenTag.replace("{id}", n.id).replace("{x}", n.x).replace("{y}", n.y), c += u.up, c += e.grCloseTag);
 		}
@@ -8915,7 +8953,7 @@ e.prototype.init = function(t, n) {
 		var r = t.getScale(), i = e.t(n.node.templateName, n.node.min, r), a = "";
 		n.node.min ? (i.nodeGroupDottedOpenButton || console.error(`[${n.node.templateName}].nodeGroupDottedOpenButton is not defined`), a += `<g style="cursor:pointer;"  data-ctrl-n-dotted-open="${n.node.id}" transform="matrix(1,0,0,1,${n.node.x},${n.node.y})">`, a += i.nodeGroupDottedOpenButton) : (i.nodeGroupDottedCloseButton || console.error(`[${n.node.templateName}].nodeGroupDottedCloseButton is not defined`), a += `<g style="cursor:pointer;" transform="matrix(1,0,0,1,${n.node.x},${n.node.y})" data-ctrl-n-dotted-close="${n.node.id}">`, a += i.nodeGroupDottedCloseButton), a += "</g>", a = a.replaceAll("{cw}", n.node.w / 2).replaceAll("{ch}", n.node.h / 2).replaceAll("{ew}", n.node.w - (n.node.padding ? n.node.padding[1] : 0)).replaceAll("{eh}", n.node.h - (n.node.padding ? n.node.padding[2] : 0));
 		var o = t.getNode(n.node.stChildrenIds[0]);
-		a.indexOf("{collapsed-children-count}") != -1 && (a = a.replace("{collapsed-children-count}", o.collapsedChildCount)), a.indexOf("{collapsed-children-total-count}") != -1 && (a = a.replace("{collapsed-children-total-count}", o.deepCollapsedChildCount)), a.indexOf("{children-count}") != -1 && (a = a.replace("{children-count}", o.childCount)), a.indexOf("{children-total-count}") != -1 && (a = a.replace("{children-total-count}", o.deepChildCount)), n.html += a;
+		a.indexOf("{collapsed-children-count}") != -1 && (a = a.replace("{collapsed-children-count}", o.collapsedChildrenIds.length)), a.indexOf("{collapsed-children-total-count}") != -1 && (a = a.replace("{collapsed-children-total-count}", o.deepCollapsedChildCount)), a.indexOf("{children-count}") != -1 && (a = a.replace("{children-count}", o.childrenIds.length)), a.indexOf("{children-total-count}") != -1 && (a = a.replace("{children-total-count}", o.deepChildCount)), n.html += a;
 	}
 }), e.events.on("redraw", function(t, n) {
 	var r = null;
@@ -9755,6 +9793,10 @@ e.prototype.init = function(t, n) {
 	});
 }, e.prototype.onNodeMouseleave = function(e) {
 	return this.on("node-mouseleave", function(t, n) {
+		return e.call(t, n);
+	});
+}, e.prototype.onDemand = function(e) {
+	return this.on("on-demand", function(t, n) {
 		return e.call(t, n);
 	});
 }, e.prototype.onCanvasClick = function(e) {

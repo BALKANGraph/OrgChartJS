@@ -355,6 +355,8 @@ e.prototype.init = function(t, n) {
 		var e = "_" + ("0000" + (Math.random() * 36 ** 4 | 0).toString(36)).slice(-4);
 		if (this.nodes == null || !this.nodes.hasOwnProperty(e)) return e;
 	}
+}, e.prototype.moveNodesToVisibleAreaAfterExpand = function(t, n, r) {
+	e._moveNodesToVisibleAreaAfterExpand(this, t, n, r);
 }, e.prototype.moveNodesToVisibleArea = function(t, n) {
 	for (var r = this, i = this.roots[0], a = this.getSvg(), o = this.getViewBox(), s = null, c = null, l = null, u = null, d = 0; d < t.length; d++) {
 		var f = this.nodes[t[d]];
@@ -606,7 +608,9 @@ e.prototype.init = function(t, n) {
 	if (Array.isArray(n)) {
 		var i = this, a = [];
 		for (var o of n) this.add(o), a.push(o.id);
-		this._ai.setContext(), e.events.publish("updated", [this]), this.filterUI.update(), i._draw(!1, e.action.insert, { id: t }, function() {
+		this._ai.setContext(), e.events.publish("updated", [this]), this.filterUI.update();
+		var s = { id: t };
+		i._draw(!1, e.action.update, s, function() {
 			r && r();
 		});
 	}
@@ -856,7 +860,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.3.0", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.3.1", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -4584,7 +4588,7 @@ e.prototype.init = function(t, n) {
 	plus: function(e, t, n, r, i) {
 		var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
 		return `<g transform="matrix(1,0,0,1,${i.x - 15},${i.y - 15})"><circle cx="15" cy="15" r="15" fill="${a}" stroke="#aeaeae" stroke-width="1"></circle>
-        <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.deepCollapsedChildCount}</text></g>`;
+        <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.childrenIds.length}</text></g>`;
 	},
 	minus: function(e, t, n, r, i) {
 		var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
@@ -4620,7 +4624,7 @@ e.prototype.init = function(t, n) {
 	plus: function(e, t, n, r, i) {
 		var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
 		return `<g  transform="matrix(1,0,0,1,${i.x - 15},${i.y - 15})"><circle class="boc-hoverable" cx="15" cy="15" r="15" fill="${a}" stroke="#aeaeae" stroke-width="1"></circle>
-        <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.deepCollapsedChildCount}</text></g>`;
+        <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.childrenIds.length}</text></g>`;
 	},
 	minus: function(e, t, n, r, i) {
 		var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
@@ -4659,7 +4663,7 @@ e.prototype.init = function(t, n) {
 ], e.templates.emily.link = "<path class=\"boc-emily-stroke\" stroke-linejoin=\"round\" stroke=\"#aeaeae\" stroke-width=\"1px\" fill=\"none\" d=\"{rounded}\" />", e.templates.emily.plus = function(e, t, n, r, i) {
 	var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
 	return `<g  transform="matrix(1,0,0,1,${i.x - 15},${i.y - 15})"><circle class="boc-emily-stroke" cx="15" cy="15" r="15" fill="${a}" stroke="#aeaeae" stroke-width="1"></circle>
-    <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.deepCollapsedChildCount}</text></g>`;
+    <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.childrenIds.length}</text></g>`;
 }, e.templates.emily.minus = function(e, t, n, r, i) {
 	var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
 	return `<g  transform="matrix(1,0,0,1,${i.x - 15},${i.y - 15})"><circle class="boc-emily-stroke" cx="15" cy="15" r="15" fill="${a}" stroke="#aeaeae" stroke-width="1"></circle>
@@ -4951,7 +4955,7 @@ e.prototype.init = function(t, n) {
 	var i = n.expandCollapseSize / 2 + e.level * n.expandCollapseSize, a = e.h / 2;
 	a -= n.expandCollapseSize / 2;
 	var o = r.mode == "dark" ? "#ccc" : "#757575";
-	return `<g transform="matrix(1,0,0,1,${i},${a})"><text x="6" style="font-size: 10px;" fill="${o}" y="15.5" text-anchor="end">${e.deepCollapsedChildCount}</text><path fill="${o}" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /><rect style="opacity: 0" x="-3" y="-3" width="30" height="30"></rect></g>`;
+	return `<g transform="matrix(1,0,0,1,${i},${a})"><text x="6" style="font-size: 10px;" fill="${o}" y="15.5" text-anchor="end">${e.childrenIds.length}</text><path fill="${o}" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /><rect style="opacity: 0" x="-3" y="-3" width="30" height="30"></rect></g>`;
 }, e.templates.treeListItem.minus = function(e, t, n, r) {
 	var i = n.expandCollapseSize / 2 + e.level * n.expandCollapseSize, a = e.h / 2;
 	a -= n.expandCollapseSize / 2;
@@ -6752,6 +6756,36 @@ e.prototype.init = function(t, n) {
 	}), Object.keys(e.nodeBinding).filter((e) => e.startsWith("img")).forEach((n) => {
 		t[n] = e.nodeBinding[n];
 	}), e.nodeBinding = t;
+}, e._moveNodesToVisibleAreaAfterExpand = function(t, n, r, i) {
+	if (t.config.orientation != e.orientation.top) {
+		console.error("_moveNodesToVisibleAreaAfterExpand works only for OrgChart.orientation.top, not implemented for others!");
+		return;
+	}
+	var a = t.getSvg(), o = t.getViewBox(), s = o[0], c = o[1], l = o[2], u = o[3], d = s, f = c, p = t.getNode(n);
+	if (t.getNode(r[0]).y > p.y) {
+		for (var m of r) {
+			var h = t.getNode(m), g = h.y - u + h.h + t.config.padding;
+			g > f && (f = g);
+		}
+		f > p.y - t.config.padding && (f = p.y - t.config.padding);
+	} else {
+		for (var m of r) {
+			var h = t.getNode(m), g = h.y - t.config.padding;
+			g < f && (f = g);
+		}
+		f < p.y + p.h - u + t.config.padding && (f = p.y + p.h - u + t.config.padding);
+	}
+	if (f != c || d != s) {
+		var _ = [
+			d,
+			f,
+			l,
+			u
+		];
+		e.animate(a, { viewBox: o }, { viewBox: _ }, t.config.anim.duration, t.config.anim.func, function() {
+			t.draw(e.action.update, void 0, i);
+		});
+	}
 }, e.xScrollUI = function(t, n, r, i, a) {
 	this.element = t, this.requestParams = r, this.config = n, this.onSetViewBoxCallback = i, this.onDrawCallback = a, this.position = 0, this.bar = null, this._event_id = e._guid();
 }, e.xScrollUI.prototype.addListener = function(t) {

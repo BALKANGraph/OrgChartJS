@@ -1029,6 +1029,15 @@ declare class OrgChart  {
     moveNodesToVisibleArea(ids: Array<number | string>, callback?: () => void): void;
 
     /**
+     * Moves the specified nodes into the visible area after a node expansion.
+     *
+     * @param id The ID of the node that was clicked to trigger the expand action.
+     * @param  ids Array of node IDs that should be moved into the visible area.
+     * @param Optional callback executed after the operation is completed.
+     */
+    moveNodesToVisibleAreaAfterExpand(id: number | string, ids: Array<number | string>, callback?: () => void): void;
+
+    /**
      * Search in the chart.
      * ```typescript     
      * let chart = new OrgChart('#tree', {});

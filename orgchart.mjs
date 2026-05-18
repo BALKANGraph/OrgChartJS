@@ -197,9 +197,9 @@ e.prototype.init = function(t, n) {
 					a.ripple(r.options.rippleId), A ||= (i && i.call(a), e.events.publish("redraw", [a]), a._showAfterAnimation(), !0);
 				}, function() {
 					a.xScrollUI.setPosition(), a.yScrollUI.setPosition();
-				}) : l && a.response && (l[0] != a.response.viewBox[0] || l[1] != a.response.viewBox[1] || l[2] != a.response.viewBox[2] || l[3] != a.response.viewBox[3]) && (n === e.action.insert || n === e.action.expand || n === e.action.collapse || n === e.action.update || n === e.action.init) ? e.animate(a.getSvg(), { viewbox: l }, { viewbox: a.response.viewBox }, a.config.anim.duration * 2, a.config.anim.func, function() {
+				}) : l && a.response && (l[0] != a.response.viewBox[0] || l[1] != a.response.viewBox[1] || l[2] != a.response.viewBox[2] || l[3] != a.response.viewBox[3]) && (n === e.action.insert || n === e.action.expand || n === e.action.collapse || n === e.action.update || n === e.action.init) ? a._loaded ? e.animate(a.getSvg(), { viewbox: l }, { viewbox: a.response.viewBox }, a.config.anim.duration * 2, a.config.anim.func, function() {
 					a.xScrollUI.setPosition(), a.yScrollUI.setPosition(), A ||= (i && i.call(a), e.events.publish("redraw", [a]), !0);
-				}) : j[0].length == 0 && (A ||= (i && i.call(a), e.events.publish("redraw", [a]), !0)), a._initialized || (a._initialized = !0, a.filterUI.update(), a._ai.setContext(), e.events.publish("init", [a])), !a._loaded && t && t.nodes && Object.keys(t.nodes).length && (a._loaded = !0);
+				}) : a.setViewBox(a.response.viewBox) : j[0].length == 0 && (A ||= (i && i.call(a), e.events.publish("redraw", [a]), !0)), a._initialized || (a._initialized = !0, a.filterUI.update(), a._ai.setContext(), e.events.publish("init", [a])), !a._loaded && t && t.nodes && Object.keys(t.nodes).length && (a._loaded = !0);
 			}
 		}, function(t) {
 			e.events.publish("ready", [a, t]);
@@ -860,7 +860,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.3.1", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.3.11", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -4588,7 +4588,7 @@ e.prototype.init = function(t, n) {
 	plus: function(e, t, n, r, i) {
 		var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
 		return `<g transform="matrix(1,0,0,1,${i.x - 15},${i.y - 15})"><circle cx="15" cy="15" r="15" fill="${a}" stroke="#aeaeae" stroke-width="1"></circle>
-        <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.childrenIds.length}</text></g>`;
+        <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.collapsedChildrenIds.length}</text></g>`;
 	},
 	minus: function(e, t, n, r, i) {
 		var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
@@ -4624,7 +4624,7 @@ e.prototype.init = function(t, n) {
 	plus: function(e, t, n, r, i) {
 		var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
 		return `<g  transform="matrix(1,0,0,1,${i.x - 15},${i.y - 15})"><circle class="boc-hoverable" cx="15" cy="15" r="15" fill="${a}" stroke="#aeaeae" stroke-width="1"></circle>
-        <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.childrenIds.length}</text></g>`;
+        <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.collapsedChildrenIds.length}</text></g>`;
 	},
 	minus: function(e, t, n, r, i) {
 		var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
@@ -4663,7 +4663,7 @@ e.prototype.init = function(t, n) {
 ], e.templates.emily.link = "<path class=\"boc-emily-stroke\" stroke-linejoin=\"round\" stroke=\"#aeaeae\" stroke-width=\"1px\" fill=\"none\" d=\"{rounded}\" />", e.templates.emily.plus = function(e, t, n, r, i) {
 	var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
 	return `<g  transform="matrix(1,0,0,1,${i.x - 15},${i.y - 15})"><circle class="boc-emily-stroke" cx="15" cy="15" r="15" fill="${a}" stroke="#aeaeae" stroke-width="1"></circle>
-    <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.childrenIds.length}</text></g>`;
+    <text text-anchor="middle" style="font-size: 14px;cursor:pointer;" fill="#aeaeae" x="15" y="21">${e.collapsedChildrenIds.length}</text></g>`;
 }, e.templates.emily.minus = function(e, t, n, r, i) {
 	var a = r.mode == "dark" ? "#1E1E1E" : "#ffffff";
 	return `<g  transform="matrix(1,0,0,1,${i.x - 15},${i.y - 15})"><circle class="boc-emily-stroke" cx="15" cy="15" r="15" fill="${a}" stroke="#aeaeae" stroke-width="1"></circle>
@@ -4955,7 +4955,7 @@ e.prototype.init = function(t, n) {
 	var i = n.expandCollapseSize / 2 + e.level * n.expandCollapseSize, a = e.h / 2;
 	a -= n.expandCollapseSize / 2;
 	var o = r.mode == "dark" ? "#ccc" : "#757575";
-	return `<g transform="matrix(1,0,0,1,${i},${a})"><text x="6" style="font-size: 10px;" fill="${o}" y="15.5" text-anchor="end">${e.childrenIds.length}</text><path fill="${o}" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /><rect style="opacity: 0" x="-3" y="-3" width="30" height="30"></rect></g>`;
+	return `<g transform="matrix(1,0,0,1,${i},${a})"><text x="6" style="font-size: 10px;" fill="${o}" y="15.5" text-anchor="end">${e.collapsedChildrenIds.length}</text><path fill="${o}" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /><rect style="opacity: 0" x="-3" y="-3" width="30" height="30"></rect></g>`;
 }, e.templates.treeListItem.minus = function(e, t, n, r) {
 	var i = n.expandCollapseSize / 2 + e.level * n.expandCollapseSize, a = e.h / 2;
 	a -= n.expandCollapseSize / 2;

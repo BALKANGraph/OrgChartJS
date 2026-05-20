@@ -860,7 +860,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.3.12", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.3.14", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -2054,7 +2054,7 @@ e.prototype.init = function(t, n) {
 	}, t);
 }, e.prototype.exportToVisio = function(t, n) {
 	var r = this;
-	t = e._setDefaultOptions(t, "vstx"), this._createExportPages("vstx", t, function(i) {
+	t = e._setDefaultOptions(t, "vsdx"), this._createExportPages("vsdx", t, function(i) {
 		for (var a = 0; a < t.pages.length; a++) e.loading.show(t.pages[a].chartInstance);
 		r._requestToExportVisio(i, t, function(i) {
 			var a = !0;
@@ -2125,7 +2125,7 @@ e.prototype.init = function(t, n) {
 }, e._exportHideAnimation = function(t) {
 	for (var n = 0; n < t.pages.length; n++) e.loading.hide(t.pages[n].chartInstance);
 }, e._setDefaultOptions = function(t, n, r) {
-	return t ||= {}, t.type = n, t.landscape ?? (n == "pdf" ? t.landscape = !1 : n == "pptx" && (t.landscape = !0)), t.header ??= "", t.expandChildren ??= !1, t.childLevels ??= null, t.parentLevels ??= null, t.min ??= !0, t.format ?? (n == "pdf" && !r ? t.format = "auto" : n == "pdf" && r ? t.format = "A4" : n == "pptx" && (t.format = "Widescreen")), t.footer ?? (n == "pdf" ? t.format == "auto" ? t.footer = "" : t.footer = "<text style=\"fill: #aeaeae\" x=\"0\" y=\"15\">Page {current-page} of {total-pages}</text>" : n == "png" || n == "svg" ? t.footer = "" : n == "pptx" ? t.footer = "<text style=\"fill: #aeaeae\" x=\"0\" y=\"15\">Slide {current-page} of {total-pages}</text>" : n == "vstx" && (t.footer = "")), t.fileName ??= "OrgChart." + n, t.openInNewTab ??= !1, t.width == null && t.height == null && (n == "png" || n == "svg" || n == "vstx" || n == "pdf" && t.format == "auto" ? (t.width = "auto", t.height = "auto") : (e.Screen = {
+	return t ||= {}, t.type = n, t.landscape ?? (n == "pdf" ? t.landscape = !1 : n == "pptx" && (t.landscape = !0)), t.header ??= "", t.expandChildren ??= !1, t.childLevels ??= null, t.parentLevels ??= null, t.min ??= !0, t.format ?? (n == "pdf" && !r ? t.format = "auto" : n == "pdf" && r ? t.format = "A4" : n == "pptx" && (t.format = "Widescreen")), t.footer ?? (n == "pdf" ? t.format == "auto" ? t.footer = "" : t.footer = "<text style=\"fill: #aeaeae\" x=\"0\" y=\"15\">Page {current-page} of {total-pages}</text>" : n == "png" || n == "svg" ? t.footer = "" : n == "pptx" ? t.footer = "<text style=\"fill: #aeaeae\" x=\"0\" y=\"15\">Slide {current-page} of {total-pages}</text>" : n == "vsdx" && (t.footer = "")), t.fileName ??= "OrgChart." + n, t.openInNewTab ??= !1, t.width == null && t.height == null && (n == "png" || n == "svg" || n == "vsdx" || n == "pdf" && t.format == "auto" ? (t.width = "auto", t.height = "auto") : (e.Screen = {
 		width: screen.height / 2,
 		height: screen.width / 2
 	}, t.landscape ? (t.width = e[t.format].height, t.height = e[t.format].width) : (t.width = e[t.format].width, t.height = e[t.format].height))), t.margin ??= [

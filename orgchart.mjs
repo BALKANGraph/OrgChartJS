@@ -860,7 +860,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.3.14", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.3.15", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -1318,8 +1318,8 @@ e.prototype.init = function(t, n) {
 }, e.menuUI = function() {}, e.menuUI.prototype.init = function(t, n) {
 	this.obj = t, this.wrapper = null, this.menu = n, this._event_id = e._guid();
 }, e.menuUI.prototype.showStickIn = function(e, t, n, r) {
-	var i = e.getBoundingClientRect(), a = i.left, o = i.top;
-	return this.show(a, o, t, n, r);
+	var i = e.getBoundingClientRect(), a = this.obj.getSvg().getBoundingClientRect(), o = i.left - a.left, s = i.top - a.top;
+	return this.show(o, s, t, n, r);
 }, e.menuUI.prototype.show = function(e, t, n, r, i) {
 	return this._show(e, t, n, r, i);
 }, e.menuUI.prototype._show = function(t, n, r, i, a) {

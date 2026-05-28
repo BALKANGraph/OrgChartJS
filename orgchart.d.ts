@@ -347,6 +347,13 @@ declare class OrgChart  {
          * ```
          */
         excel: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
+
+        /**
+         * ```typescript
+         * let jsonIcon = OrgChart.icon.json(24, 24, "#7A7A7A");
+         * ```
+         */        
+        json: (w: string| number, h: string| number, c: string| number, x?: string| number, y?: string| number) => string,
         /**
          * ```typescript
          * let powerPointIcon = OrgChart.icon.powerpoint(24, 24, "#7A7A7A");

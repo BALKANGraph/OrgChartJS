@@ -2053,7 +2053,7 @@ declare class OrgChart  {
      * OrgChart.ORGSCRIBE_OFFSET = '-';
      * ```
      */
-    static ORGSCRIBE_OFFSET: Array<string>;
+    static ORGSCRIBE_OFFSET: string;
 
     /**
      * Mouse wheel scroll step (in pixels) for the TreeList layout.

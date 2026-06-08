@@ -4471,6 +4471,7 @@ declare namespace OrgChart {
     interface dottedLine {
         from?: string | number,
         to?: string | number,
+        rootId?: string | number,
         tags?: Array<string>
     }
 

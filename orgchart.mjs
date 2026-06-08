@@ -23,7 +23,7 @@ e.prototype.init = function(t, n) {
 	if (t && !this._initCalled) {
 		this._initCalled = !0, (typeof t == "string" || t instanceof String) && (t = document.querySelector(t)), this.element = t;
 		var r = this;
-		if (e._reorderNodeBinding(n), this.config = e.mergeDeep(e._defaultConfig(n), n), this._layoutConfigs = { base: {
+		if (e._reorderNodeBinding(n), this.config = e.mergeDeep(e._defaultConfig(n), n), this.config.mouseScrool && (this.config.mouseScroll = this.config.mouseScrool), this._layoutConfigs = { base: {
 			orientation: this.config.orientation,
 			levelSeparation: this.config.levelSeparation,
 			mixedHierarchyNodesSeparation: this.config.mixedHierarchyNodesSeparation,
@@ -421,7 +421,7 @@ e.prototype.init = function(t, n) {
 		toolbar: !1,
 		nodeMouseClick: e.action.details,
 		nodeMouseDbClick: e.none,
-		mouseScrool: e.action.ctrlZoom,
+		mouseScroll: e.action.ctrlZoom,
 		showXScroll: !1,
 		showYScroll: !1,
 		template: "ana",
@@ -852,7 +852,7 @@ e.prototype.init = function(t, n) {
 			n._globalContextHandler.apply(n, [this, e]);
 		}, { passive: !1 }), t.addEventListener("dblclick", function(e) {
 			n._globalDbClickHandler.apply(n, [this, e]);
-		}, { passive: !0 }), this.config.mouseScrool != e.action.none && t.addEventListener("wheel", function(e) {
+		}, { passive: !0 }), this.config.mouseScroll != e.action.none && t.addEventListener("wheel", function(e) {
 			n._mouseScrollHandler.apply(n, [this, e]);
 		}, { passive: !1 });
 		var r = this.getMenuButton();
@@ -860,7 +860,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.3.18", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.3.19", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -2898,8 +2898,8 @@ e.prototype.init = function(t, n) {
 	t.ctrlKey && (n = !1), n ? this.__mouseScrollHandlerTreeList(i, t) : this.__mouseScrollHandler(this.getSvg(), t);
 }, e.prototype.__mouseScrollHandler = function(t, n) {
 	if (n.ctrlKey) {
-		if (this.config.mouseScrool == e.action.zoom) return;
-	} else if (this.config.mouseScrool == e.action.ctrlZoom || this.config.mouseScrool != e.action.zoom) return;
+		if (this.config.mouseScroll == e.action.zoom) return;
+	} else if (this.config.mouseScroll == e.action.ctrlZoom || this.config.mouseScroll != e.action.zoom) return;
 	if (n.preventDefault(), !navigator.hardwareConcurrency || navigator.hardwareConcurrency < 9) {
 		let i = n.deltaY / 1e3;
 		i = Math.abs(i) < .1 ? .1 * n.deltaY / Math.abs(n.deltaY) : i;
@@ -6790,7 +6790,7 @@ e.prototype.init = function(t, n) {
 	this.element = t, this.requestParams = r, this.config = n, this.onSetViewBoxCallback = i, this.onDrawCallback = a, this.position = 0, this.bar = null, this._event_id = e._guid();
 }, e.xScrollUI.prototype.addListener = function(t) {
 	var n = this;
-	if (this.config.mouseScrool != e.action.xScroll && this.config.mouseScrool != e.action.scroll || !this.bar) return;
+	if (this.config.mouseScroll != e.action.xScroll && this.config.mouseScroll != e.action.scroll || !this.bar) return;
 	var r = navigator.userAgent.indexOf("Mac OS") !== -1;
 	function i(t, i, a) {
 		var o = !1;
@@ -6798,8 +6798,8 @@ e.prototype.init = function(t, n) {
 		function s(t) {
 			if (t.preventDefault(), !t.ctrlKey) {
 				var a = 0;
-				if (n.config.mouseScrool == e.action.xScroll) a = t.deltaX || t.wheelDeltaX, a ||= t.deltaY || t.wheelDeltaY;
-				else if (n.config.mouseScrool == e.action.scroll && (a = r || !t.shiftKey ? t.deltaX || t.wheelDeltaX : t.deltaY || t.wheelDeltaY, !a)) return;
+				if (n.config.mouseScroll == e.action.xScroll) a = t.deltaX || t.wheelDeltaX, a ||= t.deltaY || t.wheelDeltaY;
+				else if (n.config.mouseScroll == e.action.scroll && (a = r || !t.shiftKey ? t.deltaX || t.wheelDeltaX : t.deltaY || t.wheelDeltaY, !a)) return;
 				a = -a, a = Math.max(-1, Math.min(1, a)), n.position += -a * i;
 				var s = parseFloat(n.innerBar.clientWidth) - parseFloat(n.bar.clientWidth);
 				n.position < 0 && (n.position = 0), n.position > s && (n.position = s), o || c();
@@ -6824,7 +6824,7 @@ e.prototype.init = function(t, n) {
 	var a = e._getScrollSensitivity();
 	i(t, a.speed, a.smooth);
 }, e.xScrollUI.prototype.create = function(t) {
-	if (!(this.config.showXScroll !== !0 && this.config.mouseScrool !== e.action.scroll && this.config.mouseScrool !== e.action.xScroll)) {
+	if (!(this.config.showXScroll !== !0 && this.config.mouseScroll !== e.action.scroll && this.config.mouseScroll !== e.action.xScroll)) {
 		var n = this;
 		this.bar && this.bar.parentNode && this.bar.parentNode.removeChild(this.bar), this.bar = document.createElement("div"), this.innerBar = document.createElement("div"), this.requestParams(), this.innerBar.innerHTML = "&nbsp", Object.assign(this.bar.style, {
 			position: "absolute",
@@ -6865,7 +6865,7 @@ e.prototype.init = function(t, n) {
 	this.element = t, this.requestParams = r, this.config = n, this.onSetViewBoxCallback = i, this.onDrawCallback = a, this.position = 0, this.bar = null, this._event_id = e._guid();
 }, e.yScrollUI.prototype.addListener = function(t) {
 	var n = this;
-	if (this.config.mouseScrool != e.action.yScroll && this.config.mouseScrool != e.action.scroll || !this.bar) return;
+	if (this.config.mouseScroll != e.action.yScroll && this.config.mouseScroll != e.action.scroll || !this.bar) return;
 	var r = navigator.userAgent.indexOf("Mac OS") !== -1;
 	function i(t, i, a) {
 		var o = !1;
@@ -6873,8 +6873,8 @@ e.prototype.init = function(t, n) {
 		function s(t) {
 			if (t.preventDefault(), !t.ctrlKey) {
 				var a = 0;
-				if (n.config.mouseScrool == e.action.yScroll) a = t.deltaY || t.wheelDeltaY, a ||= t.deltaX || t.wheelDeltaX;
-				else if (n.config.mouseScrool == e.action.scroll && (a = r || !t.shiftKey ? t.deltaY || t.wheelDeltaY : t.deltaX || t.wheelDeltaX, !a)) return;
+				if (n.config.mouseScroll == e.action.yScroll) a = t.deltaY || t.wheelDeltaY, a ||= t.deltaX || t.wheelDeltaX;
+				else if (n.config.mouseScroll == e.action.scroll && (a = r || !t.shiftKey ? t.deltaY || t.wheelDeltaY : t.deltaX || t.wheelDeltaX, !a)) return;
 				a = -a, a = Math.max(-1, Math.min(1, a)), n.position += -a * i;
 				var s = parseFloat(n.innerBar.clientHeight) - parseFloat(n.bar.clientHeight);
 				n.position < 0 && (n.position = 0), n.position > s && (n.position = s), o || c();
@@ -6899,7 +6899,7 @@ e.prototype.init = function(t, n) {
 	var a = e._getScrollSensitivity();
 	i(t, a.speed, a.smooth);
 }, e.yScrollUI.prototype.create = function(t) {
-	if (!(this.config.showYScroll !== !0 && this.config.mouseScrool !== e.action.scroll && this.config.mouseScrool !== e.action.yScroll)) {
+	if (!(this.config.showYScroll !== !0 && this.config.mouseScroll !== e.action.scroll && this.config.mouseScroll !== e.action.yScroll)) {
 		var n = this;
 		this.bar && this.bar.parentNode && this.bar.parentNode.removeChild(this.bar), this.bar = document.createElement("div"), this.innerBar = document.createElement("div"), this.innerBar.innerHTML = "&nbsp", Object.assign(this.bar.style, {
 			position: "absolute",

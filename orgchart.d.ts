@@ -19,7 +19,7 @@
  *    <div id="tree"></div>
  *    <script>
  *        let chart = new OrgChart(document.getElementById("tree"), {
- *            mouseScrool: OrgChart.action.scroll,
+ *            mouseScroll: OrgChart.action.scroll,
  *            enableDragDrop: true,
  *            nodeBinding: { field_0: "name" },
  *            nodes: [
@@ -5059,7 +5059,7 @@ declare namespace OrgChart {
          * OrgChart.action.zoom = 2;
          * ```typescript
          * let chart = new OrgChart('#tree', {
-         *  mouseScrool: OrgChart.action.zoom,
+         *  mouseScroll: OrgChart.action.zoom,
          * });
          * ```
          */
@@ -5070,7 +5070,7 @@ declare namespace OrgChart {
          * OrgChart.action.ctrlZoom = 22;
          * ```typescript
          * let chart = new OrgChart('#tree', {
-         *  mouseScrool: OrgChart.action.ctrlZoom,
+         *  mouseScroll: OrgChart.action.ctrlZoom,
          * });
          * ```
          */
@@ -5081,7 +5081,7 @@ declare namespace OrgChart {
          * OrgChart.action.xScroll = 3;
          * ```typescript
          * let chart = new OrgChart('#tree', {
-         *  mouseScrool: OrgChart.action.xScroll,
+         *  mouseScroll: OrgChart.action.xScroll,
          * });
          * ```
          */
@@ -5092,7 +5092,7 @@ declare namespace OrgChart {
          * OrgChart.action.yScroll = 4;
          * ```typescript
          * let chart = new OrgChart('#tree', {
-         *  mouseScrool: OrgChart.action.yScroll,
+         *  mouseScroll: OrgChart.action.yScroll,
          * });
          * ```
          */
@@ -5107,7 +5107,7 @@ declare namespace OrgChart {
          * OrgChart.action.scroll = 41;
          * ```typescript
          * let chart = new OrgChart('#tree', {
-         *  mouseScrool: OrgChart.action.scroll,
+         *  mouseScroll: OrgChart.action.scroll,
          * });
          * ```
          */
@@ -5367,7 +5367,7 @@ declare namespace OrgChart {
          */
         nodeMouseDbClick?: OrgChart.action,
         /**
-         * mouseScrool can accept the following values:
+         * mouseScroll can accept the following values:
          * - OrgChart.action.zoom - will zoom in/out on mouse scroll
          * - OrgChart.action.ctrlZoom - will zoom in/out on mouse scroll and ctrl button is pressed
          * - OrgChart.action.xScroll - left/right move of the chart on mouse scroll
@@ -5377,11 +5377,11 @@ declare namespace OrgChart {
          * Default value - *OrgChart.action.zoom*
          * ```typescript     
          * var chart = new OrgChart('#tree', {
-         *      mouseScrool: OrgChart.action.ctrlZoom
+         *      mouseScroll: OrgChart.action.ctrlZoom
          * });
          * ```
          */
-        mouseScrool?: OrgChart.action,
+        mouseScroll?: OrgChart.action,
         /**
          * Shows horizontal scrollbar. Default value - *false*.
          * ```typescript     

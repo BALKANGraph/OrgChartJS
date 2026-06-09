@@ -13,7 +13,7 @@ var e = function(e, t) {
 			return e;
 		},
 		set(t) {
-			e = t, e && (e.innerHTML = "\n                    <style>                    \n                    .boc-dark, .boc-light{ display: flex; }\n                    [data-boc-left]{ display: none; }\n                    [data-boc-right]{ height: 100%; position: relative; overflow:hidden; flex-grow: 1; }\n                    [data-boc-content]{ height: 100%; width: 100%; }\n                    @media screen and (max-width: 500px) {\n                        .boc-dark, .boc-light{ flex-direction: column; }\n                        [data-boc-left]{ order: 2; height: 50vh; }\n                        [data-boc-right]{ order: 1; }\n                    }\n                    </style>\n                    <div data-boc-left></div>\n                    <div data-boc-right>\n                        <div data-boc-content></div>\n                    </div>");
+			e = t, e && (e.innerHTML = "\n                    <style>                    \n                    .boc-dark, .boc-light{ display: flex; }\n                    [data-boc-left]{ display: none; }\n                    [data-boc-right]{ height: 100%; position: relative; overflow:hidden; flex-grow: 1; }\n                    [data-boc-content]{ height: 100%; width: 100%; }\n                    [data-boc-hidden]{ position: absolute; top: -999999999px; left: -999999999px; background-color: red; }\n                    @media screen and (max-width: 500px) {\n                        .boc-dark, .boc-light{ flex-direction: column; }\n                        [data-boc-left]{ order: 2; height: 50vh; }\n                        [data-boc-right]{ order: 1; }\n                    }\n                    </style>\n                    <div data-boc-left></div>\n                    <div data-boc-right>\n                        <div data-boc-content></div>\n                        <div data-boc-hidden></div>\n                    </div>");
 		}
 	}), Object.defineProperty(this, "leftElement", { get() {
 		return e.querySelector("[data-boc-left]");
@@ -860,7 +860,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.3.20", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.3.21", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -1308,7 +1308,7 @@ e.prototype.init = function(t, n) {
 	return `<h1 class="boc-edit-form-title">${e._escapeGreaterLessSign(t)}</h1>
                 <div id="boc-avatar" class="boc-edit-form-avatar">${n}</div>`;
 }, e.prototype.getSvg = function() {
-	return this.element.querySelector("svg");
+	return this.element.querySelector("[data-boc-content] svg");
 }, e.prototype.getPointerElement = function() {
 	return this.element.querySelector("g[data-pointer]");
 }, e.prototype.getNodeElement = function(t) {
@@ -6678,13 +6678,20 @@ e.prototype.init = function(t, n) {
 			break;
 	}
 	return r;
-}, e._measureCache = {
-	svg: null,
-	text: null
-}, e._getMeasureElement = function() {
-	if (e._measureCache.svg) return e._measureCache.text;
-	let t = "http://www.w3.org/2000/svg";
-	return e._measureCache.svg = document.createElementNS(t, "svg"), e._measureCache.svg.id = "orgchart_js_test__measure", e._measureCache.svg.style.cssText = "position:absolute;top:-9999px;visibility:hidden;white-space:pre;", e._measureCache.text = document.createElementNS(t, "text"), e._measureCache.svg.appendChild(e._measureCache.text), document.body.appendChild(e._measureCache.svg), e._measureCache.text;
+}, e._measureCacheElement = null, e._getMeasureElement = function() {
+	if (e._measureCacheElement) return e._measureCacheElement;
+	var t = e.ui.defs("");
+	document.querySelector("[data-boc-hidden]").innerHTML = e.ui.svg(1e4, 1e4, [
+		0,
+		0,
+		1e4,
+		1e4
+	], {
+		template: "olivia",
+		mode: "light"
+	}, t);
+	var n = document.querySelector("[data-boc-hidden] svg");
+	return e._measureCacheElement = document.createElementNS("http://www.w3.org/2000/svg", "text"), n.appendChild(e._measureCacheElement), e._measureCacheElement;
 }, e._lineClamp = function(t, n, r, i) {
 	if (n === void 0 || n == null) return "";
 	typeof n != "string" && (n = n.toString()), n = e._escapeHtml(n);
@@ -6696,7 +6703,7 @@ e.prototype.init = function(t, n) {
 	let l = (e) => (c.textContent = e, c.getComputedTextLength()), u = n.split(" "), d = [], f = "", p = 0;
 	for (; p < u.length && d.length < i;) {
 		let e = u[p], t = f ? f + " " + e : e;
-		if (l(t) <= r) f = t, p++;
+		if (console.log(l(t)), l(t) <= r) f = t, p++;
 		else if (f === "") {
 			let t = 0, n = e.length, i = 1;
 			for (; t <= n;) {

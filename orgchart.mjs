@@ -1,23 +1,48 @@
 //#region dist/combined/free.esm.js
-var e = function(e, t) {
-	var n = this;
+var e = function(t, n) {
+	var r = this;
 	Object.defineProperty(this, "element", {
 		get() {
-			return e ? e.querySelector("[data-boc-content]") : null;
+			return t ? t.querySelector("[data-boc-content]") : null;
 		},
 		set(e) {
-			n.mainElement = e;
+			r.mainElement = e;
 		}
 	}), Object.defineProperty(this, "mainElement", {
 		get() {
-			return e;
+			return t;
 		},
-		set(t) {
-			e = t, e && (e.innerHTML = "\n                    <style>                    \n                    .boc-dark, .boc-light{ display: flex; }\n                    [data-boc-left]{ display: none; }\n                    [data-boc-right]{ height: 100%; position: relative; overflow:hidden; flex-grow: 1; }\n                    [data-boc-content]{ height: 100%; width: 100%; }\n                    [data-boc-hidden]{ position: absolute; top: -999999999px; left: -999999999px; background-color: red; }\n                    @media screen and (max-width: 500px) {\n                        .boc-dark, .boc-light{ flex-direction: column; }\n                        [data-boc-left]{ order: 2; height: 50vh; }\n                        [data-boc-right]{ order: 1; }\n                    }\n                    </style>\n                    <div data-boc-left></div>\n                    <div data-boc-right>\n                        <div data-boc-content></div>\n                        <div data-boc-hidden></div>\n                    </div>");
+		set(n) {
+			t = n, t && (t.innerHTML = `
+                    <style>                    
+                    .boc-dark, .boc-light{ display: flex; }
+                    [data-boc-left]{ display: none; }
+                    [data-boc-right]{ height: 100%; position: relative; overflow:hidden; flex-grow: 1; }
+                    [data-boc-content]{ height: 100%; width: 100%; }
+                    @media screen and (max-width: 500px) {
+                        .boc-dark, .boc-light{ flex-direction: column; }
+                        [data-boc-left]{ order: 2; height: 50vh; }
+                        [data-boc-right]{ order: 1; }
+                    }
+                    </style>
+                    <div data-boc-left></div>
+                    <div data-boc-right>
+                        <div data-boc-content>
+                            ${e.ui.css() + e.ui.svg("100%", "100%", [
+				0,
+				0,
+				0,
+				0
+			], {
+				template: "ana",
+				mode: "light"
+			}, e.ui.defs("") + "<text  y=\"-9999999\" x=\"-9999999\" data-hidden-measure></text>")}
+                        </div>
+                    </div>`);
 		}
 	}), Object.defineProperty(this, "leftElement", { get() {
-		return e.querySelector("[data-boc-left]");
-	} }), n.init(e, t);
+		return t.querySelector("[data-boc-left]");
+	} }), r.init(t, n);
 };
 e.prototype.init = function(t, n) {
 	if (t && !this._initCalled) {
@@ -178,7 +203,7 @@ e.prototype.init = function(t, n) {
 				(n === e.action.centernode || n === e.action.insert || n === e.action.expand || n === e.action.collapse || n === e.action.update) && (u = l), n === e.action.init && l != null && (u = l), n === e.action.centerNode && l != null && (u = l), a.response = t, a._lastSize = {
 					width: a.width(),
 					height: a.height()
-				};
+				}, s += "<text  y=\"-9999999\" x=\"-9999999\" data-hidden-measure></text>";
 				var D = a.ui.svg("100%", "100%", u, a.config, s);
 				if (!a._initialized) a.element.innerHTML = a.ui.css() + D + a.ui.menuButton(a.config) + a.ui.aiButton(a.config), a._attachEventHandlers(), a.xScrollUI.create(a.width(), a.config.padding), a.xScrollUI.setPosition(), a.xScrollUI.addListener(a.getSvg()), a.yScrollUI.create(a.height(), a.config.padding), a.yScrollUI.setPosition(), a.yScrollUI.addListener(a.getSvg()), a.config.enableSearch && a.searchUI.init(a), a.aiUI.init(a), a.orgScribeUI.init(a), a.powerPointPreviewUI.init(a), a.pdfPreviewUI.init(a), a.svgPreviewUI.init(a), a.pngPreviewUI.init(a), a.toolbarUI.init(a, a.config.toolbar), a.undoRedoUI.init(a), a.controlsUI.init(a);
 				else {
@@ -860,7 +885,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.3.22", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.3.23", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -4746,9 +4771,9 @@ e.prototype.init = function(t, n) {
 	1,
 	1
 ], e.templates.olivia = Object.assign({}, e.templates.ana), e.templates.olivia.defs = "<style>\n                                    #olivia_gradient {\n                                        --color-stop-1: #ffffff;\n                                        --color-stop-2: #eeeeee;\n                                        --opacity-stop: 1;\n                                    }\n                                    .olivia-f0{\n                                        font-size: 18px;\n                                        fill: #757575;\n                                    }\n                                    .olivia-f1{\n                                        font-size: 14px;\n                                        fill: #757575;\n                                    }\n                                    .boc-dark .olivia-f0,.boc-dark .olivia-f1{\n                                        fill: #aeaeae;\n                                    }\n                                    .boc-dark #olivia_gradient {\n                                        --color-stop-1: #646464;\n                                        --color-stop-2: #363636;\n                                        --opacity-stop: 1;\n                                    }\n                                </style>\n                                <linearGradient id=\"olivia_gradient\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\"><stop offset=\"0%\" stop-color=\"var(--color-stop-1)\" stop-opacity=\"var(--opacity-stop)\"/><stop offset=\"100%\" stop-color=\"var(--color-stop-2)\" stop-opacity=\"var(--opacity-stop)\" /></linearGradient>", e.templates.olivia.field_0 = function(t, n, r, i, a) {
-	return e.wrapText(a, "<text class=\"olivia-f0\" x=\"100\" y=\"55\"></text>", t.w - 105, 1);
+	return e.wrapText(a, "<text class=\"olivia-f0\" x=\"100\" y=\"55\"></text>", t.w - 110, 1);
 }, e.templates.olivia.field_1 = function(t, n, r, i, a) {
-	return e.wrapText(a, "<text class=\"olivia-f1\" x=\"100\" y=\"76\"></text>", t.w - 105, 3);
+	return e.wrapText(a, "<text class=\"olivia-f1\" x=\"100\" y=\"76\"></text>", t.w - 110, 3);
 }, e.templates.olivia.node = function(e, t, n, r) {
 	return `<rect class="boc-hoverable" fill="url(#olivia_gradient)" x="0" y="0" height="${e.h}" width="${e.w}" stroke-width="1" stroke="#aeaeae" rx="10" ry="10"></rect>`;
 }, e.templates.olivia.img_0 = "<clipPath id=\"{randId}\"><circle cx=\"50\" cy=\"60\" r=\"40\"></circle></clipPath><image preserveAspectRatio=\"xMidYMid slice\" clip-path=\"url(#{randId})\" xlink:href=\"{val}\" x=\"10\" y=\"20\" width=\"80\" height=\"80\" ></image>", e.templates.olivia.nodeMenuButton = function(e, t, n, r) {
@@ -6679,19 +6704,7 @@ e.prototype.init = function(t, n) {
 	}
 	return r;
 }, e._measureCacheElement = null, e._getMeasureElement = function() {
-	if (e._measureCacheElement) return e._measureCacheElement;
-	var t = e.ui.defs("");
-	document.querySelector("[data-boc-hidden]").innerHTML = e.ui.svg(1e4, 1e4, [
-		0,
-		0,
-		1e4,
-		1e4
-	], {
-		template: "olivia",
-		mode: "light"
-	}, t);
-	var n = document.querySelector("[data-boc-hidden] svg");
-	return e._measureCacheElement = document.createElementNS("http://www.w3.org/2000/svg", "text"), n.appendChild(e._measureCacheElement), e._measureCacheElement;
+	return document.querySelector("[data-hidden-measure]");
 }, e._lineClamp = function(t, n, r, i) {
 	if (n === void 0 || n == null) return "";
 	typeof n != "string" && (n = n.toString()), n = e._escapeHtml(n);
@@ -6703,7 +6716,7 @@ e.prototype.init = function(t, n) {
 	let l = (e) => (c.textContent = e, c.getComputedTextLength()), u = n.split(" "), d = [], f = "", p = 0;
 	for (; p < u.length && d.length < i;) {
 		let e = u[p], t = f ? f + " " + e : e;
-		if (console.log(l(t)), l(t) <= r) f = t, p++;
+		if (l(t) <= r) f = t, p++;
 		else if (f === "") {
 			let t = 0, n = e.length, i = 1;
 			for (; t <= n;) {

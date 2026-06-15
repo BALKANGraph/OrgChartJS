@@ -224,7 +224,7 @@ e.prototype.init = function(t, n) {
 					a.xScrollUI.setPosition(), a.yScrollUI.setPosition();
 				}) : l && a.response && (l[0] != a.response.viewBox[0] || l[1] != a.response.viewBox[1] || l[2] != a.response.viewBox[2] || l[3] != a.response.viewBox[3]) && (n === e.action.insert || n === e.action.expand || n === e.action.collapse || n === e.action.update || n === e.action.init) ? a._loaded ? e.animate(a.getSvg(), { viewbox: l }, { viewbox: a.response.viewBox }, a.config.anim.duration * 2, a.config.anim.func, function() {
 					a.xScrollUI.setPosition(), a.yScrollUI.setPosition(), A ||= (i && i.call(a), e.events.publish("redraw", [a]), !0);
-				}) : a.setViewBox(a.response.viewBox) : j[0].length == 0 && (A ||= (i && i.call(a), e.events.publish("redraw", [a]), !0)), a._initialized || (a._initialized = !0, a.filterUI.update(), a._ai.setContext(), e.events.publish("init", [a])), !a._loaded && t && t.nodes && Object.keys(t.nodes).length && (a._loaded = !0);
+				}) : (a.setViewBox(a.response.viewBox), e.events.publish("redraw", [a])) : j[0].length == 0 && (A ||= (i && i.call(a), e.events.publish("redraw", [a]), !0)), a._initialized || (a._initialized = !0, a.filterUI.update(), a._ai.setContext(), e.events.publish("init", [a])), !a._loaded && t && t.nodes && Object.keys(t.nodes).length && (a._loaded = !0);
 			}
 		}, function(t) {
 			e.events.publish("ready", [a, t]);
@@ -885,7 +885,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.3.24", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.3.25", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",

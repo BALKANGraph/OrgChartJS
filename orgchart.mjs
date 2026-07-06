@@ -885,7 +885,7 @@ e.prototype.init = function(t, n) {
 			n._menuClickHandler.apply(n, [this, e]);
 		});
 	}
-}, e === void 0 && (e = {}), e.VERSION = "9.3.25", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
+}, e === void 0 && (e = {}), e.VERSION = "9.3.26", e.orientation = {}, e.orientation.top = 0, e.orientation.bottom = 1, e.orientation.right = 2, e.orientation.left = 3, e.orientation.top_left = 4, e.orientation.bottom_left = 5, e.orientation.right_top = 6, e.orientation.left_top = 7, e.anchor = {
 	top_right: "top_right",
 	right_top: "right_top",
 	bottom_right: "bottom_right",
@@ -2548,7 +2548,7 @@ e.prototype.init = function(t, n) {
 		}, i.readAsText(r.files[0]);
 	}, n.click();
 }, e.prototype.expand = function(t, n, r) {
-	if (this._treeListExpandCollapseHandler(t), this._resetMovableNodes(), n = this._filterOnlyExistingAndCallOnDemandForOthers(t, n), n.length) {
+	if (this._treeListExpandCollapseHandler(t), this._resetMovableNodes(), n = this._filterOnlyExistingAndCallOnDemandForOthers(t, n), n == "all" || n.length) {
 		var i = {
 			id: t,
 			ids: n
@@ -2579,6 +2579,7 @@ e.prototype.init = function(t, n) {
 	};
 	this._draw(!1, e.action.update, i, r);
 }, e.prototype._filterOnlyExistingAndCallOnDemandForOthers = function(t, n) {
+	if (n == "all") return n;
 	var r = [], i = [];
 	for (var a of n) this.getNode(a) ? i.push(a) : r.push(a);
 	return r.length && e.events.publish("on-demand", [this, {
